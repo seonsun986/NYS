@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class NK_UIController : MonoBehaviour
 {
+    #region IsMute
     bool isMute = false;
     bool IsMute
     {
@@ -16,7 +18,9 @@ public class NK_UIController : MonoBehaviour
             return isMute;
         }
     }
+    #endregion
 
+    #region IsControl
     bool isControl = false;
     bool IsControl
     {
@@ -29,23 +33,54 @@ public class NK_UIController : MonoBehaviour
             return isControl;
         }
     }
+    #endregion
+
+    #region IsSelectThema
+    bool isSelectThema = false;
+    bool IsSelectThema
+    {
+        get
+        {
+            if (isSelectThema)
+                isSelectThema = false;
+            else
+                isSelectThema = true;
+            return isSelectThema;
+        }
+    }
+    #endregion
+    
+    #region IsSelectBook
+    bool isSelectBook = false;
+    bool IsSelectBook
+    {
+        get
+        {
+            if (isSelectBook)
+                isSelectBook = false;
+            else
+                isSelectBook = true;
+            return isSelectBook;
+        }
+    }
+    #endregion
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    #region // 음소거 버튼
+    #region ClickMute // 음소거 버튼
     public void ClickMute()
     {
         // 모든 아이들의 볼륨을 0으로 하거나 Mute 시킴
-        for(int i = 0; i < GameManager.Instance.children.Count; i++)
+        for (int i = 0; i < GameManager.Instance.children.Count; i++)
         {
             AudioSource audio = GameManager.Instance.children[i].GetComponent<AudioSource>();
             if (audio != null)
@@ -56,16 +91,67 @@ public class NK_UIController : MonoBehaviour
     }
     #endregion
 
-    #region // 행동제어 버튼
+    #region ClickControl // 행동제어 버튼
+    float shortDistance = float.MaxValue;
+    GameObject nearSeat = null;
     public void ClickControl()
     {
         // 모든 아이들을 가장 가까운 빈 좌석에 앉힘
-        if(IsControl)
+        if (IsControl)
         {
             // 모든 좌석을 가져옴
-            // 아이들과 좌석의 거리를 비교함
-            // 가장 가까운 빈 좌석에 앉힘
+            List<GameObject> seats = GameObject.FindGameObjectsWithTag("Seat").ToList<GameObject>();
+
+            for (int i = 0; i < GameManager.Instance.children.Count; i++)
+            {
+                GameObject child = GameManager.Instance.children[i];
+                // 플레이어 무브 스크립트 비활성화
+                NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
+                move.enabled = false;
+                // 가장 짧은 거리 초기화
+                shortDistance = float.MaxValue;
+
+                for (int j = 0; j < seats.Count; j++)
+                {
+                    float distance = Vector3.Distance(seats[j].transform.position, child.transform.position);
+                    // 아이들과 좌석의 거리를 비교함
+                    if (distance < shortDistance)
+                    {
+                        shortDistance = distance;
+                        nearSeat = seats[j];
+                    }
+                }
+                // 가장 가까운 빈 좌석에 앉힘
+                child.transform.position = new Vector3(nearSeat.transform.position.x, child.transform.position.y, nearSeat.transform.position.z);
+                seats.Remove(nearSeat);
+            }
         }
+        else
+        {
+            for (int i = 0; i < GameManager.Instance.children.Count; i++)
+            {
+                GameObject child = GameManager.Instance.children[i];
+                // 플레이어 무브 스크립트 활성화
+                NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
+                move.enabled = true;
+            }
+        }
+    }
+    #endregion
+
+    #region ClickSelectThema // 방 테마 선택
+    public GameObject ThemaUI;
+    public void ClickSelectThema()
+    {
+        ThemaUI.SetActive(IsSelectThema);
+    }
+    #endregion
+    
+    #region ClickSelectBook // 동화책 선택
+    public GameObject BookUI;
+    public void ClickSelectBook()
+    {
+        BookUI.SetActive(IsSelectBook);
     }
     #endregion
 }
