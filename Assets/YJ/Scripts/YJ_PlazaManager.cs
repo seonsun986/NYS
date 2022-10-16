@@ -59,7 +59,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         }
 
         // 서버에 접속한 인원
-        liveCount = PhotonNetwork.CountOfPlayers - 1;
+        liveCount = PhotonNetwork.CountOfPlayers;
 
         // 일단 큐브생성하자
         PhotonNetwork.Instantiate("Cube", spawnPos[liveCount], Quaternion.identity);

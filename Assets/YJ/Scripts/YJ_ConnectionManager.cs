@@ -155,7 +155,7 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
         base.OnJoinedRoom();
 
         // LobbyScene ¿Ãµø
-        PhotonNetwork.LoadLevel("LobbyScene");
+        PhotonNetwork.LoadLevel("PlazaScene");
     }
 
     //public void AddPlayer(PhotonView pv)

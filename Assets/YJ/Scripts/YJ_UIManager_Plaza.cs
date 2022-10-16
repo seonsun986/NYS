@@ -29,7 +29,6 @@ public class YJ_UIManager_Plaza : MonoBehaviour
     }
     #endregion
 
-
     #region 방만들기
     public GameObject createRoomSet;
     int createCount = 0;
@@ -46,6 +45,59 @@ public class YJ_UIManager_Plaza : MonoBehaviour
             createCount++;
         }
     }
+    #endregion
 
+    #region BGM On/Off
+    public GameObject bgmHandle;
+    // 228, 291
+    public void BGMOnAndOff()
+    {
+        if (bgmHandle.GetComponent<Toggle>().isOn)
+        {
+            //handle.transform.position = new Vector2(228, 19);
+            bgmHandle.GetComponent<RectTransform>().anchoredPosition = new Vector2(228, 19);
+        }
+        else
+        {
+            //handle.transform.position = new Vector2(291, 19);
+            bgmHandle.GetComponent<RectTransform>().anchoredPosition = new Vector2(291, 19);
+        }
+    }
+    #endregion
+
+    #region EffectSound On/Off
+    public GameObject ESHandle;
+    // 228, 291
+    public void ESOnAndOff()
+    {
+        if (ESHandle.GetComponent<Toggle>().isOn)
+        {
+            //handle.transform.position = new Vector2(228, 19);
+            ESHandle.GetComponent<RectTransform>().anchoredPosition = new Vector2(228, 19);
+        }
+        else
+        {
+            //handle.transform.position = new Vector2(291, 19);
+            ESHandle.GetComponent<RectTransform>().anchoredPosition = new Vector2(291, 19);
+        }
+    }
+    #endregion
+
+    #region Invitation On/Off
+    public GameObject invitation;
+    // 228, 291
+    public void InvOnAndOff()
+    {
+        if (invitation.GetComponent<Toggle>().isOn)
+        {
+            //handle.transform.position = new Vector2(228, 19);
+            invitation.GetComponent<RectTransform>().anchoredPosition = new Vector2(228, 19);
+        }
+        else
+        {
+            //handle.transform.position = new Vector2(291, 19);
+            invitation.GetComponent<RectTransform>().anchoredPosition = new Vector2(291, 19);
+        }
+    }
     #endregion
 }
