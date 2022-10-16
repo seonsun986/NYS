@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class NK_UIController : MonoBehaviour
 {
+    #region IsMute
     bool isMute = false;
     bool IsMute
     {
@@ -17,7 +18,9 @@ public class NK_UIController : MonoBehaviour
             return isMute;
         }
     }
+    #endregion
 
+    #region IsControl
     bool isControl = false;
     bool IsControl
     {
@@ -30,6 +33,37 @@ public class NK_UIController : MonoBehaviour
             return isControl;
         }
     }
+    #endregion
+
+    #region IsSelectThema
+    bool isSelectThema = false;
+    bool IsSelectThema
+    {
+        get
+        {
+            if (isSelectThema)
+                isSelectThema = false;
+            else
+                isSelectThema = true;
+            return isSelectThema;
+        }
+    }
+    #endregion
+    
+    #region IsSelectBook
+    bool isSelectBook = false;
+    bool IsSelectBook
+    {
+        get
+        {
+            if (isSelectBook)
+                isSelectBook = false;
+            else
+                isSelectBook = true;
+            return isSelectBook;
+        }
+    }
+    #endregion
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +76,7 @@ public class NK_UIController : MonoBehaviour
 
     }
 
-    #region // 음소거 버튼
+    #region ClickMute // 음소거 버튼
     public void ClickMute()
     {
         // 모든 아이들의 볼륨을 0으로 하거나 Mute 시킴
@@ -57,7 +91,7 @@ public class NK_UIController : MonoBehaviour
     }
     #endregion
 
-    #region // 행동제어 버튼
+    #region ClickControl // 행동제어 버튼
     float shortDistance = float.MaxValue;
     GameObject nearSeat = null;
     public void ClickControl()
@@ -102,6 +136,22 @@ public class NK_UIController : MonoBehaviour
                 move.enabled = true;
             }
         }
+    }
+    #endregion
+
+    #region ClickSelectThema // 방 테마 선택
+    public GameObject ThemaUI;
+    public void ClickSelectThema()
+    {
+        ThemaUI.SetActive(IsSelectThema);
+    }
+    #endregion
+    
+    #region ClickSelectBook // 동화책 선택
+    public GameObject BookUI;
+    public void ClickSelectBook()
+    {
+        BookUI.SetActive(IsSelectBook);
     }
     #endregion
 }
