@@ -64,6 +64,23 @@ public class NK_UIController : MonoBehaviour
         }
     }
     #endregion
+
+    #region IsSetting
+    bool isSetting = false;
+    bool IsSetting
+    {
+        get
+        {
+            if (isSetting)
+                isSetting = false;
+            else
+                isSetting = true;
+            return isSetting;
+        }
+    }
+    #endregion
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -152,6 +169,14 @@ public class NK_UIController : MonoBehaviour
     public void ClickSelectBook()
     {
         BookUI.SetActive(IsSelectBook);
+    }
+    #endregion
+
+    #region ClickSetting // 설정 선택
+    public GameObject SettingUI;
+    public void ClickSetting()
+    {
+        SettingUI.SetActive(IsSetting);
     }
     #endregion
 }
