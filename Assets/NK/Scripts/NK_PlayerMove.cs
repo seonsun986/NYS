@@ -18,7 +18,7 @@ public class NK_PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.AddPlayer(gameObject);
+        //GameManager.Instance.AddPlayer(gameObject);
         controller = GetComponent<CharacterController>();
     }
 
