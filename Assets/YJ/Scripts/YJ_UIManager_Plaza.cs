@@ -30,9 +30,10 @@ public class YJ_UIManager_Plaza : MonoBehaviour
     #endregion
 
     #region 방만들기
+    // 방만들기 버튼 누르기
     public GameObject createRoomSet;
     int createCount = 0;
-    public void CreateRoom()
+    public void CreateRoomBT()
     {
         if (createCount > 0)
         {
@@ -45,6 +46,36 @@ public class YJ_UIManager_Plaza : MonoBehaviour
             createCount++;
         }
     }
+
+    // 방정보를 담을 클래스
+    public class CreateRoomInfo
+    {
+        public string roomName;
+        public string roomPw;
+        public int roomNumber;
+        public int roomType;
+    }
+
+    public Button creatRoom;
+    public InputField roomName;
+    public InputField roomPw;
+    public InputField roomNumber;
+    public int roomType;
+
+    CreateRoomInfo roomInfo = new CreateRoomInfo();
+
+    // 방만들기 버튼을 눌렀을때
+    public void CreateRoom()
+    {
+        if (creatRoom)
+        {
+            roomInfo.roomName = roomName.text;
+            roomInfo.roomPw = roomPw.text;
+            roomInfo.roomNumber = int.Parse(roomNumber.text);
+            roomInfo.roomType = roomType;
+        }
+    }
+
     #endregion
 
     #region BGM On/Off
@@ -100,4 +131,6 @@ public class YJ_UIManager_Plaza : MonoBehaviour
         }
     }
     #endregion
+
+
 }

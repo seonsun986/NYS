@@ -66,4 +66,6 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
 
     }
 
+    
+
 }

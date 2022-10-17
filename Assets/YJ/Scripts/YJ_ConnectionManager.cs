@@ -172,8 +172,7 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
     //    }
     //    return null;
     //}
-
-
+   
 
     void Update()
     {
