@@ -57,6 +57,18 @@ public class YJ_DataManager : MonoBehaviour
 
     }
 
+    #region Plaza Data
+    // 방정보를 담을 클래스
+    public class CreateRoomInfo
+    {
+        public string roomName;
+        public string roomPw;
+        public int roomNumber;
+        public int roomType;
+    }
+
+    #endregion
+
     // Update is called once per frame
     void Update()
     {

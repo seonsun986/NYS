@@ -47,34 +47,83 @@ public class YJ_UIManager_Plaza : MonoBehaviour
         }
     }
 
-    // 방정보를 담을 클래스
-    public class CreateRoomInfo
-    {
-        public string roomName;
-        public string roomPw;
-        public int roomNumber;
-        public int roomType;
-    }
+
 
     public Button creatRoom;
     public InputField roomName;
     public InputField roomPw;
     public InputField roomNumber;
-    public int roomType;
+    public int roomType = 0;
 
-    CreateRoomInfo roomInfo = new CreateRoomInfo();
+    public static YJ_DataManager.CreateRoomInfo roomInfo = new YJ_DataManager.CreateRoomInfo();
 
     // 방만들기 버튼을 눌렀을때
     public void CreateRoom()
     {
-        if (creatRoom)
+        roomInfo.roomName = roomName.text;
+        roomInfo.roomPw = roomPw.text;
+        int.TryParse(roomNumber.text, out roomInfo.roomNumber);
+        roomInfo.roomType = roomType;
+
+        print("방이름 : " + roomInfo.roomName + " 비밀번호 : " + roomInfo.roomPw + " 인원 : " + roomInfo.roomNumber + " 방 타입 : " + roomInfo.roomType);
+
+        createRoomSet.SetActive(false);
+    }
+
+    #region 룸타입 버튼
+    public Toggle type1;
+    public Toggle type2;
+    public Toggle type3;
+
+    public void RoomType1()
+    {
+        if (type1.isOn)
         {
-            roomInfo.roomName = roomName.text;
-            roomInfo.roomPw = roomPw.text;
-            roomInfo.roomNumber = int.Parse(roomNumber.text);
-            roomInfo.roomType = roomType;
+            roomType = 1;
+            type2.interactable = false;
+            type3.interactable = false;
+        }
+        else if(!type1.isOn)
+        {
+            roomType = 0;
+            type2.interactable = true;
+            type3.interactable = true;
         }
     }
+
+    public void RoomType2()
+    {
+        if (type2.isOn)
+        {
+            roomType = 2;
+            type1.interactable = false;
+            type3.interactable = false;
+        }
+        else if (!type2.isOn)
+        {
+            roomType = 0;
+            type1.interactable = true;
+            type3.interactable = true;
+        }
+    }
+
+    public void RoomType3()
+    {
+        if (type3.isOn)
+        {
+            roomType = 3;
+            type1.interactable = false;
+            type2.interactable = false;
+        }
+        else if (!type3.isOn)
+        {
+            roomType = 0;
+            type1.interactable = true;
+            type2.interactable = true;
+        }
+    }
+
+    #endregion
 
     #endregion
 

@@ -62,10 +62,24 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         liveCount = PhotonNetwork.CountOfPlayers;
 
         // 일단 큐브생성하자
-        PhotonNetwork.Instantiate("Cube", spawnPos[liveCount], Quaternion.identity);
-
+        PhotonNetwork.Instantiate("YJ/Cube", spawnPos[liveCount], Quaternion.identity);
     }
 
-    
+
+    public GameObject[] room;
+
+    public void CreatRoom()
+    {
+        PhotonNetwork.Instantiate("YJ/Type" + YJ_UIManager_Plaza.roomInfo.roomType, new Vector3(Random.Range(0,3),1.5f,Random.Range(0,2)), Quaternion.identity);
+
+        //Ray ray;
+        //RaycastHit hitInfo;
+
+        //if(Physics.BoxCast())
+
+        //+ roomInfo.roomType.ToString()
+    }
+
+
 
 }

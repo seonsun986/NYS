@@ -1231,7 +1231,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 345683697}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1905652755}
+        m_TargetAssemblyTypeName: YJ_UIManager_Plaza, Assembly-CSharp
+        m_MethodName: CreateRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1130258643}
+        m_TargetAssemblyTypeName: YJ_PlazaManager, Assembly-CSharp
+        m_MethodName: CreatRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &345683697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3083,6 +3107,10 @@ MonoBehaviour:
     position: 
   liveCount: 0
   spawnPos: []
+  room:
+  - {fileID: 3488923024735988868, guid: e6cbf5d60edf4bf4a96645105e8f5437, type: 3}
+  - {fileID: 4916256311642431114, guid: 99f6197d4702ae0469e7972c65218f7b, type: 3}
+  - {fileID: 165765343699065523, guid: e819108759851ca4f814b39c3928df5f, type: 3}
 --- !u!4 &1130258644
 Transform:
   m_ObjectHideFlags: 0
@@ -3333,7 +3361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3367,7 +3395,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1244078973}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -3399,9 +3427,25 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1244078975}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 0}
+  onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1905652755}
+        m_TargetAssemblyTypeName: YJ_UIManager_Plaza, Assembly-CSharp
+        m_MethodName: RoomType1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_IsOn: 0
 --- !u!1 &1320488182
 GameObject:
   m_ObjectHideFlags: 0
@@ -4113,7 +4157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4147,7 +4191,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1745469246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -4179,9 +4223,25 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1745469248}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 0}
+  onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1905652755}
+        m_TargetAssemblyTypeName: YJ_UIManager_Plaza, Assembly-CSharp
+        m_MethodName: RoomType2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_IsOn: 0
 --- !u!1 &1792922813
 GameObject:
   m_ObjectHideFlags: 0
@@ -4266,13 +4326,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1792922816}
   m_TextComponent: {fileID: 80966768}
   m_Placeholder: {fileID: 1203800276}
-  m_ContentType: 0
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 1
   m_CharacterLimit: 0
   m_OnSubmit:
     m_PersistentCalls:
@@ -4419,7 +4479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4453,7 +4513,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1829565670}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -4485,9 +4545,25 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1829565672}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 0}
+  onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1905652755}
+        m_TargetAssemblyTypeName: YJ_UIManager_Plaza, Assembly-CSharp
+        m_MethodName: RoomType3
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_IsOn: 0
 --- !u!1 &1905652754
 GameObject:
   m_ObjectHideFlags: 0
@@ -4522,11 +4598,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingSet: {fileID: 886705357}
   createRoomSet: {fileID: 886763691}
-  creatRoom: {fileID: 0}
-  roomName: {fileID: 0}
-  roomPw: {fileID: 0}
-  roomNumber: {fileID: 0}
+  creatRoom: {fileID: 345683696}
+  roomName: {fileID: 150060609}
+  roomPw: {fileID: 226659784}
+  roomNumber: {fileID: 1792922815}
   roomType: 0
+  type1: {fileID: 1244078977}
+  type2: {fileID: 1745469250}
+  type3: {fileID: 1829565674}
   bgmHandle: {fileID: 932598888}
   ESHandle: {fileID: 27016616}
   invitation: {fileID: 861898554}
