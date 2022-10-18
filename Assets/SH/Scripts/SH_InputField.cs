@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SH_InputField : MonoBehaviour
 {
+
     // eventTrigger에서 포인터를 업다운을 한 시간에 따라
     // 1. Interabtable + pointer 
     // 2. 움직이기 
@@ -16,10 +17,13 @@ public class SH_InputField : MonoBehaviour
 
     // 옮기기 위한 Transform 만들기
     public GameObject transform_Tool;
-
+    // 자기 자신에 대한 정보
+    public TextInfo info;
     public void Click()
     {
         isClicked = true;
+        // 선택한 InputField가 들어감
+        SH_EditorManager.Instance.active_InputField = this;
     }
     public void UnClick()
     {
@@ -34,6 +38,9 @@ public class SH_InputField : MonoBehaviour
     int i = 0;      // 이미지 하나만 만들기 위한 변수
     GameObject tool;
 
+    // tool이 켜져있을 때 
+    // 마우스를 클릭하는게 InputField가 아니라면
+    // 
     void Update()
     {
         // 누르는 중이라면
@@ -66,6 +73,8 @@ public class SH_InputField : MonoBehaviour
                     RectTransform tool_image = tool.GetComponent<Image>().rectTransform;
                     tool_image.sizeDelta = new Vector2(inputF.preferredWidth + 50, 65);
                 }
+
+                inputF.interactable = false;
                 
             }
             else if (currentTime > pointerTime)
@@ -80,17 +89,20 @@ public class SH_InputField : MonoBehaviour
         }
 
         // 포커싱을 잃었다면 트랜스폼 이미지를 끄자
-        if(inputF.isFocused == false)
-        {
-            if(i>0 && tool.activeSelf == true)
-            {
-                tool.SetActive(false);
-            }
-        }
+        //if(inputF.isFocused == false)
+        //{
+        //    if(i>0 && tool.activeSelf == true)
+        //    {
+        //        tool.SetActive(false);
+        //    }
+        //}
+
+        // 
     }
 
     public void OnDrag()
     {
+        print("드래그 중이다!");
         transform.position = Input.mousePosition;
     }
 
