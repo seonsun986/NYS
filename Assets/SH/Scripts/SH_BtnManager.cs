@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+// InputField 필요한 정보들
 public class TextInfo
 {
-    public Text inputs { get; set; }
+    public string inputs { get; set; }
     public int txtDropdown { get; set; }
     public int txtSize { get; set; }
 }
@@ -22,7 +24,7 @@ public class SH_BtnManager : MonoBehaviour
     bool objectBG_view;
 
     public GameObject inputField;       // inputField 프리팹
-    public List<TextInfo> inputFields = new List<TextInfo>();
+    public List<SH_InputField> inputFields = new List<SH_InputField>();
     // 현재 선택되어있는 드롭다운과 텍스트 사이즈
     public Dropdown txtDropdown;
     public Text txtSize;
@@ -102,18 +104,20 @@ public class SH_BtnManager : MonoBehaviour
     // 드롭다운이 변형될 때마다 폰트를 변경한다
     // 텍스트 사이즈를 변경할 때마다 폰트 크기를 변경한다
     // 변경할 때마다의 값을 각자만의 클래스에 저장해놓는다.
+    // 해당 함수는 시작할 때만 값을 할당한다
     public void AddText()
     {
-        GameObject text = Instantiate(inputField);
-        // 선택되어있는 dropdown과 textSize값에 따라서 글자 크기를 바꾸기 위함
-        inputFields.Add(new TextInfo
+        SH_InputField inputText = Instantiate(inputField).GetComponent<SH_InputField>();
+        inputText.info = new TextInfo
         {
-            inputs = text.GetComponent<Text>(),
+            inputs = inputText.GetComponent<InputField>().text,
             txtDropdown = txtDropdown.value,
             txtSize = int.Parse(txtSize.text),
-        }) ;        
-        text.transform.SetParent(GameObject.Find("Canvas").transform);
-        text.transform.localPosition = new Vector3(0, 0, 0);
+        };
+        // 선택되어있는 dropdown과 textSize값에 따라서 글자 크기를 바꾸기 위함
+        inputFields.Add(inputText);
+        inputText.transform.SetParent(GameObject.Find("Canvas").transform);
+        inputText.transform.localPosition = new Vector3(0, 0, 0);
 
     }
 
