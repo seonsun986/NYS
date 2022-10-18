@@ -1931,6 +1931,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &453878561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 453878563}
+  - component: {fileID: 453878562}
+  m_Layer: 0
+  m_Name: EditorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &453878562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453878561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b81d669b02569e40902141c33361a7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active_InputField: {fileID: 0}
+  font: {fileID: 1844520594}
+  fontSize: {fileID: 1620064233}
+  fonts:
+  - {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 12800000, guid: 1e59618c0e8e2bf46845f425832ff292, type: 3}
+  - {fileID: 12800000, guid: 3dc033a20ed72bb469c5fc58fa05b93b, type: 3}
+  - {fileID: 12800000, guid: 2b29b2d90f8917047953f81cf90517a2, type: 3}
+  - {fileID: 12800000, guid: 6abd18fae7f8df146a3185df333188a0, type: 3}
+  - {fileID: 12800000, guid: e967e4f477167024e85e1ecda53f3714, type: 3}
+  - {fileID: 12800000, guid: 5be57e9b0d5ced24db1c88f0c84320c6, type: 3}
+  - {fileID: 12800000, guid: 5115d6a6ccac92c4c99843a211d581ac, type: 3}
+  - {fileID: 12800000, guid: 99084933622b08a49b7ff50d93d72f57, type: 3}
+--- !u!4 &453878563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453878561}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 549.1571, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &516710985
 GameObject:
   m_ObjectHideFlags: 0
@@ -2419,6 +2476,7 @@ MonoBehaviour:
   SceneBtn: {fileID: 243198773}
   ObjectBtn: {fileID: 20922259}
   inputField: {fileID: 2232197492553210212, guid: fea1b73fbbd1fae439a53d43e113efc5, type: 3}
+  inputFields: []
   txtDropdown: {fileID: 1844520594}
   txtSize: {fileID: 1620064233}
   voidScene: {fileID: 2408781004949905966, guid: 1537c0db2a85c96418d3dba5e7caf2d5, type: 3}
@@ -5784,9 +5842,9 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: "\uB9C8\uB8E8\uBD80\uB9AC Bold"
       m_Image: {fileID: 0}
-    - m_Text: "\uBC30\uB2EC\uC758\uBBFC\uC871 \uB3C4\uD604\uCCB4"
+    - m_Text: "\uB3C4\uD604\uCCB4"
       m_Image: {fileID: 0}
-    - m_Text: "\uBC30\uB2EC\uC758\uBBFC\uC871 \uC8FC\uC544\uCCB4"
+    - m_Text: "\uC8FC\uC544\uCCB4"
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
