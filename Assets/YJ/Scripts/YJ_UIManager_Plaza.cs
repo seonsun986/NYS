@@ -70,6 +70,8 @@ public class YJ_UIManager_Plaza : MonoBehaviour
         createRoomSet.SetActive(false);
     }
 
+
+
     #region 룸타입 버튼
     public Toggle type1;
     public Toggle type2;
