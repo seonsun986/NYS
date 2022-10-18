@@ -172,11 +172,25 @@ public class NK_UIController : MonoBehaviour
     }
     #endregion
 
+    #region ClickManagement // 학생 관리
+    public void ClickManagement()
+    {
+
+    }
+    #endregion
+
     #region ClickSetting // 설정 선택
     public GameObject SettingUI;
     public void ClickSetting()
     {
         SettingUI.SetActive(IsSetting);
+    }
+    #endregion
+
+    #region ClickBack // 광장으로 돌아가기
+    public void ClickBack()
+    {
+
     }
     #endregion
 }
