@@ -68,6 +68,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
 
     #region 방생성 후 이동
 
+    // 방 오브젝트 생성
     public GameObject[] room;
 
     public void CreatRoom()
@@ -103,6 +104,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     {
         // 방정보 셋팅
         RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = (byte)YJ_UIManager_Plaza.roomInfo.roomNumber;
 
         // 방을 만든다
         PhotonNetwork.CreateRoom(YJ_UIManager_Plaza.roomInfo.roomName, roomOptions);
