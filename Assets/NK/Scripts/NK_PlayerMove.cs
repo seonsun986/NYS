@@ -18,7 +18,7 @@ public class NK_PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.AddPlayer(gameObject);
+        //GameManager.Instance.AddPlayer(gameObject);
         controller = GetComponent<CharacterController>();
     }
 
@@ -35,8 +35,8 @@ public class NK_PlayerMove : MonoBehaviour
         dir.Normalize();
 
         // 만약에 바닥에 닿아있다면 yVelocity를 0으로 하자
-        if (controller.isGrounded)
-            yVelocity = 0;
+        //if (controller.isGrounded)
+            //yVelocity = 0;
 
         // 스페이스바를 누르면 yVelocity에 jumpPower를 셋팅
         if (Input.GetButtonDown("Jump"))
