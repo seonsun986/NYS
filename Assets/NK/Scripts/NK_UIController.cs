@@ -35,52 +35,6 @@ public class NK_UIController : MonoBehaviour
     }
     #endregion
 
-    #region IsSelectThema
-    bool isSelectThema = false;
-    bool IsSelectThema
-    {
-        get
-        {
-            if (isSelectThema)
-                isSelectThema = false;
-            else
-                isSelectThema = true;
-            return isSelectThema;
-        }
-    }
-    #endregion
-    
-    #region IsSelectBook
-    bool isSelectBook = false;
-    bool IsSelectBook
-    {
-        get
-        {
-            if (isSelectBook)
-                isSelectBook = false;
-            else
-                isSelectBook = true;
-            return isSelectBook;
-        }
-    }
-    #endregion
-
-    #region IsSetting
-    bool isSetting = false;
-    bool IsSetting
-    {
-        get
-        {
-            if (isSetting)
-                isSetting = false;
-            else
-                isSetting = true;
-            return isSetting;
-        }
-    }
-    #endregion
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -153,44 +107,6 @@ public class NK_UIController : MonoBehaviour
                 move.enabled = true;
             }
         }
-    }
-    #endregion
-
-    #region ClickSelectThema // 방 테마 선택
-    public GameObject ThemaUI;
-    public void ClickSelectThema()
-    {
-        ThemaUI.SetActive(IsSelectThema);
-    }
-    #endregion
-    
-    #region ClickSelectBook // 동화책 선택
-    public GameObject BookUI;
-    public void ClickSelectBook()
-    {
-        BookUI.SetActive(IsSelectBook);
-    }
-    #endregion
-
-    #region ClickManagement // 학생 관리
-    public void ClickManagement()
-    {
-
-    }
-    #endregion
-
-    #region ClickSetting // 설정 선택
-    public GameObject SettingUI;
-    public void ClickSetting()
-    {
-        SettingUI.SetActive(IsSetting);
-    }
-    #endregion
-
-    #region ClickBack // 광장으로 돌아가기
-    public void ClickBack()
-    {
-
     }
     #endregion
 }

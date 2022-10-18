@@ -841,7 +841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &79430260
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1040,6 +1040,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isSelect: 0
 --- !u!1 &103713907
 GameObject:
   m_ObjectHideFlags: 0
@@ -2010,8 +2011,9 @@ GameObject:
   - component: {fileID: 222833783}
   - component: {fileID: 222833782}
   - component: {fileID: 222833781}
+  - component: {fileID: 222833784}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: ListBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2081,7 +2083,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 222833782}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 851799137}
+        m_TargetAssemblyTypeName: NK_TabController, Assembly-CSharp
+        m_MethodName: SelectedButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 222833784}
+          m_ObjectArgumentAssemblyTypeName: NK_TabButton, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &222833782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2120,6 +2134,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222833779}
   m_CullTransparentMesh: 1
+--- !u!114 &222833784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222833779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06b2fd5af769164ab2cc28ee853f7b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTabSelected:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 79430259}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onTabDeselected:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 79430259}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isSelect: 0
 --- !u!1 &223257782
 GameObject:
   m_ObjectHideFlags: 0
@@ -2465,8 +2522,9 @@ GameObject:
   - component: {fileID: 291661884}
   - component: {fileID: 291661883}
   - component: {fileID: 291661882}
+  - component: {fileID: 291661885}
   m_Layer: 5
-  m_Name: Button (Legacy) (1)
+  m_Name: AddBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2536,7 +2594,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 291661883}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 851799137}
+        m_TargetAssemblyTypeName: NK_TabController, Assembly-CSharp
+        m_MethodName: SelectedButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 291661885}
+          m_ObjectArgumentAssemblyTypeName: NK_TabButton, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &291661883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2575,6 +2645,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 291661880}
   m_CullTransparentMesh: 1
+--- !u!114 &291661885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291661880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06b2fd5af769164ab2cc28ee853f7b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTabSelected:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2037091974}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onTabDeselected:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2037091974}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isSelect: 0
 --- !u!1 &294368202
 GameObject:
   m_ObjectHideFlags: 0
@@ -2612,7 +2725,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.07554409}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &294368204
@@ -2751,7 +2864,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 0.9683572}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3722,6 +3835,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isSelect: 0
 --- !u!1 &640336649
 GameObject:
   m_ObjectHideFlags: 0
@@ -3928,7 +4042,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 354829502}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9683572
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4346,7 +4460,7 @@ CharacterController:
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &730639282
@@ -5130,6 +5244,7 @@ GameObject:
   - component: {fileID: 851799134}
   - component: {fileID: 851799136}
   - component: {fileID: 851799135}
+  - component: {fileID: 851799137}
   m_Layer: 5
   m_Name: ManageUI
   m_TagString: Untagged
@@ -5200,6 +5315,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851799133}
   m_CullTransparentMesh: 1
+--- !u!114 &851799137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851799133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5529ce42b667af14c915c680cfff586f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &858135748
 GameObject:
   m_ObjectHideFlags: 0
@@ -6530,9 +6657,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca6239e8cb5b8d478b1d08043be3a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThemaUI: {fileID: 1490618362}
-  BookUI: {fileID: 1423862669}
-  SettingUI: {fileID: 741699381}
 --- !u!114 &1040144020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7186,6 +7310,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isSelect: 0
 --- !u!1 &1121472149
 GameObject:
   m_ObjectHideFlags: 0
@@ -9539,6 +9664,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isSelect: 0
 --- !u!1 &1451836703
 GameObject:
   m_ObjectHideFlags: 0
@@ -11508,6 +11634,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isSelect: 0
 --- !u!1 &1956733886
 GameObject:
   m_ObjectHideFlags: 0
