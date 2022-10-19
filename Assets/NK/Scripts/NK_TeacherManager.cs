@@ -24,6 +24,11 @@ public class NK_TeacherManager : YJ_PlazaManager
     {
         PhotonNetwork.LeaveRoom();
         // XR_A라는 방으로 입장
+        //PhotonNetwork.JoinRoom("Lobby");
+    }
+
+    public override void OnJoinedLobby()
+    {
         PhotonNetwork.JoinRoom("Lobby");
     }
 
