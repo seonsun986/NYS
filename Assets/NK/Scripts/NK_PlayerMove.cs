@@ -8,7 +8,6 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 {
     public enum State
     {
-        Idle,
         Move,
     }
     
@@ -21,12 +20,20 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     public float moveSpeed = 3;
     // 점프 파워
     public float jumpPower = 3;
-
+    
+    // CC
     CharacterController controller;
     // y방향 속력
     float yVelocity;
     // 중력
     float gravity = -9.81f;
+
+    // 도착위치
+    Vector3 receivePos;
+    // 회전되야 하는 값
+    Quaternion receiveRot;
+    // 보간속력
+    public float lerpSpeed = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +41,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         //GameManager.Instance.AddPlayer(gameObject);
         controller = GetComponent<CharacterController>();
         anim = transform.GetChild(0).GetComponent<Animator>();
-        state = State.Idle;
+        state = State.Move;
     }
 
     // 애니메이션 조절할 bool값
@@ -42,25 +49,24 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 
     void Update()
     {
-        if(h + v == 0)
+        if (photonView.IsMine)
         {
-            moveBool = false;
-        }
-        else moveBool = true;
-
-
-        //if (photonView.IsMine)
-        {
+            if(h + v == 0)
+            {
+                moveBool = false;
+            }
+            else moveBool = true;
 
             switch (state)
             {
-                case State.Idle:
-                    anim.SetBool("Move", moveBool);
+                case State.Move:
+                    //anim.SetBool("Move", moveBool);
+                    photonView.RPC("RpcSetBool", RpcTarget.All, "Move", moveBool);
                     PlayerMove();
                     break;
 
-                case State.Move:
-                    break;
+                //case State.Move:
+                    //break;
 
             }
         }
@@ -108,4 +114,27 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         controller.Move(dir * moveSpeed * Time.deltaTime);
     }
 
+
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    // 데이터 보내기
+    //    if (stream.IsWriting) // 내가 데이터를 보낼 수 있는 상태인 경우 (ismine)
+    //    {
+    //        // positon, rotation
+    //        stream.SendNext(transform.position); // Value타입만 보낼 수 있음
+    //        stream.SendNext(transform.rotation);
+    //    }
+    //    // 데이터 받기
+    //    else // if(stream.IsReading)
+    //    {
+    //        receivePos = (Vector3)stream.ReceiveNext(); // 강제형변환필요
+    //        receiveRot = (Quaternion)stream.ReceiveNext();
+    //    }
+    //}
+
+    [PunRPC]
+    public void RpcSetBool(string s, bool b)
+    {
+        anim.SetBool(s, b);
+    }
 }
