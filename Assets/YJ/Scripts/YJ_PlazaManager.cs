@@ -49,6 +49,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         CreateAllUser();
     }
 
+    GameObject me;
     void CreateAllUser()
     {
         spawnPos = new Vector3[10];
@@ -63,20 +64,31 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         liveCount = PhotonNetwork.CountOfPlayers;
 
         // 일단 큐브생성하자
-        PhotonNetwork.Instantiate("YJ/Cube", spawnPos[liveCount], Quaternion.identity);
+        me = PhotonNetwork.Instantiate("YJ/Cube", spawnPos[liveCount], Quaternion.identity);
     }
 
 
     #region 방생성 후 이동
 
-    public GameObject[] room;
+    //public GameObject[] room;
+    public GameObject[] roomType = new GameObject[3];
+    //GameObject roomType1, roomType2, roomType3;
 
     public virtual void CreatRoom()
     {
         PhotonNetwork.Instantiate("YJ/Type" + YJ_UIManager_Plaza.roomInfo.roomType, new Vector3(Random.Range(0,5),1.5f,Random.Range(0,5)), Quaternion.identity);
-        //sceneName = "TeacherScene" + YJ_UIManager_Plaza.roomInfo.roomType;
+
+        //photonView.RPC("RpcCreatRoom", RpcTarget.All);
+
+        PhotonNetwork.Destroy(me.gameObject);
         PhotonNetwork.LeaveRoom();
 
+    }
+
+    [PunRPC]
+    void RpcCreatRoom()
+    {
+        GameObject room = Instantiate(roomType[YJ_UIManager_Plaza.roomInfo.roomType], new Vector3(Random.Range(0, 5), 1.5f, Random.Range(0, 5)), Quaternion.identity);
     }
 
     // 마스터 서버에 접속, 로비 생성 및 진입 가능

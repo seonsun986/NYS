@@ -147,9 +147,10 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
     {
         // 방정보 셋팅
         RoomOptions roomOptions = new RoomOptions();
+        roomOptions.CleanupCacheOnLeave = false;
 
         // 방을 만든다
-        PhotonNetwork.CreateRoom("Lobby");//, roomOptions);
+        PhotonNetwork.CreateRoom("Lobby", roomOptions);
 
     }
 
