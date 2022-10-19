@@ -25,9 +25,9 @@ public class SH_EditorManager : MonoBehaviour
         {
             // 현재 선택되어 있는 InputField의 값을 바꿔보자
             active_InputField.info.txtDropdown = font.value;
-            active_InputField.transform.GetChild(2).GetComponent<Text>().font = fonts[active_InputField.info.txtDropdown];
+            active_InputField.transform.GetChild(3).GetComponent<Text>().font = fonts[active_InputField.info.txtDropdown];
             active_InputField.info.txtSize = int.Parse(fontSize.text);
-            active_InputField.transform.GetChild(2).GetComponent<Text>().fontSize = active_InputField.info.txtSize;
+            active_InputField.transform.GetChild(3).GetComponent<Text>().fontSize = active_InputField.info.txtSize;
         }
     }
 }
