@@ -126,7 +126,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     }
 
     // 방입장 ( 방생성자는 자동으로 입장이 됨 )
-    public void JoinRoom()
+    public virtual void JoinRoom()
     {
         // XR_A라는 방으로 입장
         PhotonNetwork.JoinRoom(YJ_UIManager_Plaza.roomInfo.roomName);
@@ -140,7 +140,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
 
         // LobbyScene 이동
         PhotonNetwork.LoadLevel(ChangeSceneName());
-        Destroy(this);
+        //Destroy(this);
     }
 
     // 이동할 씬 네임 변경
