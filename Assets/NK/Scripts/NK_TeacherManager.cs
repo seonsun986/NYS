@@ -18,9 +18,6 @@ public class NK_TeacherManager : YJ_PlazaManager
     // 들어와 있는 인원 파악하기
     public new int liveCount = 0;
 
-    // 플레이어 접속 리스트
-    List<PhotonView> playerList = new List<PhotonView> ();
-
     public new Vector3[] spawnPos;
 
     public override void CreatRoom()
