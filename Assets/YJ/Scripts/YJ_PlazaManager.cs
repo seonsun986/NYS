@@ -24,7 +24,8 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
 
     public Vector3[] spawnPos;
 
-
+    // 이동할 씬 이름
+    public string sceneName;
 
     void Start()
     {
@@ -68,80 +69,87 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
 
     #region 방생성 후 이동
 
-    // 방 오브젝트 생성
     public GameObject[] room;
 
-    public void CreatRoom()
+    public virtual void CreatRoom()
     {
-        PhotonNetwork.Instantiate("YJ/Type" + YJ_UIManager_Plaza.roomInfo.roomType, new Vector3(Random.Range(-5, 5), 2, Random.Range(-5, 5)), Quaternion.identity);
-
-        //PhotonNetwork.LeaveRoom();
+        PhotonNetwork.Instantiate("YJ/Type" + YJ_UIManager_Plaza.roomInfo.roomType, new Vector3(Random.Range(0,5),1.5f,Random.Range(0,5)), Quaternion.identity);
+        //sceneName = "TeacherScene" + YJ_UIManager_Plaza.roomInfo.roomType;
+        PhotonNetwork.LeaveRoom();
 
     }
 
-    //// 마스터 서버에 접속, 로비 생성 및 진입 가능
-    //public override void OnConnectedToMaster()
-    //{
-    //    base.OnConnectedToMaster();
-    //    print(System.Reflection.MethodBase.GetCurrentMethod().Name);
+    // 마스터 서버에 접속, 로비 생성 및 진입 가능
+    public override void OnConnectedToMaster()
+    {
+        base.OnConnectedToMaster();
+        print(System.Reflection.MethodBase.GetCurrentMethod().Name);
 
-    //    // 닉네임 설정 네트워크 필요
-    //    //PhotonNetwork.NickName = inputNickName.text; //"익명의_" + Random.Range(1,10000);
+        // 닉네임 설정 네트워크 필요
+        //PhotonNetwork.NickName = inputNickName.text; //"익명의_" + Random.Range(1,10000);
 
-    //    // 기본 로비 진입
-    //    PhotonNetwork.JoinLobby();
-    //}
+        // 기본 로비 진입
+        PhotonNetwork.JoinLobby();
+    }
 
-    //// 로비 접속 성공 시 호출
-    //public override void OnJoinedLobby()
-    //{
-    //    base.OnJoinedLobby();
-    //    print(System.Reflection.MethodBase.GetCurrentMethod().Name);
-    //    CreateRoom();
-    //}
+    // 로비 접속 성공 시 호출
+    public override void OnJoinedLobby()
+    {
+        base.OnJoinedLobby();
+        print(System.Reflection.MethodBase.GetCurrentMethod().Name);
+        CreateRoom();
+    }
 
-    //public void CreateRoom()
-    //{
-    //    // 방정보 셋팅
-    //    RoomOptions roomOptions = new RoomOptions();
-    //    roomOptions.MaxPlayers = (byte)YJ_UIManager_Plaza.roomInfo.roomNumber;
+    public void CreateRoom()
+    {
+        // 방정보 셋팅
+        RoomOptions roomOptions = new RoomOptions();
 
-    //    // 방을 만든다
-    //    PhotonNetwork.CreateRoom(YJ_UIManager_Plaza.roomInfo.roomName, roomOptions);
-    //    print(YJ_UIManager_Plaza.roomInfo.roomName);
+        // 방을 만든다
+        PhotonNetwork.CreateRoom(YJ_UIManager_Plaza.roomInfo.roomName, roomOptions);
+        print(YJ_UIManager_Plaza.roomInfo.roomName);
 
-    //}
+    }
 
-    //// 방 생성 완료 확인
-    //public override void OnCreatedRoom()
-    //{
-    //    base.OnCreatedRoom();
-    //    print(System.Reflection.MethodBase.GetCurrentMethod().Name);
-    //}
+    // 방 생성 완료 확인
+    public override void OnCreatedRoom()
+    {
+        base.OnCreatedRoom();
+        print(System.Reflection.MethodBase.GetCurrentMethod().Name);
+    }
 
-    //// 방 생성 실패했을때
-    //public override void OnCreateRoomFailed(short returnCode, string message)
-    //{
-    //    base.OnCreateRoomFailed(returnCode, message);
-    //    print("OnCreateRoomFailed, " + returnCode + ", " + message);
-    //}
+    // 방 생성 실패했을때
+    public override void OnCreateRoomFailed(short returnCode, string message)
+    {
+        base.OnCreateRoomFailed(returnCode, message);
+        print("OnCreateRoomFailed, " + returnCode + ", " + message);
+    }
 
-    //// 방입장 ( 방생성자는 자동으로 입장이 됨 )
-    //public void JoinRoom()
-    //{
-    //    // XR_A라는 방으로 입장
-    //    PhotonNetwork.JoinRoom(YJ_UIManager_Plaza.roomInfo.roomName);
-    //}
+    // 방입장 ( 방생성자는 자동으로 입장이 됨 )
+    public void JoinRoom()
+    {
+        // XR_A라는 방으로 입장
+        PhotonNetwork.JoinRoom(YJ_UIManager_Plaza.roomInfo.roomName);
+    }
 
 
-    //// 방입장에 성공했을때 불리는 함수
-    //public override void OnJoinedRoom()
-    //{
-    //    base.OnJoinedRoom();
+    // 방입장에 성공했을때 불리는 함수
+    public override void OnJoinedRoom()
+    {
+        base.OnJoinedRoom();
 
-    //    // LobbyScene 이동
-    //    PhotonNetwork.LoadLevel("TeacherScene");
-    //}
+        // LobbyScene 이동
+        PhotonNetwork.LoadLevel(ChangeSceneName());
+        Destroy(this);
+    }
+
+    // 이동할 씬 네임 변경
+    public virtual string ChangeSceneName()
+    {
+        // 테마 설정되면 테마에 따라 CreatRoom 함수에서 sceneName 변경해주기
+        sceneName = "TeacherScene";
+        return sceneName;
+    }
 
     #endregion
 

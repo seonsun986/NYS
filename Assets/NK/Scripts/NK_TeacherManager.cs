@@ -23,16 +23,14 @@ public class NK_TeacherManager : YJ_PlazaManager
 
     public new Vector3[] spawnPos;
 
-/*    public override void CreatRoom()
+    public override void CreatRoom()
     {
         PhotonNetwork.LeaveRoom();
     }
 
-    public override void OnJoinedRoom()
+    public override string ChangeSceneName()
     {
-        base.OnJoinedRoom();
-
-        PhotonNetwork.LoadLevel("PlazaScene");
-
-    }*/
+        sceneName = "PlazaScene";
+        return sceneName;
+    }
 }
