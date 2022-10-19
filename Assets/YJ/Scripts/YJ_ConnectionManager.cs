@@ -117,21 +117,28 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
 
     }
 
-    bool roomset = false;
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
+        bool roomset = false;
         print("이게 그냥 불리는건가?");
-        if (roomList.Count > 0)
+              //  CreateRoom();
+        
+        
+        for (int i = 0; i < roomList.Count; i++)
         {
-            roomset = true;
+            if (roomList[i].Name == "Lobby")
+            {
+                roomset = true;
+                break;
+            }
         }
 
-        if (!roomset)
-            CreateRoom();
-        else
+        if (roomset)
         {
             JoinRoom();
         }
+        else
+            CreateRoom();
     }
 
 

@@ -135,6 +135,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     [PunRPC]
     public void RpcSetBool(string s, bool b)
     {
-        anim.SetBool(s, b);
+        if(anim != null)
+            anim.SetBool(s, b);
     }
 }
