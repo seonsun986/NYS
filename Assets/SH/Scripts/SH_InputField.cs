@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class SH_InputField : MonoBehaviour
+public class SH_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    // UI 옮기고 싶다! -> 기본 위치
+    public static Vector3 defaultPos;
 
     // eventTrigger에서 포인터를 업다운을 한 시간에 따라
     // 1. Interabtable + pointer 
@@ -13,7 +16,9 @@ public class SH_InputField : MonoBehaviour
     public float pointerTime = 0.5f;
     public float moveTime = 1;
     bool isClicked;
+    bool isDragging;
     InputField inputF;
+    RectTransform rect;
 
     // 옮기기 위한 Transform 만들기
     public GameObject transform_Tool;
@@ -33,18 +38,24 @@ public class SH_InputField : MonoBehaviour
     void Start()
     {
         inputF = GetComponent<InputField>();
+        rect = GetComponent<RectTransform>();
+        tool = transform.GetChild(0).gameObject;
+        tool.SetActive(false);
+        
     }
 
-    int i = 0;      // 이미지 하나만 만들기 위한 변수
     GameObject tool;
 
-    // tool이 켜져있을 때 
-    // 마우스를 클릭하는게 InputField가 아니라면
-    // 
     void Update()
     {
+        // inputField의 text길이도 맞춰서 늘어나야한다.
+        if(inputF.text.Length > 5)
+        {
+            rect.sizeDelta = new Vector2(100 + inputF.text.Length * 15, 50);
+        }
+
         // 누르는 중이라면
-        if(isClicked)
+        if (isClicked)
         {
             currentTime += Time.deltaTime;
         }
@@ -52,29 +63,22 @@ public class SH_InputField : MonoBehaviour
         // 1초 이상이라면
         else
         {           
-
             if(currentTime>moveTime)
             {
-                if (i < 1)
-                {
-                    // 이미지 inputField안에 자식으로 넣기
-                    tool = Instantiate(transform_Tool);
-                    tool.transform.SetParent(gameObject.transform);
-                    tool.transform.localPosition = new Vector3(-420, 20, 0);
-                    RectTransform tool_image = tool.GetComponent<Image>().rectTransform;
-                    tool_image.sizeDelta = new Vector2(inputF.preferredWidth + 50, 65);
-                    i++;
-                }
-
-                // 이미 한번 만들었다면 그걸 사용하자
-                else
                 {
                     tool.SetActive(true);
                     RectTransform tool_image = tool.GetComponent<Image>().rectTransform;
-                    tool_image.sizeDelta = new Vector2(inputF.preferredWidth + 50, 65);
-                }
+                    if (inputF.text.Length == 0)
+                    {
+                        tool_image.sizeDelta = new Vector2(100, 65);
+                    }
+                    else
+                    {
+                        tool_image.sizeDelta = new Vector2(inputF.preferredWidth + 50, 65);
+                    }
 
-                inputF.interactable = false;
+                    inputF.interactable = false;
+                }
                 
             }
             else if (currentTime > pointerTime)
@@ -88,22 +92,71 @@ public class SH_InputField : MonoBehaviour
             currentTime = 0;
         }
 
-        // 포커싱을 잃었다면 트랜스폼 이미지를 끄자
-        //if(inputF.isFocused == false)
-        //{
-        //    if(i>0 && tool.activeSelf == true)
-        //    {
-        //        tool.SetActive(false);
-        //    }
-        //}
+        // tool 이미지가 켜져있을 때 
+        // 마우스를 클릭했을 때 오브젝트가 InputField가 아니라면
+        // tool을 끈다
+        if (Input.GetMouseButtonDown(0))
+        {
+            PointerEventData eventData = new PointerEventData(EventSystem.current);
+            eventData.position = Input.mousePosition;
+            List<RaycastResult> raycastResults = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(eventData, raycastResults);
 
-        // 
+            bool b = false;
+            for(int j =0;j<raycastResults.Count; j++)
+            {
+                // 검사했을 때 클릭한 부분에 Tool이 있다면
+                if(raycastResults[j].gameObject.name.Contains("Tool"))
+                {
+                    print("툴이 있으므로 안끔!");
+                    // 리스트 초기화 시켜야함
+                    raycastResults.Clear();
+
+                    b = true;
+                    break;
+                }
+
+            }
+
+            if(b == false)
+            {
+                print("툴 꺼짐!!");
+                tool.SetActive(false);
+                // 리스트 초기화 시켜야함
+                raycastResults.Clear();
+            }
+             
+        }
+
+   
     }
 
-    public void OnDrag()
+    #region UI 드래그 함수
+
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        print("드래그 중이다!");
-        transform.position = Input.mousePosition;
+        defaultPos = transform.position;
     }
+
+    // 드래그 중
+    // 드래그 중에는 tool 이미지를 끄게 하지 않는다
+    public void OnDrag(PointerEventData eventData)
+    {
+        if (tool.activeSelf == false) return;
+        Vector3 currentPos = Input.mousePosition;
+        transform.position = currentPos;
+        isDragging = true;
+    }
+
+    // 드래그 끝났을 때
+    // 
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        Vector3 mousePos = Input.mousePosition;
+        transform.position = mousePos;
+        isDragging = false;
+    }
+
+    #endregion
 
 }
