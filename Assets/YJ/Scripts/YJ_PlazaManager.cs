@@ -24,7 +24,8 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
 
     public Vector3[] spawnPos;
 
-
+    // 이동할 씬 이름
+    public string sceneName;
 
     void Start()
     {
@@ -70,10 +71,10 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
 
     public GameObject[] room;
 
-    public void CreatRoom()
+    public virtual void CreatRoom()
     {
         PhotonNetwork.Instantiate("YJ/Type" + YJ_UIManager_Plaza.roomInfo.roomType, new Vector3(Random.Range(0,5),1.5f,Random.Range(0,5)), Quaternion.identity);
-
+        //sceneName = "TeacherScene" + YJ_UIManager_Plaza.roomInfo.roomType;
         PhotonNetwork.LeaveRoom();
 
     }
@@ -125,7 +126,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     }
 
     // 방입장 ( 방생성자는 자동으로 입장이 됨 )
-    public void JoinRoom()
+    public virtual void JoinRoom()
     {
         // XR_A라는 방으로 입장
         PhotonNetwork.JoinRoom(YJ_UIManager_Plaza.roomInfo.roomName);
@@ -138,11 +139,16 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         base.OnJoinedRoom();
 
         // LobbyScene 이동
-        PhotonNetwork.LoadLevel("TeacherScene");
+        PhotonNetwork.LoadLevel(ChangeSceneName());
+        //Destroy(this);
     }
 
+    // 이동할 씬 네임 변경
+    public virtual string ChangeSceneName()
+    {
+        // 테마 설정되면 테마에 따라 CreatRoom 함수에서 sceneName 변경해주기
+        sceneName = "TeacherScene";
+        return sceneName;
+    }
     #endregion
-
-
-
 }
