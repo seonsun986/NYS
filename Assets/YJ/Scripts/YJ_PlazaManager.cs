@@ -151,7 +151,4 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         return sceneName;
     }
     #endregion
-
-
-
 }
