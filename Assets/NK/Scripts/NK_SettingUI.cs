@@ -23,16 +23,19 @@ public class NK_SettingUI : MonoBehaviour
 
     public void ClickMinus()
     {
+        // 마이너스 버튼 눌렀을 때
         slider.value -= 0.1f;
     }
 
     public void ClickPlus()
     {
+        // 플러스 버튼 눌렀을 때
         slider.value += 0.1f;
     }
 
     public void ChangeSliderValue()
     {
+        // 슬라이더 값 변경되면 호출됨
         audioSource.volume = slider.value;
     }
 }
