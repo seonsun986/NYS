@@ -150,7 +150,6 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         sceneName = "TeacherScene";
         return sceneName;
     }
-
     #endregion
 
 
