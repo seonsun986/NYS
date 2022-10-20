@@ -5,11 +5,16 @@ using UnityEngine.UI;
 
 public class SH_EditorManager : MonoBehaviour
 {
-    public static SH_EditorManager Instance; 
+    public static SH_EditorManager Instance;
+
+    #region 텍스트 관련 선언 변수
     public SH_InputField active_InputField;     // 현재 선택된 InputField
     public Dropdown font;                       // 폰트
     public Text fontSize;                       // 폰트 사이즈
     public Font[] fonts;
+    #endregion
+
+    // 선택한 버튼에 따라 Instantiate되는 친구들이 달라진다
     private void Awake()
     {
         Instance = this;
@@ -29,5 +34,8 @@ public class SH_EditorManager : MonoBehaviour
             active_InputField.info.txtSize = int.Parse(fontSize.text);
             active_InputField.transform.GetChild(3).GetComponent<Text>().fontSize = active_InputField.info.txtSize;
         }
+
+
     }
+    
 }
