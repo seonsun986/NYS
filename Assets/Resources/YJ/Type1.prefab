@@ -116,9 +116,10 @@ GameObject:
   - component: {fileID: -4732953858828343613}
   - component: {fileID: 4999075578290123563}
   - component: {fileID: -3929364969452894649}
+  - component: {fileID: 8065850656089017965}
   m_Layer: 0
   m_Name: Type1
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -254,6 +255,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxDistance: 20
   _rayColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &8065850656089017965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3488923024735988868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d3fd5ff2b2665439eb4c6ab0b9fe5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 4920479863684681467}
 --- !u!1 &5411922042182589653
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,8 +356,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5411922042182589653}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4d3fd5ff2b2665439eb4c6ab0b9fe5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 0}

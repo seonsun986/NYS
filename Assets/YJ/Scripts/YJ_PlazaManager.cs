@@ -57,7 +57,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         // 리스트에 랜덤으로 위치생성하고
         for(int i = 0; i < 10; i++)
         {
-            spawnPos[i] = Vector3.zero + new Vector3(Random.Range(0, 5), Random.Range(0, 5), 0);
+            spawnPos[i] = Vector3.zero + new Vector3(Random.Range(-5, 0), 3, Random.Range(-5, 0));
         }
 
         // 서버에 접속한 인원
@@ -67,17 +67,27 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         me = PhotonNetwork.Instantiate("YJ/Cube", spawnPos[liveCount], Quaternion.identity);
     }
 
+    #region 내방 삭제
+    public void DeleteRoomOBJ(GameObject room)
+    {
+        PhotonNetwork.Destroy(room.gameObject);
+    }
+
+    #endregion
 
     #region 방생성 후 이동
 
     //public GameObject[] room;
     public GameObject[] roomType = new GameObject[3];
     //GameObject roomType1, roomType2, roomType3;
+    GameObject myRoom;
+    public int roomViewId;
 
     public virtual void CreatRoom()
     {
-        PhotonNetwork.Instantiate("YJ/Type" + YJ_UIManager_Plaza.roomInfo.roomType, new Vector3(Random.Range(0,5),1.5f,Random.Range(0,5)), Quaternion.identity);
-
+        myRoom = PhotonNetwork.Instantiate("YJ/Type" + YJ_DataManager.CreateRoomInfo.roomType, new Vector3(Random.Range(1,5),1.5f,Random.Range(1,5)), Quaternion.identity);
+        roomViewId = myRoom.GetComponent<PhotonView>().ViewID;
+        print(roomViewId);
         //photonView.RPC("RpcCreatRoom", RpcTarget.All);
 
         PhotonNetwork.Destroy(me.gameObject);
@@ -88,7 +98,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void RpcCreatRoom()
     {
-        GameObject room = Instantiate(roomType[YJ_UIManager_Plaza.roomInfo.roomType], new Vector3(Random.Range(0, 5), 1.5f, Random.Range(0, 5)), Quaternion.identity);
+        GameObject room = Instantiate(roomType[YJ_DataManager.CreateRoomInfo.roomType], new Vector3(Random.Range(0, 5), 1.5f, Random.Range(0, 5)), Quaternion.identity);
     }
 
     // 마스터 서버에 접속, 로비 생성 및 진입 가능
@@ -118,8 +128,8 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         RoomOptions roomOptions = new RoomOptions();
 
         // 방을 만든다
-        PhotonNetwork.CreateRoom(YJ_UIManager_Plaza.roomInfo.roomName, roomOptions);
-        print(YJ_UIManager_Plaza.roomInfo.roomName);
+        PhotonNetwork.CreateRoom(YJ_DataManager.CreateRoomInfo.roomName, roomOptions);
+        print(YJ_DataManager.CreateRoomInfo.roomName);
 
     }
 
@@ -141,7 +151,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     public virtual void JoinRoom()
     {
         // XR_A라는 방으로 입장
-        PhotonNetwork.JoinRoom(YJ_UIManager_Plaza.roomInfo.roomName);
+        PhotonNetwork.JoinRoom(YJ_DataManager.CreateRoomInfo.roomName);
     }
 
 

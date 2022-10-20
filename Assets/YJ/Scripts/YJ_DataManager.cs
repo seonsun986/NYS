@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 
 #region 로그인 시 넘겨줄 정보
@@ -24,6 +26,8 @@ public class UserInfo
     public string position;
 }
 #endregion
+
+
 
 
 
@@ -57,21 +61,56 @@ public class YJ_DataManager : MonoBehaviour
 
     }
 
-    #region Plaza Data
+    #region 방정보
     // 방정보를 담을 클래스
-    public class CreateRoomInfo
+    public static class CreateRoomInfo
     {
-        public string roomName;
-        public string roomPw;
-        public int roomNumber;
-        public int roomType;
+        public static string roomName;
+        public static string roomPw;
+        public static int roomNumber;
+        public static int roomType;
     }
-
     #endregion
 
-    // Update is called once per frame
-    void Update()
+    #region 방목록
+
+    private void Start()
     {
         
+    }
+    #endregion
+
+    public List<GameObject> roomList = new List<GameObject> ();
+    int roomViewId = 0;
+    GameObject delRoom;
+
+    void Update()
+    {
+        //print("정보가 재대로 들어오는지 확인하자 \r" + " 방이름 들어왔음 ? : " + CreateRoomInfo.roomName);
+
+        if (SceneManager.GetActiveScene().name == "PlazaScene")
+        {
+            roomList.Clear();
+            //delRoom = GameObject.Find(CreateRoomInfo.roomName);
+            if (roomList.Count <= 1)
+            {
+                roomList.Add(GameObject.FindWithTag("Room"));
+                roomViewId = YJ_PlazaManager.instance.roomViewId;
+            }
+            
+            if (roomViewId != 0)
+            {
+                for (int i = 0; i < roomList.Count; i++)
+                {
+                    if (roomViewId == roomList[i].GetComponent<PhotonView>().ViewID)
+                    {
+                        print("찾았따");
+                        YJ_PlazaManager.instance.DeleteRoomOBJ(roomList[i]);
+                        break;
+                    }
+                }
+            }
+
+        }
     }
 }

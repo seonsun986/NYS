@@ -55,17 +55,16 @@ public class YJ_UIManager_Plaza : MonoBehaviour
     public InputField roomNumber;
     public int roomType = 0;
 
-    public static YJ_DataManager.CreateRoomInfo roomInfo = new YJ_DataManager.CreateRoomInfo();
 
     // 방만들기 버튼을 눌렀을때
     public void CreateRoom()
     {
-        roomInfo.roomName = roomName.text;
-        roomInfo.roomPw = roomPw.text;
-        int.TryParse(roomNumber.text, out roomInfo.roomNumber);
-        roomInfo.roomType = roomType;
+        YJ_DataManager.CreateRoomInfo.roomName = roomName.text; 
+        YJ_DataManager.CreateRoomInfo.roomPw = roomPw.text;
+        int.TryParse(roomNumber.text, out YJ_DataManager.CreateRoomInfo.roomNumber);
+        YJ_DataManager.CreateRoomInfo.roomType = roomType;
 
-        print("방이름 : " + roomInfo.roomName + " 비밀번호 : " + roomInfo.roomPw + " 인원 : " + roomInfo.roomNumber + " 방 타입 : " + roomInfo.roomType);
+        print("방이름 : " + YJ_DataManager.CreateRoomInfo.roomName + " 비밀번호 : " + YJ_DataManager.CreateRoomInfo.roomPw + " 인원 : " + YJ_DataManager.CreateRoomInfo.roomNumber + " 방 타입 : " + YJ_DataManager.CreateRoomInfo.roomType);
 
         createRoomSet.SetActive(false);
     }

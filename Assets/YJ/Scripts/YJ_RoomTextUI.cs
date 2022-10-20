@@ -2,20 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class YJ_RoomTextUI : MonoBehaviour
+public class YJ_RoomTextUI : MonoBehaviourPun
 {
-    Text text;
+    public Text text;
+    string roomName;
 
     void Start()
     {
-        text = GetComponent<Text>();
-        text.text = YJ_UIManager_Plaza.roomInfo.roomName;
+        //text = transform.GetChild(0).transform.GetChild(0).GetComponent<Text>();
+        //text.text = YJ_DataManager.CreateRoomInfo.roomName;
+        roomName = YJ_DataManager.CreateRoomInfo.roomName;
+
+        if(photonView.IsMine)
+            photonView.RPC("RpcTextChange", RpcTarget.All);
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    [PunRPC]
+    void RpcTextChange()
+    {
+        text.text = roomName;
     }
 }
