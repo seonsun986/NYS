@@ -45,7 +45,8 @@ public class SH_BtnManager : MonoBehaviour
     public GameObject[] obj;
 
     // RawImage에 따른 씬 카메라 위치 리스트
-    public List<Vector3> camPos = new List<Vector3>();
+    public List<Vector3> sceneCamPos = new List<Vector3>();
+    public List<Vector3> mainCamPos = new List<Vector3>();
 
     void Start()
     {
@@ -54,9 +55,9 @@ public class SH_BtnManager : MonoBehaviour
         path = Application.dataPath + "/Capture/";
         captureWidth = Screen.width;
         captureHeight = Screen.height;
-        sceneCamPos = sceneCam.transform.position;
-        // 처음 포지션을 추가해준다
-        camPos.Add(new Vector3(0, 0.46f, -8.2f));
+        // 처음 포지션을 추가해준다(SceneCamPos, MaincamPos)
+        sceneCamPos.Add(new Vector3(0, 0.46f, -8.2f));
+        mainCamPos.Add(Camera.main.transform.position);
     }
 
     void Update()
@@ -141,6 +142,7 @@ public class SH_BtnManager : MonoBehaviour
 
     }
 
+    #region 글씨 크기 조절
     public void PlusSize()
     {
         int size = int.Parse( txtSize.text);
@@ -154,7 +156,7 @@ public class SH_BtnManager : MonoBehaviour
         size--;
         txtSize.text = size.ToString();
     }
-
+    #endregion
 
     // 씬 추가하기 함수
     // rawImage를 리스트에 담는다
@@ -162,8 +164,7 @@ public class SH_BtnManager : MonoBehaviour
     // 캡쳐한 후에 rawImage에 해당 이미지를 담고
     // 새로운 rawImage를 추가한다
     // 씬 카메라를 아래로 내린다
-    Vector3 sceneCamPos;
-    Vector3 sceneCamAddPos;
+
     string fileName;            // 파일 저장 이름
     int i = 0;
     public void AddScene()
@@ -205,14 +206,17 @@ public class SH_BtnManager : MonoBehaviour
          
         // 새로운 Rawimage 추가
         GameObject raw = Instantiate(rawImage);
+        raw.transform.SetParent(GameObject.Find("Canvas").transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).transform);
         rawImages.Add(raw.GetComponent<RawImage>());
 
-        // 카메라 내리기
+        // 카메라 내리기(Scenecam, MainCamera 모두!)
         // Vector3(0,0.460000008,-8.18999958) 위치 저장 y값으로 -10만큼!
-        camPos.Add( camPos[i] + new Vector3(0, -10, 0));
-        sceneCam.transform.position = Vector3.Lerp(camPos[i], camPos[i + 1],0.5f);
-        i++;
-        
+        sceneCamPos.Add(sceneCamPos[i] + new Vector3(0, -10, 0));
+        mainCamPos.Add(mainCamPos[i] + new Vector3(0, -10, 0));
+        sceneCam.transform.position = sceneCamPos[i + 1];
+        Camera.main.transform.position = mainCamPos[i + 1];
+                
+        i++;        
     }
 
     // Object 생성 함수

@@ -40,8 +40,7 @@ public class SH_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         inputF = GetComponent<InputField>();
         rect = GetComponent<RectTransform>();
         tool = transform.GetChild(0).gameObject;
-        tool.SetActive(false);
-        
+        tool.SetActive(false);        
     }
 
     GameObject tool;
