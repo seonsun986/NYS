@@ -9740,7 +9740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 839343620962706797, guid: 0cd03a783b2d39d468a9d8ad46be528e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.02
       objectReference: {fileID: 0}
     - target: {fileID: 839343620962706797, guid: 0cd03a783b2d39d468a9d8ad46be528e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11042,7 +11042,11 @@ MonoBehaviour:
   liveCount: 0
   spawnPos: []
   sceneName: 
-  room: []
+  roomType:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  roomViewId: 0
   userInfo:
     ID: 
     PW: 
