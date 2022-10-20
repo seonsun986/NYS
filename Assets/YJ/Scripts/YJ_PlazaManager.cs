@@ -68,9 +68,17 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     }
 
     #region 내방 삭제
-    public void DeleteRoomOBJ(GameObject room)
+    public void DeleteRoomOBJ(int id)
     {
-        PhotonNetwork.Destroy(room.gameObject);
+        //PhotonNetwork.Destroy(room.gameObject);
+        photonView.RPC("RpcDeleteRoom", RpcTarget.All, id);
+    }
+    [PunRPC]
+    void RpcDeleteRoom(int id)
+    {
+        print("없애 없애라고 " + id);
+        PhotonView view = PhotonView.Find(id);
+        Destroy(view.gameObject);
     }
 
     #endregion
@@ -162,6 +170,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
 
         // LobbyScene 이동
         PhotonNetwork.LoadLevel(ChangeSceneName());
+        YJ_DataManager.instance.changeScene++;
         //Destroy(this);
     }
 
