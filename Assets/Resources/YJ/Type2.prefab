@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 182716353576673670}
   - component: {fileID: 8097486000660349920}
   - component: {fileID: 5211180838183687745}
-  - component: {fileID: 3474014947529010133}
+  - component: {fileID: 5312557104657449051}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -181,8 +181,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC6B0\uB9AC\uAC15\uC544\uC9C0\uB4E4 \uBAA8\uC5EC\uB77C"
---- !u!114 &3474014947529010133
+  m_Text: 
+--- !u!114 &5312557104657449051
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,10 +191,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4143199165216980460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4d3fd5ff2b2665439eb4c6ab0b9fe5c, type: 3}
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &4916256311642431114
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,6 +219,7 @@ GameObject:
   - component: {fileID: 1155259250632249475}
   - component: {fileID: -6065650289656278989}
   - component: {fileID: -4897071130302561576}
+  - component: {fileID: 5317053174946339585}
   m_Layer: 0
   m_Name: Type2
   m_TagString: Room
@@ -348,3 +358,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxDistance: 20
   _rayColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &5317053174946339585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4916256311642431114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d3fd5ff2b2665439eb4c6ab0b9fe5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 5211180838183687745}

@@ -39,6 +39,8 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         // RPC 호출 빈도
         PhotonNetwork.SendRate = 60;
 
+        
+
         //GameObject user = GameObject.Find("UserInfo");
         //userInfo = user.GetComponent<MyUser>().userInfo;
 
@@ -65,6 +67,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
 
         // 일단 큐브생성하자
         me = PhotonNetwork.Instantiate("YJ/Cube", spawnPos[liveCount], Quaternion.identity);
+        print(ParameterCode.CacheSliceIndex);
     }
 
     #region 내방 삭제

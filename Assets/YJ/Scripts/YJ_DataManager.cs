@@ -110,7 +110,12 @@ public class YJ_DataManager : MonoBehaviour
                             print("Ã£¾Òµû");
                             YJ_PlazaManager.instance.DeleteRoomOBJ(roomViewId);
                             roomList.Clear();
+                            roomViewId = 0;
                             changeScene = 0;
+                            CreateRoomInfo.roomName = null;
+                            CreateRoomInfo.roomPw = null;
+                            CreateRoomInfo.roomNumber = 0;
+                            CreateRoomInfo.roomType = 0;
                             break;
                         }
                     }
