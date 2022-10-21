@@ -95,6 +95,7 @@ public class SH_BtnManager : MonoBehaviour
     {
         float x = sceneBG.transform.position.x + sceneBG.GetComponent<RectTransform>().sizeDelta.x * bgDir;
         MoveObj(sceneBG.gameObject, x, "OnCompleteScene");
+        SceneBtn.rotation = new Quaternion(0, 180 * -(bgDir),0, 0);
         bgDir *= -1;
 
         MoveObj(objectBG.gameObject, Screen.width);
@@ -128,11 +129,21 @@ public class SH_BtnManager : MonoBehaviour
     {
         float x = objectBG.transform.position.x + objectBG.GetComponent<RectTransform>().sizeDelta.x * objDir;
         MoveObj(objectBG.gameObject, x, "OnCompleteObject");
+        if(objDir == -1)
+        {
+            ObjectBtn.rotation = new Quaternion(0, 0, 0, 0);
+        }
+        else
+        {
+            ObjectBtn.rotation = new Quaternion(0, 0, 180 * -objDir, 0);
+        }
         objDir *= -1;
+       
 
         MoveObj(sceneBG.gameObject, 0);
         bgDir = 1;
         return;
+
         // objectBG가 보이지 않는다면
         if (objectBG_view == false)
         {
