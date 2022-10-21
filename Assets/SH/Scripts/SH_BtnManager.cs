@@ -47,7 +47,8 @@ public class SH_BtnManager : MonoBehaviour
     // RawImage에 따른 씬 카메라 위치 리스트
     public List<Vector3> sceneCamPos = new List<Vector3>();
     public List<Vector3> mainCamPos = new List<Vector3>();
-
+    // 첫 RawImage위치
+    public Transform firstRawImage;
     void Start()
     {
         sceneAnim = sceneBG.GetComponent<Animation>();
@@ -67,8 +68,38 @@ public class SH_BtnManager : MonoBehaviour
 
 
     #region 에디터 배경 나오기 버튼 함수들
+    void OnCompleteObject()
+    {
+        print("Object");
+    }
+    void OnCompleteScene()
+    {
+        print("Scene");
+    }
+    void MoveObj(GameObject go, float destination, string completeFun = "")
+    {
+        Hashtable hash = iTween.Hash("x", destination,
+            "time", 0.5f);
+            
+        if(completeFun.Length > 0)
+        {
+            hash.Add("oncompletetarget", gameObject);
+            hash.Add("oncomplete", completeFun);
+        }
+        iTween.MoveTo(go, hash);
+        //"easetype", iTween.EaseType.linear));
+    }
+
+    int bgDir = 1;
     public void MoveSceneBG()
     {
+        float x = sceneBG.transform.position.x + sceneBG.GetComponent<RectTransform>().sizeDelta.x * bgDir;
+        MoveObj(sceneBG.gameObject, x, "OnCompleteScene");
+        bgDir *= -1;
+
+        MoveObj(objectBG.gameObject, Screen.width);
+        objDir = -1;
+        return;
         // sceneBG가 보이지 않는다면       
         if(sceneBG_view == false)
         {
@@ -92,8 +123,16 @@ public class SH_BtnManager : MonoBehaviour
         }
     }
 
+    int objDir = -1;
     public void MoveObjectBG()
     {
+        float x = objectBG.transform.position.x + objectBG.GetComponent<RectTransform>().sizeDelta.x * objDir;
+        MoveObj(objectBG.gameObject, x, "OnCompleteObject");
+        objDir *= -1;
+
+        MoveObj(sceneBG.gameObject, 0);
+        bgDir = 1;
+        return;
         // objectBG가 보이지 않는다면
         if (objectBG_view == false)
         {
@@ -179,7 +218,7 @@ public class SH_BtnManager : MonoBehaviour
         
         // 캡쳐파일 이름 정하기
         fileName = path + "_" + i + ".png";
-
+        
         // 캡쳐하기 
         RenderTexture rt = new RenderTexture(captureWidth, captureHeight, 24);
         sceneCam.targetTexture = rt;
@@ -203,12 +242,13 @@ public class SH_BtnManager : MonoBehaviour
             loadedTexture.LoadImage(textureBytes);
             rawImages[i].GetComponent<RawImage>().texture = loadedTexture;
         }
-         
+        
         // 새로운 Rawimage 추가
         GameObject raw = Instantiate(rawImage);
         raw.transform.SetParent(GameObject.Find("Canvas").transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).transform);
+        raw.transform.position = firstRawImage.position + transform.up * (-150* (i+1));
         rawImages.Add(raw.GetComponent<RawImage>());
-
+        
         // 카메라 내리기(Scenecam, MainCamera 모두!)
         // Vector3(0,0.460000008,-8.18999958) 위치 저장 y값으로 -10만큼!
         sceneCamPos.Add(sceneCamPos[i] + new Vector3(0, -10, 0));
@@ -216,7 +256,8 @@ public class SH_BtnManager : MonoBehaviour
         sceneCam.transform.position = sceneCamPos[i + 1];
         Camera.main.transform.position = mainCamPos[i + 1];
                 
-        i++;        
+        i++;
+
     }
 
     // Object 생성 함수
