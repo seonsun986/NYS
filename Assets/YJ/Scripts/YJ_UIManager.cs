@@ -23,7 +23,7 @@ public class ArrayJson
 public class YJ_UIManager : MonoBehaviour
 {
     public LoginInfo loginInfo = new LoginInfo();
-    public UserInfo userInfo = new UserInfo();
+    //public UserInfo userInfo = new UserInfo();
 
     public GameObject loginUI;
     public GameObject signInUI;
@@ -147,7 +147,7 @@ public class YJ_UIManager : MonoBehaviour
 
     public void SendAccesscode()
     {
-        string jsonData = JsonUtility.ToJson(userInfo.ID, true);
+        string jsonData = JsonUtility.ToJson(loginInfo.ID, true);
 
         print(jsonData);
     }
@@ -162,7 +162,7 @@ public class YJ_UIManager : MonoBehaviour
     public void Save()
     {
         // ArrayJson -> json
-        string jsonData = JsonUtility.ToJson(userInfo, true);
+        string jsonData = JsonUtility.ToJson(loginInfo.ID + loginInfo.PW, true);
 
         print(jsonData);
 
@@ -211,11 +211,13 @@ public class YJ_UIManager : MonoBehaviour
         //YJ_HttpRequester.instance.SendRequest(requester);
     }
 
+
     public void OnClickLoginButton()
     {
         // 로그인 정보 받아오기
         loginInfo.ID = login_ID.text;
         loginInfo.PW = login_PW.text;
+
 
         // 제이슨 변경
         string jsonData = JsonUtility.ToJson(loginInfo, true);
