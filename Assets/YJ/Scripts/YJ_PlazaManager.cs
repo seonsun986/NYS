@@ -70,18 +70,21 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         print(ParameterCode.CacheSliceIndex);
     }
 
+
     #region 내방 삭제
     public void DeleteRoomOBJ(int id)
     {
         //PhotonNetwork.Destroy(room.gameObject);
-        photonView.RPC("RpcDeleteRoom", RpcTarget.All, id);
+        photonView.RPC("RpcDeleteRoom", RpcTarget.MasterClient, id);
     }
+
     [PunRPC]
     void RpcDeleteRoom(int id)
     {
         print("없애 없애라고 " + id);
         PhotonView view = PhotonView.Find(id);
-        Destroy(view.gameObject);
+        //Destroy(view.gameObject);
+        PhotonNetwork.Destroy(view.gameObject);
     }
 
     #endregion
@@ -97,9 +100,9 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     public virtual void CreatRoom()
     {
         myRoom = PhotonNetwork.Instantiate("YJ/Type" + YJ_DataManager.CreateRoomInfo.roomType, new Vector3(Random.Range(1,5),1.5f,Random.Range(1,5)), Quaternion.identity);
-        roomViewId = myRoom.GetComponent<PhotonView>().ViewID;
         print(roomViewId);
         //photonView.RPC("RpcCreatRoom", RpcTarget.All);
+        roomViewId = myRoom.GetComponent<PhotonView>().ViewID;
 
         PhotonNetwork.Destroy(me.gameObject);
         PhotonNetwork.LeaveRoom();
@@ -109,7 +112,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void RpcCreatRoom()
     {
-        GameObject room = Instantiate(roomType[YJ_DataManager.CreateRoomInfo.roomType], new Vector3(Random.Range(0, 5), 1.5f, Random.Range(0, 5)), Quaternion.identity);
+        Instantiate(roomType[YJ_DataManager.CreateRoomInfo.roomType-1], new Vector3(Random.Range(1, 5), 1.5f, Random.Range(1, 5)), Quaternion.identity);
     }
 
     // 마스터 서버에 접속, 로비 생성 및 진입 가능

@@ -94,30 +94,35 @@ public class YJ_DataManager : MonoBehaviour
         }
 
         // 지금 광장씬이고 씬이동을 한번이상 했을때
+        
         if (SceneManager.GetActiveScene().name == "PlazaScene" && changeScene > 1)
         {
+            GameObject room = GameObject.FindWithTag("Room");
+            if (room == null)
+                 return;
+            
             //roomList.Clear();
             if (roomList.Count < 1)
             {
                 roomList.Add(GameObject.FindWithTag("Room").gameObject);
-
-                if (roomList.Count > 0)
+            }
+            if (roomList.Count > 0)
+            {
+                for (int i = 0; i < roomList.Count; i++)
                 {
-                    for (int i = 0; i < roomList.Count; i++)
+                    if (roomViewId == roomList[i].GetComponent<PhotonView>().ViewID)
                     {
-                        if (roomViewId == roomList[i].GetComponent<PhotonView>().ViewID)
-                        {
-                            print("찾았따");
-                            YJ_PlazaManager.instance.DeleteRoomOBJ(roomViewId);
-                            roomList.Clear();
-                            roomViewId = 0;
-                            changeScene = 0;
-                            CreateRoomInfo.roomName = null;
-                            CreateRoomInfo.roomPw = null;
-                            CreateRoomInfo.roomNumber = 0;
-                            CreateRoomInfo.roomType = 0;
-                            break;
-                        }
+                        print("찾았따");
+                        YJ_PlazaManager.instance.DeleteRoomOBJ(roomViewId);
+                        roomList.Clear();
+                        roomViewId = 0;
+                        changeScene = 0;
+                        CreateRoomInfo.roomName = null;
+                        CreateRoomInfo.roomPw = null;
+                        CreateRoomInfo.roomNumber = 0;
+                        CreateRoomInfo.roomType = 0;
+                        YJ_PlazaManager.instance.roomViewId = 0;
+                        break;
                     }
                 }
             }
