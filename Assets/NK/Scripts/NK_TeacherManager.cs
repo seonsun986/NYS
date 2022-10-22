@@ -12,8 +12,8 @@ public class NK_TeacherManager : YJ_PlazaManager
         instance = this;
     }
 
-    [HideInInspector]
-    public new UserInfo userInfo;
+    //[HideInInspector]
+    //public new UserInfo userInfo;
 
     // 들어와 있는 인원 파악하기
     public new int liveCount = 0;

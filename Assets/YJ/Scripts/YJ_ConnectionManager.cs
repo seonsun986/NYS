@@ -103,6 +103,9 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
 
         // 닉네임 설정 네트워크 필요
         //PhotonNetwork.NickName = inputNickName.text; //"익명의_" + Random.Range(1,10000);
+        PhotonNetwork.NickName = inputId.text;
+        print(PhotonNetwork.NickName);
+        //print(photonView.name);
 
         // 기본 로비 진입
         PhotonNetwork.JoinLobby();
