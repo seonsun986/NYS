@@ -15,10 +15,11 @@ public class YJ_RoomTextUI : MonoBehaviourPun
         //text.text = YJ_DataManager.CreateRoomInfo.roomName;
         roomName = YJ_DataManager.CreateRoomInfo.roomName;
 
+        print(roomName);
         print("¿Ã∏ß¿ª πŸ≤„!!");
 
         if(photonView.IsMine)
-            photonView.RPC("RpcTextChange", RpcTarget.All);
+            photonView.RPC("RpcTextChange", RpcTarget.MasterClient);
     }
 
     void Update()
