@@ -15,6 +15,7 @@ public class TextInfo
     public int txtSize { get; set; }
 }
 
+
 public class SH_BtnManager : MonoBehaviour
 {
     public Image sceneBG;
@@ -41,7 +42,7 @@ public class SH_BtnManager : MonoBehaviour
     private int captureWidth;
     private int captureHeight;
         
-    // Object 추가를 위한 List
+    // Object Instantiate를 위한 List
     public GameObject[] obj;
 
     // RawImage에 따른 씬 카메라 위치 리스트
@@ -49,6 +50,8 @@ public class SH_BtnManager : MonoBehaviour
     public List<Vector3> mainCamPos = new List<Vector3>();
     // 첫 RawImage위치
     public Transform firstRawImage;
+    // 씬 오브젝트들을 담을 빈 오브젝트를 담을 리스트
+    public List<GameObject> Scenes = new List<GameObject>();
     void Start()
     {
         sceneAnim = sceneBG.GetComponent<Animation>();
@@ -90,38 +93,26 @@ public class SH_BtnManager : MonoBehaviour
         //"easetype", iTween.EaseType.linear));
     }
 
-    int bgDir = 1;
+    int bgDir = 1;      // 씬 BG가 나타나 있지 않을때(나타나 있을 때는 -1이다)
     public void MoveSceneBG()
     {
         float x = sceneBG.transform.position.x + sceneBG.GetComponent<RectTransform>().sizeDelta.x * bgDir;
         MoveObj(sceneBG.gameObject, x, "OnCompleteScene");
-        SceneBtn.rotation = new Quaternion(0, 180 * -(bgDir),0, 0);
+        if(bgDir== 1)       // 나타나 있지 않는 상태 -> 나타나는 상태
+        {
+            SceneBtn.rotation = new Quaternion(0, 0, 180 * -(bgDir), 0);
+            // 이때 objDir이 나타나있는 상태라면(objDir = 1)
+            // objDir을 돌려준다
+            ObjectBtn.rotation = new Quaternion(0, 0, 180, 0);
+        }
+        else
+        {
+            SceneBtn.rotation = new Quaternion(0, 0, 0, 0);
+        }
         bgDir *= -1;
 
         MoveObj(objectBG.gameObject, Screen.width);
         objDir = -1;
-        return;
-        // sceneBG가 보이지 않는다면       
-        if(sceneBG_view == false)
-        {
-            sceneAnim.Play("SceneBGShowAnim");            
-            SceneBtn.rotation = new Quaternion(0, 0, -180,0);       // 버튼 돌려주기
-            sceneBG_view = true;
-            // 이때 objectBG가 보인다면
-            if(objectBG_view == true)
-            {
-                objectAnim.Play("ObjectBGShowOffAnim");
-                ObjectBtn.rotation = new Quaternion(0, 0, -180, 0);
-                objectBG_view = false;
-            }
-        }
-        // 그렇지 않다면
-        else
-        {
-            sceneAnim.Play("SceneBGShowOffAnim");
-            SceneBtn.rotation = new Quaternion(0, 0, 0, 0);
-            sceneBG_view = false;
-        }
     }
 
     int objDir = -1;
@@ -132,6 +123,8 @@ public class SH_BtnManager : MonoBehaviour
         if(objDir == -1)
         {
             ObjectBtn.rotation = new Quaternion(0, 0, 0, 0);
+            SceneBtn.rotation = new Quaternion(0, 0, 0, 0);
+
         }
         else
         {
@@ -142,30 +135,6 @@ public class SH_BtnManager : MonoBehaviour
 
         MoveObj(sceneBG.gameObject, 0);
         bgDir = 1;
-        return;
-
-        // objectBG가 보이지 않는다면
-        if (objectBG_view == false)
-        {
-            objectAnim.Play("ObjectBGShowAnim");
-            ObjectBtn.rotation = new Quaternion(0, 0, 0, 0);       // 버튼 돌려주기
-            objectBG_view = true;
-            // 이때 SceneBG가 보인다면
-            if(sceneBG_view == true)
-            {
-                sceneAnim.Play("SceneBGShowOffAnim");
-                SceneBtn.rotation = new Quaternion(0, 0, 0, 0);
-                sceneBG_view = false;
-            }
-        }
-
-        //그렇지 않다면
-        else
-        {
-            objectAnim.Play("ObjectBGShowOffAnim");
-            ObjectBtn.rotation = new Quaternion(0, 0, -180, 0);    
-            objectBG_view = false;
-        }
     }
     #endregion
 
@@ -212,8 +181,9 @@ public class SH_BtnManager : MonoBehaviour
     // rawImage를 리스트에 담는다
     // Save를 누르거나, 씬을 추가하는 순간 해당 씬을 캡쳐한다.
     // 캡쳐한 후에 rawImage에 해당 이미지를 담고
+    // sceneCam에 추가한 RawImage에 있는 RenderTexture을 다시 넣어준다
     // 새로운 rawImage를 추가한다
-    // 씬 카메라를 아래로 내린다
+    // 씬 카메라를 아래로 내린다 --> 변경 : 오브젝트들을 씬 마다의 빈오브젝트를 만들어 그 안에 넣어주고 위로 올려준다
 
     string fileName;            // 파일 저장 이름
     int i = 0;
@@ -257,8 +227,9 @@ public class SH_BtnManager : MonoBehaviour
         // 새로운 Rawimage 추가
         GameObject raw = Instantiate(rawImage);
         raw.transform.SetParent(GameObject.Find("Canvas").transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).transform);
-        raw.transform.position = firstRawImage.position + transform.up * (-150* (i+1));
+        raw.transform.position = firstRawImage.position + transform.up * (-180* (i+1));
         rawImages.Add(raw.GetComponent<RawImage>());
+        sceneCam.targetTexture = raw.GetComponent<RawImage>().texture as RenderTexture;
         
         // 카메라 내리기(Scenecam, MainCamera 모두!)
         // Vector3(0,0.460000008,-8.18999958) 위치 저장 y값으로 -10만큼!
@@ -272,16 +243,18 @@ public class SH_BtnManager : MonoBehaviour
     }
 
     // Object 생성 함수
+    // 해당 Object를 Scenes List에 담는다
     public void InstantiateObj()
     {
         GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
         string clickText = clickBtn.name.Substring(0,clickBtn.name.Length - 3);
         // 이름에 해당하는 Object를 Instantiate 한다
-        for(int i =0;i<obj.Length;i++)
+        for(int j =0;j<obj.Length;j++)
         {
-            if(obj[i].name.Contains(clickText))
+            if(obj[j].name.Contains(clickText))
             {
-                GameObject createObj = Instantiate(obj[i]);
+                GameObject createObj = Instantiate(obj[j]);
+                createObj.transform.SetParent(Scenes[i].transform);
                 createObj.transform.position = new Vector3(0, 0, 0);
                 break;
             }
