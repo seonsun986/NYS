@@ -27,10 +27,10 @@ public class GameManager : MonoBehaviour
 
     // 현재 방에 있는 아이들 (포톤뷰로 바꿀 예정)
     //public List<PhotonView> children = new List<PhotonView> ();
-    public List<GameObject> children = new List<GameObject>();
-    public void AddPlayer(/*PhotonView pv*/ GameObject go)
+    public List<PhotonView> children = new List<PhotonView>();
+    public void AddPlayer(PhotonView pv)
     {
-        if(go.CompareTag("Child"))
-            children.Add(go);
+        if(pv.CompareTag("Child"))
+            children.Add(pv);
     }
 }
