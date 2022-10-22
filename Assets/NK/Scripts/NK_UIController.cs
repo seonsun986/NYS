@@ -76,6 +76,7 @@ public class NK_UIController : MonoBehaviour
             for (int i = 0; i < GameManager.Instance.children.Count; i++)
             {
                 GameObject child = GameManager.Instance.children[i].gameObject;
+                child.transform.forward = Vector3.forward;
                 // 플레이어 무브 스크립트 비활성화
                 NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
                 move.enabled = false;

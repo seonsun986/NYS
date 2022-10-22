@@ -12,6 +12,7 @@ public class NK_SettingUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Speaker = GameObject.FindWithTag("Teacher");
         audioSource = Speaker.GetComponent<AudioSource>();
     }
 
