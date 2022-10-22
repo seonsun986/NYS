@@ -39,10 +39,10 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     void Start()
     {
         // 아직 방에 들어갈 수 없어서 임시로 테스트 중...
-        if(!PhotonNetwork.IsMasterClient && GameObject.Find("GameManager"))
+        if(PhotonNetwork.IsMasterClient && GameObject.Find("GameManager"))
         {
             gameObject.tag = "Child";
-            GameManager.Instance.AddPlayer(gameObject);
+            GameManager.Instance.AddPlayer(photonView);
         }
         controller = GetComponent<CharacterController>();
         anim = transform.GetChild(0).GetComponent<Animator>();
