@@ -49,6 +49,14 @@ public class PagesInfo
     public PageInfo DeserializePageInfo(string s)
     {
         PageInfo pageInfo = JsonUtility.FromJson<PageInfo>(s);
+        if(pageInfo.type == "text")
+        {
+            pageInfo = JsonUtility.FromJson<TxtInfo>(s);
+        }
+        if(pageInfo.type == "obj")
+        {
+            pageInfo = JsonUtility.FromJson<ObjInfo>(s);
+        }
         return pageInfo;
     }
 }
