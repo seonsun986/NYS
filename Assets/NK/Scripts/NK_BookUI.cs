@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class NK_BookUI : MonoBehaviour
@@ -52,5 +53,14 @@ public class NK_BookUI : MonoBehaviour
         SelectBook(Book.용이야기);
         gameObject.SetActive(false);
         fairyTaleManager.SetActive(true);
+    }
+
+    public void ClickBook()
+    {
+        string fileName = "Book1";
+        string path = Application.dataPath + "/" + fileName + ".Json";
+        string jsonData = File.ReadAllText(path);
+
+        Json myJson = JsonUtility.FromJson<Json>(jsonData);
     }
 }

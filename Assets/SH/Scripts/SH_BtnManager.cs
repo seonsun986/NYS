@@ -37,8 +37,20 @@ public class BookInfo
 public class PagesInfo
 {
     public int page;
-    public List<PageInfo> data;
+    //public List<PageInfo> data;
+    public List<string> data;
 
+    public string SerializePageInfo(PageInfo info)
+    {
+        string pageInfo = JsonUtility.ToJson(info);
+        return pageInfo;
+    }
+
+    public PageInfo DeserializePageInfo(string s)
+    {
+        PageInfo pageInfo = JsonUtility.FromJson<PageInfo>(s);
+        return pageInfo;
+    }
 }
 
 [System.Serializable]
@@ -48,6 +60,7 @@ public class PageInfo
     public Vector3 position;
 }
 
+[System.Serializable]
 public class TxtInfo : PageInfo
 {
     public string font;
@@ -55,6 +68,7 @@ public class TxtInfo : PageInfo
     public string content;
 }
 
+[System.Serializable]
 public class ObjInfo : PageInfo
 {
     public string prefab;
@@ -120,7 +134,8 @@ public class SH_BtnManager : MonoBehaviour
     public GameObject newScene_Canvas;
 
     // 멀티 페이지당 오브젝트 담을 클래스 리스트
-    public List<PageInfo> objsInfo = new List<PageInfo>();
+    //public List<PageInfo> objsInfo = new List<PageInfo>();
+    public List<string> objsInfo = new List<string>();
     // 멀티 책의 정보를 담을 클래스 리스트
     public List<PagesInfo> pages = new List<PagesInfo>();
 
@@ -373,7 +388,7 @@ public class SH_BtnManager : MonoBehaviour
         for(int i =0;i<Scenes.Count;i++)
         {
             PagesInfo pagesInfo = new PagesInfo();
-            objsInfo = new List<PageInfo>();
+            objsInfo = new List<string>();
             pagesInfo.page = i;
 
             // 씬 하나
@@ -391,7 +406,7 @@ public class SH_BtnManager : MonoBehaviour
                     objInfo.rotation = obj.transform.rotation;
                     objInfo.scale = obj.transform.localScale;
                     // 멀티 오브젝트 클래스 리스트에 담아준다
-                    objsInfo.Add(objInfo);
+                    objsInfo.Add(pagesInfo.SerializePageInfo(objInfo));
                 }
             }
            
@@ -409,7 +424,7 @@ public class SH_BtnManager : MonoBehaviour
                     txtInfo.size = txt2.info.txtSize;
                     txtInfo.content = txt2.transform.GetChild(3).GetComponent<Text>().text;
                     // 멀티 오브젝트 클래스 리스트에 담아준다
-                    objsInfo.Add(txtInfo);
+                    objsInfo.Add(pagesInfo.SerializePageInfo(txtInfo));
                 }
             }
            
@@ -428,5 +443,8 @@ public class SH_BtnManager : MonoBehaviour
         string jsonData = JsonUtility.ToJson(bookinfo, true);
         print(jsonData);
 
+        string fileName = "Book1";
+        string path = Application.dataPath + "/" + fileName + ".Json";
+        File.WriteAllText(path, jsonData);
     }
 }
