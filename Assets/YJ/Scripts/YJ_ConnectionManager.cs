@@ -124,9 +124,6 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         bool roomset = false;
-        print("이게 그냥 불리는건가?");
-              //  CreateRoom();
-        
         
         for (int i = 0; i < roomList.Count; i++)
         {

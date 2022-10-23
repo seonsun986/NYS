@@ -106,16 +106,14 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     float setTime = 0;
     private void Update()
     {
+        // 이거해줘야 방목록 갱신됨..
         if (roomSet != null && myRoom != null)
         {
             setTime += Time.deltaTime;
 
             if (setTime > 1)
             {
-                // 내 게임 오브젝트 없애기
-                PhotonNetwork.Destroy(me.gameObject);
-                // 광장씬 방 나가기
-                PhotonNetwork.LeaveRoom();
+                OutPlaza();
 
                 setTime = 0;
 
@@ -124,10 +122,20 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
 
     }
 
+    public void OutPlaza()
+    {
+        // 내 게임 오브젝트 없애기
+        PhotonNetwork.Destroy(me.gameObject);
+        // 광장씬 방 나가기
+        PhotonNetwork.LeaveRoom();
+    }
+
     public virtual void CreatRoom()
     {
         // 방오브젝트 생성
-        myRoom = PhotonNetwork.Instantiate("YJ/Type" + YJ_DataManager.CreateRoomInfo.roomType, new Vector3(Random.Range(1,5),1.5f,Random.Range(1,5)), Quaternion.identity);
+        myRoom = PhotonNetwork.Instantiate("YJ/Type" + YJ_DataManager.CreateRoomInfo.roomType, new Vector3(Random.Range(1,5),3f,Random.Range(1,5)), Quaternion.identity);
+
+        
         //photonView.RPC("RpcCreatRoom", RpcTarget.All);
 
         // 방목록에 리스트 생성
@@ -143,6 +151,11 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         roomListViewId = roomSet.GetComponent<PhotonView>().ViewID;
     }
 
+    [PunRPC]
+    void RpcRoomTrigger(string s)
+    {
+        myRoom.GetComponent<YJ_RoomTrigger>().roomName = s;
+    }
 
     // 마스터 서버에 접속, 로비 생성 및 진입 가능
     public override void OnConnectedToMaster()
@@ -162,7 +175,10 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedLobby();
         print(System.Reflection.MethodBase.GetCurrentMethod().Name);
-        CreateRoom();
+        if (YJ_DataManager.CreateRoomInfo.roomName != null)
+            CreateRoom();
+        else
+            JoinRoom();
     }
 
     public void CreateRoom()
@@ -194,7 +210,11 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     public virtual void JoinRoom()
     {
         // XR_A라는 방으로 입장
-        PhotonNetwork.JoinRoom(YJ_DataManager.CreateRoomInfo.roomName);
+        if(YJ_DataManager.CreateRoomInfo.roomName != null)
+            PhotonNetwork.JoinRoom(YJ_DataManager.CreateRoomInfo.roomName);
+        else
+            PhotonNetwork.JoinRoom(myRoom.GetComponent<YJ_RoomTrigger>().roomName);
+
     }
 
 
