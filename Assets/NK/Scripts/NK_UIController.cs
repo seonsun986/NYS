@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class NK_UIController : MonoBehaviour
 {
+    public List<GameObject> seats;
+
     #region IsMute
     bool isMute = false;
     bool IsMute
@@ -64,19 +66,21 @@ public class NK_UIController : MonoBehaviour
 
     #region ClickControl // 행동제어 버튼
     float shortDistance = float.MaxValue;
-    GameObject nearSeat = null;
+    public GameObject nearSeat = null;
     public void ClickControl()
     {
         // 모든 아이들을 가장 가까운 빈 좌석에 앉힘
         if (IsControl)
         {
             // 모든 좌석을 가져옴
-            List<GameObject> seats = GameObject.FindGameObjectsWithTag("Seat").ToList<GameObject>();
+            seats = GameObject.FindGameObjectsWithTag("Seat").ToList<GameObject>();
 
             for (int i = 0; i < GameManager.Instance.children.Count; i++)
             {
                 GameObject child = GameManager.Instance.children[i].gameObject;
                 child.transform.forward = Vector3.forward;
+                // Sit 애니메이션 설정
+                child.transform.GetChild(0).GetComponent<NK_PlayerMove>().state = NK_PlayerMove.State.Sit;
                 // 플레이어 무브 스크립트 비활성화
                 NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
                 move.enabled = false;
@@ -106,6 +110,8 @@ public class NK_UIController : MonoBehaviour
                 // 플레이어 무브 스크립트 활성화
                 NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
                 move.enabled = true;
+                // Idle 상태 설정
+                child.transform.GetChild(0).GetComponent<NK_PlayerMove>().state = NK_PlayerMove.State.Idle;
             }
         }
     }

@@ -8,10 +8,12 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 {
     public enum State
     {
+        Idle,
         Move,
+        Sit,
     }
-    
-    State state;
+
+    public State state;
 
     // 애니메이션
     Animator anim;
@@ -20,7 +22,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     public float moveSpeed = 3;
     // 점프 파워
     public float jumpPower = 3;
-    
+
     // CC
     CharacterController controller;
     // y방향 속력
@@ -39,7 +41,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     void Start()
     {
         // 아직 방에 들어갈 수 없어서 임시로 테스트 중...
-        if(PhotonNetwork.IsMasterClient && GameObject.Find("GameManager"))
+        if (PhotonNetwork.IsMasterClient && GameObject.Find("GameManager"))
         {
             gameObject.tag = "Child";
             GameManager.Instance.AddPlayer(photonView);
@@ -56,7 +58,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     {
         if (photonView.IsMine)
         {
-            if(h + v == 0)
+            if (h + v == 0)
             {
                 moveBool = false;
             }
@@ -69,9 +71,12 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                     photonView.RPC("RpcSetBool", RpcTarget.All, "Move", moveBool);
                     PlayerMove();
                     break;
-
-                //case State.Move:
-                    //break;
+                case State.Sit:
+                    photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", true);
+                    break;
+                case State.Idle:
+                    photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", false);
+                    break;
 
             }
         }
@@ -140,7 +145,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     [PunRPC]
     public void RpcSetBool(string s, bool b)
     {
-        if(anim != null)
+        if (anim != null)
             anim.SetBool(s, b);
     }
 }

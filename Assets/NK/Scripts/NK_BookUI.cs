@@ -9,9 +9,11 @@ public class NK_BookUI : MonoBehaviour
         백설공주,
         신데렐라,
         오즈의마법사,
+        용이야기,
     }
 
     public Book selectedBook = Book.백설공주;
+    public GameObject fairyTaleManager;
 
     // Start is called before the first frame update
     void Start()
@@ -44,5 +46,11 @@ public class NK_BookUI : MonoBehaviour
     public void ClickBook3()
     {
         SelectBook(Book.오즈의마법사);
+    }
+    public void ClickBook4()
+    {
+        SelectBook(Book.용이야기);
+        gameObject.SetActive(false);
+        fairyTaleManager.SetActive(true);
     }
 }

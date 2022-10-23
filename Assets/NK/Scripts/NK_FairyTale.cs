@@ -11,6 +11,10 @@ public class NK_FairyTale : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fairyTaleUI.SetActive(true);
+        fairyTaleObject.SetActive(true);
+        book.gameObject.SetActive(true);
+
         AddObjectList(fairyTaleUI);
 
         AddObjectList(fairyTaleObject);
@@ -47,7 +51,13 @@ public class NK_FairyTale : MonoBehaviour
                     objs[i].transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
                 }
             }
+        }
 
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            fairyTaleUI.SetActive(false);
+            fairyTaleObject.SetActive(false);
+            book.gameObject.SetActive(false);
         }
     }
 }
