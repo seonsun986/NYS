@@ -44,17 +44,37 @@ public class PagesInfo
 [System.Serializable]
 public class PageInfo
 {
-    // txt관련
     public string type;
+    public Vector3 position;
+}
+
+public class TxtInfo : PageInfo
+{
     public string font;
     public int size;
     public string content;
-    // obj관련
+}
+
+public class ObjInfo : PageInfo
+{
     public string prefab;
-    public Vector3 position;    // 공통!
     public Quaternion rotation;
     public Vector3 scale;
 }
+
+//public class PageInfo
+//{
+//    // txt관련
+//    public string type;
+//    public string font;
+//    public int size;
+//    public string content;
+//    // obj관련
+//    public string prefab;
+//    public Vector3 position;    // 공통!
+//    public Quaternion rotation;
+//    public Vector3 scale;
+//}
 
 
 public class SH_BtnManager : MonoBehaviour
@@ -363,15 +383,15 @@ public class SH_BtnManager : MonoBehaviour
             {
                 for (int j = 0; j < Scenes[i].transform.childCount; j++)
                 {
-                    PageInfo pageInfo = new PageInfo();
+                    ObjInfo objInfo = new ObjInfo();
                     SH_SceneObj obj = Scenes[i].transform.GetChild(j).GetComponent<SH_SceneObj>();
-                    pageInfo.type = obj.objType.ToString();
-                    pageInfo.prefab = obj.name.Substring(0, obj.name.Length - 7);     //("(clone)" 빼고 저장해야함)
-                    pageInfo.position = obj.transform.position;
-                    pageInfo.rotation = obj.transform.rotation;
-                    pageInfo.scale = obj.transform.localScale;
+                    objInfo.type = obj.objType.ToString();
+                    objInfo.prefab = obj.name.Substring(0, obj.name.Length - 7);     //("(clone)" 빼고 저장해야함)
+                    objInfo.position = obj.transform.position;
+                    objInfo.rotation = obj.transform.rotation;
+                    objInfo.scale = obj.transform.localScale;
                     // 멀티 오브젝트 클래스 리스트에 담아준다
-                    objsInfo.Add(pageInfo);
+                    objsInfo.Add(objInfo);
                 }
             }
            
@@ -380,16 +400,16 @@ public class SH_BtnManager : MonoBehaviour
                 // 텍스트 담기
                 for (int k = 0; k < Scenes_txt[i].transform.childCount; k++)
                 {
-                    PageInfo pageInfo = new PageInfo();
+                    TxtInfo txtInfo = new TxtInfo();
                     SH_SceneObj txt = Scenes_txt[i].transform.GetChild(k).GetComponent<SH_SceneObj>();
                     SH_InputField txt2 = Scenes_txt[i].transform.GetChild(k).GetComponent<SH_InputField>();
-                    pageInfo.type = txt.objType.ToString();
-                    pageInfo.position = txt.gameObject.GetComponent<RectTransform>().anchoredPosition;
-                    pageInfo.font = txt2.info.txtDropdown.ToString();       // 아마도 int 값으로 나올거야
-                    pageInfo.size = txt2.info.txtSize;
-                    pageInfo.content = txt2.transform.GetChild(3).GetComponent<Text>().text;
+                    txtInfo.type = txt.objType.ToString();
+                    txtInfo.position = txt.gameObject.GetComponent<RectTransform>().anchoredPosition;
+                    txtInfo.font = txt2.info.txtDropdown.ToString();       // 아마도 int 값으로 나올거야
+                    txtInfo.size = txt2.info.txtSize;
+                    txtInfo.content = txt2.transform.GetChild(3).GetComponent<Text>().text;
                     // 멀티 오브젝트 클래스 리스트에 담아준다
-                    objsInfo.Add(pageInfo);
+                    objsInfo.Add(txtInfo);
                 }
             }
            
