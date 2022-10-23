@@ -148,7 +148,6 @@ public class SH_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
 
     // 드래그 끝났을 때
-    // 
     public void OnEndDrag(PointerEventData eventData)
     {
         Vector3 mousePos = Input.mousePosition;

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.IO;
+using System;
 
 
 
@@ -15,17 +16,61 @@ public class TextInfo
     public int txtSize { get; set; }
 }
 
+public class Json
+{
+    public string creator;
+    public string[] books;
+    public List<BookInfo> book;
+}
+
+[System.Serializable]
+public class BookInfo
+{
+    public string id;
+    public string title;
+    public string createAt;
+    public List<PagesInfo> pages;
+
+}
+
+[System.Serializable]
+public class PagesInfo
+{
+    public int page;
+    public List<PageInfo> data;
+
+}
+
+[System.Serializable]
+public class PageInfo
+{
+    // txt관련
+    public string type;
+    public string font;
+    public int size;
+    public string content;
+    // obj관련
+    public string prefab;
+    public Vector3 position;    // 공통!
+    public Quaternion rotation;
+    public Vector3 scale;
+}
+
 
 public class SH_BtnManager : MonoBehaviour
 {
+    public static SH_BtnManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public Image sceneBG;
     public Image objectBG;
     public RectTransform SceneBtn;
     public RectTransform ObjectBtn;
-    Animation sceneAnim;
-    Animation objectAnim;
-    bool sceneBG_view;
-    bool objectBG_view;
+
 
     public GameObject inputField;       // inputField 프리팹
     public List<SH_InputField> inputFields = new List<SH_InputField>();
@@ -44,24 +89,28 @@ public class SH_BtnManager : MonoBehaviour
         
     // Object Instantiate를 위한 List
     public GameObject[] obj;
-
-    // RawImage에 따른 씬 카메라 위치 리스트
-    public List<Vector3> sceneCamPos = new List<Vector3>();
-    public List<Vector3> mainCamPos = new List<Vector3>();
     // 첫 RawImage위치
     public Transform firstRawImage;
     // 씬 오브젝트들을 담을 빈 오브젝트를 담을 리스트
     public List<GameObject> Scenes = new List<GameObject>();
+    // 씬 텍스트들을 담을 빈 오브젝트들을 담을 리스트(Canvas안에 있는)
+    public List<GameObject> Scenes_txt = new List<GameObject>();
+
+    public GameObject newScene;
+    public GameObject newScene_Canvas;
+
+    // 멀티 페이지당 오브젝트 담을 클래스 리스트
+    public List<PageInfo> objsInfo = new List<PageInfo>();
+    // 멀티 책의 정보를 담을 클래스 리스트
+    public List<PagesInfo> pages = new List<PagesInfo>();
+
+
+
     void Start()
     {
-        sceneAnim = sceneBG.GetComponent<Animation>();
-        objectAnim = objectBG.GetComponent<Animation>();
         path = Application.dataPath + "/Capture/";
         captureWidth = Screen.width;
         captureHeight = Screen.height;
-        // 처음 포지션을 추가해준다(SceneCamPos, MaincamPos)
-        sceneCamPos.Add(new Vector3(0, 0.46f, -8.2f));
-        mainCamPos.Add(Camera.main.transform.position);
     }
 
     void Update()
@@ -156,9 +205,8 @@ public class SH_BtnManager : MonoBehaviour
         };
         // 선택되어있는 dropdown과 textSize값에 따라서 글자 크기를 바꾸기 위함
         inputFields.Add(inputText);
-        inputText.transform.SetParent(GameObject.Find("Canvas").transform);
+        inputText.transform.SetParent(Scenes_txt[i].transform);
         inputText.transform.localPosition = new Vector3(0, 0, 0);
-
     }
 
     #region 글씨 크기 조절
@@ -186,7 +234,7 @@ public class SH_BtnManager : MonoBehaviour
     // 씬 카메라를 아래로 내린다 --> 변경 : 오브젝트들을 씬 마다의 빈오브젝트를 만들어 그 안에 넣어주고 위로 올려준다
 
     string fileName;            // 파일 저장 이름
-    int i = 0;
+    public int i = 0;
     public void AddScene()
     {
         #region 캡쳐하기
@@ -230,14 +278,35 @@ public class SH_BtnManager : MonoBehaviour
         raw.transform.position = firstRawImage.position + transform.up * (-180* (i+1));
         rawImages.Add(raw.GetComponent<RawImage>());
         sceneCam.targetTexture = raw.GetComponent<RawImage>().texture as RenderTexture;
-        
-        // 카메라 내리기(Scenecam, MainCamera 모두!)
-        // Vector3(0,0.460000008,-8.18999958) 위치 저장 y값으로 -10만큼!
-        sceneCamPos.Add(sceneCamPos[i] + new Vector3(0, -10, 0));
-        mainCamPos.Add(mainCamPos[i] + new Vector3(0, -10, 0));
-        sceneCam.transform.position = sceneCamPos[i + 1];
-        Camera.main.transform.position = mainCamPos[i + 1];
-                
+
+        // 오브젝트들 올리기(빈 오브젝트가 올라가면 되지 않을까?)
+        // 된다 : 빈오브젝트 List를 다 올려야한다
+        // 현재 Scene에 들어있는 
+        // 카메라 내리지 않기로 결정(Scenecam, MainCamera 모두!)
+        for(int j =0;j<Scenes.Count;j++)
+        {
+            Scenes[j].transform.position += new Vector3(0, 10, 0);
+        }
+        for(int k =0;k<Scenes_txt.Count;k++)
+        {
+            Scenes_txt[k].transform.position += new Vector3(0, Screen.height, 0);
+        }
+
+
+        // 이제 오브젝트들을 싹 다 올렸으니 새로운 빈 오브젝트들을 만들고
+        GameObject n_Scene = Instantiate(newScene);
+        // 빈 오브젝트들의 이름도 바꿔야한다!
+        n_Scene.name = "Scene" + (i + 1);       // 씬 이름 : Scene0, Scene1, Scene2....
+        GameObject n_Scene_Canvas = Instantiate(newScene_Canvas);
+        n_Scene_Canvas.name = "Scene" + (i + 1) + "_txt";      // 씬 이름 : Scene0_txt, Scene1_txt....
+        n_Scene_Canvas.transform.SetParent(GameObject.Find("Canvas").transform);
+        // 빈 오브젝트들의 위치도 설정하자
+        n_Scene.transform.position = new Vector3(0, 0, 0);
+        n_Scene_Canvas.transform.position = GameObject.Find("Canvas").transform.position;
+        // 이 오브젝트들을 List에 추가해볼까?
+        Scenes.Add(n_Scene);
+        Scenes_txt.Add(n_Scene_Canvas);
+
         i++;
 
     }
@@ -259,6 +328,85 @@ public class SH_BtnManager : MonoBehaviour
                 break;
             }
         }
+      
     }
 
+
+    // 스크린을 누르면 
+    // 다시 카메라를 RawImage로 바꾼다
+    // 오브젝트를 무엇을 눌렀냐에 따라서 내리는 정도를 바꾼다
+    // 클릭한 씬을 0으로 내린다
+    // 다른 씬들도 같이 내려야한다
+    public void GoScene()
+    {
+        GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
+        
+    }
+
+
+    // 제이슨 저장
+    // PageInfo -> PagesInfo -> BookInfo -> Json
+    public void Save()
+    {
+        BookInfo bookinfo = new BookInfo();
+        // PageInfo 클래스에서 부터 오브젝트와 텍스트의 정보를 넣어보자
+        for(int i =0;i<Scenes.Count;i++)
+        {
+            PagesInfo pagesInfo = new PagesInfo();
+            objsInfo = new List<PageInfo>();
+            pagesInfo.page = i;
+
+            // 씬 하나
+            // 오브젝트 담기(type, prefab, position, rotation, scale 필요함)
+            // 그 안에 자식이 있을때만 for문을 돌리자!
+            if(Scenes[i].transform.childCount>0)
+            {
+                for (int j = 0; j < Scenes[i].transform.childCount; j++)
+                {
+                    PageInfo pageInfo = new PageInfo();
+                    SH_SceneObj obj = Scenes[i].transform.GetChild(j).GetComponent<SH_SceneObj>();
+                    pageInfo.type = obj.objType.ToString();
+                    pageInfo.prefab = obj.name.Substring(0, obj.name.Length - 7);     //("(clone)" 빼고 저장해야함)
+                    pageInfo.position = obj.transform.position;
+                    pageInfo.rotation = obj.transform.rotation;
+                    pageInfo.scale = obj.transform.localScale;
+                    // 멀티 오브젝트 클래스 리스트에 담아준다
+                    objsInfo.Add(pageInfo);
+                }
+            }
+           
+            if(Scenes_txt[i].transform.childCount>0)
+            {
+                // 텍스트 담기
+                for (int k = 0; k < Scenes_txt[i].transform.childCount; k++)
+                {
+                    PageInfo pageInfo = new PageInfo();
+                    SH_SceneObj txt = Scenes_txt[i].transform.GetChild(k).GetComponent<SH_SceneObj>();
+                    SH_InputField txt2 = Scenes_txt[i].transform.GetChild(k).GetComponent<SH_InputField>();
+                    pageInfo.type = txt.objType.ToString();
+                    pageInfo.position = txt.gameObject.GetComponent<RectTransform>().anchoredPosition;
+                    pageInfo.font = txt2.info.txtDropdown.ToString();       // 아마도 int 값으로 나올거야
+                    pageInfo.size = txt2.info.txtSize;
+                    pageInfo.content = txt2.transform.GetChild(3).GetComponent<Text>().text;
+                    // 멀티 오브젝트 클래스 리스트에 담아준다
+                    objsInfo.Add(pageInfo);
+                }
+            }
+           
+            // 페이지 당 오브젝트를 다 담았으면 data를 할당해준다
+            // objsInfo의 List를 초기화해준다
+            pagesInfo.data = objsInfo;
+            pages.Add(pagesInfo);
+            //objsInfo.Clear();
+        }
+        // 하나의 책에 페이지 당 오브젝트 정보들이 모두 담겼다
+        bookinfo.id = "심선혜 최고";
+        bookinfo.title = "위인전 : 심선혜";
+        bookinfo.createAt = DateTime.Now.ToString("yyyy - MM - dd");
+        // 이제 BookInfo 중 Pages에 이 정보들을 담아보자
+        bookinfo.pages = pages;
+        string jsonData = JsonUtility.ToJson(bookinfo, true);
+        print(jsonData);
+
+    }
 }
