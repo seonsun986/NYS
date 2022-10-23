@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine.TextCore.Text;
 using Photon.Realtime;
 
@@ -97,22 +99,43 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     GameObject myRoom;
     public int roomViewId;
 
+    GameObject roomItem;
+    public GameObject roomSet;
+
     public virtual void CreatRoom()
     {
+        // 방오브젝트 생성
         myRoom = PhotonNetwork.Instantiate("YJ/Type" + YJ_DataManager.CreateRoomInfo.roomType, new Vector3(Random.Range(1,5),1.5f,Random.Range(1,5)), Quaternion.identity);
-        print(roomViewId);
         //photonView.RPC("RpcCreatRoom", RpcTarget.All);
+
+        // 방목록에 리스트 생성
+        roomItem = PhotonNetwork.Instantiate("YJ/RoomItem", new Vector3(0, 0, 0), Quaternion.identity);
+
+        //if (photonView.IsMine)// && roomItem != null)
+        //{
+        //    photonView.RPC("RpcCreateRoomList", RpcTarget.All, roomItem);
+        //}
+
+        // 방 ViewId 저장
         roomViewId = myRoom.GetComponent<PhotonView>().ViewID;
 
-        PhotonNetwork.Destroy(me.gameObject);
-        PhotonNetwork.LeaveRoom();
+        // 내 게임 오브젝트 없애기
+        //PhotonNetwork.Destroy(me.gameObject);
+
+        // 광장씬 방 나가기
+        //PhotonNetwork.LeaveRoom();
 
     }
 
+    public GameObject roomListPrefabs;
+
     [PunRPC]
-    void RpcCreatRoom()
+    void RpcCreateRoomList(GameObject createRoomItem)
     {
-        Instantiate(roomType[YJ_DataManager.CreateRoomInfo.roomType-1], new Vector3(Random.Range(1, 5), 1.5f, Random.Range(1, 5)), Quaternion.identity);
+        print("RPC쏴");
+        roomItem = createRoomItem;
+        roomItem.transform.SetParent(roomSet.transform);
+        roomItem.transform.localScale = Vector3.one;
     }
 
     // 마스터 서버에 접속, 로비 생성 및 진입 가능

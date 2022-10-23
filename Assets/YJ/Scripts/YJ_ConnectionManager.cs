@@ -22,6 +22,7 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
         inputId.onValueChanged.AddListener(OnValueChanged_ID);
         inputPw.onValueChanged.AddListener(OnValueChanged_PW);
 
+
         // 다 입력한 아이디, 비밀번호를 저장해두기 위한 함수
         //inputId.onEndEdit.AddListener(Login_ID);
         //inputPw.onEndEdit.AddListener(Login_PW);
