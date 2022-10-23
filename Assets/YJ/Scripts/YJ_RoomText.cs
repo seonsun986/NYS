@@ -9,40 +9,40 @@ public class YJ_RoomText : MonoBehaviourPun
     // ¹æÀÌ¸§
     public Text roomText;
     GameObject roomSet;
+    string roomNameSet;
 
     void Start()
     {
         print("³ª »ý¼ºµÆ¾î?");
-        if (photonView.IsMine)
-            roomSet = YJ_PlazaManager.instance.roomSet;
+        //if (photonView.IsMine)
+        //    roomSet = YJ_PlazaManager.instance.roomSet;
+
+        roomSet = GameObject.Find("Canvas").transform.Find("RoomList").transform.Find("RoomListSet").transform.Find("Viewport").transform.Find("Content").gameObject;
 
         //roomSet = GameObject.Find("Content");
-        //transform.SetParent(roomSet.transform);
-        //transform.localScale = Vector3.one;
+        transform.SetParent(roomSet.transform);
+        transform.localScale = Vector3.one;
+
+        if (photonView.IsMine)
+            roomNameSet = YJ_DataManager.CreateRoomInfo.roomName + " (" + PhotonNetwork.NickName + "¼±»ý´Ô )";
     }
 
     float currentTime;
     void Update()
     {
         currentTime += Time.deltaTime;
-        if (currentTime > 1 && currentTime < 2)
+        if (currentTime > 0.5 && currentTime < 1)
         {
             if (photonView.IsMine)
-                photonView.RPC("RpcPos", RpcTarget.All, roomSet);
+                photonView.RPC("RpcRoomSet", RpcTarget.All, roomNameSet);
         }
     }
 
     [PunRPC]
-    void RpcPos(GameObject set)
+    void RpcRoomSet(string roomSet)
     {
-        roomSet = set;
-        transform.parent = roomSet.transform;
-        //transform.SetParent(roomSet.transform);
+        roomNameSet = roomSet;
+        transform.GetChild(0).GetComponent<Text>().text = roomNameSet;
     }
 
-
-    public void SetInfo(string roomName, string nickName)
-    {
-        roomText.text = roomName + " (" + nickName + "¼±»ý´Ô ) ";
-    }
 }

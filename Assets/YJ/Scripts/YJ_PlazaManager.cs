@@ -74,19 +74,20 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
 
 
     #region 내방 삭제
-    public void DeleteRoomOBJ(int id)
+    public void DeleteRoomOBJ(int objId, int listId)
     {
         //PhotonNetwork.Destroy(room.gameObject);
-        photonView.RPC("RpcDeleteRoom", RpcTarget.MasterClient, id);
+        photonView.RPC("RpcDeleteRoom", RpcTarget.MasterClient, objId, listId);
     }
 
     [PunRPC]
-    void RpcDeleteRoom(int id)
+    void RpcDeleteRoom(int objId, int listId)
     {
-        print("없애 없애라고 " + id);
-        PhotonView view = PhotonView.Find(id);
+        PhotonView objView = PhotonView.Find(objId);
+        PhotonView listView = PhotonView.Find(listId);
         //Destroy(view.gameObject);
-        PhotonNetwork.Destroy(view.gameObject);
+        PhotonNetwork.Destroy(objView.gameObject);
+        PhotonNetwork.Destroy(listView.gameObject);
     }
 
     #endregion
@@ -98,9 +99,31 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     //GameObject roomType1, roomType2, roomType3;
     GameObject myRoom;
     public int roomViewId;
+    public int roomListViewId;
 
-    GameObject roomItem;
-    public GameObject roomSet;
+    public GameObject roomList;
+    GameObject roomSet;
+
+    float setTime = 0;
+    private void Update()
+    {
+        if (roomSet != null && myRoom != null)
+        {
+            setTime += Time.deltaTime;
+
+            if (setTime > 1)
+            {
+                // 내 게임 오브젝트 없애기
+                PhotonNetwork.Destroy(me.gameObject);
+                // 광장씬 방 나가기
+                PhotonNetwork.LeaveRoom();
+
+                setTime = 0;
+
+            }
+        }
+
+    }
 
     public virtual void CreatRoom()
     {
@@ -109,34 +132,18 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         //photonView.RPC("RpcCreatRoom", RpcTarget.All);
 
         // 방목록에 리스트 생성
-        roomItem = PhotonNetwork.Instantiate("YJ/RoomItem", new Vector3(0, 0, 0), Quaternion.identity);
+        roomSet = PhotonNetwork.Instantiate("YJ/RoomItem", new Vector3(0, 0, 0), Quaternion.identity);
 
-        //if (photonView.IsMine)// && roomItem != null)
-        //{
-        //    photonView.RPC("RpcCreateRoomList", RpcTarget.All, roomItem);
-        //}
+        // 룸 리스트를 한번 띄워야 텍스트가 갱신됨
+        roomList.SetActive(true);
+        //roomList.SetActive(false);
 
-        // 방 ViewId 저장
+
+        // 방오브젝트 및 리스트 ViewId 저장
         roomViewId = myRoom.GetComponent<PhotonView>().ViewID;
-
-        // 내 게임 오브젝트 없애기
-        //PhotonNetwork.Destroy(me.gameObject);
-
-        // 광장씬 방 나가기
-        //PhotonNetwork.LeaveRoom();
-
+        roomListViewId = roomSet.GetComponent<PhotonView>().ViewID;
     }
 
-    public GameObject roomListPrefabs;
-
-    [PunRPC]
-    void RpcCreateRoomList(GameObject createRoomItem)
-    {
-        print("RPC쏴");
-        roomItem = createRoomItem;
-        roomItem.transform.SetParent(roomSet.transform);
-        roomItem.transform.localScale = Vector3.one;
-    }
 
     // 마스터 서버에 접속, 로비 생성 및 진입 가능
     public override void OnConnectedToMaster()
