@@ -25,7 +25,7 @@ public class YJ_RoomTextUI : MonoBehaviourPun
     void Update()
     {
         currentTime += Time.deltaTime;
-        if (currentTime > 1 && currentTime < 2)
+        if (currentTime > 0.3 && currentTime < 0.8)
         {
             if (photonView.IsMine)
                 photonView.RPC("RpcTextChange", RpcTarget.All, roomName);
