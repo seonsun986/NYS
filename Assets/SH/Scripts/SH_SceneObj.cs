@@ -2,25 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// text에 따른 class
-public class TextData
-{
-    public string type;
-    public Vector3 position;
-    public string font;
-    public int size;
-    public string content;
-}
 
-// obj에 따른 class
-public class OjbData
-{
-    public string type;
-    public string prefab;
-    public Vector3 position;
-    public Vector3 rotation;
-    public Vector3 scale;
-}
 
 public class SH_SceneObj : MonoBehaviour
 {
