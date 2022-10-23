@@ -83,6 +83,7 @@ public class YJ_DataManager : MonoBehaviour
     public List<GameObject> roomList = new List<GameObject> ();
     public int changeScene = 0;
     int roomViewId = 0;
+    int roomListViewId = 0;
     GameObject delRoom;
 
     void Update()
@@ -91,6 +92,7 @@ public class YJ_DataManager : MonoBehaviour
         if (YJ_PlazaManager.instance != null && YJ_PlazaManager.instance.roomViewId > 0 && roomViewId < 1)
         {
             roomViewId = YJ_PlazaManager.instance.roomViewId;
+            roomListViewId = YJ_PlazaManager.instance.roomListViewId;
         }
 
         // 지금 광장씬이고 씬이동을 한번이상 했을때
@@ -113,7 +115,7 @@ public class YJ_DataManager : MonoBehaviour
                     if (roomViewId == roomList[i].GetComponent<PhotonView>().ViewID)
                     {
                         print("찾았따");
-                        YJ_PlazaManager.instance.DeleteRoomOBJ(roomViewId);
+                        YJ_PlazaManager.instance.DeleteRoomOBJ(roomViewId, roomListViewId);
                         roomList.Clear();
                         roomViewId = 0;
                         changeScene = 0;
