@@ -5,10 +5,19 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Photon.Pun;
 
 
-public class YJ_UIManager_Plaza : MonoBehaviour
+public class YJ_UIManager_Plaza : MonoBehaviourPun
 {
+
+    // 닉네임 띄우기
+    public Text nickName;
+    private void Start()
+    {
+        nickName.text = PhotonNetwork.NickName;
+    }
+
 
     #region 환경설정
     public GameObject settingSet;
@@ -25,6 +34,25 @@ public class YJ_UIManager_Plaza : MonoBehaviour
         {
             settingSet.SetActive(true);
             settingCount++;
+        }
+    }
+    #endregion
+
+    #region 방목록
+    public GameObject roomList;
+    int roomListCount = 0;
+
+    public void RoomList()
+    {
+        if (roomListCount > 0)
+        {
+            roomList.SetActive(false);
+            roomListCount = 0;
+        }
+        else
+        {
+            roomList.SetActive(true);
+            roomListCount++;
         }
     }
     #endregion
