@@ -34,8 +34,6 @@ public class SH_EditorManager : MonoBehaviour
             active_InputField.info.txtSize = int.Parse(fontSize.text);
             active_InputField.transform.GetChild(3).GetComponent<Text>().fontSize = active_InputField.info.txtSize;
         }
-
-
     }
     
 }
