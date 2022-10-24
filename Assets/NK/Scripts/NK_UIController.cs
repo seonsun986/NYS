@@ -80,10 +80,11 @@ public class NK_UIController : MonoBehaviour
                 GameObject child = GameManager.Instance.children[i].gameObject;
                 child.transform.forward = Vector3.forward;
                 // Sit 애니메이션 설정
-                child.transform.GetChild(0).GetComponent<NK_PlayerMove>().state = NK_PlayerMove.State.Sit;
+                //child.GetComponent<NK_PlayerMove>().state = NK_PlayerMove.State.Sit;
                 // 플레이어 무브 스크립트 비활성화
                 NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
-                move.enabled = false;
+                move.state = NK_PlayerMove.State.Sit;
+                //move.enabled = false;
                 // 가장 짧은 거리 초기화
                 shortDistance = float.MaxValue;
 
@@ -109,9 +110,9 @@ public class NK_UIController : MonoBehaviour
                 GameObject child = GameManager.Instance.children[i].gameObject;
                 // 플레이어 무브 스크립트 활성화
                 NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
-                move.enabled = true;
+                //move.enabled = true;
                 // Idle 상태 설정
-                child.transform.GetChild(0).GetComponent<NK_PlayerMove>().state = NK_PlayerMove.State.Idle;
+                move.state = NK_PlayerMove.State.Idle;
             }
         }
     }
