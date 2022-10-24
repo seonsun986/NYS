@@ -9,13 +9,14 @@ public class NK_BookUI : MonoBehaviourPun
 {
     public enum Book
     {
-        ¹é¼³°øÁÖ,
-        ½Åµ¥·¼¶ó,
-        ¿ÀÁîÀÇ¸¶¹ý»ç,
-        ¿ëÀÌ¾ß±â,
+        ï¿½é¼³ï¿½ï¿½ï¿½ï¿½,
+        ï¿½Åµï¿½ï¿½ï¿½ï¿½ï¿½,
+        ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½,
+        ï¿½ï¿½ï¿½Ì¾ß±ï¿½,
     }
 
-    public Book selectedBook = Book.¹é¼³°øÁÖ;
+    public Book selectedBook = Book.ï¿½é¼³ï¿½ï¿½ï¿½ï¿½;
+    public GameObject bookUI;
     public GameObject fairyTaleManager;
     public List<PageInfo> objs;
     public GameObject textFactory;
@@ -42,25 +43,25 @@ public class NK_BookUI : MonoBehaviourPun
 
     public void ClickBook1()
     {
-        SelectBook(Book.¹é¼³°øÁÖ);
+        SelectBook(Book.ï¿½é¼³ï¿½ï¿½ï¿½ï¿½);
         ClickBook();
-        gameObject.SetActive(false);
+        bookUI.SetActive(false);
         fairyTaleManager.SetActive(true);
     }
 
     public void ClickBook2()
     {
-        SelectBook(Book.½Åµ¥·¼¶ó);
+        SelectBook(Book.ï¿½Åµï¿½ï¿½ï¿½ï¿½ï¿½);
     }
 
     public void ClickBook3()
     {
-        SelectBook(Book.¿ÀÁîÀÇ¸¶¹ý»ç);
+        SelectBook(Book.ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½);
     }
     public void ClickBook4()
     {
-        SelectBook(Book.¿ëÀÌ¾ß±â);
-        gameObject.SetActive(false);
+        SelectBook(Book.ï¿½ï¿½ï¿½Ì¾ß±ï¿½);
+        bookUI.SetActive(false);
         fairyTaleManager.SetActive(true);
     }
 
@@ -68,13 +69,13 @@ public class NK_BookUI : MonoBehaviourPun
     {
         objs = new List<PageInfo>();
 
-        // ¸Þ¸ðÀå¿¡ ÀúÀåµÈ json ÆÄÀÏ ºÒ·¯¿À±â
+        // ï¿½Þ¸ï¿½ï¿½å¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ json ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
         string fileName = "Book1";
         string path = Application.dataPath + "/" + fileName + ".Json";
         string jsonData = File.ReadAllText(path);
         print(jsonData);
 
-        // ÆÄ½Ì
+        // ï¿½Ä½ï¿½
         BookInfo bookInfo = JsonUtility.FromJson<BookInfo>(jsonData);
         List<PagesInfo> pagesInfos = bookInfo.pages;
         foreach(PagesInfo pagesInfo in pagesInfos)
@@ -94,30 +95,39 @@ public class NK_BookUI : MonoBehaviourPun
         {
             if (objs[i].type == "text")
             {
-                TxtInfo txt = (TxtInfo)objs[i];
                 GameObject textObj = PhotonNetwork.Instantiate("NK/" + textFactory.name, Vector3.zero, Quaternion.identity);
-                Text textInfo = textObj.GetComponent<Text>();
-                textInfo.text = txt.content;
-                /*if(txt.font != "0")
-                    textInfo.font = new Font(txt.font);*/
-                textInfo.fontSize = txt.size;
-                textObj.transform.SetParent(fairyTaleUI);
-                textObj.transform.localPosition = txt.position;
+                photonView.RPC("RPCCreateText", RpcTarget.All, textObj.GetPhotonView().ViewID, i);
             }
-            if(objs[i].type == "obj")
+            if (objs[i].type == "obj")
             {
                 ObjInfo obj = (ObjInfo)objs[i];
                 GameObject objPrefab = PhotonNetwork.Instantiate(obj.prefab, obj.position, obj.rotation);
-                RPCCreateObject(objPrefab.GetPhotonView().ViewID, obj.scale);
+                photonView.RPC("RPCCreateObject", RpcTarget.All, objPrefab.GetPhotonView().ViewID, i);
             }
         }
     }
 
-    private void RPCCreateObject(int viewId, Vector3 scale)
+    [PunRPC]
+    private void RPCCreateText(int viewId, int index)
+    {
+        TxtInfo txt = (TxtInfo)objs[index];
+        PhotonView view = PhotonView.Find(viewId);
+        GameObject textObj = view.gameObject;
+        Text textInfo = textObj.GetComponent<Text>();
+        textInfo.text = txt.content;
+        /*if(txt.font != "0")
+            textInfo.font = new Font(txt.font);*/
+        textInfo.fontSize = txt.size;
+        textObj.transform.SetParent(fairyTaleUI);
+        textObj.transform.localPosition = txt.position;
+    }
+
+    [PunRPC]
+    private void RPCCreateObject(int viewId, int index)
     {
         PhotonView view = PhotonView.Find(viewId);
         GameObject objPrefab = view.gameObject;
         objPrefab.transform.SetParent(fairyTaleObject);
-        objPrefab.transform.localScale = scale;
+        objPrefab.transform.localScale = ((ObjInfo)objs[index]).scale;
     }
 }
