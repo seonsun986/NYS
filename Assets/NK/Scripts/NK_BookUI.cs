@@ -1,10 +1,11 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NK_BookUI : MonoBehaviour
+public class NK_BookUI : MonoBehaviourPun
 {
     public enum Book
     {
@@ -19,6 +20,7 @@ public class NK_BookUI : MonoBehaviour
     public List<PageInfo> objs;
     public GameObject textFactory;
     public Transform fairyTaleUI;
+    public Transform fairyTaleObject;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +44,8 @@ public class NK_BookUI : MonoBehaviour
     {
         SelectBook(Book.백설공주);
         ClickBook();
+        gameObject.SetActive(false);
+        fairyTaleManager.SetActive(true);
     }
 
     public void ClickBook2()
@@ -91,7 +95,7 @@ public class NK_BookUI : MonoBehaviour
             if (objs[i].type == "text")
             {
                 TxtInfo txt = (TxtInfo)objs[i];
-                GameObject textObj = Instantiate(textFactory);
+                GameObject textObj = PhotonNetwork.Instantiate("NK/" + textFactory.name, Vector3.zero, Quaternion.identity);
                 Text textInfo = textObj.GetComponent<Text>();
                 textInfo.text = txt.content;
                 if(txt.font != "0")
@@ -103,10 +107,11 @@ public class NK_BookUI : MonoBehaviour
             if(objs[i].type == "obj")
             {
                 ObjInfo obj = (ObjInfo)objs[i];
-                /*GameObject objPrefab = Instantiate(obj.prefab);
+                GameObject objPrefab = PhotonNetwork.Instantiate(obj.prefab, Vector3.zero, Quaternion.identity);
+                objPrefab.transform.SetParent(fairyTaleObject);
                 objPrefab.transform.position = obj.position;
                 objPrefab.transform.rotation = obj.rotation;
-                objPrefab.transform.localScale = obj.scale;*/
+                objPrefab.transform.localScale = obj.scale;
             }
         }
     }
