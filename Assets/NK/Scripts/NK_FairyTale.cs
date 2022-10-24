@@ -58,6 +58,7 @@ public class NK_FairyTale : MonoBehaviour
             fairyTaleUI.SetActive(false);
             fairyTaleObject.SetActive(false);
             book.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 }

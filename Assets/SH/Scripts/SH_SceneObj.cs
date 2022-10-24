@@ -28,7 +28,8 @@ public class SH_SceneObj : MonoBehaviour
             objType = ObjType.obj;
         }
         // 내가 속해 있는 Scene 번호를 저장한다
-        mySceneNum = SH_BtnManager.Instance.i;
+        if(SH_BtnManager.Instance != null)
+            mySceneNum = SH_BtnManager.Instance.i;
         print(objType);
     }
 

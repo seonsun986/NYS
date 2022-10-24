@@ -76,6 +76,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                     break;
                 case State.Idle:
                     photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", false);
+                    state = State.Move;
                     break;
 
             }

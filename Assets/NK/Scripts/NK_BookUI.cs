@@ -107,10 +107,8 @@ public class NK_BookUI : MonoBehaviourPun
             if(objs[i].type == "obj")
             {
                 ObjInfo obj = (ObjInfo)objs[i];
-                GameObject objPrefab = PhotonNetwork.Instantiate(obj.prefab, Vector3.zero, Quaternion.identity);
+                GameObject objPrefab = PhotonNetwork.Instantiate(obj.prefab, obj.position, obj.rotation);
                 objPrefab.transform.SetParent(fairyTaleObject);
-                objPrefab.transform.position = obj.position;
-                objPrefab.transform.rotation = obj.rotation;
                 objPrefab.transform.localScale = obj.scale;
             }
         }
