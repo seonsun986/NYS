@@ -9,13 +9,13 @@ public class NK_BookUI : MonoBehaviourPun
 {
     public enum Book
     {
-        �鼳����,
-        �ŵ�����,
-        �����Ǹ�����,
-        ���̾߱�,
+        백설공주,
+        신데렐라,
+        오즈의마법사,
+        용이야기,
     }
 
-    public Book selectedBook = Book.�鼳����;
+    public Book selectedBook = Book.백설공주;
     public GameObject bookUI;
     public GameObject fairyTaleManager;
     public List<PageInfo> objs;
@@ -43,7 +43,7 @@ public class NK_BookUI : MonoBehaviourPun
 
     public void ClickBook1()
     {
-        SelectBook(Book.�鼳����);
+        SelectBook(Book.백설공주);
         ClickBook();
         bookUI.SetActive(false);
         fairyTaleManager.SetActive(true);
@@ -51,16 +51,16 @@ public class NK_BookUI : MonoBehaviourPun
 
     public void ClickBook2()
     {
-        SelectBook(Book.�ŵ�����);
+        SelectBook(Book.신데렐라);
     }
 
     public void ClickBook3()
     {
-        SelectBook(Book.�����Ǹ�����);
+        SelectBook(Book.오즈의마법사);
     }
     public void ClickBook4()
     {
-        SelectBook(Book.���̾߱�);
+        SelectBook(Book.용이야기);
         bookUI.SetActive(false);
         fairyTaleManager.SetActive(true);
     }
@@ -69,13 +69,13 @@ public class NK_BookUI : MonoBehaviourPun
     {
         objs = new List<PageInfo>();
 
-        // �޸��忡 ������ json ���� �ҷ�����
+        // Json 파일 받아오기
         string fileName = "Book1";
         string path = Application.dataPath + "/" + fileName + ".Json";
         string jsonData = File.ReadAllText(path);
         print(jsonData);
 
-        // �Ľ�
+        // 파싱
         BookInfo bookInfo = JsonUtility.FromJson<BookInfo>(jsonData);
         List<PagesInfo> pagesInfos = bookInfo.pages;
         foreach(PagesInfo pagesInfo in pagesInfos)
