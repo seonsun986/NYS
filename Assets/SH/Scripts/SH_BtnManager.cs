@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.IO;
 using System;
+using Photon.Pun;
 
 
 
@@ -82,6 +83,43 @@ public class ObjInfo : PageInfo
     public string prefab;
     public Quaternion rotation;
     public Vector3 scale;
+}
+
+
+public class Back : YJ_PlazaManager
+{
+    public static new Back instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    //[HideInInspector]
+    //public new UserInfo userInfo;
+
+    // 들어와 있는 인원 파악하기
+    public new int liveCount = 0;
+
+    public new Vector3[] spawnPos;
+
+    public override void JoinRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+        // XR_A라는 방으로 입장
+        //PhotonNetwork.JoinRoom("Lobby");
+    }
+
+    public override void OnJoinedLobby()
+    {
+        PhotonNetwork.JoinRoom("Lobby");
+    }
+
+    public override string ChangeSceneName()
+    {
+        sceneName = "PlazaScene";
+        return sceneName;
+    }
 }
 
 //public class PageInfo
