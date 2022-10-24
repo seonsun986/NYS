@@ -6,6 +6,7 @@ using UnityEngine;
 public class NK_UIController : MonoBehaviour
 {
     public List<GameObject> seats;
+    
 
     #region IsMute
     bool isMute = false;
@@ -73,6 +74,7 @@ public class NK_UIController : MonoBehaviour
         if (IsControl)
         {
             RpcControl();
+
         }
         else
         {
