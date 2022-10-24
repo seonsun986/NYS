@@ -42,10 +42,19 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     {
         print(PhotonNetwork.MasterClient.NickName);
         // 아직 방에 들어갈 수 없어서 임시로 테스트 중...
-        if (PhotonNetwork.MasterClient.NickName != photonView.Owner.NickName && GameObject.Find("GameManager"))    
+        if (GameObject.Find("GameManager"))
         {
-            gameObject.tag = "Child";
+            if (PhotonNetwork.MasterClient.NickName != photonView.Owner.NickName)
+            {
+                gameObject.tag = "Child";
+                GameObject.Find("TeacherUI").SetActive(false);
+            }
+            else
+            {
+                gameObject.tag = "Teacher";
+            }
             GameManager.Instance.AddPlayer(photonView);
+
         }
         controller = GetComponent<CharacterController>();
         anim = transform.GetChild(0).GetComponent<Animator>();

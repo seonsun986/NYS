@@ -352,6 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   children: []
+  photonView: {fileID: 0}
 --- !u!4 &31254228
 Transform:
   m_ObjectHideFlags: 0
@@ -5876,7 +5877,7 @@ RectTransform:
   m_Children:
   - {fileID: 1862483048}
   m_Father: {fileID: 1040144018}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7307,6 +7308,7 @@ RectTransform:
   - {fileID: 851799134}
   - {fileID: 1347615897}
   - {fileID: 1155115746}
+  - {fileID: 1942689362}
   - {fileID: 877676284}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -7329,6 +7331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seats: []
+  photonView: {fileID: 0}
   nearSeat: {fileID: 0}
 --- !u!114 &1040144020
 MonoBehaviour:
@@ -8270,7 +8273,6 @@ RectTransform:
   - {fileID: 1448708547}
   - {fileID: 638755780}
   - {fileID: 1119987762}
-  - {fileID: 1942689362}
   m_Father: {fileID: 1040144018}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11054,6 +11056,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1708743688}
     m_Modifications:
+    - target: {fileID: -3182927728202441640, guid: e852a6b66b86e9a4ea1fdeb1ccc625bc, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1180148154098208, guid: e852a6b66b86e9a4ea1fdeb1ccc625bc, type: 3}
       propertyPath: m_Name
       value: Dragon
@@ -12190,12 +12196,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 811917718}
-  m_Father: {fileID: 1155115746}
+  m_Father: {fileID: 1040144018}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1755, y: -712}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1942689363

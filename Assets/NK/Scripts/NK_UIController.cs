@@ -1,12 +1,13 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class NK_UIController : MonoBehaviour
+public class NK_UIController : MonoBehaviourPun
 {
     public List<GameObject> seats;
-    
+    public PhotonView photonView = GameManager.Instance.photonView;
 
     #region IsMute
     bool isMute = false;
@@ -73,20 +74,24 @@ public class NK_UIController : MonoBehaviour
         // 모든 아이들을 가장 가까운 빈 좌석에 앉힘
         if (IsControl)
         {
-            RpcControl();
-
+            photonView.RPC("RpcControl", RpcTarget.All);
         }
         else
         {
-            for (int i = 0; i < GameManager.Instance.children.Count; i++)
-            {
-                GameObject child = GameManager.Instance.children[i].gameObject;
-                // 플레이어 무브 스크립트 활성화
-                NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
-                //move.enabled = true;
-                // Idle 상태 설정
-                move.state = NK_PlayerMove.State.Idle;
-            }
+            photonView.RPC("RpcEndControl", RpcTarget.All);
+        }
+    }
+
+    private static void RpcEndControl()
+    {
+        for (int i = 0; i < GameManager.Instance.children.Count; i++)
+        {
+            GameObject child = GameManager.Instance.children[i].gameObject;
+            // 플레이어 무브 스크립트 활성화
+            NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
+            //move.enabled = true;
+            // Idle 상태 설정
+            move.state = NK_PlayerMove.State.Idle;
         }
     }
 
