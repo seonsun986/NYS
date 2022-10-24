@@ -37,6 +37,7 @@ public class YJ_RoomTrigger : MonoBehaviourPunCallbacks
         {
             if (Input.GetKey(KeyCode.Space))
             {
+                YJ_PlazaManager.instance.goingRoom = roomName;
                 YJ_PlazaManager.instance.OutPlaza();
                 //PhotonNetwork.JoinLobby();
                 //JoinRoom();
