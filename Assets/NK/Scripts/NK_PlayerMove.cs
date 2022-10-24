@@ -40,8 +40,9 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
+        print(PhotonNetwork.MasterClient.NickName);
         // 아직 방에 들어갈 수 없어서 임시로 테스트 중...
-        if (PhotonNetwork.IsMasterClient && GameObject.Find("GameManager"))
+        if (PhotonNetwork.MasterClient.NickName != photonView.Owner.NickName && GameObject.Find("GameManager"))    
         {
             gameObject.tag = "Child";
             GameManager.Instance.AddPlayer(photonView);
