@@ -3335,16 +3335,21 @@ MonoBehaviour:
   sceneCam: {fileID: 1205915536}
   rawImages:
   - {fileID: 2117023833}
+  sceneCamRenderTexture: {fileID: 8400000, guid: cbd7bda782ba3f64c829de4f4d39411d, type: 2}
   obj:
   - {fileID: 152128, guid: 69af18a8b74909b4f840fc6812132c3f, type: 3}
-  - {fileID: 127546, guid: e3245acddde40bf49aa555d6bdc14998, type: 3}
+  - {fileID: 1180148154098208, guid: e852a6b66b86e9a4ea1fdeb1ccc625bc, type: 3}
   - {fileID: 1940725992751248, guid: 36dbe61bd75ee1247b4f749534847ff0, type: 3}
   - {fileID: 194370, guid: c7f60aaa46b6b1e4b8824e6ee6ad5c6d, type: 3}
   firstRawImage: {fileID: 1101646250}
   Scenes:
   - {fileID: 680210680}
+  ScenesPos:
+  - {x: 0, y: 0, z: 0}
   Scenes_txt:
   - {fileID: 1687880189}
+  Scenes_txtPos:
+  - {x: 0, y: 0, z: 0}
   newScene: {fileID: 3013943683154518292, guid: 27a5fe0ba25ef9646847db2b76a1e285, type: 3}
   newScene_Canvas: {fileID: 149700314513890301, guid: c6f6377d6f49aad44b1a07e867ea665a, type: 3}
   objsInfo: []
@@ -4910,7 +4915,7 @@ GameObject:
   - component: {fileID: 981516049}
   - component: {fileID: 981516048}
   m_Layer: 5
-  m_Name: FoxBtn
+  m_Name: DragonBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5113,8 +5118,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1746314619}
   m_HandleRect: {fileID: 1746314618}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9999861
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9682,7 +9687,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -142, y: 474.99985}
+  m_AnchoredPosition: {x: -142, y: 475}
   m_SizeDelta: {x: 284, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2077825514
@@ -13952,7 +13957,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8022947552493862269, guid: 1d93f9ea8d51c9845a74a7776b2ddad4, type: 3}
       propertyPath: m_Name
-      value: RawImage
+      value: RawImage_0
       objectReference: {fileID: 0}
     - target: {fileID: 8022947552493862270, guid: 1d93f9ea8d51c9845a74a7776b2ddad4, type: 3}
       propertyPath: m_Pivot.x
