@@ -117,6 +117,7 @@ public class SH_BtnManager : MonoBehaviour
     public GameObject rawImage;
     public Camera sceneCam;         // 씬 카메라
     public List<RawImage> rawImages = new List<RawImage>();
+    public RenderTexture sceneCamRenderTexture;
     string path;                    // 캡쳐 정보 저장 경로
     private int captureWidth;
     private int captureHeight;
@@ -127,8 +128,10 @@ public class SH_BtnManager : MonoBehaviour
     public Transform firstRawImage;
     // 씬 오브젝트들을 담을 빈 오브젝트를 담을 리스트
     public List<GameObject> Scenes = new List<GameObject>();
+    public List<Vector3> ScenesPos = new List<Vector3>();
     // 씬 텍스트들을 담을 빈 오브젝트들을 담을 리스트(Canvas안에 있는)
     public List<GameObject> Scenes_txt = new List<GameObject>();
+    public List<Vector3> Scenes_txtPos = new List<Vector3>();
 
     public GameObject newScene;
     public GameObject newScene_Canvas;
@@ -150,7 +153,10 @@ public class SH_BtnManager : MonoBehaviour
 
     void Update()
     {
-        
+        if(Input.GetMouseButtonDown(0))
+        {
+            GoScene();
+        }
     }
 
 
@@ -311,6 +317,7 @@ public class SH_BtnManager : MonoBehaviour
         GameObject raw = Instantiate(rawImage);
         raw.transform.SetParent(GameObject.Find("Canvas").transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).transform);
         raw.transform.position = firstRawImage.position + transform.up * (-180* (i+1));
+        raw.name = "RawImage_" + (i + 1);
         rawImages.Add(raw.GetComponent<RawImage>());
         sceneCam.targetTexture = raw.GetComponent<RawImage>().texture as RenderTexture;
 
@@ -320,7 +327,7 @@ public class SH_BtnManager : MonoBehaviour
         // 카메라 내리지 않기로 결정(Scenecam, MainCamera 모두!)
         for(int j =0;j<Scenes.Count;j++)
         {
-            Scenes[j].transform.position += new Vector3(0, 10, 0);
+            Scenes[j].transform.position += new Vector3(0, 20, 0);
         }
         for(int k =0;k<Scenes_txt.Count;k++)
         {
@@ -374,8 +381,81 @@ public class SH_BtnManager : MonoBehaviour
     // 다른 씬들도 같이 내려야한다
     public void GoScene()
     {
-        GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
-        
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> raycastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, raycastResults);
+
+        for (int j = 0; j < raycastResults.Count; j++)
+        {
+            // 해당 y값이 0이면 내가 지금 scene0에 있다는 소리고 
+            // 20이면 내가 지금 Scene1에 있다는 소리다
+            int currentScene = (int)Scenes[0].transform.position.y / 20;
+            // 원래 있었던 씬을 캡쳐해서 바꿔준다
+            // 캡쳐하기 
+            // 캡쳐파일 이름 정하기
+            fileName = path + "_CurrentScene_" + currentScene + ".png";
+
+            // 캡쳐하기 
+            RenderTexture rt = new RenderTexture(captureWidth, captureHeight, 24);
+            sceneCam.targetTexture = rt;
+            Texture2D screenShot = new Texture2D(captureWidth, captureHeight, TextureFormat.RGB24, false);
+            Rect rec = new Rect(0, 0, screenShot.width, screenShot.height);
+            sceneCam.Render();
+            RenderTexture.active = rt;
+            screenShot.ReadPixels(new Rect(0, 0, captureWidth, captureHeight), 0, 0);
+            screenShot.Apply();
+
+            byte[] bytes = screenShot.EncodeToPNG();
+            File.WriteAllBytes(fileName, bytes);
+
+            // 캡쳐파일 RawImage에 넣기
+            byte[] textureBytes = File.ReadAllBytes(fileName);
+            if (textureBytes.Length > 0)
+            {
+                Texture2D loadedTexture = new Texture2D(0, 0);
+                loadedTexture.LoadImage(textureBytes);
+                rawImages[currentScene].GetComponent<RawImage>().texture = loadedTexture;
+            }
+
+            // 씬을 클릭했다는 뜻이므로
+            // 해당 씬으로 돌아가야한다
+            if (raycastResults[j].gameObject.name.Contains("RawImage"))
+            {
+                // 다시 캡쳐이미지에서 RawImage로 바꾼다
+                int sceneNum = int.Parse(raycastResults[j].gameObject.name.Substring(9));
+                rawImages[sceneNum].texture = sceneCamRenderTexture;
+                sceneCam.targetTexture = rawImages[sceneNum].texture as RenderTexture;
+
+                // 어떤 씬을 눌렀냐에 따라서 내리는 정도를 설정한다(전역변수 i값이 현재 씬의 개수라고 생각하면 된다)
+                // (전체 씬 개수 - 클릭한 씬 넘버) * 10을 빼준다(모두다) 빈 오브젝트를 빼주면 된다
+                // txt는 (전체 씬 개수 - 클릭한 씬 넘버) * screen.Height를 빼준다
+                //(i - sceneNum) * 10
+                // 현재씬이 선택한 씬보다 나중에 만들어졌을 경우
+                if(currentScene > sceneNum)
+                {
+
+                    for (int k = 0; k < Scenes.Count; k++)
+                    {
+                       
+                        Scenes[k].transform.position -= new Vector3(0, (i - sceneNum) * 20, 0);
+                        Scenes_txt[k].transform.position -= new Vector3(0, (i - sceneNum) * Screen.height, 0);
+                    }
+                }
+                else
+                {
+
+                    for (int k = 0; k < Scenes.Count; k++)
+                    {
+                        Scenes[k].transform.position += new Vector3(0, (i - sceneNum) * 20, 0);
+                        Scenes_txt[k].transform.position += new Vector3(0, (i - sceneNum) * Screen.height, 0);
+                    }
+                }
+                
+                break;
+            }
+        }
+
     }
 
 
