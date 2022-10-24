@@ -9,13 +9,14 @@ public class NK_BookUI : MonoBehaviourPun
 {
     public enum Book
     {
-        πÈº≥∞¯¡÷,
-        Ω≈µ•∑º∂Û,
-        ø¿¡Ó¿«∏∂π˝ªÁ,
-        øÎ¿Ãæﬂ±‚,
+        Î∞±ÏÑ§Í≥µÏ£º,
+        Ïã†Îç∞Î†êÎùº,
+        Ïò§Ï¶àÏùòÎßàÎ≤ïÏÇ¨,
+        Ïö©Ïù¥ÏïºÍ∏∞,
     }
 
-    public Book selectedBook = Book.πÈº≥∞¯¡÷;
+    public Book selectedBook = Book.Î∞±ÏÑ§Í≥µÏ£º;
+    public GameObject bookUI;
     public GameObject fairyTaleManager;
     public List<PageInfo> objs;
     public GameObject textFactory;
@@ -42,25 +43,25 @@ public class NK_BookUI : MonoBehaviourPun
 
     public void ClickBook1()
     {
-        SelectBook(Book.πÈº≥∞¯¡÷);
+        SelectBook(Book.Î∞±ÏÑ§Í≥µÏ£º);
         ClickBook();
-        gameObject.SetActive(false);
+        bookUI.SetActive(false);
         fairyTaleManager.SetActive(true);
     }
 
     public void ClickBook2()
     {
-        SelectBook(Book.Ω≈µ•∑º∂Û);
+        SelectBook(Book.Ïã†Îç∞Î†êÎùº);
     }
 
     public void ClickBook3()
     {
-        SelectBook(Book.ø¿¡Ó¿«∏∂π˝ªÁ);
+        SelectBook(Book.Ïò§Ï¶àÏùòÎßàÎ≤ïÏÇ¨);
     }
     public void ClickBook4()
     {
-        SelectBook(Book.øÎ¿Ãæﬂ±‚);
-        gameObject.SetActive(false);
+        SelectBook(Book.Ïö©Ïù¥ÏïºÍ∏∞);
+        bookUI.SetActive(false);
         fairyTaleManager.SetActive(true);
     }
 
@@ -68,13 +69,13 @@ public class NK_BookUI : MonoBehaviourPun
     {
         objs = new List<PageInfo>();
 
-        // ∏ﬁ∏¿Âø° ¿˙¿Âµ» json ∆ƒ¿œ ∫“∑Øø¿±‚
+        // Json ÌååÏùº Î∞õÏïÑÏò§Í∏∞
         string fileName = "Book1";
         string path = Application.dataPath + "/" + fileName + ".Json";
         string jsonData = File.ReadAllText(path);
         print(jsonData);
 
-        // ∆ƒΩÃ
+        // ÌååÏã±
         BookInfo bookInfo = JsonUtility.FromJson<BookInfo>(jsonData);
         List<PagesInfo> pagesInfos = bookInfo.pages;
         foreach(PagesInfo pagesInfo in pagesInfos)
@@ -94,23 +95,39 @@ public class NK_BookUI : MonoBehaviourPun
         {
             if (objs[i].type == "text")
             {
-                TxtInfo txt = (TxtInfo)objs[i];
                 GameObject textObj = PhotonNetwork.Instantiate("NK/" + textFactory.name, Vector3.zero, Quaternion.identity);
-                Text textInfo = textObj.GetComponent<Text>();
-                textInfo.text = txt.content;
-                if(txt.font != "0")
-                    textInfo.font = new Font(txt.font);
-                textInfo.fontSize = txt.size;
-                textObj.transform.SetParent(fairyTaleUI);
-                textObj.transform.localPosition = txt.position;
+                photonView.RPC("RPCCreateText", RpcTarget.All, textObj.GetPhotonView().ViewID, i);
             }
-            if(objs[i].type == "obj")
+            if (objs[i].type == "obj")
             {
                 ObjInfo obj = (ObjInfo)objs[i];
                 GameObject objPrefab = PhotonNetwork.Instantiate(obj.prefab, obj.position, obj.rotation);
-                objPrefab.transform.SetParent(fairyTaleObject);
-                objPrefab.transform.localScale = obj.scale;
+                photonView.RPC("RPCCreateObject", RpcTarget.All, objPrefab.GetPhotonView().ViewID, i);
             }
         }
+    }
+
+    [PunRPC]
+    private void RPCCreateText(int viewId, int index)
+    {
+        TxtInfo txt = (TxtInfo)objs[index];
+        PhotonView view = PhotonView.Find(viewId);
+        GameObject textObj = view.gameObject;
+        Text textInfo = textObj.GetComponent<Text>();
+        textInfo.text = txt.content;
+        /*if(txt.font != "0")
+            textInfo.font = new Font(txt.font);*/
+        textInfo.fontSize = txt.size;
+        textObj.transform.SetParent(fairyTaleUI);
+        textObj.transform.localPosition = txt.position;
+    }
+
+    [PunRPC]
+    private void RPCCreateObject(int viewId, int index)
+    {
+        PhotonView view = PhotonView.Find(viewId);
+        GameObject objPrefab = view.gameObject;
+        objPrefab.transform.SetParent(fairyTaleObject);
+        objPrefab.transform.localScale = ((ObjInfo)objs[index]).scale;
     }
 }

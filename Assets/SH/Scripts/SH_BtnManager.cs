@@ -449,7 +449,6 @@ public class SH_BtnManager : MonoBehaviour
 
                     for (int k = 0; k < Scenes.Count; k++)
                     {
-                       
                         Scenes[k].transform.position -= new Vector3(0, (i - sceneNum) * 20, 0);
                         Scenes_txt[k].transform.position -= new Vector3(0, (i - sceneNum) * Screen.height, 0);
                     }
@@ -459,8 +458,9 @@ public class SH_BtnManager : MonoBehaviour
 
                     for (int k = 0; k < Scenes.Count; k++)
                     {
-                        Scenes[k].transform.position += new Vector3(0, (i - sceneNum) * 20, 0);
-                        Scenes_txt[k].transform.position += new Vector3(0, (i - sceneNum) * Screen.height, 0);
+                        print("sceneNum : " + sceneNum);
+                        Scenes[k].transform.position += new Vector3(0, ((i+1) - sceneNum) * 20, 0);
+                        Scenes_txt[k].transform.position += new Vector3(0, ((i + 1) - sceneNum) * Screen.height, 0);
                     }
                 }
                 

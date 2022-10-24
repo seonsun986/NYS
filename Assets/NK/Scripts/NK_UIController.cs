@@ -7,7 +7,6 @@ using UnityEngine;
 public class NK_UIController : MonoBehaviourPun
 {
     public List<GameObject> seats;
-    public PhotonView photonView;
 
     #region IsMute
     bool isMute = false;
@@ -42,7 +41,7 @@ public class NK_UIController : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        photonView = GameManager.Instance.photonView;
+
     }
 
     // Update is called once per frame
@@ -53,6 +52,11 @@ public class NK_UIController : MonoBehaviourPun
 
     #region ClickMute // 음소거 버튼
     public void ClickMute()
+    {
+        photonView.RPC("RPCMute", RpcTarget.All);
+    }
+
+    private void RPCMute()
     {
         // 모든 아이들의 볼륨을 0으로 하거나 Mute 시킴
         for (int i = 0; i < GameManager.Instance.children.Count; i++)
@@ -75,28 +79,14 @@ public class NK_UIController : MonoBehaviourPun
         if (IsControl)
         {
             photonView.RPC("RpcControl", RpcTarget.All);
-            RpcControl();
         }
         else
         {
             photonView.RPC("RpcEndControl", RpcTarget.All);
-            RpcEndControl();
         }
     }
 
-    private static void RpcEndControl()
-    {
-        for (int i = 0; i < GameManager.Instance.children.Count; i++)
-        {
-            GameObject child = GameManager.Instance.children[i].gameObject;
-            // 플레이어 무브 스크립트 활성화
-            NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
-            //move.enabled = true;
-            // Idle 상태 설정
-            move.state = NK_PlayerMove.State.Idle;
-        }
-    }
-
+    [PunRPC]
     private void RpcControl()
     {
         // 모든 좌석을 가져옴
@@ -126,6 +116,20 @@ public class NK_UIController : MonoBehaviourPun
             // 가장 가까운 빈 좌석에 앉힘
             child.transform.position = new Vector3(nearSeat.transform.position.x, child.transform.position.y, nearSeat.transform.position.z);
             seats.Remove(nearSeat);
+        }
+    }
+
+    [PunRPC]
+    private void RpcEndControl()
+    {
+        for (int i = 0; i < GameManager.Instance.children.Count; i++)
+        {
+            GameObject child = GameManager.Instance.children[i].gameObject;
+            // 플레이어 무브 스크립트 활성화
+            NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
+            //move.enabled = true;
+            // Idle 상태 설정
+            move.state = NK_PlayerMove.State.Idle;
         }
     }
     #endregion
