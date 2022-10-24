@@ -32,7 +32,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     void Start()
     {
         // 게임씬에서 다음씬으로 넘어갈때 동기화해주기 ( 게임씬 등에서 한번 )
-        PhotonNetwork.AutomaticallySyncScene = true;
+        //PhotonNetwork.AutomaticallySyncScene = true;
 
         print(liveCount);
 
@@ -69,6 +69,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
 
         // 일단 큐브생성하자
         me = PhotonNetwork.Instantiate("YJ/Cube", spawnPos[liveCount], Quaternion.identity);
+
     }
 
 
@@ -225,10 +226,11 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
 
-        // LobbyScene 이동
-        PhotonNetwork.LoadLevel(ChangeSceneName());
         if(YJ_DataManager.CreateRoomInfo.roomName != null)
             YJ_DataManager.instance.changeScene++;
+
+        // LobbyScene 이동
+        PhotonNetwork.LoadLevel(ChangeSceneName());
         //Destroy(this);
     }
 

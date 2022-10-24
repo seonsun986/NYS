@@ -3,23 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class YJ_RoomTrigger : MonoBehaviourPunCallbacks
+public class YJ_RoomTrigger : MonoBehaviourPun
 {
     // Start is called before the first frame update
     void Start()
     {
         if (photonView.IsMine)
+        {
             roomName = YJ_DataManager.CreateRoomInfo.roomName;
+            photonView.RPC("RpcNameSet", RpcTarget.All, roomName);
+        }
     }
 
     float currentTime;
     void Update()
     {
-        currentTime += Time.deltaTime;
-        if (currentTime > 0.3 && currentTime < 0.8)
+        //currentTime += Time.deltaTime;
+        //if (currentTime > 0.3 && currentTime < 0.8)
+        //{
+        //    if (photonView.IsMine)
+        //        photonView.RPC("RpcNameSet", RpcTarget.All, roomName);
+        //}
+
+        if(canJoinRoom)
         {
-            if (photonView.IsMine)
-                photonView.RPC("RpcNameSet", RpcTarget.All, roomName);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                YJ_PlazaManager.instance.goingRoom = roomName;
+                YJ_PlazaManager.instance.OutPlaza();
+                //PhotonNetwork.JoinLobby();
+                //JoinRoom();
+            }
         }
     }
 
@@ -31,19 +45,21 @@ public class YJ_RoomTrigger : MonoBehaviourPunCallbacks
 
     public string roomName;
 
-    private void OnTriggerStay(Collider other)
+    bool canJoinRoom;
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 6)
         {
-            if (Input.GetKey(KeyCode.Space))
-            {
-                YJ_PlazaManager.instance.goingRoom = roomName;
-                YJ_PlazaManager.instance.OutPlaza();
-                //PhotonNetwork.JoinLobby();
-                //JoinRoom();
-            }
+            canJoinRoom = true;
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+            canJoinRoom = false;
+    }
+
+ 
 
     //// 마스터 서버에 접속, 로비 생성 및 진입 가능
     //public override void OnConnectedToMaster()
