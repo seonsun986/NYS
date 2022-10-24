@@ -18,6 +18,7 @@ public class NK_BookUI : MonoBehaviour
     public GameObject fairyTaleManager;
     public List<PageInfo> objs;
     public GameObject textFactory;
+    public Transform fairyTaleUI;
 
     // Start is called before the first frame update
     void Start()
@@ -93,9 +94,11 @@ public class NK_BookUI : MonoBehaviour
                 GameObject textObj = Instantiate(textFactory);
                 Text textInfo = textObj.GetComponent<Text>();
                 textInfo.text = txt.content;
-                textObj.transform.position = txt.position;
-                //textInfo.font = txt.font;
+                if(txt.font != "0")
+                    textInfo.font = new Font(txt.font);
                 textInfo.fontSize = txt.size;
+                textObj.transform.SetParent(fairyTaleUI);
+                textObj.transform.localPosition = txt.position;
             }
             if(objs[i].type == "obj")
             {
