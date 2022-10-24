@@ -7,7 +7,7 @@ using UnityEngine;
 public class NK_UIController : MonoBehaviourPun
 {
     public List<GameObject> seats;
-    public PhotonView photonView = GameManager.Instance.photonView;
+    public PhotonView photonView;
 
     #region IsMute
     bool isMute = false;
@@ -42,7 +42,7 @@ public class NK_UIController : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-
+        photonView = GameManager.Instance.photonView;
     }
 
     // Update is called once per frame
@@ -75,10 +75,12 @@ public class NK_UIController : MonoBehaviourPun
         if (IsControl)
         {
             photonView.RPC("RpcControl", RpcTarget.All);
+            RpcControl();
         }
         else
         {
             photonView.RPC("RpcEndControl", RpcTarget.All);
+            RpcEndControl();
         }
     }
 

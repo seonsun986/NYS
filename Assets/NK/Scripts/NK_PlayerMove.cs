@@ -47,7 +47,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
             if (PhotonNetwork.MasterClient.NickName != photonView.Owner.NickName)
             {
                 gameObject.tag = "Child";
-                GameObject.Find("TeacherUI").SetActive(false);
+                //GameObject.Find("TeacherUI").SetActive(false);
             }
             else
             {
