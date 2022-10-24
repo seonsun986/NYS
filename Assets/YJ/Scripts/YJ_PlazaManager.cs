@@ -206,6 +206,8 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         print("OnCreateRoomFailed, " + returnCode + ", " + message);
     }
 
+    public string goingRoom;
+
     // 방입장 ( 방생성자는 자동으로 입장이 됨 )
     public virtual void JoinRoom()
     {
@@ -213,7 +215,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         if(YJ_DataManager.CreateRoomInfo.roomName != null)
             PhotonNetwork.JoinRoom(YJ_DataManager.CreateRoomInfo.roomName);
         else
-            PhotonNetwork.JoinRoom(myRoom.GetComponent<YJ_RoomTrigger>().roomName);
+            PhotonNetwork.JoinRoom(goingRoom);
 
     }
 
@@ -225,7 +227,8 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
 
         // LobbyScene 이동
         PhotonNetwork.LoadLevel(ChangeSceneName());
-        YJ_DataManager.instance.changeScene++;
+        if(YJ_DataManager.CreateRoomInfo.roomName != null)
+            YJ_DataManager.instance.changeScene++;
         //Destroy(this);
     }
 
