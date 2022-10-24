@@ -107,7 +107,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     float setTime = 0;
     private void Update()
     {
-        // 이거해줘야 방목록 갱신됨..
+        // 이거해줘야 방목록 갱신됨.. 한박자 늦게 들어가기
         if (roomSet != null && myRoom != null)
         {
             setTime += Time.deltaTime;
@@ -152,10 +152,17 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         roomListViewId = roomSet.GetComponent<PhotonView>().ViewID;
     }
 
-    [PunRPC]
-    void RpcRoomTrigger(string s)
+    // 동화만들기 버튼
+    bool createBook = false;
+    public void OnClickCreateBook()
     {
-        myRoom.GetComponent<YJ_RoomTrigger>().roomName = s;
+        if (!createBook && photonView.IsMine)
+        {
+            createBook = true;
+            YJ_DataManager.CreateRoomInfo.roomName = PhotonNetwork.NickName;
+            OutPlaza();
+        }
+
     }
 
     // 마스터 서버에 접속, 로비 생성 및 진입 가능
@@ -238,7 +245,15 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     public virtual string ChangeSceneName()
     {
         // 테마 설정되면 테마에 따라 CreatRoom 함수에서 sceneName 변경해주기
-        sceneName = "TeacherScene";
+        if (createBook)
+        {
+            sceneName = "EditorScene";
+            createBook = false;
+        }
+        else
+        {
+            sceneName = "TeacherScene";
+        }
         return sceneName;
     }
     #endregion
