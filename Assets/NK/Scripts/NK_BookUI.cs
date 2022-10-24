@@ -16,6 +16,7 @@ public class NK_BookUI : MonoBehaviourPun
     }
 
     public Book selectedBook = Book.백설공주;
+    public GameObject bookUI;
     public GameObject fairyTaleManager;
     public List<PageInfo> objs;
     public GameObject textFactory;
@@ -44,7 +45,7 @@ public class NK_BookUI : MonoBehaviourPun
     {
         SelectBook(Book.백설공주);
         ClickBook();
-        gameObject.SetActive(false);
+        bookUI.SetActive(false);
         fairyTaleManager.SetActive(true);
     }
 
@@ -60,7 +61,7 @@ public class NK_BookUI : MonoBehaviourPun
     public void ClickBook4()
     {
         SelectBook(Book.용이야기);
-        gameObject.SetActive(false);
+        bookUI.SetActive(false);
         fairyTaleManager.SetActive(true);
     }
 
@@ -94,30 +95,51 @@ public class NK_BookUI : MonoBehaviourPun
         {
             if (objs[i].type == "text")
             {
-                TxtInfo txt = (TxtInfo)objs[i];
                 GameObject textObj = PhotonNetwork.Instantiate("NK/" + textFactory.name, Vector3.zero, Quaternion.identity);
-                Text textInfo = textObj.GetComponent<Text>();
-                textInfo.text = txt.content;
-                /*if(txt.font != "0")
-                    textInfo.font = new Font(txt.font);*/
-                textInfo.fontSize = txt.size;
-                textObj.transform.SetParent(fairyTaleUI);
-                textObj.transform.localPosition = txt.position;
+                photonView.RPC("RPCCreateText", RpcTarget.All, textObj.GetPhotonView().ViewID, i);
             }
-            if(objs[i].type == "obj")
+            if (objs[i].type == "obj")
             {
                 ObjInfo obj = (ObjInfo)objs[i];
                 GameObject objPrefab = PhotonNetwork.Instantiate(obj.prefab, obj.position, obj.rotation);
+<<<<<<< Updated upstream
                 RPCCreateObject(objPrefab.GetPhotonView().ViewID);
+=======
+                photonView.RPC("RPCCreateObject", RpcTarget.All, objPrefab.GetPhotonView().ViewID, i);
+>>>>>>> Stashed changes
             }
         }
     }
 
+<<<<<<< Updated upstream
     private void RPCCreateObject(int viewId)
+=======
+    [PunRPC]
+    private void RPCCreateText(int viewId, int index)
+    {
+        TxtInfo txt = (TxtInfo)objs[index];
+        PhotonView view = PhotonView.Find(viewId);
+        GameObject textObj = view.gameObject;
+        Text textInfo = textObj.GetComponent<Text>();
+        textInfo.text = txt.content;
+        /*if(txt.font != "0")
+            textInfo.font = new Font(txt.font);*/
+        textInfo.fontSize = txt.size;
+        textObj.transform.SetParent(fairyTaleUI);
+        textObj.transform.localPosition = txt.position;
+    }
+
+    [PunRPC]
+    private void RPCCreateObject(int viewId, int index)
+>>>>>>> Stashed changes
     {
         PhotonView view = PhotonView.Find(viewId);
         GameObject objPrefab = view.gameObject;
         objPrefab.transform.SetParent(fairyTaleObject);
+<<<<<<< Updated upstream
         //objPrefab.transform.localScale = obj.scale;
+=======
+        objPrefab.transform.localScale = ((ObjInfo)objs[index]).scale;
+>>>>>>> Stashed changes
     }
 }
