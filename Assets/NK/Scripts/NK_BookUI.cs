@@ -98,8 +98,8 @@ public class NK_BookUI : MonoBehaviourPun
                 GameObject textObj = PhotonNetwork.Instantiate("NK/" + textFactory.name, Vector3.zero, Quaternion.identity);
                 Text textInfo = textObj.GetComponent<Text>();
                 textInfo.text = txt.content;
-                if(txt.font != "0")
-                    textInfo.font = new Font(txt.font);
+                /*if(txt.font != "0")
+                    textInfo.font = new Font(txt.font);*/
                 textInfo.fontSize = txt.size;
                 textObj.transform.SetParent(fairyTaleUI);
                 textObj.transform.localPosition = txt.position;
@@ -108,9 +108,16 @@ public class NK_BookUI : MonoBehaviourPun
             {
                 ObjInfo obj = (ObjInfo)objs[i];
                 GameObject objPrefab = PhotonNetwork.Instantiate(obj.prefab, obj.position, obj.rotation);
-                objPrefab.transform.SetParent(fairyTaleObject);
-                objPrefab.transform.localScale = obj.scale;
+                RPCCreateObject(objPrefab.GetPhotonView().ViewID);
             }
         }
+    }
+
+    private void RPCCreateObject(int viewId)
+    {
+        PhotonView view = PhotonView.Find(viewId);
+        GameObject objPrefab = view.gameObject;
+        objPrefab.transform.SetParent(fairyTaleObject);
+        //objPrefab.transform.localScale = obj.scale;
     }
 }
