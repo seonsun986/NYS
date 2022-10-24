@@ -108,16 +108,16 @@ public class NK_BookUI : MonoBehaviourPun
             {
                 ObjInfo obj = (ObjInfo)objs[i];
                 GameObject objPrefab = PhotonNetwork.Instantiate(obj.prefab, obj.position, obj.rotation);
-                RPCCreateObject(objPrefab.GetPhotonView().ViewID);
+                RPCCreateObject(objPrefab.GetPhotonView().ViewID, obj.scale);
             }
         }
     }
 
-    private void RPCCreateObject(int viewId)
+    private void RPCCreateObject(int viewId, Vector3 scale)
     {
         PhotonView view = PhotonView.Find(viewId);
         GameObject objPrefab = view.gameObject;
         objPrefab.transform.SetParent(fairyTaleObject);
-        //objPrefab.transform.localScale = obj.scale;
+        objPrefab.transform.localScale = scale;
     }
 }
