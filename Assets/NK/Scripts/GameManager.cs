@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
     public PhotonView photonView;
     public void AddPlayer(PhotonView pv)
     {
-        photonView = pv;
         if(pv.CompareTag("Child"))
             children.Add(pv);
     }
