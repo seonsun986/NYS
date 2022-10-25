@@ -1,9 +1,10 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NK_SettingUI : MonoBehaviour
+public class NK_SettingUI : MonoBehaviourPun
 {
     public Slider slider;
     // 자신만의 Speaker로 변환
@@ -24,11 +25,23 @@ public class NK_SettingUI : MonoBehaviour
 
     public void ClickMinus()
     {
+        RPCClickMinus();
+    }
+
+    [PunRPC]
+    private void RPCClickMinus()
+    {
         // 마이너스 버튼 눌렀을 때
         slider.value -= 0.1f;
     }
 
     public void ClickPlus()
+    {
+        RPCClickPlus();
+    }
+
+    [PunRPC]
+    private void RPCClickPlus()
     {
         // 플러스 버튼 눌렀을 때
         slider.value += 0.1f;

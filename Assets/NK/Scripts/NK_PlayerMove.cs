@@ -36,30 +36,45 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     Quaternion receiveRot;
     // 보간속력
     public float lerpSpeed = 100;
+    // 스피커
+    public GameObject speaker;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        print(PhotonNetwork.MasterClient.NickName);
-        // 아직 방에 들어갈 수 없어서 임시로 테스트 중...
+        // 임시로 아이와 선생님 나눠줌
         if (GameObject.Find("GameManager"))
         {
+            speaker.GetComponent<AudioSource>().mute = false;
             if (PhotonNetwork.MasterClient.NickName != photonView.Owner.NickName)
             {
                 gameObject.tag = "Child";
                 if (photonView.IsMine)
                 {
                     GameObject.Find("TeacherUI").SetActive(false);
-
+                    GameManager.Instance.photonView = photonView;
                 }
             }
             else
             {
                 gameObject.tag = "Teacher";
+                if (photonView.IsMine)
+                {
+                    GameObject.Find("ChildUI").SetActive(false);
+                    GameManager.Instance.photonView = photonView;
+                }
             }
             GameManager.Instance.AddPlayer(photonView);
-
         }
+        else
+        {
+            speaker.GetComponent<AudioSource>().mute = true;
+        }
+        
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
         controller = GetComponent<CharacterController>();
         anim = transform.GetChild(0).GetComponent<Animator>();
         state = State.Move;
