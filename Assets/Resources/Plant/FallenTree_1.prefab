@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4425891714653858}
-  - component: {fileID: 205113164073682918}
   - component: {fileID: -8681986592603578225}
   - component: {fileID: 6599380402329106257}
+  - component: {fileID: 3379842351864587283}
   m_Layer: 0
   m_Name: FallenTree_1
   m_TagString: Untagged
@@ -36,29 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!205 &205113164073682918
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752188049916452}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: -0.27397656, y: 0.34279928, z: 0.16499901}
-  m_Size: 3.3435698
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.38038495
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 23273550922175380}
-  - screenRelativeHeight: 0.09787728
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 23732060537020350}
-  m_Enabled: 1
 --- !u!114 &-8681986592603578225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +71,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objType: 0
+--- !u!65 &3379842351864587283
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752188049916452}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.3817692, y: 0.826938, z: 0.9378004}
+  m_Center: {x: -0.26866055, y: 0.33952352, z: 0.20135641}
 --- !u!1 &1874889580073250
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,10 +179,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.27
-  m_Height: 3.55
+  m_Radius: 0.29424715
+  m_Height: 3.42
   m_Direction: 0
-  m_Center: {x: -0.27397662, y: 0.3446039, z: 0.164999}
+  m_Center: {x: -0.27397668, y: 0.21967947, z: 0.012597561}
 --- !u!1 &1922290694309860
 GameObject:
   m_ObjectHideFlags: 0
