@@ -47,7 +47,6 @@ public class SH_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     void Update()
     {
-        print(isClicked);
         // inputField의 text길이도 맞춰서 늘어나야한다.
         if(inputF.text.Length > 5)
         {
