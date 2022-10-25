@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: -5238442779677114120}
   - component: {fileID: 3831097128356081951}
   - component: {fileID: 6262802655380022843}
+  - component: {fileID: 3369928164758913945}
   m_Layer: 0
   m_Name: Rabbit
   m_TagString: Untagged
@@ -58,7 +59,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050474080133574}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
@@ -67,7 +68,7 @@ Transform:
   - {fileID: 4444500111277116}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &95486307068234034
 Animator:
   serializedVersion: 4
@@ -76,7 +77,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050474080133574}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 0b7d9308ac2a2f24a9b976e342ffd7bd, type: 3}
   m_Controller: {fileID: 9100000, guid: b44d55d3a669d654498cc4a4b05655ea, type: 2}
   m_CullingMode: 1
@@ -101,6 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objType: 0
+  animBtn: {fileID: 1328568904588920513, guid: 3253fe3924a844b488776109d8c1f19a, type: 3}
+  buttons: []
 --- !u!114 &3831097128356081951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +152,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.16671048, y: 0.311762, z: 0.2241957}
   m_Center: {x: 0.00034208896, y: 0.15761216, z: 0.013082636}
+--- !u!111 &3369928164758913945
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050474080133574}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 52997e4b0359cf74f8e57da1488ac64d, type: 2}
+  - {fileID: 7400000, guid: 510b14b9cef725a46936bb3c01760c61, type: 2}
+  - {fileID: 7400000, guid: 8b7b9340341a18d4db979f20ebc77ef4, type: 2}
+  - {fileID: 7400000, guid: b362ca38b9486824f82ae13e4b793a48, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1081785800835952
 GameObject:
   m_ObjectHideFlags: 0

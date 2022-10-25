@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 4247171960067682270}
   - component: {fileID: 503882718295589030}
   - component: {fileID: 5687765181717685797}
+  - component: {fileID: 5497240754648096875}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Untagged
@@ -154,7 +155,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225105858667644}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
@@ -163,7 +164,7 @@ Transform:
   - {fileID: 4401586675732326}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &95164213363941736
 Animator:
   serializedVersion: 4
@@ -172,7 +173,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225105858667644}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 129f3c383e2b5514f84a597c1ba7f5e6, type: 3}
   m_Controller: {fileID: 9100000, guid: 988da9d0e332514489d80be72a0a4e61, type: 2}
   m_CullingMode: 1
@@ -197,6 +198,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objType: 0
+  animBtn: {fileID: 1328568904588920513, guid: 3253fe3924a844b488776109d8c1f19a, type: 3}
+  buttons: []
 --- !u!114 &503882718295589030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,6 +248,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1348115, y: 0.16058289, z: 0.1597089}
   m_Center: {x: -0.007804841, y: 0.08064639, z: -0.007029456}
+--- !u!111 &5497240754648096875
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225105858667644}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 9e4f31843c821ea44b74783919fa4d1c, type: 2}
+  - {fileID: 7400000, guid: 316be77c10d064a4cb9f7eff7f47a6ea, type: 2}
+  - {fileID: 7400000, guid: 660780af4bc551b47b25cc279faed8d4, type: 2}
+  - {fileID: 7400000, guid: 026fd7bef95da9f4fac8eec1c65590bb, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1385692237106758
 GameObject:
   m_ObjectHideFlags: 0

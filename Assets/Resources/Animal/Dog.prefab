@@ -778,7 +778,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794016062394778}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
@@ -787,7 +787,7 @@ Transform:
   - {fileID: 4467109302248314}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &95661889707422042
 Animator:
   serializedVersion: 4
@@ -821,6 +821,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objType: 0
+  animBtn: {fileID: 1328568904588920513, guid: 3253fe3924a844b488776109d8c1f19a, type: 3}
+  buttons: []
 --- !u!114 &4973988978531044329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -880,10 +882,10 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: bce7fe2da540c8044881ffa9ab1c678e, type: 3}
-  - {fileID: 7400000, guid: d046678775ccf6344a354843ef939d60, type: 3}
-  - {fileID: 7400000, guid: 50e5ef146d240ad4493d97c33900025c, type: 3}
-  - {fileID: 7400000, guid: 894da6f0ea4110c49b37ef13fab63fbd, type: 3}
+  - {fileID: 7400000, guid: 52997e4b0359cf74f8e57da1488ac64d, type: 2}
+  - {fileID: 7400000, guid: 510b14b9cef725a46936bb3c01760c61, type: 2}
+  - {fileID: 7400000, guid: 8b7b9340341a18d4db979f20ebc77ef4, type: 2}
+  - {fileID: 7400000, guid: b362ca38b9486824f82ae13e4b793a48, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
