@@ -88,19 +88,6 @@ public class ObjInfo : PageInfo
 
 
 
-//public class PageInfo
-//{
-//    // txt관련
-//    public string type;
-//    public string font;
-//    public int size;
-//    public string content;
-//    // obj관련
-//    public string prefab;
-//    public Vector3 position;    // 공통!
-//    public Quaternion rotation;
-//    public Vector3 scale;
-//}
 
 
 public class SH_BtnManager : MonoBehaviour
@@ -154,6 +141,8 @@ public class SH_BtnManager : MonoBehaviour
     // 멀티 책의 정보를 담을 클래스 리스트
     public List<PagesInfo> pages = new List<PagesInfo>();
 
+    // 현재 내가 있는 씬 번호
+    public int currentSceneNum;
 
 
     void Start()
@@ -247,6 +236,7 @@ public class SH_BtnManager : MonoBehaviour
     // 텍스트 사이즈를 변경할 때마다 폰트 크기를 변경한다
     // 변경할 때마다의 값을 각자만의 클래스에 저장해놓는다.
     // 해당 함수는 시작할 때만 값을 할당한다
+    // 현재 있는 씬을 기억한다
     public void AddText()
     {
         SH_InputField inputText = Instantiate(inputField).GetComponent<SH_InputField>();
@@ -258,7 +248,7 @@ public class SH_BtnManager : MonoBehaviour
         };
         // 선택되어있는 dropdown과 textSize값에 따라서 글자 크기를 바꾸기 위함
         inputFields.Add(inputText);
-        inputText.transform.SetParent(Scenes_txt[i].transform);
+        inputText.transform.SetParent(Scenes_txt[currentSceneNum].transform);
         inputText.transform.localPosition = new Vector3(0, 0, 0);
     }
 
@@ -362,6 +352,7 @@ public class SH_BtnManager : MonoBehaviour
         Scenes_txt.Add(n_Scene_Canvas);
 
         i++;
+        currentSceneNum = i;   // 씬 추가했으므로 새 씬으로 가고 따라서 현재씬을 i값으로 해준다
 
     }
 
@@ -370,7 +361,6 @@ public class SH_BtnManager : MonoBehaviour
     public void InstantiateObj()
     {
         GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
-        print(clickBtn.name);
         string clickText = clickBtn.name.Substring(0,clickBtn.name.Length - 3);
         // 이름에 해당하는 Object를 Instantiate 한다
         for(int j =0;j<obj.Length;j++)
@@ -378,7 +368,7 @@ public class SH_BtnManager : MonoBehaviour
             if(obj[j].name.Contains(clickText))
             {
                 GameObject createObj = Instantiate(obj[j]);
-                createObj.transform.SetParent(Scenes[i].transform);
+                createObj.transform.SetParent(Scenes[currentSceneNum].transform);
                 createObj.transform.position = new Vector3(0, 0, 0);
                 break;
             }
@@ -401,40 +391,42 @@ public class SH_BtnManager : MonoBehaviour
 
         for (int j = 0; j < raycastResults.Count; j++)
         {
-            // 해당 y값이 0이면 내가 지금 scene0에 있다는 소리고 
-            // 20이면 내가 지금 Scene1에 있다는 소리다
-            int currentScene = (int)Scenes[0].transform.position.y / 20;
-            // 원래 있었던 씬을 캡쳐해서 바꿔준다
-            // 캡쳐하기 
-            // 캡쳐파일 이름 정하기
-            fileName = path + "_CurrentScene_" + currentScene + ".png";
-
-            // 캡쳐하기 
-            RenderTexture rt = new RenderTexture(captureWidth, captureHeight, 24);
-            sceneCam.targetTexture = rt;
-            Texture2D screenShot = new Texture2D(captureWidth, captureHeight, TextureFormat.RGB24, false);
-            Rect rec = new Rect(0, 0, screenShot.width, screenShot.height);
-            sceneCam.Render();
-            RenderTexture.active = rt;
-            screenShot.ReadPixels(new Rect(0, 0, captureWidth, captureHeight), 0, 0);
-            screenShot.Apply();
-
-            byte[] bytes = screenShot.EncodeToPNG();
-            File.WriteAllBytes(fileName, bytes);
-
-            // 캡쳐파일 RawImage에 넣기
-            byte[] textureBytes = File.ReadAllBytes(fileName);
-            if (textureBytes.Length > 0)
-            {
-                Texture2D loadedTexture = new Texture2D(0, 0);
-                loadedTexture.LoadImage(textureBytes);
-                rawImages[currentScene].GetComponent<RawImage>().texture = loadedTexture;
-            }
-
+            
             // 씬을 클릭했다는 뜻이므로
             // 해당 씬으로 돌아가야한다
             if (raycastResults[j].gameObject.name.Contains("RawImage"))
             {
+                print(raycastResults[j].gameObject.name);
+                // 해당 y값이 0이면 내가 지금 scene0에 있다는 소리고 
+                // 20이면 내가 지금 Scene1에 있다는 소리다
+                int currentScene = (int)Scenes[0].transform.position.y / 20;
+                // 원래 있었던 씬을 캡쳐해서 바꿔준다
+                // 캡쳐하기 
+                // 캡쳐파일 이름 정하기
+                fileName = path + "_CurrentScene_" + currentScene + ".png";
+
+                // 캡쳐하기 
+                RenderTexture rt = new RenderTexture(captureWidth, captureHeight, 24);
+                sceneCam.targetTexture = rt;
+                Texture2D screenShot = new Texture2D(captureWidth, captureHeight, TextureFormat.RGB24, false);
+                Rect rec = new Rect(0, 0, screenShot.width, screenShot.height);
+                sceneCam.Render();
+                RenderTexture.active = rt;
+                screenShot.ReadPixels(new Rect(0, 0, captureWidth, captureHeight), 0, 0);
+                screenShot.Apply();
+
+                byte[] bytes = screenShot.EncodeToPNG();
+                File.WriteAllBytes(fileName, bytes);
+
+                // 캡쳐파일 RawImage에 넣기
+                byte[] textureBytes = File.ReadAllBytes(fileName);
+                if (textureBytes.Length > 0)
+                {
+                    Texture2D loadedTexture = new Texture2D(0, 0);
+                    loadedTexture.LoadImage(textureBytes);
+                    rawImages[currentScene].GetComponent<RawImage>().texture = loadedTexture;
+                }
+
                 // 다시 캡쳐이미지에서 RawImage로 바꾼다
                 int sceneNum = int.Parse(raycastResults[j].gameObject.name.Substring(9));
                 rawImages[sceneNum].texture = sceneCamRenderTexture;
@@ -444,27 +436,28 @@ public class SH_BtnManager : MonoBehaviour
                 // (전체 씬 개수 - 클릭한 씬 넘버) * 10을 빼준다(모두다) 빈 오브젝트를 빼주면 된다
                 // txt는 (전체 씬 개수 - 클릭한 씬 넘버) * screen.Height를 빼준다
                 //(i - sceneNum) * 10
-                // 현재씬이 선택한 씬보다 나중에 만들어졌을 경우
+                // 현재 있는 씬이 클릭씬보다 나중에 만들어졌을 경우(번호가 더 크다)
                 if(currentScene > sceneNum)
                 {
 
                     for (int k = 0; k < Scenes.Count; k++)
                     {
-                        Scenes[k].transform.position -= new Vector3(0, (i - sceneNum) * 20, 0);
-                        Scenes_txt[k].transform.position -= new Vector3(0, (i - sceneNum) * Screen.height, 0);
+                        Scenes[k].transform.position -= new Vector3(0, (currentScene - sceneNum) * 20, 0);
+                        Scenes_txt[k].transform.position -= new Vector3(0, (currentScene - sceneNum) * Screen.height, 0);
                     }
                 }
+                // 클릭한 씬보다 먼저 만들어 졌을 경우(번호가 더 작다)
                 else
                 {
 
                     for (int k = 0; k < Scenes.Count; k++)
                     {
                         print("sceneNum : " + sceneNum);
-                        Scenes[k].transform.position += new Vector3(0, ((i+1) - sceneNum) * 20, 0);
-                        Scenes_txt[k].transform.position += new Vector3(0, ((i + 1) - sceneNum) * Screen.height, 0);
+                        Scenes[k].transform.position += new Vector3(0, (sceneNum - currentScene) * 20, 0);
+                        Scenes_txt[k].transform.position += new Vector3(0, (sceneNum - currentScene) * Screen.height, 0);
                     }
                 }
-                
+                currentSceneNum = sceneNum;            // 현재 씬 넘버를 선택한 씬 넘버로 저장해준다
                 break;
             }
         }
