@@ -327,7 +327,7 @@ public class SH_BtnManager : MonoBehaviour
         
         // 새로운 Rawimage 추가
         GameObject raw = Instantiate(rawImage);
-        raw.transform.SetParent(GameObject.Find("Canvas").transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).transform);
+        raw.transform.SetParent(GameObject.Find("Canvas").transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).transform);
         raw.transform.position = firstRawImage.position + transform.up * (-180* (i+1));
         raw.name = "RawImage_" + (i + 1);
         rawImages.Add(raw.GetComponent<RawImage>());
@@ -370,6 +370,7 @@ public class SH_BtnManager : MonoBehaviour
     public void InstantiateObj()
     {
         GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
+        print(clickBtn.name);
         string clickText = clickBtn.name.Substring(0,clickBtn.name.Length - 3);
         // 이름에 해당하는 Object를 Instantiate 한다
         for(int j =0;j<obj.Length;j++)
