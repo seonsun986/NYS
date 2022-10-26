@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2658633769867848628}
   - component: {fileID: 3692770572996616269}
   m_Layer: 6
-  m_Name: Cube
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,6 +57,7 @@ MonoBehaviour:
   jumpPower: 3
   lerpSpeed: 100
   faceCam: {fileID: 8378518660352065468}
+  speaker: {fileID: 4504897665774012290}
 --- !u!143 &4445227752899247847
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3392,6 +3393,7 @@ MonoBehaviour:
   jumpPower: 5
   lerpSpeed: 100
   faceCam: {fileID: 0}
+  speaker: {fileID: 0}
 --- !u!1 &5319752814868765958
 GameObject:
   m_ObjectHideFlags: 0
