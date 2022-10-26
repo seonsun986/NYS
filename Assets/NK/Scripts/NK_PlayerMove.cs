@@ -50,7 +50,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         }
 
         print(PhotonNetwork.MasterClient.NickName);
-        // 아직 방에 들어갈 수 없어서 임시로 테스트 중...
+        // 아직 방에 들어갈 수 없어서 임시로 테스트 중... 
         if (GameObject.Find("GameManager"))
         {
             if (PhotonNetwork.MasterClient.NickName != photonView.Owner.NickName)
@@ -92,7 +92,10 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                 case State.Move:
                     //anim.SetBool("Move", moveBool);
                     photonView.RPC("RpcSetBool", RpcTarget.All, "Move", moveBool);
-                    PlayerMove();
+                    if (GameObject.Find("CreateRoomSet") == null || GameObject.Find("RoonList") == null)
+                    {
+                        PlayerMove();
+                    }
                     break;
                 case State.Sit:
                     photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", true);
