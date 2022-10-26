@@ -395,9 +395,9 @@ public class SH_BtnManager : MonoBehaviour
             
             // 씬을 클릭했다는 뜻이므로
             // 해당 씬으로 돌아가야한다
-            if (raycastResults[j].gameObject.name.Contains("RawImage"))
+            if (raycastResults[j].gameObject.name.Contains("RawImage") && Scenes[0]!=null)
             {
-                print(raycastResults[j].gameObject.name);
+
                 // 해당 y값이 0이면 내가 지금 scene0에 있다는 소리고 
                 // 20으로 나눈 몫이 1이면 내가 지금 Scene1에 있다는 소리다
                 int currentScene = (int)Scenes[0].transform.position.y / 20;
