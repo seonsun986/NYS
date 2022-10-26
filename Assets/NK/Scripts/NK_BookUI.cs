@@ -25,6 +25,8 @@ public class NK_BookUI : MonoBehaviourPun
     public Transform fairyTaleUI;
     public Transform fairyTaleObject;
 
+    Dictionary<int, List<PageInfo>> sceneObjects = new Dictionary<int, List<PageInfo>>();
+
     void SelectBook(Book book)
     {
         selectedBook = book;
@@ -34,8 +36,8 @@ public class NK_BookUI : MonoBehaviourPun
     public void ClickBook1()
     {
         SelectBook(Book.백설공주);
-        ClickBook();
         photonView.RPC("RPCSetActive", RpcTarget.All);
+        ClickBook();
     }
 
     public void ClickBook2()
@@ -63,8 +65,6 @@ public class NK_BookUI : MonoBehaviourPun
 
     public void ClickBook()
     {
-        objs = new List<PageInfo>();
-
         // Json 파일 받아오기
         string fileName = "Book1";
         string path = Application.dataPath + "/" + fileName + ".Json";
@@ -74,19 +74,27 @@ public class NK_BookUI : MonoBehaviourPun
         // 파싱
         BookInfo bookInfo = JsonUtility.FromJson<BookInfo>(jsonData);
         List<PagesInfo> pagesInfos = bookInfo.pages;
-        foreach(PagesInfo pagesInfo in pagesInfos)
+        foreach (PagesInfo pagesInfo in pagesInfos)
         {
-            foreach(string pageInfo in pagesInfo.data)
+            objs = new List<PageInfo>();
+
+            foreach (string pageInfo in pagesInfo.data)
             {
                 print(pageInfo);
                 objs.Add(pagesInfo.DeserializePageInfo(pageInfo));
+                sceneObjects[pagesInfo.page] = objs;
             }
         }
-                InstantiateObject();
+        if (sceneObjects.Count > 0)
+            InstantiateObject();
     }
+
+    public int pageNum;
 
     public void InstantiateObject()
     {
+        List<PageInfo> objs = sceneObjects[pageNum];
+
         for (int i = 0; i < objs.Count; i++)
         {
             if (objs[i].type == "text")
@@ -98,10 +106,38 @@ public class NK_BookUI : MonoBehaviourPun
             if (objs[i].type == "obj")
             {
                 ObjInfo obj = (ObjInfo)objs[i];
-                GameObject objPrefab = PhotonNetwork.Instantiate(obj.prefab, obj.position, obj.rotation);
-                objPrefab.transform.localScale = obj.scale;
-                print(objPrefab.transform.localScale);
-                //photonView.RPC("RPCCreateObject", RpcTarget.All, objPrefab.GetPhotonView().ViewID, obj.scale);
+                GameObject objPrefab = PhotonNetwork.Instantiate(obj.prefab, obj.position - new Vector3(0, 20, 0) * (sceneObjects.Count - (pageNum + 1)), obj.rotation);
+                photonView.RPC("RPCCreateObject", RpcTarget.All, objPrefab.GetPhotonView().ViewID, obj.scale);
+            }
+        }
+    }
+
+    IEnumerator ScaleUp(Transform tr, Vector3 scale)
+    {
+        yield return null;
+        tr.localScale = scale;
+    }
+
+    void DestroyObject()
+    {
+        Transform[] texts = fairyTaleUI.GetComponentsInChildren<Transform>();
+        Transform[] objects = fairyTaleObject.GetComponentsInChildren<Transform>();
+
+        if (texts != null)
+        {
+            for (int i = 0; i < texts.Length; i++)
+            {
+                if (texts[i] != fairyTaleUI.transform)
+                    Destroy(texts[i].gameObject);
+            }
+        }
+
+        if (objects != null)
+        {
+            for (int i = 0; i < objects.Length; i++)
+            {
+                if (objects[i] != fairyTaleObject.transform)
+                    Destroy(objects[i].gameObject);
             }
         }
     }
@@ -126,6 +162,27 @@ public class NK_BookUI : MonoBehaviourPun
         PhotonView view = PhotonView.Find(viewId);
         GameObject objPrefab = view.gameObject;
         objPrefab.transform.SetParent(fairyTaleObject);
-        //objPrefab.transform.localScale = scale;
+        objPrefab.transform.localScale = scale;
+        //StartCoroutine(ScaleUp(objPrefab.transform, scale));
+    }
+
+    public void ClickNext()
+    {
+        if (sceneObjects.Count > pageNum + 1)
+        {
+            pageNum++;
+            DestroyObject();
+            InstantiateObject();
+        }
+    }
+    
+    public void ClickBefore()
+    {
+        if (0 <= pageNum - 1)
+        {
+            pageNum--;
+            DestroyObject();
+            InstantiateObject();
+        }
     }
 }

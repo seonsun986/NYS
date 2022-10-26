@@ -8,6 +8,9 @@ public class NK_FairyTale : MonoBehaviour
     public GameObject fairyTaleObject;
     public Transform book;
     public List<Transform> objs;
+
+    Vector3 originalScale;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,9 +18,9 @@ public class NK_FairyTale : MonoBehaviour
         fairyTaleObject.SetActive(true);
         book.gameObject.SetActive(true);
 
-        AddObjectList(fairyTaleUI);
+        //AddObjectList(fairyTaleUI);
 
-        AddObjectList(fairyTaleObject);
+        //AddObjectList(fairyTaleObject);
     }
 
     private void AddObjectList(GameObject fairyTaleContent)
@@ -26,7 +29,7 @@ public class NK_FairyTale : MonoBehaviour
         {
             if (child.name == fairyTaleContent.name)
                 continue;
-            child.localScale = new Vector3(0, 0, 0);
+            //child.localScale = new Vector3(0, 0, 0);
             if (child.GetComponent<Renderer>() != null)
             {
                 Renderer ren = child.GetComponent<Renderer>();
