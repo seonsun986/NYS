@@ -1852,6 +1852,7 @@ GameObject:
   - component: {fileID: 3725505418517135541}
   - component: {fileID: 1600490014400958015}
   - component: {fileID: 4304309818550169744}
+  - component: {fileID: -3963880675049979113}
   m_Layer: 29
   m_Name: Cat
   m_TagString: Untagged
@@ -1925,6 +1926,7 @@ MonoBehaviour:
   animBtn: {fileID: 1328568904588920513, guid: 3253fe3924a844b488776109d8c1f19a, type: 3}
   currentAnim: 
   buttons: []
+  anims: []
 --- !u!111 &1600490014400958015
 Animation:
   m_ObjectHideFlags: 0
@@ -1979,6 +1981,28 @@ MonoBehaviour:
   CanSnap: 1
   AddColliders: 1
   m_markAsDestroyed: 0
+--- !u!114 &-3963880675049979113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904107386653458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1926030801303212
 GameObject:
   m_ObjectHideFlags: 0
