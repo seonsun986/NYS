@@ -141,10 +141,11 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                 case State.Move:
                     //anim.SetBool("Move", moveBool);
                     photonView.RPC("RpcSetBool", RpcTarget.All, "Move", moveBool);
-                    if (GameObject.Find("CreateRoomSet") == null || GameObject.Find("RoonList") == null)
+                    if (GameObject.Find("CreateRoomSet") != null || GameObject.Find("RoomList") != null)
                     {
-                        PlayerMove();
+                        return;
                     }
+                        PlayerMove();
                     break;
                 case State.Sit:
                     photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", true);
