@@ -36,11 +36,15 @@ public class SH_EditorManager : MonoBehaviour
             {"Eat", "먹기" },
             { "Jump", "점프" },
             {"Idle", "정지" },
+            { "Idle2" ,"정지2"},
             {"No", "절레절레" },
             {"Sit", "앉기" },
             { "Attack", "공격"},
             {"Water", "물 마시기" },
             {"Slash", "던지기" },
+            {"Fly", "날기" },
+            {"Gritar", "포효하기" },
+            { "Shout", "포효하기"}
         };
     }
 
