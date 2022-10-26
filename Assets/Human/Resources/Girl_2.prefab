@@ -1012,8 +1012,8 @@ GameObject:
   - component: {fileID: 4180653674515514}
   - component: {fileID: 95877489957205384}
   - component: {fileID: 8838141454025647275}
-  - component: {fileID: 3693169211083166490}
   - component: {fileID: -3908424388902241942}
+  - component: {fileID: 3953976846296835986}
   m_Layer: 0
   m_Name: Girl_2
   m_TagString: Untagged
@@ -1092,7 +1092,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objType: 0
---- !u!114 &3693169211083166490
+  animBtn: {fileID: 0}
+  currentAnim: 
+  buttons: []
+--- !u!65 &-3908424388902241942
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107688374796108}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.010669, y: 1.8786943, z: 0.52122575}
+  m_Center: {x: 0.01768702, y: 0.9149637, z: -0.0011628396}
+--- !u!114 &3953976846296835986
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1114,19 +1130,6 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!65 &-3908424388902241942
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1107688374796108}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.010669, y: 1.8786943, z: 0.52122575}
-  m_Center: {x: 0.01768702, y: 0.9149637, z: -0.0011628396}
 --- !u!1 &1107875305098026
 GameObject:
   m_ObjectHideFlags: 0

@@ -2399,8 +2399,8 @@ GameObject:
   - component: {fileID: 4599720690659914}
   - component: {fileID: 95224720603893012}
   - component: {fileID: -4598108867438045645}
-  - component: {fileID: 3831176702206239187}
   - component: {fileID: -3112947819468864628}
+  - component: {fileID: -5353591652506915237}
   m_Layer: 0
   m_Name: Princess_2
   m_TagString: Untagged
@@ -2479,7 +2479,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objType: 0
---- !u!114 &3831176702206239187
+  animBtn: {fileID: 0}
+  currentAnim: 
+  buttons: []
+--- !u!65 &-3112947819468864628
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492352555855718}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.078471, y: 1.860291, z: 0.5658988}
+  m_Center: {x: -0.0054138047, y: 0.89767814, z: -0.015247385}
+--- !u!114 &-5353591652506915237
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2501,19 +2517,6 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!65 &-3112947819468864628
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1492352555855718}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.078471, y: 1.860291, z: 0.5658988}
-  m_Center: {x: -0.0054138047, y: 0.89767814, z: -0.015247385}
 --- !u!1 &1499516093161262
 GameObject:
   m_ObjectHideFlags: 0
