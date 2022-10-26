@@ -40,6 +40,7 @@ public class SH_EditorManager : MonoBehaviour
             {"Sit", "앉기" },
             { "Attack", "공격"},
             {"Water", "물 마시기" },
+            {"Slash", "던지기" },
         };
     }
 
