@@ -1592,8 +1592,8 @@ GameObject:
   - component: {fileID: 4524419901492308}
   - component: {fileID: 95943861543441898}
   - component: {fileID: 398549307053629001}
-  - component: {fileID: -1373765127441981647}
   - component: {fileID: -6750280116061668191}
+  - component: {fileID: -4998168255745809205}
   m_Layer: 0
   m_Name: Queen_1
   m_TagString: Untagged
@@ -1672,7 +1672,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objType: 0
---- !u!114 &-1373765127441981647
+  animBtn: {fileID: 0}
+  currentAnim: 
+  buttons: []
+--- !u!65 &-6750280116061668191
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356894068722700}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0570662, y: 1.9017261, z: 0.55485487}
+  m_Center: {x: 0.0041881385, y: 0.9140653, z: 0.0045457818}
+--- !u!114 &-4998168255745809205
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1694,19 +1710,6 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!65 &-6750280116061668191
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356894068722700}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.0570662, y: 1.9017261, z: 0.55485487}
-  m_Center: {x: 0.0041881385, y: 0.9140653, z: 0.0045457818}
 --- !u!1 &1383089637397706
 GameObject:
   m_ObjectHideFlags: 0

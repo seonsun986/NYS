@@ -171,9 +171,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2492324908938376473}
   - component: {fileID: 5484407486162507875}
-  - component: {fileID: 8808255181841139313}
   - component: {fileID: 4422317361898093122}
   - component: {fileID: -8758125551711652297}
+  - component: {fileID: -1288793642916416882}
   m_Layer: 0
   m_Name: Girl_1
   m_TagString: Untagged
@@ -218,7 +218,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8808255181841139313
+--- !u!114 &4422317361898093122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499097880080140042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5aefd18d2ab27f48b019e42252ed83a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objType: 0
+  animBtn: {fileID: 0}
+  currentAnim: 
+  buttons: []
+--- !u!65 &-8758125551711652297
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499097880080140042}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3615017, y: 1.6281195, z: 1.0437052}
+  m_Center: {x: -0.007235408, y: 0.8407254, z: -0.22192836}
+--- !u!114 &-1288793642916416882
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -240,32 +269,6 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &4422317361898093122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1499097880080140042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5aefd18d2ab27f48b019e42252ed83a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objType: 0
---- !u!65 &-8758125551711652297
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1499097880080140042}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.3615017, y: 1.6281195, z: 1.0437052}
-  m_Center: {x: -0.007235408, y: 0.8407254, z: -0.22192836}
 --- !u!1 &1527696742015252634
 GameObject:
   m_ObjectHideFlags: 0

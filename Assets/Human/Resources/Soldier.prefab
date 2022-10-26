@@ -1333,9 +1333,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7458755590126823151}
   - component: {fileID: 651000430656179093}
-  - component: {fileID: -6410451944599912050}
   - component: {fileID: -8415260055308450742}
   - component: {fileID: -6834084246310793753}
+  - component: {fileID: -3791688848202683764}
   m_Layer: 0
   m_Name: Soldier
   m_TagString: Untagged
@@ -1380,7 +1380,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-6410451944599912050
+--- !u!114 &-8415260055308450742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5897898465951814908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5aefd18d2ab27f48b019e42252ed83a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objType: 0
+  animBtn: {fileID: 0}
+  currentAnim: 
+  buttons: []
+--- !u!65 &-6834084246310793753
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5897898465951814908}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6628196, y: 1.6899805, z: 0.70316756}
+  m_Center: {x: -0.0051853657, y: 0.8231101, z: 0.013658106}
+--- !u!114 &-3791688848202683764
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1402,32 +1431,6 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &-8415260055308450742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5897898465951814908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5aefd18d2ab27f48b019e42252ed83a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objType: 0
---- !u!65 &-6834084246310793753
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5897898465951814908}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.6628196, y: 1.6899805, z: 0.70316756}
-  m_Center: {x: -0.0051853657, y: 0.8231101, z: 0.013658106}
 --- !u!1 &6019674701776721062
 GameObject:
   m_ObjectHideFlags: 0

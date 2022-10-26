@@ -141,8 +141,8 @@ GameObject:
   - component: {fileID: 4330087673648394}
   - component: {fileID: 95270914350943908}
   - component: {fileID: 177924298483601377}
-  - component: {fileID: 9090808632360893654}
   - component: {fileID: 3080402718870422133}
+  - component: {fileID: 5651267453720371585}
   m_Layer: 0
   m_Name: Boy_5
   m_TagString: Untagged
@@ -221,7 +221,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objType: 0
---- !u!114 &9090808632360893654
+  animBtn: {fileID: 0}
+  currentAnim: 
+  buttons: []
+--- !u!65 &3080402718870422133
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052137612577496}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0393438, y: 1.8936886, z: 0.5755928}
+  m_Center: {x: 0.014309883, y: 0.9206591, z: 0.021721274}
+--- !u!114 &5651267453720371585
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,19 +259,6 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!65 &3080402718870422133
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1052137612577496}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.0393438, y: 1.8936886, z: 0.5755928}
-  m_Center: {x: 0.014309883, y: 0.9206591, z: 0.021721274}
 --- !u!1 &1067731266468284
 GameObject:
   m_ObjectHideFlags: 0

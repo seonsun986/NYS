@@ -1737,8 +1737,8 @@ GameObject:
   - component: {fileID: 4569614443650498}
   - component: {fileID: 95985461887253366}
   - component: {fileID: 730198053938659398}
-  - component: {fileID: -8214038809409013483}
   - component: {fileID: -3239516482266783394}
+  - component: {fileID: 1843190879929089831}
   m_Layer: 0
   m_Name: Nun
   m_TagString: Untagged
@@ -1817,7 +1817,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objType: 0
---- !u!114 &-8214038809409013483
+  animBtn: {fileID: 0}
+  currentAnim: 
+  buttons: []
+--- !u!65 &-3239516482266783394
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378242899357544}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0767899, y: 1.9014275, z: 0.61240923}
+  m_Center: {x: 0.0028449662, y: 0.9102124, z: -0.0047160047}
+--- !u!114 &1843190879929089831
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1839,19 +1855,6 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!65 &-3239516482266783394
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1378242899357544}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.0767899, y: 1.9014275, z: 0.61240923}
-  m_Center: {x: 0.0028449662, y: 0.9102124, z: -0.0047160047}
 --- !u!1 &1391618915490678
 GameObject:
   m_ObjectHideFlags: 0
