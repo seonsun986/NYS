@@ -1,0 +1,873 @@
+fileFormatVersion: 2
+guid: e3205171451cf4c43849f10dbf4eb533
+timeCreated: 1493993753
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: bn_elbow_L
+    100004: bn_elbow_R
+    100006: bn_foot_L
+    100008: bn_foot_R
+    100010: bn_hand_L
+    100012: bn_hand_R
+    100014: bn_head
+    100016: bn_knee_L
+    100018: bn_knee_R
+    100020: bn_leg_L
+    100022: bn_leg_R
+    100024: bn_mouth_01
+    100026: bn_mouth_02
+    100028: bn_neck
+    100030: bn_root
+    100032: bn_shoulder_L
+    100034: bn_shoulder_R
+    100036: bn_spine_01
+    100038: bn_spine_02
+    100040: bn_tail_01
+    100042: bn_tail_02
+    100044: bn_tail_03
+    100046: bn_tail_04
+    100048: bn_tail_05
+    100050: bn_tail_06
+    100052: bn_tail_07
+    100054: bn_tail_08
+    100056: bn_toe_01_L
+    100058: bn_toe_01_R
+    100060: bn_toe_L
+    100062: bn_toe_R
+    100064: bn_wrist_L
+    100066: bn_wrist_R
+    100068: ctrl_elbow_L
+    100070: ctrl_elbow_R
+    100072: ctrl_hand_L
+    100074: ctrl_hand_R
+    100076: ctrl_knee_L
+    100078: ctrl_knee_R
+    100080: ctrl_leg_L
+    100082: ctrl_leg_R
+    100084: ctrl_root
+    100086: Geometry
+    100088: ikHandle1
+    100090: ikHandle2
+    100092: ikHandle3
+    100094: ikHandle4
+    100096: raptor:body001
+    100098: raptor:eye_L
+    100100: raptor:eye_R
+    100102: raptor:teeth_D
+    100104: raptor:teeth_UP
+    400000: //RootNode
+    400002: bn_elbow_L
+    400004: bn_elbow_R
+    400006: bn_foot_L
+    400008: bn_foot_R
+    400010: bn_hand_L
+    400012: bn_hand_R
+    400014: bn_head
+    400016: bn_knee_L
+    400018: bn_knee_R
+    400020: bn_leg_L
+    400022: bn_leg_R
+    400024: bn_mouth_01
+    400026: bn_mouth_02
+    400028: bn_neck
+    400030: bn_root
+    400032: bn_shoulder_L
+    400034: bn_shoulder_R
+    400036: bn_spine_01
+    400038: bn_spine_02
+    400040: bn_tail_01
+    400042: bn_tail_02
+    400044: bn_tail_03
+    400046: bn_tail_04
+    400048: bn_tail_05
+    400050: bn_tail_06
+    400052: bn_tail_07
+    400054: bn_tail_08
+    400056: bn_toe_01_L
+    400058: bn_toe_01_R
+    400060: bn_toe_L
+    400062: bn_toe_R
+    400064: bn_wrist_L
+    400066: bn_wrist_R
+    400068: ctrl_elbow_L
+    400070: ctrl_elbow_R
+    400072: ctrl_hand_L
+    400074: ctrl_hand_R
+    400076: ctrl_knee_L
+    400078: ctrl_knee_R
+    400080: ctrl_leg_L
+    400082: ctrl_leg_R
+    400084: ctrl_root
+    400086: Geometry
+    400088: ikHandle1
+    400090: ikHandle2
+    400092: ikHandle3
+    400094: ikHandle4
+    400096: raptor:body001
+    400098: raptor:eye_L
+    400100: raptor:eye_R
+    400102: raptor:teeth_D
+    400104: raptor:teeth_UP
+    2300000: raptor:eye_L
+    2300002: raptor:eye_R
+    2300004: raptor:teeth_D
+    2300006: raptor:teeth_UP
+    3300000: raptor:eye_L
+    3300002: raptor:eye_R
+    3300004: raptor:teeth_D
+    3300006: raptor:teeth_UP
+    4300000: raptor:body001
+    4300002: raptor:teeth_D
+    4300004: raptor:teeth_UP
+    4300006: raptor:eye_R
+    4300008: raptor:eye_L
+    7400000: idle_01
+    7400002: idle_02
+    7400004: run
+    7400006: shout
+    7400008: death
+    9500000: //RootNode
+    13700000: raptor:body001
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: idle_01
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bn_root
+        weight: 1
+      - path: bn_root/bn_leg_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L/bn_foot_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L/bn_foot_L/bn_toe_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L/bn_foot_L/bn_toe_L/bn_toe_01_L
+        weight: 1
+      - path: bn_root/bn_leg_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R/bn_foot_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R/bn_foot_R/bn_toe_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R/bn_foot_R/bn_toe_R/bn_toe_01_R
+        weight: 1
+      - path: bn_root/bn_spine_01
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/bn_mouth_01
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/bn_mouth_01/bn_mouth_02
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/bn_mouth_01/raptor:teeth_D
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/raptor:eye_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/raptor:eye_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/raptor:teeth_UP
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L/bn_elbow_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L/bn_elbow_L/bn_wrist_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L/bn_elbow_L/bn_wrist_L/bn_hand_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R/bn_elbow_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R/bn_elbow_R/bn_wrist_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R/bn_elbow_R/bn_wrist_R/bn_hand_R
+        weight: 1
+      - path: bn_root/bn_tail_01
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05/bn_tail_06
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05/bn_tail_06/bn_tail_07
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05/bn_tail_06/bn_tail_07/bn_tail_08
+        weight: 1
+      - path: ctrl_root
+        weight: 1
+      - path: ctrl_root/ctrl_elbow_L
+        weight: 1
+      - path: ctrl_root/ctrl_elbow_R
+        weight: 1
+      - path: ctrl_root/ctrl_hand_L
+        weight: 1
+      - path: ctrl_root/ctrl_hand_R
+        weight: 1
+      - path: ctrl_root/ctrl_knee_L
+        weight: 1
+      - path: ctrl_root/ctrl_knee_R
+        weight: 1
+      - path: ctrl_root/ctrl_leg_L
+        weight: 1
+      - path: ctrl_root/ctrl_leg_R
+        weight: 1
+      - path: Geometry
+        weight: 1
+      - path: Geometry/raptor:body001
+        weight: 1
+      - path: ikHandle1
+        weight: 1
+      - path: ikHandle2
+        weight: 1
+      - path: ikHandle3
+        weight: 1
+      - path: ikHandle4
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: idle_02
+      takeName: Take 001
+      firstFrame: 50
+      lastFrame: 74
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bn_root
+        weight: 1
+      - path: bn_root/bn_leg_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L/bn_foot_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L/bn_foot_L/bn_toe_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L/bn_foot_L/bn_toe_L/bn_toe_01_L
+        weight: 1
+      - path: bn_root/bn_leg_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R/bn_foot_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R/bn_foot_R/bn_toe_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R/bn_foot_R/bn_toe_R/bn_toe_01_R
+        weight: 1
+      - path: bn_root/bn_spine_01
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/bn_mouth_01
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/bn_mouth_01/bn_mouth_02
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/bn_mouth_01/raptor:teeth_D
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/raptor:eye_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/raptor:eye_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/raptor:teeth_UP
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L/bn_elbow_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L/bn_elbow_L/bn_wrist_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L/bn_elbow_L/bn_wrist_L/bn_hand_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R/bn_elbow_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R/bn_elbow_R/bn_wrist_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R/bn_elbow_R/bn_wrist_R/bn_hand_R
+        weight: 1
+      - path: bn_root/bn_tail_01
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05/bn_tail_06
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05/bn_tail_06/bn_tail_07
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05/bn_tail_06/bn_tail_07/bn_tail_08
+        weight: 1
+      - path: ctrl_root
+        weight: 1
+      - path: ctrl_root/ctrl_elbow_L
+        weight: 1
+      - path: ctrl_root/ctrl_elbow_R
+        weight: 1
+      - path: ctrl_root/ctrl_hand_L
+        weight: 1
+      - path: ctrl_root/ctrl_hand_R
+        weight: 1
+      - path: ctrl_root/ctrl_knee_L
+        weight: 1
+      - path: ctrl_root/ctrl_knee_R
+        weight: 1
+      - path: ctrl_root/ctrl_leg_L
+        weight: 1
+      - path: ctrl_root/ctrl_leg_R
+        weight: 1
+      - path: Geometry
+        weight: 1
+      - path: Geometry/raptor:body001
+        weight: 1
+      - path: ikHandle1
+        weight: 1
+      - path: ikHandle2
+        weight: 1
+      - path: ikHandle3
+        weight: 1
+      - path: ikHandle4
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: run
+      takeName: Take 001
+      firstFrame: 75
+      lastFrame: 98
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bn_root
+        weight: 1
+      - path: bn_root/bn_leg_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L/bn_foot_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L/bn_foot_L/bn_toe_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L/bn_foot_L/bn_toe_L/bn_toe_01_L
+        weight: 1
+      - path: bn_root/bn_leg_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R/bn_foot_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R/bn_foot_R/bn_toe_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R/bn_foot_R/bn_toe_R/bn_toe_01_R
+        weight: 1
+      - path: bn_root/bn_spine_01
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/bn_mouth_01
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/bn_mouth_01/bn_mouth_02
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/bn_mouth_01/raptor:teeth_D
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/raptor:eye_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/raptor:eye_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/raptor:teeth_UP
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L/bn_elbow_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L/bn_elbow_L/bn_wrist_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L/bn_elbow_L/bn_wrist_L/bn_hand_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R/bn_elbow_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R/bn_elbow_R/bn_wrist_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R/bn_elbow_R/bn_wrist_R/bn_hand_R
+        weight: 1
+      - path: bn_root/bn_tail_01
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05/bn_tail_06
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05/bn_tail_06/bn_tail_07
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05/bn_tail_06/bn_tail_07/bn_tail_08
+        weight: 1
+      - path: ctrl_root
+        weight: 1
+      - path: ctrl_root/ctrl_elbow_L
+        weight: 1
+      - path: ctrl_root/ctrl_elbow_R
+        weight: 1
+      - path: ctrl_root/ctrl_hand_L
+        weight: 1
+      - path: ctrl_root/ctrl_hand_R
+        weight: 1
+      - path: ctrl_root/ctrl_knee_L
+        weight: 1
+      - path: ctrl_root/ctrl_knee_R
+        weight: 1
+      - path: ctrl_root/ctrl_leg_L
+        weight: 1
+      - path: ctrl_root/ctrl_leg_R
+        weight: 1
+      - path: Geometry
+        weight: 1
+      - path: Geometry/raptor:body001
+        weight: 1
+      - path: ikHandle1
+        weight: 1
+      - path: ikHandle2
+        weight: 1
+      - path: ikHandle3
+        weight: 1
+      - path: ikHandle4
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: shout
+      takeName: Take 001
+      firstFrame: 99
+      lastFrame: 122
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bn_root
+        weight: 1
+      - path: bn_root/bn_leg_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L/bn_foot_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L/bn_foot_L/bn_toe_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L/bn_foot_L/bn_toe_L/bn_toe_01_L
+        weight: 1
+      - path: bn_root/bn_leg_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R/bn_foot_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R/bn_foot_R/bn_toe_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R/bn_foot_R/bn_toe_R/bn_toe_01_R
+        weight: 1
+      - path: bn_root/bn_spine_01
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/bn_mouth_01
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/bn_mouth_01/bn_mouth_02
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/bn_mouth_01/raptor:teeth_D
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/raptor:eye_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/raptor:eye_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/raptor:teeth_UP
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L/bn_elbow_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L/bn_elbow_L/bn_wrist_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L/bn_elbow_L/bn_wrist_L/bn_hand_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R/bn_elbow_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R/bn_elbow_R/bn_wrist_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R/bn_elbow_R/bn_wrist_R/bn_hand_R
+        weight: 1
+      - path: bn_root/bn_tail_01
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05/bn_tail_06
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05/bn_tail_06/bn_tail_07
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05/bn_tail_06/bn_tail_07/bn_tail_08
+        weight: 1
+      - path: ctrl_root
+        weight: 1
+      - path: ctrl_root/ctrl_elbow_L
+        weight: 1
+      - path: ctrl_root/ctrl_elbow_R
+        weight: 1
+      - path: ctrl_root/ctrl_hand_L
+        weight: 1
+      - path: ctrl_root/ctrl_hand_R
+        weight: 1
+      - path: ctrl_root/ctrl_knee_L
+        weight: 1
+      - path: ctrl_root/ctrl_knee_R
+        weight: 1
+      - path: ctrl_root/ctrl_leg_L
+        weight: 1
+      - path: ctrl_root/ctrl_leg_R
+        weight: 1
+      - path: Geometry
+        weight: 1
+      - path: Geometry/raptor:body001
+        weight: 1
+      - path: ikHandle1
+        weight: 1
+      - path: ikHandle2
+        weight: 1
+      - path: ikHandle3
+        weight: 1
+      - path: ikHandle4
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: death
+      takeName: Take 001
+      firstFrame: 122
+      lastFrame: 146
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bn_root
+        weight: 1
+      - path: bn_root/bn_leg_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L/bn_foot_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L/bn_foot_L/bn_toe_L
+        weight: 1
+      - path: bn_root/bn_leg_L/bn_knee_L/bn_foot_L/bn_toe_L/bn_toe_01_L
+        weight: 1
+      - path: bn_root/bn_leg_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R/bn_foot_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R/bn_foot_R/bn_toe_R
+        weight: 1
+      - path: bn_root/bn_leg_R/bn_knee_R/bn_foot_R/bn_toe_R/bn_toe_01_R
+        weight: 1
+      - path: bn_root/bn_spine_01
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/bn_mouth_01
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/bn_mouth_01/bn_mouth_02
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/bn_mouth_01/raptor:teeth_D
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/raptor:eye_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/raptor:eye_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_neck/bn_head/raptor:teeth_UP
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L/bn_elbow_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L/bn_elbow_L/bn_wrist_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_L/bn_elbow_L/bn_wrist_L/bn_hand_L
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R/bn_elbow_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R/bn_elbow_R/bn_wrist_R
+        weight: 1
+      - path: bn_root/bn_spine_01/bn_spine_02/bn_shoulder_R/bn_elbow_R/bn_wrist_R/bn_hand_R
+        weight: 1
+      - path: bn_root/bn_tail_01
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05/bn_tail_06
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05/bn_tail_06/bn_tail_07
+        weight: 1
+      - path: bn_root/bn_tail_01/bn_tail_02/bn_tail_03/bn_tail_04/bn_tail_05/bn_tail_06/bn_tail_07/bn_tail_08
+        weight: 1
+      - path: ctrl_root
+        weight: 1
+      - path: ctrl_root/ctrl_elbow_L
+        weight: 1
+      - path: ctrl_root/ctrl_elbow_R
+        weight: 1
+      - path: ctrl_root/ctrl_hand_L
+        weight: 1
+      - path: ctrl_root/ctrl_hand_R
+        weight: 1
+      - path: ctrl_root/ctrl_knee_L
+        weight: 1
+      - path: ctrl_root/ctrl_knee_R
+        weight: 1
+      - path: ctrl_root/ctrl_leg_L
+        weight: 1
+      - path: ctrl_root/ctrl_leg_R
+        weight: 1
+      - path: Geometry
+        weight: 1
+      - path: Geometry/raptor:body001
+        weight: 1
+      - path: ikHandle1
+        weight: 1
+      - path: ikHandle2
+        weight: 1
+      - path: ikHandle3
+        weight: 1
+      - path: ikHandle4
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 3
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
