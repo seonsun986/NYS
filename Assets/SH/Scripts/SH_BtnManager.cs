@@ -368,6 +368,7 @@ public class SH_BtnManager : MonoBehaviour
             if(obj[j].name.Contains(clickText))
             {
                 GameObject createObj = Instantiate(obj[j]);
+                SH_EditorManager.Instance.activeObj = createObj;
                 createObj.transform.SetParent(Scenes[currentSceneNum].transform);
                 createObj.transform.position = new Vector3(0, 0, 0);
                 break;
@@ -398,7 +399,7 @@ public class SH_BtnManager : MonoBehaviour
             {
                 print(raycastResults[j].gameObject.name);
                 // 해당 y값이 0이면 내가 지금 scene0에 있다는 소리고 
-                // 20이면 내가 지금 Scene1에 있다는 소리다
+                // 20으로 나눈 몫이 1이면 내가 지금 Scene1에 있다는 소리다
                 int currentScene = (int)Scenes[0].transform.position.y / 20;
                 // 원래 있었던 씬을 캡쳐해서 바꿔준다
                 // 캡쳐하기 
@@ -523,7 +524,7 @@ public class SH_BtnManager : MonoBehaviour
         // 하나의 책에 페이지 당 오브젝트 정보들이 모두 담겼다
         bookinfo.id = "심선혜 최고";
         bookinfo.title = "위인전 : 심선혜";
-        bookinfo.createAt = DateTime.Now.ToString("yyyy - MM - dd");
+        bookinfo.createAt = DateTime.Now.ToString("yyyy / MM / dd");
         // 이제 BookInfo 중 Pages에 이 정보들을 담아보자
         bookinfo.pages = pages;
         string jsonData = JsonUtility.ToJson(bookinfo, true);
