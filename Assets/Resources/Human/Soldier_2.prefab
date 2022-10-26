@@ -4190,8 +4190,8 @@ GameObject:
   - component: {fileID: 4842998965800138}
   - component: {fileID: 95700630886227062}
   - component: {fileID: -3066426994352618198}
-  - component: {fileID: 9071892846170832862}
   - component: {fileID: -6698748943947155379}
+  - component: {fileID: 8393523450182394422}
   m_Layer: 0
   m_Name: Soldier_2
   m_TagString: Untagged
@@ -4270,7 +4270,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objType: 0
---- !u!114 &9071892846170832862
+  animBtn: {fileID: 0}
+  currentAnim: 
+  buttons: []
+--- !u!65 &-6698748943947155379
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741276027538082}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.1107616, y: 2.014834, z: 0.56210977}
+  m_Center: {x: -0.0099052405, y: 0.9721183, z: -0.013521416}
+--- !u!114 &8393523450182394422
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4292,19 +4308,6 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!65 &-6698748943947155379
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741276027538082}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.1107616, y: 2.014834, z: 0.56210977}
-  m_Center: {x: -0.0099052405, y: 0.9721183, z: -0.013521416}
 --- !u!1 &1793438622147690
 GameObject:
   m_ObjectHideFlags: 0

@@ -1532,8 +1532,8 @@ GameObject:
   - component: {fileID: 4175843917565214}
   - component: {fileID: 95365721985148110}
   - component: {fileID: 504937594540390543}
-  - component: {fileID: 3244441233053765331}
   - component: {fileID: 6156301117626045089}
+  - component: {fileID: 5453669637106668149}
   m_Layer: 0
   m_Name: Boy_2
   m_TagString: Untagged
@@ -1612,7 +1612,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objType: 0
---- !u!114 &3244441233053765331
+  animBtn: {fileID: 0}
+  currentAnim: 
+  buttons: []
+--- !u!65 &6156301117626045089
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430396767194642}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9908481, y: 1.9030585, z: 1}
+  m_Center: {x: 0.0032502473, y: 0.88175946, z: 0}
+--- !u!114 &5453669637106668149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1634,19 +1650,6 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!65 &6156301117626045089
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1430396767194642}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.9908481, y: 1.9030585, z: 1}
-  m_Center: {x: 0.0032502473, y: 0.88175946, z: 0}
 --- !u!1 &1459188851883464
 GameObject:
   m_ObjectHideFlags: 0
