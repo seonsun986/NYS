@@ -53,6 +53,10 @@ public class SH_SceneObj : MonoBehaviour
             anim = GetComponent<Animator>();
             for(int i =0;i<anims.Count;i++)
             {
+                if (GameObject.Find("GameManager") != null) return;
+                {
+
+                }
                 // 빈 오브젝트가 없다면 만들어주고
                 if(GameObject.Find(gameObject.name + "AnimBtn") == null)
                 {                    
@@ -88,6 +92,7 @@ public class SH_SceneObj : MonoBehaviour
 
     void Update()
     {
+        if (SH_EditorManager.Instance == null) return;
         if (objType.ToString() == "obj")
         {
             // 다시 자기가 선택되면 애니메이션 버튼을 켜준다
