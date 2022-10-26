@@ -127,7 +127,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     }
 
     public void OutPlaza()
-    {
+    { 
         // 내 게임 오브젝트 없애기
         PhotonNetwork.Destroy(me.gameObject);
         // 광장씬 방 나가기
@@ -159,7 +159,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     bool createBook = false;
     public void OnClickCreateBook()
     {
-        if (!createBook && photonView.IsMine)
+        if (!createBook)// && photonView.IsMine)
         {
             createBook = true;
             YJ_DataManager.CreateRoomInfo.roomName = PhotonNetwork.NickName;
