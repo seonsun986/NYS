@@ -36,45 +36,39 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     Quaternion receiveRot;
     // 보간속력
     public float lerpSpeed = 100;
-    // 스피커
-    public GameObject speaker;
+    
+    // 얼굴카메라
+    public GameObject faceCam;
 
-    private void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
-        // 임시로 아이와 선생님 나눠줌
+
+        if (photonView.IsMine)
+        {
+            faceCam.SetActive(true);
+        }
+
+        print(PhotonNetwork.MasterClient.NickName);
+        // 아직 방에 들어갈 수 없어서 임시로 테스트 중...
         if (GameObject.Find("GameManager"))
         {
-            speaker.GetComponent<AudioSource>().mute = false;
             if (PhotonNetwork.MasterClient.NickName != photonView.Owner.NickName)
             {
                 gameObject.tag = "Child";
                 if (photonView.IsMine)
                 {
                     GameObject.Find("TeacherUI").SetActive(false);
-                    GameManager.Instance.photonView = photonView;
+
                 }
             }
             else
             {
                 gameObject.tag = "Teacher";
-                if (photonView.IsMine)
-                {
-                    GameObject.Find("ChildUI").SetActive(false);
-                    GameManager.Instance.photonView = photonView;
-                }
             }
             GameManager.Instance.AddPlayer(photonView);
-        }
-        else
-        {
-            speaker.GetComponent<AudioSource>().mute = true;
-        }
-        
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
+        }
         controller = GetComponent<CharacterController>();
         anim = transform.GetChild(0).GetComponent<Animator>();
         state = State.Move;
@@ -110,12 +104,6 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 
             }
         }
-        //else
-        //{
-        //    // Lerp를 이용해서 목적지, 목적방향까지 이동 및 회전
-        //    transform.position = Vector3.Lerp(transform.position, receivePos, lerpSpeed * Time.deltaTime);
-        //    transform.rotation = Quaternion.Lerp(transform.rotation, receiveRot, lerpSpeed * Time.deltaTime);
-        //}
     }
 
     Vector3 dir;
@@ -154,23 +142,6 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         controller.Move(dir * moveSpeed * Time.deltaTime);
     }
 
-
-    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    //{
-    //    // 데이터 보내기
-    //    if (stream.IsWriting) // 내가 데이터를 보낼 수 있는 상태인 경우 (ismine)
-    //    {
-    //        // positon, rotation
-    //        stream.SendNext(transform.position); // Value타입만 보낼 수 있음
-    //        stream.SendNext(transform.rotation);
-    //    }
-    //    // 데이터 받기
-    //    else // if(stream.IsReading)
-    //    {
-    //        receivePos = (Vector3)stream.ReceiveNext(); // 강제형변환필요
-    //        receiveRot = (Quaternion)stream.ReceiveNext();
-    //    }
-    //}
 
     [PunRPC]
     public void RpcSetBool(string s, bool b)

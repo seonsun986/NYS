@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 749334994879702733}
   - component: {fileID: 2658633769867848628}
   - component: {fileID: 3692770572996616269}
-  - component: {fileID: 5980138726027278073}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
@@ -57,7 +56,7 @@ MonoBehaviour:
   moveSpeed: 3
   jumpPower: 3
   lerpSpeed: 100
-  speaker: {fileID: 4504897665774012290}
+  faceCam: {fileID: 8378518660352065468}
 --- !u!143 &4445227752899247847
 CharacterController:
   m_ObjectHideFlags: 0
@@ -90,7 +89,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObservedComponentsFoldoutOpen: 1
   Group: 0
-  prefixField: 0
+  prefixField: -1
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
@@ -230,20 +229,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5980138726027278073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4445227752899247844}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d598116dd52ca84c88665d62ddc52df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  likeFactory: {fileID: 1202522996400206, guid: 0ca66ebdd4410a247a75d98f6dabe49b, type: 3}
-  likeCount: {fileID: 0}
 --- !u!1 &4504897665774012290
 GameObject:
   m_ObjectHideFlags: 0
@@ -3326,6 +3311,7 @@ GameObject:
   - component: {fileID: 5321388473935368020}
   - component: {fileID: 5224924807683222512}
   - component: {fileID: 5224924807683222513}
+  - component: {fileID: 5224924807683222514}
   m_Layer: 0
   m_Name: Cat06
   m_TagString: Untagged
@@ -3389,6 +3375,23 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.3, z: 0}
+--- !u!114 &5224924807683222514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5319741758320786716}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f105e1f79f0d74bb98131522c7400b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  moveSpeed: 5
+  jumpPower: 5
+  lerpSpeed: 100
+  faceCam: {fileID: 0}
 --- !u!1 &5319752814868765958
 GameObject:
   m_ObjectHideFlags: 0
@@ -4462,7 +4465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3682670167739009897
 Transform:
   m_ObjectHideFlags: 0
