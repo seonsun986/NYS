@@ -19,8 +19,10 @@ public class SH_EditorManager : MonoBehaviour
     public List<Animation> anim = new List<Animation>();
     // 딕셔너리 선언해서 Walk -> 걷기
     public Dictionary<string, string> animName;
-    
-    // 선택한 버튼에 따라 Instantiate되는 친구들이 달라진다
+
+    // 현재 클릭되어있는 오브젝트
+    public GameObject activeObj;
+    public string activeObj_anim;
     private void Awake()
     {
         Instance = this;
@@ -33,6 +35,11 @@ public class SH_EditorManager : MonoBehaviour
             { "Run", "뛰기"},
             {"Eat", "먹기" },
             { "Jump", "점프" },
+            {"Idle", "정지" },
+            {"No", "절레절레" },
+            {"Sit", "앉기" },
+            { "Attack", "공격"},
+            {"Water", "물 마시기" },
         };
     }
 
@@ -45,6 +52,19 @@ public class SH_EditorManager : MonoBehaviour
             active_InputField.transform.GetChild(3).GetComponent<Text>().font = fonts[active_InputField.info.txtDropdown];
             active_InputField.info.txtSize = int.Parse(fontSize.text);
             active_InputField.transform.GetChild(3).GetComponent<Text>().fontSize = active_InputField.info.txtSize;
+        }
+
+        // 클릭되어있는 오브젝트 구하기
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hitInfo;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);          
+            if(Physics.Raycast(ray, out hitInfo) && hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Object"))
+            {
+                activeObj = hitInfo.transform.gameObject;
+                activeObj_anim = activeObj.GetComponent<SH_SceneObj>().currentAnim;
+            }
+                
         }
     }
     

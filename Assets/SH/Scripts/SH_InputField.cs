@@ -69,7 +69,7 @@ public class SH_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                     RectTransform tool_image = tool.GetComponent<Image>().rectTransform;
                     if (inputF.text.Length == 0)
                     {
-                        tool_image.sizeDelta = new Vector2(100, 65);
+                        tool_image.sizeDelta = new Vector2(250, 65);
                     }
                     else
                     {
