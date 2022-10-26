@@ -1,0 +1,717 @@
+fileFormatVersion: 2
+guid: 77ab182c6f6644b438865031b0c757af
+timeCreated: 1493993385
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Stegosaurio_Rig:Ankle_L
+    100004: Stegosaurio_Rig:Ankle_R
+    100006: Stegosaurio_Rig:Body
+    100008: Stegosaurio_Rig:Elbou_L
+    100010: Stegosaurio_Rig:Elbou_R
+    100012: Stegosaurio_Rig:Finger_Foot_L
+    100014: Stegosaurio_Rig:Finger_Foot_R
+    100016: Stegosaurio_Rig:Finger_Hand_L
+    100018: Stegosaurio_Rig:Finger_Hand_R
+    100020: Stegosaurio_Rig:Foot_L
+    100022: Stegosaurio_Rig:Foot_R
+    100024: Stegosaurio_Rig:Hand_L
+    100026: Stegosaurio_Rig:Hand_R
+    100028: Stegosaurio_Rig:ikHandle1_SHOULDER_L
+    100030: Stegosaurio_Rig:ikHandle2_LEG_L
+    100032: Stegosaurio_Rig:ikHandle3_SHOULDER_R
+    100034: Stegosaurio_Rig:ikHandle4_LEG_R
+    100036: Stegosaurio_Rig:IKs
+    100038: Stegosaurio_Rig:Knee_L
+    100040: Stegosaurio_Rig:Knee_R
+    100042: Stegosaurio_Rig:Leg_L
+    100044: Stegosaurio_Rig:Leg_R
+    100046: Stegosaurio_Rig:Mouth
+    100048: Stegosaurio_Rig:Neck
+    100050: Stegosaurio_Rig:Root
+    100052: Stegosaurio_Rig:Shoulder_L
+    100054: Stegosaurio_Rig:Shoulder_R
+    100056: Stegosaurio_Rig:Skeleton
+    100058: Stegosaurio_Rig:Spine_1
+    100060: Stegosaurio_Rig:Spine_2
+    100062: Stegosaurio_Rig:Spine_3
+    100064: Stegosaurio_Rig:Spine_4
+    100066: Stegosaurio_Rig:Stegosaurio_Maya_OBJ:body
+    100068: Stegosaurio_Rig:Tail_1
+    100070: Stegosaurio_Rig:Tail_2
+    100072: Stegosaurio_Rig:Tail_3
+    100074: Stegosaurio_Rig:Tail_4
+    100076: Stegosaurio_Rig:Tail_5
+    100078: Stegosaurio_Rig:Wrist_L
+    100080: Stegosaurio_Rig:Wrist_R
+    400000: //RootNode
+    400002: Stegosaurio_Rig:Ankle_L
+    400004: Stegosaurio_Rig:Ankle_R
+    400006: Stegosaurio_Rig:Body
+    400008: Stegosaurio_Rig:Elbou_L
+    400010: Stegosaurio_Rig:Elbou_R
+    400012: Stegosaurio_Rig:Finger_Foot_L
+    400014: Stegosaurio_Rig:Finger_Foot_R
+    400016: Stegosaurio_Rig:Finger_Hand_L
+    400018: Stegosaurio_Rig:Finger_Hand_R
+    400020: Stegosaurio_Rig:Foot_L
+    400022: Stegosaurio_Rig:Foot_R
+    400024: Stegosaurio_Rig:Hand_L
+    400026: Stegosaurio_Rig:Hand_R
+    400028: Stegosaurio_Rig:ikHandle1_SHOULDER_L
+    400030: Stegosaurio_Rig:ikHandle2_LEG_L
+    400032: Stegosaurio_Rig:ikHandle3_SHOULDER_R
+    400034: Stegosaurio_Rig:ikHandle4_LEG_R
+    400036: Stegosaurio_Rig:IKs
+    400038: Stegosaurio_Rig:Knee_L
+    400040: Stegosaurio_Rig:Knee_R
+    400042: Stegosaurio_Rig:Leg_L
+    400044: Stegosaurio_Rig:Leg_R
+    400046: Stegosaurio_Rig:Mouth
+    400048: Stegosaurio_Rig:Neck
+    400050: Stegosaurio_Rig:Root
+    400052: Stegosaurio_Rig:Shoulder_L
+    400054: Stegosaurio_Rig:Shoulder_R
+    400056: Stegosaurio_Rig:Skeleton
+    400058: Stegosaurio_Rig:Spine_1
+    400060: Stegosaurio_Rig:Spine_2
+    400062: Stegosaurio_Rig:Spine_3
+    400064: Stegosaurio_Rig:Spine_4
+    400066: Stegosaurio_Rig:Stegosaurio_Maya_OBJ:body
+    400068: Stegosaurio_Rig:Tail_1
+    400070: Stegosaurio_Rig:Tail_2
+    400072: Stegosaurio_Rig:Tail_3
+    400074: Stegosaurio_Rig:Tail_4
+    400076: Stegosaurio_Rig:Tail_5
+    400078: Stegosaurio_Rig:Wrist_L
+    400080: Stegosaurio_Rig:Wrist_R
+    4300000: Stegosaurio_Rig:Stegosaurio_Maya_OBJ:body
+    7400000: idle_01
+    7400002: idle_02
+    7400004: eat
+    7400006: run
+    7400008: death
+    9500000: //RootNode
+    13700000: Stegosaurio_Rig:Stegosaurio_Maya_OBJ:body
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: idle_01
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Stegosaurio_Rig:Body
+        weight: 1
+      - path: Stegosaurio_Rig:Body/Stegosaurio_Rig:Stegosaurio_Maya_OBJ:body
+        weight: 1
+      - path: Stegosaurio_Rig:IKs
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle1_SHOULDER_L
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle2_LEG_L
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle3_SHOULDER_R
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle4_LEG_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L/Stegosaurio_Rig:Ankle_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L/Stegosaurio_Rig:Ankle_L/Stegosaurio_Rig:Foot_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L/Stegosaurio_Rig:Ankle_L/Stegosaurio_Rig:Foot_L/Stegosaurio_Rig:Finger_Foot_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R/Stegosaurio_Rig:Ankle_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R/Stegosaurio_Rig:Ankle_R/Stegosaurio_Rig:Foot_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R/Stegosaurio_Rig:Ankle_R/Stegosaurio_Rig:Foot_R/Stegosaurio_Rig:Finger_Foot_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L/Stegosaurio_Rig:Wrist_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L/Stegosaurio_Rig:Wrist_L/Stegosaurio_Rig:Hand_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L/Stegosaurio_Rig:Wrist_L/Stegosaurio_Rig:Hand_L/Stegosaurio_Rig:Finger_Hand_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R/Stegosaurio_Rig:Wrist_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R/Stegosaurio_Rig:Wrist_R/Stegosaurio_Rig:Hand_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R/Stegosaurio_Rig:Wrist_R/Stegosaurio_Rig:Hand_R/Stegosaurio_Rig:Finger_Hand_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Spine_4
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Spine_4/Stegosaurio_Rig:Neck
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Spine_4/Stegosaurio_Rig:Neck/Stegosaurio_Rig:Mouth
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2/Stegosaurio_Rig:Tail_3
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2/Stegosaurio_Rig:Tail_3/Stegosaurio_Rig:Tail_4
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2/Stegosaurio_Rig:Tail_3/Stegosaurio_Rig:Tail_4/Stegosaurio_Rig:Tail_5
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: idle_02
+      takeName: Take 001
+      firstFrame: 24
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Stegosaurio_Rig:Body
+        weight: 1
+      - path: Stegosaurio_Rig:Body/Stegosaurio_Rig:Stegosaurio_Maya_OBJ:body
+        weight: 1
+      - path: Stegosaurio_Rig:IKs
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle1_SHOULDER_L
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle2_LEG_L
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle3_SHOULDER_R
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle4_LEG_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L/Stegosaurio_Rig:Ankle_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L/Stegosaurio_Rig:Ankle_L/Stegosaurio_Rig:Foot_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L/Stegosaurio_Rig:Ankle_L/Stegosaurio_Rig:Foot_L/Stegosaurio_Rig:Finger_Foot_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R/Stegosaurio_Rig:Ankle_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R/Stegosaurio_Rig:Ankle_R/Stegosaurio_Rig:Foot_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R/Stegosaurio_Rig:Ankle_R/Stegosaurio_Rig:Foot_R/Stegosaurio_Rig:Finger_Foot_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L/Stegosaurio_Rig:Wrist_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L/Stegosaurio_Rig:Wrist_L/Stegosaurio_Rig:Hand_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L/Stegosaurio_Rig:Wrist_L/Stegosaurio_Rig:Hand_L/Stegosaurio_Rig:Finger_Hand_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R/Stegosaurio_Rig:Wrist_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R/Stegosaurio_Rig:Wrist_R/Stegosaurio_Rig:Hand_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R/Stegosaurio_Rig:Wrist_R/Stegosaurio_Rig:Hand_R/Stegosaurio_Rig:Finger_Hand_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Spine_4
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Spine_4/Stegosaurio_Rig:Neck
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Spine_4/Stegosaurio_Rig:Neck/Stegosaurio_Rig:Mouth
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2/Stegosaurio_Rig:Tail_3
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2/Stegosaurio_Rig:Tail_3/Stegosaurio_Rig:Tail_4
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2/Stegosaurio_Rig:Tail_3/Stegosaurio_Rig:Tail_4/Stegosaurio_Rig:Tail_5
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: eat
+      takeName: Take 001
+      firstFrame: 48
+      lastFrame: 72
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Stegosaurio_Rig:Body
+        weight: 1
+      - path: Stegosaurio_Rig:Body/Stegosaurio_Rig:Stegosaurio_Maya_OBJ:body
+        weight: 1
+      - path: Stegosaurio_Rig:IKs
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle1_SHOULDER_L
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle2_LEG_L
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle3_SHOULDER_R
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle4_LEG_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L/Stegosaurio_Rig:Ankle_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L/Stegosaurio_Rig:Ankle_L/Stegosaurio_Rig:Foot_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L/Stegosaurio_Rig:Ankle_L/Stegosaurio_Rig:Foot_L/Stegosaurio_Rig:Finger_Foot_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R/Stegosaurio_Rig:Ankle_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R/Stegosaurio_Rig:Ankle_R/Stegosaurio_Rig:Foot_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R/Stegosaurio_Rig:Ankle_R/Stegosaurio_Rig:Foot_R/Stegosaurio_Rig:Finger_Foot_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L/Stegosaurio_Rig:Wrist_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L/Stegosaurio_Rig:Wrist_L/Stegosaurio_Rig:Hand_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L/Stegosaurio_Rig:Wrist_L/Stegosaurio_Rig:Hand_L/Stegosaurio_Rig:Finger_Hand_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R/Stegosaurio_Rig:Wrist_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R/Stegosaurio_Rig:Wrist_R/Stegosaurio_Rig:Hand_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R/Stegosaurio_Rig:Wrist_R/Stegosaurio_Rig:Hand_R/Stegosaurio_Rig:Finger_Hand_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Spine_4
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Spine_4/Stegosaurio_Rig:Neck
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Spine_4/Stegosaurio_Rig:Neck/Stegosaurio_Rig:Mouth
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2/Stegosaurio_Rig:Tail_3
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2/Stegosaurio_Rig:Tail_3/Stegosaurio_Rig:Tail_4
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2/Stegosaurio_Rig:Tail_3/Stegosaurio_Rig:Tail_4/Stegosaurio_Rig:Tail_5
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: run
+      takeName: Take 001
+      firstFrame: 74
+      lastFrame: 97
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Stegosaurio_Rig:Body
+        weight: 1
+      - path: Stegosaurio_Rig:Body/Stegosaurio_Rig:Stegosaurio_Maya_OBJ:body
+        weight: 1
+      - path: Stegosaurio_Rig:IKs
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle1_SHOULDER_L
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle2_LEG_L
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle3_SHOULDER_R
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle4_LEG_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L/Stegosaurio_Rig:Ankle_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L/Stegosaurio_Rig:Ankle_L/Stegosaurio_Rig:Foot_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L/Stegosaurio_Rig:Ankle_L/Stegosaurio_Rig:Foot_L/Stegosaurio_Rig:Finger_Foot_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R/Stegosaurio_Rig:Ankle_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R/Stegosaurio_Rig:Ankle_R/Stegosaurio_Rig:Foot_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R/Stegosaurio_Rig:Ankle_R/Stegosaurio_Rig:Foot_R/Stegosaurio_Rig:Finger_Foot_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L/Stegosaurio_Rig:Wrist_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L/Stegosaurio_Rig:Wrist_L/Stegosaurio_Rig:Hand_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L/Stegosaurio_Rig:Wrist_L/Stegosaurio_Rig:Hand_L/Stegosaurio_Rig:Finger_Hand_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R/Stegosaurio_Rig:Wrist_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R/Stegosaurio_Rig:Wrist_R/Stegosaurio_Rig:Hand_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R/Stegosaurio_Rig:Wrist_R/Stegosaurio_Rig:Hand_R/Stegosaurio_Rig:Finger_Hand_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Spine_4
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Spine_4/Stegosaurio_Rig:Neck
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Spine_4/Stegosaurio_Rig:Neck/Stegosaurio_Rig:Mouth
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2/Stegosaurio_Rig:Tail_3
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2/Stegosaurio_Rig:Tail_3/Stegosaurio_Rig:Tail_4
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2/Stegosaurio_Rig:Tail_3/Stegosaurio_Rig:Tail_4/Stegosaurio_Rig:Tail_5
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: death
+      takeName: Take 001
+      firstFrame: 99
+      lastFrame: 123
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Stegosaurio_Rig:Body
+        weight: 1
+      - path: Stegosaurio_Rig:Body/Stegosaurio_Rig:Stegosaurio_Maya_OBJ:body
+        weight: 1
+      - path: Stegosaurio_Rig:IKs
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle1_SHOULDER_L
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle2_LEG_L
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle3_SHOULDER_R
+        weight: 1
+      - path: Stegosaurio_Rig:IKs/Stegosaurio_Rig:ikHandle4_LEG_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L/Stegosaurio_Rig:Ankle_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L/Stegosaurio_Rig:Ankle_L/Stegosaurio_Rig:Foot_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_L/Stegosaurio_Rig:Knee_L/Stegosaurio_Rig:Ankle_L/Stegosaurio_Rig:Foot_L/Stegosaurio_Rig:Finger_Foot_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R/Stegosaurio_Rig:Ankle_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R/Stegosaurio_Rig:Ankle_R/Stegosaurio_Rig:Foot_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Leg_R/Stegosaurio_Rig:Knee_R/Stegosaurio_Rig:Ankle_R/Stegosaurio_Rig:Foot_R/Stegosaurio_Rig:Finger_Foot_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L/Stegosaurio_Rig:Wrist_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L/Stegosaurio_Rig:Wrist_L/Stegosaurio_Rig:Hand_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_L/Stegosaurio_Rig:Elbou_L/Stegosaurio_Rig:Wrist_L/Stegosaurio_Rig:Hand_L/Stegosaurio_Rig:Finger_Hand_L
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R/Stegosaurio_Rig:Wrist_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R/Stegosaurio_Rig:Wrist_R/Stegosaurio_Rig:Hand_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Shoulder_R/Stegosaurio_Rig:Elbou_R/Stegosaurio_Rig:Wrist_R/Stegosaurio_Rig:Hand_R/Stegosaurio_Rig:Finger_Hand_R
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Spine_4
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Spine_4/Stegosaurio_Rig:Neck
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Spine_1/Stegosaurio_Rig:Spine_2/Stegosaurio_Rig:Spine_3/Stegosaurio_Rig:Spine_4/Stegosaurio_Rig:Neck/Stegosaurio_Rig:Mouth
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2/Stegosaurio_Rig:Tail_3
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2/Stegosaurio_Rig:Tail_3/Stegosaurio_Rig:Tail_4
+        weight: 1
+      - path: Stegosaurio_Rig:Skeleton/Stegosaurio_Rig:Root/Stegosaurio_Rig:Tail_1/Stegosaurio_Rig:Tail_2/Stegosaurio_Rig:Tail_3/Stegosaurio_Rig:Tail_4/Stegosaurio_Rig:Tail_5
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 3
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
