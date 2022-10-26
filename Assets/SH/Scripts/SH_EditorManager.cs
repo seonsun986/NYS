@@ -43,8 +43,9 @@ public class SH_EditorManager : MonoBehaviour
             {"Water", "물 마시기" },
             {"Slash", "던지기" },
             {"Fly", "날기" },
-            {"Gritar", "포효하기" },
-            { "Shout", "포효하기"}
+            {"Gritar", "포효" },
+            { "Shout", "포효"},
+            {"StandUp","일어서기" },
         };
     }
 
