@@ -80,7 +80,8 @@ public class YJ_DataManager : MonoBehaviour
     }
     #endregion
 
-    public List<GameObject> roomList = new List<GameObject> ();
+    //public List<GameObject> roomList = new List<GameObject> ();
+    public GameObject[] roomList;// = new List<GameObject> ();
     public int changeScene = 0;
     int roomViewId = 0;
     int roomListViewId = 0;
@@ -88,6 +89,8 @@ public class YJ_DataManager : MonoBehaviour
 
     void Update()
     {
+        roomList = GameObject.FindGameObjectsWithTag("Room");
+
         //print("정보가 재대로 들어오는지 확인하자 \r" + " 방이름 들어왔음 ? : " + CreateRoomInfo.roomName);
         if (YJ_PlazaManager.instance != null && YJ_PlazaManager.instance.roomViewId > 0 && roomViewId < 1)
         {
@@ -99,24 +102,25 @@ public class YJ_DataManager : MonoBehaviour
         
         if (SceneManager.GetActiveScene().name == "PlazaScene" && changeScene > 1)
         {
-            GameObject room = GameObject.FindWithTag("Room");
-            if (room == null)
-                 return;
-            
+            //GameObject room = GameObject.FindWithTag("Room");
+            //if (room == null)
+            //     return;
+
             //roomList.Clear();
-            if (roomList.Count < 1)
+            if (roomList.Length < 1)
             {
-                roomList.Add(GameObject.FindWithTag("Room").gameObject);
+                roomList = GameObject.FindGameObjectsWithTag("Room");
             }
-            if (roomList.Count > 0)
+            if (roomList.Length > 0)
             {
-                for (int i = 0; i < roomList.Count; i++)
+                for (int i = 0; i < roomList.Length; i++)
                 {
                     if (roomViewId == roomList[i].GetComponent<PhotonView>().ViewID)
                     {
                         print("찾았따");
                         YJ_PlazaManager.instance.DeleteRoomOBJ(roomViewId, roomListViewId);
-                        roomList.Clear();
+                        //roomList.Clear();
+                        roomList = null;
                         roomViewId = 0;
                         changeScene = 0;
                         CreateRoomInfo.roomName = null;

@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using System.IO;
 using System;
 using Photon.Pun;
+using UnityEditor;
 
 
 
@@ -81,6 +82,7 @@ public class TxtInfo : PageInfo
 public class ObjInfo : PageInfo
 {
     public string prefab;
+    //public string category;
     public Quaternion rotation;
     public Vector3 scale;
 }
@@ -358,6 +360,7 @@ public class SH_BtnManager : MonoBehaviour
 
     // Object 생성 함수
     // 해당 Object를 Scenes List에 담는다
+    GameObject assetPath;
     public void InstantiateObj()
     {
         GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
