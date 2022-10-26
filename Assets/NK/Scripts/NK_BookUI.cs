@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class NK_BookUI : MonoBehaviourPun
 {
@@ -79,9 +80,9 @@ public class NK_BookUI : MonoBehaviourPun
             {
                 print(pageInfo);
                 objs.Add(pagesInfo.DeserializePageInfo(pageInfo));
-                InstantiateObject();
             }
         }
+                InstantiateObject();
     }
 
     public void InstantiateObject()
@@ -98,7 +99,9 @@ public class NK_BookUI : MonoBehaviourPun
             {
                 ObjInfo obj = (ObjInfo)objs[i];
                 GameObject objPrefab = PhotonNetwork.Instantiate(obj.prefab, obj.position, obj.rotation);
-                photonView.RPC("RPCCreateObject", RpcTarget.All, objPrefab.GetPhotonView().ViewID, obj.scale);
+                objPrefab.transform.localScale = obj.scale;
+                print(objPrefab.transform.localScale);
+                //photonView.RPC("RPCCreateObject", RpcTarget.All, objPrefab.GetPhotonView().ViewID, obj.scale);
             }
         }
     }
@@ -123,6 +126,6 @@ public class NK_BookUI : MonoBehaviourPun
         PhotonView view = PhotonView.Find(viewId);
         GameObject objPrefab = view.gameObject;
         objPrefab.transform.SetParent(fairyTaleObject);
-        objPrefab.transform.localScale = scale;
+        //objPrefab.transform.localScale = scale;
     }
 }
