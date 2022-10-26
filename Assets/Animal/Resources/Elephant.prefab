@@ -392,6 +392,7 @@ GameObject:
   - component: {fileID: 7767313439073726266}
   - component: {fileID: 3905092673766876839}
   - component: {fileID: 3451076405228273170}
+  - component: {fileID: 5308977864663628401}
   m_Layer: 29
   m_Name: Elephant
   m_TagString: Untagged
@@ -499,6 +500,7 @@ MonoBehaviour:
   animBtn: {fileID: 1328568904588920513, guid: 3253fe3924a844b488776109d8c1f19a, type: 3}
   currentAnim: 
   buttons: []
+  anims: []
 --- !u!111 &3451076405228273170
 Animation:
   m_ObjectHideFlags: 0
@@ -517,6 +519,28 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &5308977864663628401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294271778169428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1306487443538434
 GameObject:
   m_ObjectHideFlags: 0
