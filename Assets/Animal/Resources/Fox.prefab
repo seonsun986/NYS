@@ -806,6 +806,7 @@ GameObject:
   - component: {fileID: -9112198879559998104}
   - component: {fileID: 1561888841973490726}
   - component: {fileID: 997126220787848719}
+  - component: {fileID: -1734611545066293262}
   m_Layer: 29
   m_Name: Fox
   m_TagString: Untagged
@@ -919,6 +920,28 @@ MonoBehaviour:
   CanSnap: 1
   AddColliders: 1
   m_markAsDestroyed: 0
+--- !u!114 &-1734611545066293262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4020983980232809014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &4246927435662846628
 GameObject:
   m_ObjectHideFlags: 0
