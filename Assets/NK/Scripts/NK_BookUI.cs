@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
@@ -62,6 +63,11 @@ public class NK_BookUI : MonoBehaviourPun
         bookUI.SetActive(false);
         fairyTaleManager.SetActive(true);
     }
+    [PunRPC]
+    private void RPCSetInactive()
+    {
+        fairyTaleManager.SetActive(false);
+    }
 
     public void ClickBook()
     {
@@ -118,7 +124,8 @@ public class NK_BookUI : MonoBehaviourPun
         tr.localScale = scale;
     }
 
-    void DestroyObject()
+    [PunRPC]
+    private void RPCDestroyObject()
     {
         Transform[] texts = fairyTaleUI.GetComponentsInChildren<Transform>();
         Transform[] objects = fairyTaleObject.GetComponentsInChildren<Transform>();
@@ -171,7 +178,7 @@ public class NK_BookUI : MonoBehaviourPun
         if (sceneObjects.Count > pageNum + 1)
         {
             pageNum++;
-            DestroyObject();
+            photonView.RPC("RPCDestroyObject", RpcTarget.All);
             InstantiateObject();
         }
     }
@@ -181,8 +188,14 @@ public class NK_BookUI : MonoBehaviourPun
         if (0 <= pageNum - 1)
         {
             pageNum--;
-            DestroyObject();
+            photonView.RPC("RPCDestroyObject", RpcTarget.All);
             InstantiateObject();
         }
+    }
+
+    public void ClickEnd()
+    {
+        photonView.RPC("RPCDestroyObject", RpcTarget.All);
+        photonView.RPC("RPCSetInactive", RpcTarget.All);
     }
 }

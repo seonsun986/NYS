@@ -6,17 +6,31 @@ public class NK_FairyTale : MonoBehaviour
 {
     public GameObject fairyTaleUI;
     public GameObject fairyTaleObject;
+    public GameObject teacherUI;
+    public GameObject childUI;
     public Transform book;
     public List<Transform> objs;
 
     Vector3 originalScale;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         fairyTaleUI.SetActive(true);
         fairyTaleObject.SetActive(true);
         book.gameObject.SetActive(true);
+
+        if(GameManager.Instance.photonView.IsMine)
+        {
+            if(GameManager.Instance.photonView.gameObject.CompareTag("Child"))
+            {
+                childUI.SetActive(true);
+            }
+            if(GameManager.Instance.photonView.gameObject.CompareTag("Teacher"))
+            {
+                teacherUI.SetActive(true);
+            }
+        }
 
         //AddObjectList(fairyTaleUI);
 
@@ -62,6 +76,25 @@ public class NK_FairyTale : MonoBehaviour
             fairyTaleObject.SetActive(false);
             book.gameObject.SetActive(false);
             gameObject.SetActive(false);
+        }
+    }
+
+    private void OnDisable()
+    {
+        fairyTaleUI.SetActive(false);
+        fairyTaleObject.SetActive(false);
+        book.gameObject.SetActive(false);
+
+        if (GameManager.Instance.photonView.IsMine)
+        {
+            if (GameManager.Instance.photonView.gameObject.CompareTag("Child"))
+            {
+                childUI.SetActive(false);
+            }
+            if (GameManager.Instance.photonView.gameObject.CompareTag("Teacher"))
+            {
+                teacherUI.SetActive(false);
+            }
         }
     }
 }
