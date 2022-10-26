@@ -70,7 +70,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         // 일단 큐브생성하자
         if (!createBook)
         {
-            me = PhotonNetwork.Instantiate("YJ/Cube", spawnPos[liveCount], Quaternion.identity);
+            me = PhotonNetwork.Instantiate("YJ/Player", spawnPos[liveCount], Quaternion.identity);
         }
 
     }
