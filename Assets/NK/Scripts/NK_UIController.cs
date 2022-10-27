@@ -2,6 +2,7 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NK_UIController : MonoBehaviourPun
@@ -81,7 +82,36 @@ public class NK_UIController : MonoBehaviourPun
         {
             // 모든 좌석을 가져옴
             seats = GameObject.FindGameObjectsWithTag("Seat").ToList<GameObject>();
-            photonView.RPC("RpcControl", RpcTarget.All);
+
+            for (int i = 0; i < GameManager.Instance.children.Count; i++)
+            {
+                GameObject child = GameManager.Instance.children[i].gameObject;
+                //child.transform.forward = Vector3.forward;
+                // Sit 애니메이션 설정
+                //NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
+                //move.state = NK_PlayerMove.State.Sit;
+                //move.enabled = false;
+                // 가장 짧은 거리 초기화
+                shortDistance = float.MaxValue;
+
+                for (int j = 0; j < seats.Count; j++)
+                {
+                    float distance = Vector3.Distance(seats[j].transform.position, child.transform.position);
+                    // 아이들과 좌석의 거리를 비교함
+                    if (distance < shortDistance)
+                    {
+                        shortDistance = distance;
+                        nearSeat = seats[j];
+                    }
+                }
+                print(nearSeat);
+                photonView.RPC("RpcControl", RpcTarget.All, i, nearSeat.transform.position);
+                // 가장 가까운 빈 좌석에 앉힘
+                //child.transform.position = nearSeat.transform.position;
+                seats.Remove(nearSeat);
+            }
+
+            //photonView.RPC("RpcControl", RpcTarget.All);
         }
         else
         {
@@ -90,33 +120,43 @@ public class NK_UIController : MonoBehaviourPun
     }
 
     [PunRPC]
-    private void RpcControl()
+    private void RpcControl(int index, Vector3 seatPos)
     {
-        for (int i = 0; i < GameManager.Instance.children.Count; i++)
-        {
-            GameObject child = GameManager.Instance.children[i].gameObject;
-            child.transform.forward = Vector3.forward;
-            // Sit 애니메이션 설정
-            NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
-            move.state = NK_PlayerMove.State.Sit;
-            //move.enabled = false;
-            // 가장 짧은 거리 초기화
-            shortDistance = float.MaxValue;
+        /*        // 모든 좌석을 가져옴
+                seats = GameObject.FindGameObjectsWithTag("Seat").ToList<GameObject>();
 
-            for (int j = 0; j < seats.Count; j++)
-            {
-                float distance = Vector3.Distance(seats[j].transform.position, child.transform.position);
-                // 아이들과 좌석의 거리를 비교함
-                if (distance < shortDistance)
+                for (int i = 0; i < GameManager.Instance.children.Count; i++)
                 {
-                    shortDistance = distance;
-                    nearSeat = seats[j];
-                }
-            }
-            // 가장 가까운 빈 좌석에 앉힘
-            child.transform.position = nearSeat.transform.position;
-            seats.Remove(nearSeat);
-        }
+                    GameObject child = GameManager.Instance.children[i].gameObject;
+                    child.transform.forward = Vector3.forward;
+                    // Sit 애니메이션 설정
+                    NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
+                    move.state = NK_PlayerMove.State.Sit;
+                    //move.enabled = false;
+                    // 가장 짧은 거리 초기화
+                    shortDistance = float.MaxValue;
+
+                    for (int j = 0; j < seats.Count; j++)
+                    {
+                        float distance = Vector3.Distance(seats[j].transform.position, child.transform.position);
+                        // 아이들과 좌석의 거리를 비교함
+                        if (distance < shortDistance)
+                        {
+                            shortDistance = distance;
+                            nearSeat = seats[j];
+                        }
+                    }
+                    // 가장 가까운 빈 좌석에 앉힘
+                    child.transform.position = nearSeat.transform.position;
+                    seats.Remove(nearSeat);
+                }*/
+        GameObject child = GameManager.Instance.children[index].gameObject;
+        child.transform.forward = Vector3.forward;
+        // Sit 애니메이션 설정
+        NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
+        move.state = NK_PlayerMove.State.Sit;
+        // 가장 가까운 빈 좌석에 앉힘
+        child.transform.position = seatPos;
     }
 
     [PunRPC]
