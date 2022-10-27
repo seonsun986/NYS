@@ -8,8 +8,8 @@ public class NK_ManageUI : MonoBehaviourPun
 {
     public GameObject childListFactory;
     public Transform childrenListContent;
-    // Start is called before the first frame update
-    void Start()
+
+    void OnEnable()
     {
         foreach (PhotonView child in GameManager.Instance.children)
         {
@@ -19,11 +19,5 @@ public class NK_ManageUI : MonoBehaviourPun
             childList.transform.parent = childrenListContent;
             print(child.Owner.NickName);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
