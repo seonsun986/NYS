@@ -12,13 +12,13 @@ public class NK_BookUI : MonoBehaviourPun
 {
     public enum Book
     {
-        백설공주,
+        위인전,
         신데렐라,
         오즈의마법사,
         용이야기,
     }
 
-    public Book selectedBook = Book.백설공주;
+    public Book selectedBook = Book.위인전;
     public GameObject bookUI;
     public GameObject fairyTaleManager;
     public List<PageInfo> objs;
@@ -30,13 +30,14 @@ public class NK_BookUI : MonoBehaviourPun
 
     void SelectBook(Book book)
     {
+        pageNum = 0;
         selectedBook = book;
         print(book);
     }
 
     public void ClickBook1()
     {
-        SelectBook(Book.백설공주);
+        SelectBook(Book.위인전);
         photonView.RPC("RPCSetActive", RpcTarget.All);
         ClickBook();
     }
@@ -175,7 +176,7 @@ public class NK_BookUI : MonoBehaviourPun
 
     public void ClickNext()
     {
-        if (sceneObjects.Count > pageNum + 1)
+        if (sceneObjects.Count > pageNum + 1 && fairyTaleUI.gameObject.activeSelf)
         {
             pageNum++;
             photonView.RPC("RPCDestroyObject", RpcTarget.All);
@@ -185,7 +186,7 @@ public class NK_BookUI : MonoBehaviourPun
     
     public void ClickBefore()
     {
-        if (0 <= pageNum - 1)
+        if (0 <= pageNum - 1 && fairyTaleUI.gameObject.activeSelf)
         {
             pageNum--;
             photonView.RPC("RPCDestroyObject", RpcTarget.All);

@@ -23,8 +23,10 @@ public class NK_TeacherManager : YJ_PlazaManager
     public override void JoinRoom()
     {
         PhotonNetwork.LeaveRoom();
-        // XR_A라는 방으로 입장
-        //PhotonNetwork.JoinRoom("Lobby");
+        if(PhotonNetwork.IsMasterClient)
+        {
+            GameManager.Instance.photonView.RPC("RPCLeaveRoom", RpcTarget.All);
+        }
     }
 
     public override void OnJoinedLobby()
