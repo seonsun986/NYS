@@ -255,7 +255,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         }
         else
         {
-            sceneName = "TeacherScene";
+            sceneName = "TeacherScene(ClassRoom)";
         }
         return sceneName;
     }
