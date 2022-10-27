@@ -196,6 +196,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     {
         // 방정보 셋팅
         RoomOptions roomOptions = new RoomOptions();
+        //roomOptions.MaxPlayers = (byte)YJ_DataManager.CreateRoomInfo.roomNumber;
 
         // 방을 만든다
         PhotonNetwork.CreateRoom(YJ_DataManager.CreateRoomInfo.roomName, roomOptions);
@@ -218,6 +219,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     }
 
     public string goingRoom;
+    public int goingRoomType;
 
     // 방입장 ( 방생성자는 자동으로 입장이 됨 )
     public virtual void JoinRoom()
@@ -226,7 +228,10 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         if(YJ_DataManager.CreateRoomInfo.roomName != null)
             PhotonNetwork.JoinRoom(YJ_DataManager.CreateRoomInfo.roomName);
         else
+        {
             PhotonNetwork.JoinRoom(goingRoom);
+            YJ_DataManager.CreateRoomInfo.roomType = goingRoomType;
+        }
 
     }
 
@@ -259,7 +264,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         }
         else if (YJ_DataManager.CreateRoomInfo.roomType == 2)
         {
-            sceneName = "TeacherScene(Candy)";
+            sceneName = "TeacherScene(ClassRoom)";
         }
         else if (YJ_DataManager.CreateRoomInfo.roomType == 3)
         {
