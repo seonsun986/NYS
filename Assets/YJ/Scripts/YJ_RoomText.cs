@@ -57,11 +57,8 @@ public class YJ_RoomText : MonoBehaviourPun
     // 리스트 눌렀을때 방이동하기
     public void OnClickRoomList()
     {
-    //    if (photonView.IsMine)
-    //    {
-            YJ_PlazaManager.instance.goingRoom = roomName;
-            YJ_PlazaManager.instance.goingRoomType = roomType;
-            YJ_PlazaManager.instance.OutPlaza();
-    //    }
+        YJ_PlazaManager.instance.goingRoom = roomName;
+        YJ_PlazaManager.instance.goingRoomType = roomType;
+        YJ_PlazaManager.instance.OutPlaza();
     }
 }

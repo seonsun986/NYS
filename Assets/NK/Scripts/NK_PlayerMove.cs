@@ -131,6 +131,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     Vector3 dir;
     float h = 0;
     float v = 0;
+    int jumpCount = 0;
 
     void PlayerMove()
     {
@@ -151,11 +152,17 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         yVelocity += gravity * Time.deltaTime;
         // 만약에 바닥에 닿아있다면 yVelocity를 0으로 하자
         if (controller.isGrounded)
+        {
             yVelocity = 0;
+            jumpCount = 0;
+        }
 
         // 스페이스바를 누르면 yVelocity에 jumpPower를 셋팅
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && jumpCount < 1)
+        {
             yVelocity = jumpPower;
+            jumpCount++;
+        }
 
 
         dir.y = yVelocity;
