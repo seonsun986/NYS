@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NK_FairyTale : MonoBehaviour
@@ -16,17 +17,15 @@ public class NK_FairyTale : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        fairyTaleUI.SetActive(true);
-        fairyTaleObject.SetActive(true);
         book.gameObject.SetActive(true);
 
-        if(GameManager.Instance.photonView.IsMine)
+        if (GameManager.Instance.photonView.IsMine)
         {
-            if(GameManager.Instance.photonView.gameObject.CompareTag("Child"))
+            if (GameManager.Instance.photonView.gameObject.CompareTag("Child"))
             {
                 childUI.SetActive(true);
             }
-            if(GameManager.Instance.photonView.gameObject.CompareTag("Teacher"))
+            if (GameManager.Instance.photonView.gameObject.CompareTag("Teacher"))
             {
                 teacherUI.SetActive(true);
             }
@@ -59,6 +58,12 @@ public class NK_FairyTale : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (book.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f)
+        {
+            fairyTaleUI.SetActive(true);
+            fairyTaleObject.SetActive(true);
+        }
+
         for (int i = 0; i < objs.Count; i++)
         {
             if (objs[i].gameObject.activeSelf == true)
@@ -68,14 +73,6 @@ public class NK_FairyTale : MonoBehaviour
                     objs[i].transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
                 }
             }
-        }
-
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-            fairyTaleUI.SetActive(false);
-            fairyTaleObject.SetActive(false);
-            book.gameObject.SetActive(false);
-            gameObject.SetActive(false);
         }
     }
 

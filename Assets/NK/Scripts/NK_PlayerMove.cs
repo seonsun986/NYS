@@ -171,4 +171,10 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         if (anim != null)
             anim.SetBool(s, b);
     }
+
+    [PunRPC]
+    private void RPCLeaveRoom()
+    {
+        NK_TeacherManager.instance.JoinRoom();
+    }
 }
