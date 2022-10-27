@@ -44,37 +44,6 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 
     private void Awake()
     {
-/*        // 선생님방에 있을 때
-        if (GameObject.Find("GameManager"))
-        {
-            // 임시로 아이와 선생님 분류
-            speaker.GetComponent<AudioSource>().mute = false;
-            // 방 만든 사람(선생님)이 아닐 경우
-            if (PhotonNetwork.MasterClient.NickName != photonView.Owner.NickName)
-            {
-                gameObject.tag = "Child";
-                if (photonView.IsMine)
-                {
-                    GameObject.Find("TeacherUI").SetActive(false);
-                    GameManager.Instance.photonView = photonView;
-                    GameManager.Instance.AddPlayer(photonView);
-                }
-            }
-            // 방 만든 사람(선생님)일 경우
-            else
-            {
-                gameObject.tag = "Teacher";
-                if (photonView.IsMine)
-                {
-                    GameObject.Find("ChildUI").SetActive(false);
-                    GameManager.Instance.photonView = photonView;
-                }
-            }
-        }
-        else
-        {
-            speaker.GetComponent<AudioSource>().mute = true;
-        }*/
 
     }
 
@@ -90,11 +59,11 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
             if (PhotonNetwork.MasterClient.NickName != photonView.Owner.NickName)
             {
                 gameObject.tag = "Child";
+                GameManager.Instance.AddPlayer(photonView);
                 if (photonView.IsMine)
                 {
                     GameObject.Find("TeacherUI").SetActive(false);
                     GameManager.Instance.photonView = photonView;
-                    GameManager.Instance.AddPlayer(photonView);
                 }
             }
             // 방 만든 사람(선생님)일 경우

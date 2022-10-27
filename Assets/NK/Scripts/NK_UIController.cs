@@ -56,12 +56,13 @@ public class NK_UIController : MonoBehaviourPun
         photonView.RPC("RPCMute", RpcTarget.All);
     }
 
+    [PunRPC]
     private void RPCMute()
     {
         // 모든 아이들의 볼륨을 0으로 하거나 Mute 시킴
         for (int i = 0; i < GameManager.Instance.children.Count; i++)
         {
-            AudioSource audio = GameManager.Instance.children[i].GetComponent<AudioSource>();
+            AudioSource audio = GameManager.Instance.children[i].transform.GetChild(2).GetComponent<AudioSource>();
             if (audio != null)
             {
                 audio.mute = IsMute;
