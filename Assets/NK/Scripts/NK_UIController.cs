@@ -79,6 +79,8 @@ public class NK_UIController : MonoBehaviourPun
         // ¸ðµç ¾ÆÀÌµéÀ» °¡Àå °¡±î¿î ºó ÁÂ¼®¿¡ ¾ÉÈû
         if (IsControl)
         {
+            // ¸ðµç ÁÂ¼®À» °¡Á®¿È
+            seats = GameObject.FindGameObjectsWithTag("Seat").ToList<GameObject>();
             photonView.RPC("RpcControl", RpcTarget.All);
         }
         else
@@ -90,9 +92,6 @@ public class NK_UIController : MonoBehaviourPun
     [PunRPC]
     private void RpcControl()
     {
-        // ¸ðµç ÁÂ¼®À» °¡Á®¿È
-        seats = GameObject.FindGameObjectsWithTag("Seat").ToList<GameObject>();
-
         for (int i = 0; i < GameManager.Instance.children.Count; i++)
         {
             GameObject child = GameManager.Instance.children[i].gameObject;
