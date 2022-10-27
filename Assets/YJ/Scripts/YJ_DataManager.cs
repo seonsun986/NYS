@@ -102,11 +102,6 @@ public class YJ_DataManager : MonoBehaviour
         
         if (SceneManager.GetActiveScene().name == "PlazaScene" && changeScene > 1)
         {
-            //GameObject room = GameObject.FindWithTag("Room");
-            //if (room == null)
-            //     return;
-
-            //roomList.Clear();
             if (roomList.Length < 1)
             {
                 roomList = GameObject.FindGameObjectsWithTag("Room");
