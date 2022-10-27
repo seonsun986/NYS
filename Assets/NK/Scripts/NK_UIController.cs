@@ -100,7 +100,7 @@ public class NK_UIController : MonoBehaviourPun
                     }
                 }
 
-                photonView.RPC("RpcControl", RpcTarget.All, GameManager.Instance.children[i], nearSeat.transform.position);
+                photonView.RPC("RpcControl", RpcTarget.All, child.GetPhotonView().ViewID, nearSeat.transform.position);
                 seats.Remove(nearSeat);
             }
         }
