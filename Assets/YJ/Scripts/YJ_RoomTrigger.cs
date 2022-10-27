@@ -11,11 +11,12 @@ public class YJ_RoomTrigger : MonoBehaviourPun
         if (photonView.IsMine)
         {
             roomName = YJ_DataManager.CreateRoomInfo.roomName;
-            photonView.RPC("RpcNameSet", RpcTarget.All, roomName);
+            roomType = YJ_DataManager.CreateRoomInfo.roomType;
+            
+            photonView.RPC("RpcNameSet", RpcTarget.All, roomName, roomType);
         }
     }
 
-    float currentTime;
     void Update()
     {
         //currentTime += Time.deltaTime;
@@ -30,6 +31,7 @@ public class YJ_RoomTrigger : MonoBehaviourPun
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 YJ_PlazaManager.instance.goingRoom = roomName;
+                YJ_PlazaManager.instance.goingRoomType = roomType;
                 YJ_PlazaManager.instance.OutPlaza();
                 //PhotonNetwork.JoinLobby();
                 //JoinRoom();
@@ -38,17 +40,19 @@ public class YJ_RoomTrigger : MonoBehaviourPun
     }
 
     [PunRPC]
-    void RpcNameSet(string name)
+    void RpcNameSet(string name, int type)
     {
         roomName = name;
+        roomType = type;
     }
 
     public string roomName;
+    public int roomType;
 
     bool canJoinRoom;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 6)
+        if (other.gameObject.layer == 6 && photonView.IsMine)
         {
             canJoinRoom = true;
         }
