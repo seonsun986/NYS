@@ -160,6 +160,8 @@ public class SH_BtnManager : MonoBehaviour
         {
             GoScene();
         }
+        currentScene = (int)Scenes[0].transform.position.y / 20;
+
     }
 
 
@@ -280,6 +282,7 @@ public class SH_BtnManager : MonoBehaviour
 
     string fileName;            // 파일 저장 이름
     public int i = 0;
+    public int currentScene;
     public void AddScene()
     {
         #region 캡쳐하기
@@ -307,6 +310,9 @@ public class SH_BtnManager : MonoBehaviour
         File.WriteAllBytes(fileName, bytes);
         #endregion
 
+        // 해당 y값이 0이면 내가 지금 scene0에 있다는 소리고 
+        // 20으로 나눈 몫이 1이면 내가 지금 Scene1에 있다는 소리다
+        currentScene = (int)Scenes[0].transform.position.y / 20;
 
         // 캡쳐파일 RawImage에 넣기
         byte[] textureBytes = File.ReadAllBytes(fileName);
@@ -314,10 +320,11 @@ public class SH_BtnManager : MonoBehaviour
         {
             Texture2D loadedTexture = new Texture2D(0, 0);
             loadedTexture.LoadImage(textureBytes);
-            rawImages[i].GetComponent<RawImage>().texture = loadedTexture;
+            rawImages[currentScene].GetComponent<RawImage>().texture = loadedTexture;
         }
         
         // 새로운 Rawimage 추가
+        // 맨 밑에 추가해야한다
         GameObject raw = Instantiate(rawImage);
         raw.transform.SetParent(GameObject.Find("Canvas").transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).transform);
         raw.transform.position = firstRawImage.position + transform.up * (-180* (i+1));
@@ -331,11 +338,11 @@ public class SH_BtnManager : MonoBehaviour
         // 카메라 내리지 않기로 결정(Scenecam, MainCamera 모두!)
         for(int j =0;j<Scenes.Count;j++)
         {
-            Scenes[j].transform.position += new Vector3(0, 20, 0);
+            Scenes[j].transform.position += new Vector3(0, 20 * ((i+1) - currentScene), 0);
         }
         for(int k =0;k<Scenes_txt.Count;k++)
         {
-            Scenes_txt[k].transform.position += new Vector3(0, Screen.height, 0);
+            Scenes_txt[k].transform.position += new Vector3(0, Screen.height * ((i + 1) - currentScene), 0);
         }
 
 
