@@ -114,7 +114,7 @@ public class NK_UIController : MonoBehaviourPun
                 }
             }
             // °¡Àå °¡±î¿î ºó ÁÂ¼®¿¡ ¾ÉÈû
-            child.transform.position = new Vector3(nearSeat.transform.position.x, child.transform.position.y, nearSeat.transform.position.z);
+            child.transform.position = nearSeat.transform.position;
             seats.Remove(nearSeat);
         }
     }
