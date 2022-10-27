@@ -105,7 +105,7 @@ public class NK_UIController : MonoBehaviourPun
                     }
                 }
                 print(nearSeat);
-                photonView.RPC("RpcControl", RpcTarget.All, i, nearSeat.transform.position);
+                photonView.RPC("RpcControl", RpcTarget.All, child.GetPhotonView().ViewID, nearSeat.transform.position);
                 // °¡Àå °¡±î¿î ºó ÁÂ¼®¿¡ ¾ÉÈû
                 //child.transform.position = nearSeat.transform.position;
                 seats.Remove(nearSeat);
@@ -120,7 +120,7 @@ public class NK_UIController : MonoBehaviourPun
     }
 
     [PunRPC]
-    private void RpcControl(int index, Vector3 seatPos)
+    private void RpcControl(int viewId, Vector3 seatPos)
     {
         /*        // ¸ðµç ÁÂ¼®À» °¡Á®¿È
                 seats = GameObject.FindGameObjectsWithTag("Seat").ToList<GameObject>();
@@ -150,7 +150,7 @@ public class NK_UIController : MonoBehaviourPun
                     child.transform.position = nearSeat.transform.position;
                     seats.Remove(nearSeat);
                 }*/
-        GameObject child = GameManager.Instance.children[index].gameObject;
+        GameObject child = PhotonView.Find(viewId).gameObject;
         child.transform.forward = Vector3.forward;
         // Sit ¾Ö´Ï¸ÞÀÌ¼Ç ¼³Á¤
         NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
