@@ -28,7 +28,7 @@ public class YJ_RoomTrigger : MonoBehaviourPun
 
         if(canJoinRoom)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && photonView.IsMine)
             {
                 YJ_PlazaManager.instance.goingRoom = roomName;
                 YJ_PlazaManager.instance.goingRoomType = roomType;
@@ -52,7 +52,7 @@ public class YJ_RoomTrigger : MonoBehaviourPun
     bool canJoinRoom;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 6 && photonView.IsMine)
+        if (other.gameObject.layer == 6 )//&& photonView.IsMine)
         {
             canJoinRoom = true;
         }
@@ -60,7 +60,10 @@ public class YJ_RoomTrigger : MonoBehaviourPun
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.gameObject.layer == 6 )// && photonView.IsMine)
+        {
             canJoinRoom = false;
+        }
     }
 
  
