@@ -8266,7 +8266,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NK_TeacherManager, Assembly-CSharp
-        m_MethodName: JoinRoom
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15727,7 +15727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1347615897
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18332,6 +18332,7 @@ MonoBehaviour:
   roomListViewId: 0
   roomList: {fileID: 0}
   goingRoom: 
+  goingRoomType: 0
   liveCount: 0
   spawnPos: []
 --- !u!4 &1539510954
