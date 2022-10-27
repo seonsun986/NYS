@@ -45,7 +45,15 @@ public class SH_EditorManager : MonoBehaviour
             {"Fly", "날기" },
             {"Gritar", "포효" },
             { "Shout", "포효"},
-            {"StandUp","일어서기" },
+            { "Clap","박수치기"},
+            { "Pray","기도하기"},
+            { "Dance","춤추기"},
+            { "Hi","인사하기"},
+            { "Yawn", "기지개펴기"},
+            { "Kiss", "뽀뽀날리기"},
+            { "Cry", "울기"},
+            { "Fight", "싸우기"},
+            { "SneakWalk", "살금살금 걷기"},
         };
     }
 
