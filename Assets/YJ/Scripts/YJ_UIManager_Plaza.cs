@@ -26,35 +26,15 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
     public void Setting()
     {
         settingSet.SetActive(!settingSet.activeSelf);
-        //if (settingCount > 0)
-        //{
-        //    settingSet.SetActive(false);
-        //    settingCount = 0;
-        //}
-        //else
-        //{
-        //    settingSet.SetActive(true);
-        //    settingCount++;
-        //}
     }
     #endregion
 
     #region ¹æ¸ñ·Ï
     public GameObject roomList;
-    int roomListCount = 0;
 
     public void RoomList()
     {
-        if (roomListCount > 0)
-        {
-            roomList.SetActive(false);
-            roomListCount = 0;
-        }
-        else
-        {
-            roomList.SetActive(true);
-            roomListCount++;
-        }
+        roomList.SetActive(!roomList.activeSelf);
     }
     #endregion
 
@@ -64,16 +44,7 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
     int createCount = 0;
     public void CreateRoomBT()
     {
-        if (createCount > 0)
-        {
-            createRoomSet.SetActive(false);
-            createCount = 0;
-        }
-        else
-        {
-            createRoomSet.SetActive(true);
-            createCount++;
-        }
+        createRoomSet.SetActive(!createRoomSet.activeSelf);
     }
 
 
