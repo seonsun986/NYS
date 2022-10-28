@@ -22,10 +22,11 @@ public class NK_TeacherManager : YJ_PlazaManager
 
     public override void JoinRoom()
     {
-        PhotonNetwork.LeaveRoom();
-        if(PhotonNetwork.IsMasterClient)
+        //PhotonNetwork.LeaveRoom();
+        if (PhotonNetwork.IsMasterClient)
         {
             GameManager.Instance.photonView.RPC("RPCLeaveRoom", RpcTarget.All);
+            print("out!!!");
         }
     }
 

@@ -20,4 +20,19 @@ public class NK_ManageUI : MonoBehaviourPun
             print(child.Owner.NickName);
         }
     }
+
+    private void OnDisable()
+    {
+        // child 에는 부모와 자식이 함께 설정 된다.
+        var child = childrenListContent.GetComponentsInChildren<Transform>();
+
+        foreach (var iter in child)
+        {
+            // 부모(this.gameObject)는 삭제 하지 않기 위한 처리
+            if (iter != childrenListContent.transform)
+            {
+                Destroy(iter.gameObject);
+            }
+        }
+    }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 
 public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 {
@@ -36,7 +37,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     Quaternion receiveRot;
     // 보간속력
     public float lerpSpeed = 100;
-    
+
     // 얼굴카메라
     public GameObject faceCam;
 
@@ -50,6 +51,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
+        ///
         // 선생님방에 있을 때
         if (GameObject.Find("GameManager"))
         {
@@ -63,6 +65,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                 if (photonView.IsMine)
                 {
                     GameObject.Find("TeacherUI").SetActive(false);
+                    GameObject.Find("BookBtn").SetActive(false);
                     GameManager.Instance.photonView = photonView;
                 }
             }
@@ -81,7 +84,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         {
             speaker.GetComponent<AudioSource>().mute = true;
         }
-
+        ///
         if (photonView.IsMine)
         {
             faceCam.SetActive(true);
@@ -114,7 +117,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                     {
                         return;
                     }
-                        PlayerMove();
+                    PlayerMove();
                     break;
                 case State.Sit:
                     photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", true);
@@ -182,6 +185,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     [PunRPC]
     private void RPCLeaveRoom()
     {
-        NK_TeacherManager.instance.JoinRoom();
+        PhotonNetwork.LeaveRoom();
+       // NK_TeacherManager.instance.JoinRoom();
     }
 }

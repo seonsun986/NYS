@@ -14,7 +14,7 @@ public class NK_SettingUI : MonoBehaviourPun
     void Start()
     {
         Speaker = GameObject.FindWithTag("Teacher");
-        audioSource = Speaker.GetComponent<AudioSource>();
+        audioSource = Speaker.transform.GetChild(2).GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -25,23 +25,11 @@ public class NK_SettingUI : MonoBehaviourPun
 
     public void ClickMinus()
     {
-        RPCClickMinus();
-    }
-
-    [PunRPC]
-    private void RPCClickMinus()
-    {
         // 마이너스 버튼 눌렀을 때
         slider.value -= 0.1f;
     }
 
     public void ClickPlus()
-    {
-        RPCClickPlus();
-    }
-
-    [PunRPC]
-    private void RPCClickPlus()
     {
         // 플러스 버튼 눌렀을 때
         slider.value += 0.1f;
