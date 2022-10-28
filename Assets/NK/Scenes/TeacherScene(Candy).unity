@@ -3285,6 +3285,7 @@ GameObject:
   - component: {fileID: 222833782}
   - component: {fileID: 222833781}
   - component: {fileID: 222833784}
+  - component: {fileID: 222833785}
   m_Layer: 5
   m_Name: ListBtn
   m_TagString: Untagged
@@ -3311,7 +3312,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -348, y: 311}
-  m_SizeDelta: {x: 200, y: 100}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &222833781
 MonoBehaviour:
@@ -3389,7 +3390,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7dd0a586cb47f3449b15195fed29e618, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c5ae2d48fd4ea9b48b8b6b22240e15f0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3450,6 +3451,21 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   isSelect: 0
+--- !u!114 &222833785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222833779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 5, y: 3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &223257782
 GameObject:
   m_ObjectHideFlags: 0
@@ -7701,7 +7717,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 20
 --- !u!222 &618766136
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23129,8 +23145,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_Font: {fileID: 12800000, guid: 0e9f695564e18f946a165a8e98866ef1, type: 3}
+    m_FontSize: 30
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
