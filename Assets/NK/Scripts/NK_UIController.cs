@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class NK_UIController : MonoBehaviourPun
 {
@@ -38,18 +40,6 @@ public class NK_UIController : MonoBehaviourPun
         }
     }
     #endregion
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     #region ClickMute // 음소거 버튼
     public void ClickMute()
