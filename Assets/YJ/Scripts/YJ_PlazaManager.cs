@@ -270,7 +270,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         }
         else if (YJ_DataManager.CreateRoomInfo.roomType == 3)
         {
-            sceneName = "TeacherScene(Candy)";
+            sceneName = "TeacherScene(Christmas)";
             YJ_DataManager.CreateRoomInfo.roomType = 0;
         }
         return sceneName;
