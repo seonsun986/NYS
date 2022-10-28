@@ -62,6 +62,8 @@ public class SH_EditorManager : MonoBehaviour
         if (active_InputField != null)
         {
             // 현재 선택되어 있는 InputField의 값을 바꿔보자
+            // 처음 만들어졌다면 기본 설정을 적용시키고 
+            // 원래 만들어져있었다면 자기가 가지고 있는 설정을 다시 불러온다
             active_InputField.info.txtDropdown = font.value;
             active_InputField.transform.GetChild(3).GetComponent<Text>().font = fonts[active_InputField.info.txtDropdown];
             active_InputField.info.txtSize = int.Parse(fontSize.text);
