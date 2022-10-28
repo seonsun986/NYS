@@ -209,14 +209,14 @@ public class SH_BtnManager : MonoBehaviour
         }
         bgDir *= -1;
 
-        MoveObj(objectBG.gameObject, Screen.width);
+        MoveObj(objectBG.gameObject, /*Screen.width*/1865);
         objDir = -1;
     }
 
     int objDir = -1;
     public void MoveObjectBG()
     {
-        float x = objectBG.transform.position.x + objectBG.GetComponent<RectTransform>().sizeDelta.x * objDir;
+        float x = objectBG.transform.position.x + (objectBG.GetComponent<RectTransform>().sizeDelta.x - 65) * objDir;
         MoveObj(objectBG.gameObject, x, "OnCompleteObject");
         if(objDir == -1)
         {
@@ -231,7 +231,7 @@ public class SH_BtnManager : MonoBehaviour
         objDir *= -1;
        
 
-        MoveObj(sceneBG.gameObject, 0);
+        MoveObj(sceneBG.gameObject, 50);
         bgDir = 1;
     }
     #endregion
