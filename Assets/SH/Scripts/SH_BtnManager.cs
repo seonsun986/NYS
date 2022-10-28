@@ -244,9 +244,13 @@ public class SH_BtnManager : MonoBehaviour
     // 변경할 때마다의 값을 각자만의 클래스에 저장해놓는다.
     // 해당 함수는 시작할 때만 값을 할당한다
     // 현재 있는 씬을 기억한다
+    int text;
     public void AddText()
     {
         SH_InputField inputText = Instantiate(inputField).GetComponent<SH_InputField>();
+        inputText.gameObject.name = "Text" + text;
+        txtDropdown.value = 0;
+        txtSize.text = "20";
         inputText.info = new TextInfo
         {
             inputs = inputText.GetComponent<InputField>().text,
@@ -257,6 +261,7 @@ public class SH_BtnManager : MonoBehaviour
         inputFields.Add(inputText);
         inputText.transform.SetParent(Scenes_txt[currentSceneNum].transform);
         inputText.transform.localPosition = new Vector3(0, 0, 0);
+        text++;
     }
 
     #region 글씨 크기 조절
