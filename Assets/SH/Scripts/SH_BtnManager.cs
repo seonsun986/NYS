@@ -145,6 +145,7 @@ public class SH_BtnManager : MonoBehaviour
 
     // 현재 내가 있는 씬 번호
     public int currentSceneNum;
+        
 
 
     void Start()
@@ -188,10 +189,12 @@ public class SH_BtnManager : MonoBehaviour
         //"easetype", iTween.EaseType.linear));
     }
 
+    public GameObject Scenebuttonon;
+    public GameObject Scenebuttonoff;
     int bgDir = 1;      // 씬 BG가 나타나 있지 않을때(나타나 있을 때는 -1이다)
     public void MoveSceneBG()
     {
-        float x = sceneBG.transform.position.x + sceneBG.GetComponent<RectTransform>().sizeDelta.x * bgDir;
+        float x = sceneBG.transform.position.x + (sceneBG.GetComponent<RectTransform>().sizeDelta.x - 55) * bgDir;
         MoveObj(sceneBG.gameObject, x, "OnCompleteScene");
         if(bgDir== 1)       // 나타나 있지 않는 상태 -> 나타나는 상태
         {
