@@ -16,6 +16,7 @@ public class TextInfo
     public string inputs { get; set; }
     public int txtDropdown { get; set; }
     public int txtSize { get; set; }
+    public Color txtColor { get; set; }
 }
 
 public class Json
@@ -96,7 +97,6 @@ public class ObjInfo : PageInfo
 public class SH_BtnManager : MonoBehaviour
 {
     public static SH_BtnManager Instance;
-
     private void Awake()
     {
         Instance = this;
@@ -110,10 +110,11 @@ public class SH_BtnManager : MonoBehaviour
 
     public GameObject inputField;       // inputField 프리팹
     public List<SH_InputField> inputFields = new List<SH_InputField>();
-    // 현재 선택되어있는 드롭다운과 텍스트 사이즈
+    // 현재 선택되어있는 드롭다운과 텍스트 사이즈, 텍스트 컬러
     public Dropdown txtDropdown;
     public string txtSize;
     public InputField InputtxtSize;
+    public Color txtColor;
     // 씬 추가하기
     public GameObject voidScene;
     public GameObject rawImage;
@@ -147,6 +148,11 @@ public class SH_BtnManager : MonoBehaviour
     // 현재 내가 있는 씬 번호
     public int currentSceneNum;
 
+    // 텍스트 컬러 hex Color List
+    public List<string> hexColor;
+
+    // 텍스트 컬러 반영된 이미지
+    public Image txtcolorImage;
     void Start()
     {
         path = Application.dataPath + "/Capture/";
@@ -258,13 +264,17 @@ public class SH_BtnManager : MonoBehaviour
         }
         
         inputText.gameObject.name = "Text" + text;
+        // 초기값 세팅
         txtDropdown.value = 0;
         txtSize = "20";
+        txtColor = new Color(0, 0, 0, 1);
+
         inputText.info = new TextInfo
         {
             inputs = inputText.GetComponent<InputField>().text,
             txtDropdown = txtDropdown.value,
             txtSize = int.Parse(txtSize),
+            txtColor = txtColor,
         };
         // 선택되어있는 dropdown과 textSize값에 따라서 글자 크기를 바꾸기 위함
         inputFields.Add(inputText);
@@ -291,6 +301,29 @@ public class SH_BtnManager : MonoBehaviour
     }
     #endregion
 
+    public void ChangeTextColor()
+    {
+        string name = EventSystem.current.currentSelectedGameObject.name;
+        int btnNum = int.Parse(name.Substring(3));               
+        Color color;
+        ColorUtility.TryParseHtmlString(hexColor[btnNum], out color);
+        txtColor = color;
+        txtcolorImage.color = color;
+
+    }
+
+    public GameObject palette;
+    public void PaletteOnOff()
+    {
+        if(palette.activeSelf == true)
+        {
+            palette.SetActive(false);
+        }
+        else
+        {
+            palette.SetActive(true);
+        }
+    }
     // 씬 추가하기 함수
     // rawImage를 리스트에 담는다
     // Save를 누르거나, 씬을 추가하는 순간 해당 씬을 캡쳐한다.

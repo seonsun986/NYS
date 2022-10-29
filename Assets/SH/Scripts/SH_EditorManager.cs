@@ -13,7 +13,9 @@ public class SH_EditorManager : MonoBehaviour
     public SH_InputField active_InputField;     // 현재 선택된 InputField(바뀐)
     public Dropdown font;                       // 폰트
     public string fontSize;                       // 폰트 사이즈
+    public Color fontColor;
     public InputField InputfontSize;
+    public Image fontColorImage;
     public Font[] fonts;
     #endregion
 
@@ -32,7 +34,6 @@ public class SH_EditorManager : MonoBehaviour
     }
     void Start()
     {
-        fontSize = InputfontSize.text;
         animName = new Dictionary<string, string>
         {
             { "Walk", "걷기"},
@@ -75,6 +76,7 @@ public class SH_EditorManager : MonoBehaviour
                 origin_InputField = active_InputField;
                 font.value = origin_InputField.info.txtDropdown;
                 fontSize = active_InputField.info.txtSize.ToString();
+                fontColorImage.color = active_InputField.info.txtColor;
             }
             // 현재 선택되어 있는 InputField의 값을 바꿔보자
             // 처음 만들어졌다면 기본 설정을 적용시키고 
@@ -85,6 +87,9 @@ public class SH_EditorManager : MonoBehaviour
             active_InputField.transform.GetChild(3).GetComponent<Text>().font = fonts[active_InputField.info.txtDropdown];
             active_InputField.info.txtSize = int.Parse(fontSize);
             active_InputField.transform.GetChild(3).GetComponent<Text>().fontSize = active_InputField.info.txtSize;
+            active_InputField.info.txtColor = fontColorImage.color;
+            active_InputField.transform.GetChild(3).GetComponent<Text>().color = active_InputField.info.txtColor;
+
         }
 
         // 클릭되어있는 오브젝트 구하기
