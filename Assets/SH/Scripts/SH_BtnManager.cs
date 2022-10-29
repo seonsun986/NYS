@@ -85,6 +85,7 @@ public class ObjInfo : PageInfo
     //public string category;
     public Quaternion rotation;
     public Vector3 scale;
+    public string anim;
 }
 
 
@@ -111,8 +112,8 @@ public class SH_BtnManager : MonoBehaviour
     public List<SH_InputField> inputFields = new List<SH_InputField>();
     // 현재 선택되어있는 드롭다운과 텍스트 사이즈
     public Dropdown txtDropdown;
-    public Text txtSize;
-
+    public string txtSize;
+    public InputField InputtxtSize;
     // 씬 추가하기
     public GameObject voidScene;
     public GameObject rawImage;
@@ -145,24 +146,22 @@ public class SH_BtnManager : MonoBehaviour
 
     // 현재 내가 있는 씬 번호
     public int currentSceneNum;
-        
-
 
     void Start()
     {
         path = Application.dataPath + "/Capture/";
         captureWidth = Screen.width;
         captureHeight = Screen.height;
+        txtSize = InputtxtSize.text;
     }
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             GoScene();
         }
         currentScene = (int)Scenes[0].transform.position.y / 20;
-
     }
 
 
@@ -248,14 +247,24 @@ public class SH_BtnManager : MonoBehaviour
     public void AddText()
     {
         SH_InputField inputText = Instantiate(inputField).GetComponent<SH_InputField>();
+        if(text==0)
+        {
+            SH_EditorManager.Instance.origin_InputField = inputText;
+            SH_EditorManager.Instance.active_InputField = inputText;
+        }
+        else
+        {
+            SH_EditorManager.Instance.active_InputField = inputText;
+        }
+        
         inputText.gameObject.name = "Text" + text;
         txtDropdown.value = 0;
-        txtSize.text = "20";
+        txtSize = "20";
         inputText.info = new TextInfo
         {
             inputs = inputText.GetComponent<InputField>().text,
             txtDropdown = txtDropdown.value,
-            txtSize = int.Parse(txtSize.text),
+            txtSize = int.Parse(txtSize),
         };
         // 선택되어있는 dropdown과 textSize값에 따라서 글자 크기를 바꾸기 위함
         inputFields.Add(inputText);
@@ -267,16 +276,18 @@ public class SH_BtnManager : MonoBehaviour
     #region 글씨 크기 조절
     public void PlusSize()
     {
-        int size = int.Parse( txtSize.text);
+        int size = int.Parse(txtSize);
         size++;
-        txtSize.text = size.ToString();
+        txtSize = size.ToString();
+        InputtxtSize.text = txtSize;
     }
 
     public void MinusSize()
     {
-        int size = int.Parse(txtSize.text);
+        int size = int.Parse(txtSize);
         size--;
-        txtSize.text = size.ToString();
+        txtSize = size.ToString();
+        InputtxtSize.text = txtSize;
     }
     #endregion
 
@@ -317,6 +328,15 @@ public class SH_BtnManager : MonoBehaviour
         byte[] bytes = screenShot.EncodeToPNG();
         File.WriteAllBytes(fileName, bytes);
         #endregion
+
+        // 현재 선택되어 있는 오브젝트의 버튼을 꺼준다
+
+        List<GameObject> buttons = SH_EditorManager.Instance.activeObj.GetComponent<SH_SceneObj>().buttons;
+        for (int k = 0; k < buttons.Count; k++)
+        {
+            buttons[k].SetActive(false);
+        }
+
 
         // 해당 y값이 0이면 내가 지금 scene0에 있다는 소리고 
         // 20으로 나눈 몫이 1이면 내가 지금 Scene1에 있다는 소리다
@@ -415,6 +435,13 @@ public class SH_BtnManager : MonoBehaviour
             // 해당 씬으로 돌아가야한다
             if (raycastResults[j].gameObject.name.Contains("RawImage") && Scenes[0]!=null)
             {
+                // 현재 선택되어 있는 오브젝트의 버튼을 꺼준다
+
+                List<GameObject> buttons = SH_EditorManager.Instance.activeObj.GetComponent<SH_SceneObj>().buttons;
+                for(int k=0;k<buttons.Count;k++)
+                {
+                    buttons[k].SetActive(false);
+                }
 
                 // 해당 y값이 0이면 내가 지금 scene0에 있다는 소리고 
                 // 20으로 나눈 몫이 1이면 내가 지금 Scene1에 있다는 소리다
@@ -486,6 +513,7 @@ public class SH_BtnManager : MonoBehaviour
 
     // 제이슨 저장
     // PageInfo -> PagesInfo -> BookInfo -> Json
+    private AnimatorClipInfo[] clipInfo;
     public void Save()
     {
         BookInfo bookinfo = new BookInfo();
@@ -510,6 +538,7 @@ public class SH_BtnManager : MonoBehaviour
                     objInfo.position = obj.transform.position;
                     objInfo.rotation = obj.transform.rotation;
                     objInfo.scale = obj.transform.localScale;
+                    objInfo.anim = obj.GetComponent<SH_SceneObj>().currentAnim;
                     // 멀티 오브젝트 클래스 리스트에 담아준다
                     objsInfo.Add(pagesInfo.SerializePageInfo(objInfo));
                 }

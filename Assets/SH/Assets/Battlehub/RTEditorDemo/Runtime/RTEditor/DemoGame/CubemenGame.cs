@@ -170,6 +170,8 @@ namespace Battlehub.Cubeman
             }
         }
 
+        
+
         private IEnumerator StartGame()
         {
             DestroyStoredCharacters();
