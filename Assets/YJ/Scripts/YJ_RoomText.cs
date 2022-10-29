@@ -45,7 +45,7 @@ public class YJ_RoomText : MonoBehaviourPun
     void RpcRoomSet(string roomSet, string name, int type)
     {
         roomNameSet = roomSet;
-        transform.GetChild(0).GetComponent<Text>().text = roomNameSet;
+        transform.GetChild(1).GetComponent<Text>().text = roomNameSet;
 
         roomName = name;
         roomType = type;
