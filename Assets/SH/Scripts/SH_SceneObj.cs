@@ -90,24 +90,29 @@ public class SH_SceneObj : MonoBehaviour
         }
     }
 
+    int active;
     void Update()
     {
         if (SH_EditorManager.Instance == null) return;
-        if (objType.ToString() == "obj")
-        {
-            // 다시 자기가 선택되면 애니메이션 버튼을 켜준다
-            if (SH_EditorManager.Instance.activeObj == gameObject)
-            {
-                // 막아주기
-                if (buttons[0].gameObject.activeSelf == true) return;
+        //if (objType.ToString() == "obj")
+        //{
+        //    // 다시 자기가 선택되면 애니메이션 버튼을 한번만 켜준다
+        //    if (SH_EditorManager.Instance.activeObj == gameObject && active < 1)
+        //    {
+        //        // 막아주기
+        //        if (buttons[0].gameObject.activeSelf == true) return;
 
-                for (int i = 0; i < buttons.Count; i++)
-                {
-                    buttons[i].gameObject.SetActive(true);
-                }
-            }
-            // 현재 선택된 오브젝트가 자기 자신이 아닌경우 애니메이션 버튼을 꺼준다
-            else
+        //        for (int i = 0; i < buttons.Count; i++)
+        //        {
+        //            buttons[i].gameObject.SetActive(true);
+        //        }
+        //        active++;
+        //    }
+
+        //    // 현재 선택된 오브젝트가 자기 자신이 아닌경우 애니메이션 버튼을 꺼준다
+        if(objType.ToString() == "obj")
+        {
+            if (SH_EditorManager.Instance.activeObj != gameObject)
             {
                 // 막아주기
                 if (buttons[0].gameObject.activeSelf == false) return;
@@ -116,9 +121,13 @@ public class SH_SceneObj : MonoBehaviour
                 {
                     buttons[i].gameObject.SetActive(false);
                 }
+
+                active = 0;
             }
         }
-            
+       
+        //}
+
     }
 
     // 버튼을 클릭한대로 애니메이션이 재생된다

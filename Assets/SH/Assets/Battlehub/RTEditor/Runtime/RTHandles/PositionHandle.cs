@@ -22,7 +22,9 @@ namespace Battlehub.RTHandles
         private Transform[] m_snapTargets;
         private Bounds[] m_snapTargetsBounds;
         private ExposeToEditor[] m_allExposedToEditor;
-    
+
+       
+
         public override float SizeOfGrid
         {
             get { return GridSize; }
