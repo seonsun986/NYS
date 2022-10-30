@@ -190,7 +190,7 @@ public class NK_BookUI : MonoBehaviourPun
         GameObject objPrefab = view.gameObject;
         objPrefab.transform.SetParent(fairyTaleObject);
         objPrefab.transform.localScale = scale;
-        if (anim != null)
+        if (anim != "")
         {
             Animator animator = objPrefab.GetComponent<Animator>();
             StartCoroutine(PlayAnim(animator, anim));
