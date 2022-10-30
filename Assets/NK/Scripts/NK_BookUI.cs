@@ -117,7 +117,7 @@ public class NK_BookUI : MonoBehaviourPun
             {
                 TxtInfo txt = (TxtInfo)objs[i];
                 GameObject textObj = PhotonNetwork.Instantiate("NK/" + textFactory.name, Vector3.zero, Quaternion.identity);
-                photonView.RPC("RPCCreateText", RpcTarget.All, textObj.GetPhotonView().ViewID, txt.content, txt.size, txt.position);
+                photonView.RPC("RPCCreateText", RpcTarget.All, textObj.GetPhotonView().ViewID, txt.content, txt.size, txt.position, txt.font, txt.color);
             }
             if (objs[i].type == "obj")
             {
@@ -160,13 +160,24 @@ public class NK_BookUI : MonoBehaviourPun
     }
 
     [PunRPC]
-    private void RPCCreateText(int viewId, string content, int size, Vector3 position)
+    private void RPCCreateText(int viewId, string content, int size, Vector3 position, string font, string color)
     {
         PhotonView view = PhotonView.Find(viewId);
         GameObject textObj = view.gameObject;
         Text textInfo = textObj.GetComponent<Text>();
         textInfo.text = content;
-        //textInfo.font = new Font(txt.font);
+        // 폰트 적용
+        Font fontInfo;
+        if (font.Contains("Arial"))
+            fontInfo = Resources.GetBuiltinResource<Font>(font + ".ttf");
+        else
+            fontInfo = (Font)Resources.Load(font);
+        textInfo.font = fontInfo;
+        // 색깔 적용
+        Color colorInfo;
+        ColorUtility.TryParseHtmlString("#" + color, out colorInfo);
+        textInfo.color = colorInfo;
+
         textInfo.fontSize = size;
         textObj.transform.SetParent(fairyTaleUI);
         textObj.transform.localPosition = position;
@@ -187,9 +198,10 @@ public class NK_BookUI : MonoBehaviourPun
     }
 
 
-
+    #region ClickNext // 다음 버튼 클릭
     public void ClickNext()
     {
+        // 현재 페이지와 총 페이지 수 비교
         if (sceneObjects.Count > pageNum + 1 && fairyTaleUI.gameObject.activeSelf)
         {
             pageNum++;
@@ -197,7 +209,9 @@ public class NK_BookUI : MonoBehaviourPun
             InstantiateObject();
         }
     }
+    #endregion
 
+    #region ClickBefore // 이전 버튼 클릭
     public void ClickBefore()
     {
         if (0 <= pageNum - 1 && fairyTaleUI.gameObject.activeSelf)
@@ -207,10 +221,13 @@ public class NK_BookUI : MonoBehaviourPun
             InstantiateObject();
         }
     }
+    #endregion
 
+    #region ClickEnd // 동화책 끄기
     public void ClickEnd()
     {
         photonView.RPC("RPCDestroyObject", RpcTarget.All);
         photonView.RPC("RPCSetInactive", RpcTarget.All);
     }
+    #endregion
 }
