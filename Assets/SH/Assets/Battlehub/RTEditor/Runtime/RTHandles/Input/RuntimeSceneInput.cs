@@ -266,7 +266,7 @@ namespace Battlehub.RTHandles
                 {
                     Transform camTransform = m_component.Window.Camera.transform;
                     Ray pointer = m_component.Window.Pointer;
-                    SceneComponent.Zoom(ZoomAxis() * MoveZSensitivity, Quaternion.FromToRotation(Vector3.forward, camTransform.InverseTransformVector(pointer.direction).normalized));
+                    //SceneComponent.Zoom(ZoomAxis() * MoveZSensitivity, Quaternion.FromToRotation(Vector3.forward, camTransform.InverseTransformVector(pointer.direction).normalized));
                 }
                 SceneComponent.FreeMove(Vector2.zero, Vector3.zero, 0);
             }
@@ -284,7 +284,7 @@ namespace Battlehub.RTHandles
 
                 if (isPointerOver)
                 {
-                    SceneComponent.Zoom(ZoomAxis() * MoveZSensitivity, Quaternion.identity);
+                    //SceneComponent.Zoom(ZoomAxis() * MoveZSensitivity, Quaternion.identity);
      
                     BeginSelectAction();
                     if (SelectAction())
