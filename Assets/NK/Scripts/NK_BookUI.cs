@@ -70,6 +70,17 @@ public class NK_BookUI : MonoBehaviourPun
         fairyTaleManager.SetActive(false);
     }
 
+    bool isOpen = false;
+
+    private void Update()
+    {
+        if (sceneObjects.Count > 0 && fairyTaleObject.gameObject.activeSelf && !isOpen)
+        {
+            InstantiateObject();
+            isOpen = true;
+        }
+    }
+
     public void ClickBook()
     {
         // Json 파일 받아오기
@@ -92,8 +103,6 @@ public class NK_BookUI : MonoBehaviourPun
                 sceneObjects[pagesInfo.page] = objs;
             }
         }
-        if (sceneObjects.Count > 0)
-            InstantiateObject();
     }
 
     public int pageNum;
@@ -113,16 +122,16 @@ public class NK_BookUI : MonoBehaviourPun
             if (objs[i].type == "obj")
             {
                 ObjInfo obj = (ObjInfo)objs[i];
-                GameObject objPrefab = PhotonNetwork.Instantiate(obj.prefab, obj.position + new Vector3(0, 1.36f, -1.4f) - new Vector3(0, 20, 0) * (sceneObjects.Count - (pageNum + 1)), obj.rotation);
+                GameObject objPrefab = PhotonNetwork.Instantiate(obj.prefab, obj.position + new Vector3(0, 2.36f, -1.4f) - new Vector3(0, 20, 0) * (sceneObjects.Count - (pageNum + 1)), obj.rotation);
                 photonView.RPC("RPCCreateObject", RpcTarget.All, objPrefab.GetPhotonView().ViewID, obj.scale / 2, obj.anim);
             }
         }
     }
 
-    IEnumerator ScaleUp(Transform tr, Vector3 scale)
+    IEnumerator PlayAnim(Animator animator, string anim)
     {
         yield return null;
-        tr.localScale = scale;
+        animator.Play(anim);
     }
 
     [PunRPC]
@@ -157,8 +166,7 @@ public class NK_BookUI : MonoBehaviourPun
         GameObject textObj = view.gameObject;
         Text textInfo = textObj.GetComponent<Text>();
         textInfo.text = content;
-        /*if(txt.font != "0")
-            textInfo.font = new Font(txt.font);*/
+        //textInfo.font = new Font(txt.font);
         textInfo.fontSize = size;
         textObj.transform.SetParent(fairyTaleUI);
         textObj.transform.localPosition = position;
@@ -171,12 +179,14 @@ public class NK_BookUI : MonoBehaviourPun
         GameObject objPrefab = view.gameObject;
         objPrefab.transform.SetParent(fairyTaleObject);
         objPrefab.transform.localScale = scale;
-        if(anim != null)
+        if (anim != null)
         {
-            objPrefab.GetComponent<Animator>().Play(anim);
+            Animator animator = objPrefab.GetComponent<Animator>();
+            StartCoroutine(PlayAnim(animator, anim));
         }
-        //StartCoroutine(ScaleUp(objPrefab.transform, scale));
     }
+
+
 
     public void ClickNext()
     {
@@ -187,7 +197,7 @@ public class NK_BookUI : MonoBehaviourPun
             InstantiateObject();
         }
     }
-    
+
     public void ClickBefore()
     {
         if (0 <= pageNum - 1 && fairyTaleUI.gameObject.activeSelf)
