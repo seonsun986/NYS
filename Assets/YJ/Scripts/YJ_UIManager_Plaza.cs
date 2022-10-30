@@ -129,58 +129,71 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
     #endregion
 
     #region BGM On/Off
-    public GameObject bgmHandle;
+    public Toggle bgmOnOff;
+    public GameObject bgmOn, bgmOff;
     // 228, 291
+    // 배경음악 On/Off
     public void BGMOnAndOff()
     {
-        if (bgmHandle.GetComponent<Toggle>().isOn)
+        if (bgmOnOff.isOn)
         {
-            //handle.transform.position = new Vector2(228, 19);
-            bgmHandle.GetComponent<RectTransform>().anchoredPosition = new Vector2(228, 19);
+            bgmOff.SetActive(false);
+            bgmOn.SetActive(true);
         }
         else
         {
-            //handle.transform.position = new Vector2(291, 19);
-            bgmHandle.GetComponent<RectTransform>().anchoredPosition = new Vector2(291, 19);
+            bgmOn.SetActive(false);
+            bgmOff.SetActive(true);
         }
     }
     #endregion
 
     #region EffectSound On/Off
-    public GameObject ESHandle;
+    public Toggle effectOnOff;
+    public GameObject effectOn, effectOff;
     // 228, 291
-    public void ESOnAndOff()
+    // 배경음악 On/Off
+    public void EffectOnAndOff()
     {
-        if (ESHandle.GetComponent<Toggle>().isOn)
+        if (effectOnOff.isOn)
         {
-            //handle.transform.position = new Vector2(228, 19);
-            ESHandle.GetComponent<RectTransform>().anchoredPosition = new Vector2(228, 19);
+            effectOff.SetActive(false);
+            effectOn.SetActive(true);
         }
         else
         {
-            //handle.transform.position = new Vector2(291, 19);
-            ESHandle.GetComponent<RectTransform>().anchoredPosition = new Vector2(291, 19);
+            effectOn.SetActive(false);
+            effectOff.SetActive(true);
         }
     }
     #endregion
 
     #region Invitation On/Off
-    public GameObject invitation;
+    public Toggle invitOnOff;
+    public GameObject invitOn, invitOff;
     // 228, 291
-    public void InvOnAndOff()
+    // 배경음악 On/Off
+    public void invitOnAndOff()
     {
-        if (invitation.GetComponent<Toggle>().isOn)
+        if (invitOnOff.isOn)
         {
-            //handle.transform.position = new Vector2(228, 19);
-            invitation.GetComponent<RectTransform>().anchoredPosition = new Vector2(228, 19);
+            invitOff.SetActive(false);
+            invitOn.SetActive(true);
         }
         else
         {
-            //handle.transform.position = new Vector2(291, 19);
-            invitation.GetComponent<RectTransform>().anchoredPosition = new Vector2(291, 19);
+            invitOn.SetActive(false);
+            invitOff.SetActive(true);
         }
     }
     #endregion
 
+    #region 게임종료버튼
 
+    public void GameExit()
+    {
+        Application.Quit();
+    }
+
+    #endregion
 }
