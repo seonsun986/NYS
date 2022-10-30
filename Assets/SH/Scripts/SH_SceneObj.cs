@@ -50,6 +50,7 @@ public class SH_SceneObj : MonoBehaviour
         // 애니메이션의 각각의 클립의 이름을 바탕으로 버튼을 한글 이름으로 바꿔준다
         if(objType.ToString() == "obj")
         {
+            if(GetComponent<Animator>() == null) return;
             anim = GetComponent<Animator>();
             for(int i =0;i<anims.Count;i++)
             {

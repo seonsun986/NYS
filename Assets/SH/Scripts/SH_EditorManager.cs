@@ -59,6 +59,8 @@ public class SH_EditorManager : MonoBehaviour
             { "Cry", "¿ï±â"},
             { "Fight", "½Î¿ì±â"},
             { "SneakWalk", "»ì±Ý»ì±Ý °È±â"},
+            {"DoongDoong", "¶°´Ù´Ï±â" },
+            { "Headtilt", "°¼¿ì¶×"},
         };
     }
     int i = 0;
