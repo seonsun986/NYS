@@ -83,7 +83,7 @@ public class SH_SceneObj : MonoBehaviour
                 // 빈 오브젝트를 만들 버튼의 부모로 설정해준다
                 GameObject animButton = Instantiate(animBtn);
                 animButton.transform.SetParent(animBtnParent.transform);
-                animButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(-300 + (200 * i), -400,0);
+                animButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(-300 + (200 * i), 200,0);
 
                 // ex) WalkBtn 등으로 나옴
                 if (SH_EditorManager.Instance.animName.TryGetValue(anims[i].name, out string value))
