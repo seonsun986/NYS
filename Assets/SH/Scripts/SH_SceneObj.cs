@@ -50,7 +50,7 @@ public class SH_SceneObj : MonoBehaviour
         // 애니메이션의 각각의 클립의 이름을 바탕으로 버튼을 한글 이름으로 바꿔준다
         if(objType.ToString() == "obj")
         {
-            if(transform.GetChild(0).GetComponent<Animator>() == null && GetComponent<Animator>() == null) return;
+            if(transform.childCount ==0 && GetComponent<Animator>() == null) return;
             if(transform.GetChild(0).GetComponent<Animator>() == null)
             {
                 anim = GetComponent<Animator>();
@@ -118,10 +118,10 @@ public class SH_SceneObj : MonoBehaviour
         //        active++;
         //    }
 
-        //    // 현재 선택된 오브젝트가 자기 자신이 아닌경우 애니메이션 버튼을 꺼준다
+        // 현재 선택된 오브젝트가 자기 자신이 아닌경우 애니메이션 버튼을 꺼준다
         if(objType.ToString() == "obj")
         {
-            if (SH_EditorManager.Instance.activeObj != gameObject)
+            if (SH_EditorManager.Instance.activeObj != gameObject && buttons.Count >0)
             {
                 // 막아주기
                 if (buttons[0].gameObject.activeSelf == false) return;

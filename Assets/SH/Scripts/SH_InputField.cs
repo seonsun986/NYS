@@ -19,7 +19,7 @@ public class SH_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     bool isDragging;
     InputField inputF;
     RectTransform rect;
-
+    int fontSize;
     // 옮기기 위한 Transform 만들기
     public GameObject transform_Tool;
     // 자기 자신에 대한 정보
@@ -48,7 +48,7 @@ public class SH_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         inputF = GetComponent<InputField>();
         rect = GetComponent<RectTransform>();
         tool = transform.GetChild(0).gameObject;
-        tool.SetActive(false);        
+        tool.SetActive(false);
     }
 
     GameObject tool;
@@ -56,9 +56,12 @@ public class SH_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     void Update()
     {
         // inputField의 text길이도 맞춰서 늘어나야한다.
+        // 폰트 크기에 맞춰서도 늘어나야한다
+        // 무언가가 적히기 시작한 순간
+        print("문자 길이 : " + inputF.text.Length);
         if(inputF.text.Length > 5)
         {
-            rect.sizeDelta = new Vector2(100 + inputF.text.Length * 15, 50);
+            rect.sizeDelta = new Vector2(inputF.preferredWidth + 50, inputF.preferredHeight + 10);
         }
 
         // 누르는 중이라면
@@ -81,7 +84,7 @@ public class SH_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                     }
                     else
                     {
-                        tool_image.sizeDelta = new Vector2(inputF.preferredWidth + 50, 65);
+                        tool_image.sizeDelta = new Vector2(inputF.preferredWidth + 50, inputF.preferredHeight + 40);
                     }
 
                     inputF.interactable = false;

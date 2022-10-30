@@ -313,7 +313,7 @@ public class SH_BtnManager : MonoBehaviour
         // 선택되어있는 dropdown과 textSize값에 따라서 글자 크기를 바꾸기 위함
         inputFields.Add(inputText);
         inputText.transform.SetParent(Scenes_txt[currentSceneNum].transform);
-        inputText.transform.localPosition = new Vector3(0, 0, 0);
+        inputText.transform.localPosition = new Vector3(0, -350, 0);
         text++;
     }
 
