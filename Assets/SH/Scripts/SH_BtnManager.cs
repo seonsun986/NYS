@@ -77,6 +77,7 @@ public class TxtInfo : PageInfo
     public string font;
     public int size;
     public string content;
+    public string color;
 }
 
 [System.Serializable]
@@ -158,7 +159,6 @@ public class SH_BtnManager : MonoBehaviour
         path = Application.dataPath + "/Capture/";
         captureWidth = Screen.width;
         captureHeight = Screen.height;
-        txtSize = InputtxtSize.text;
     }
 
     void Update()
@@ -168,6 +168,7 @@ public class SH_BtnManager : MonoBehaviour
             GoScene();
         }
         currentScene = (int)Scenes[0].transform.position.y / 20;
+
     }
 
 
@@ -180,9 +181,9 @@ public class SH_BtnManager : MonoBehaviour
     {
         print("Scene");
     }
-    void MoveObj(GameObject go, float destination, string completeFun = "")
+    void MoveObj(GameObject go, float destination, string completeFun = "", string axis= "")
     {
-        Hashtable hash = iTween.Hash("x", destination,
+        Hashtable hash = iTween.Hash(axis, destination,
             "time", 0.5f);
             
         if(completeFun.Length > 0)
@@ -200,13 +201,14 @@ public class SH_BtnManager : MonoBehaviour
     public void MoveSceneBG()
     {
         float x = sceneBG.transform.position.x + (sceneBG.GetComponent<RectTransform>().sizeDelta.x - 55) * bgDir;
-        MoveObj(sceneBG.gameObject, x, "OnCompleteScene");
+        MoveObj(sceneBG.gameObject, x, "OnCompleteScene", "x");
         if(bgDir== 1)       // 나타나 있지 않는 상태 -> 나타나는 상태
         {
             SceneBtn.rotation = new Quaternion(0, 0, 180 * -(bgDir), 0);
             // 이때 objDir이 나타나있는 상태라면(objDir = 1)
             // objDir을 돌려준다
             ObjectBtn.rotation = new Quaternion(0, 0, 180, 0);
+            soundBtn.rotation = Quaternion.Euler(0, 0, 90);
         }
         else
         {
@@ -214,19 +216,22 @@ public class SH_BtnManager : MonoBehaviour
         }
         bgDir *= -1;
 
-        MoveObj(objectBG.gameObject, /*Screen.width*/1865);
+        MoveObj(objectBG.gameObject, /*Screen.width*/1865, "OnCompleteScene", "x");
+        MoveObj(soundBG.gameObject, -210, "OnCompleteObject", "y");
         objDir = -1;
+        soundDir = 1;
     }
 
     int objDir = -1;
     public void MoveObjectBG()
     {
         float x = objectBG.transform.position.x + (objectBG.GetComponent<RectTransform>().sizeDelta.x - 65) * objDir;
-        MoveObj(objectBG.gameObject, x, "OnCompleteObject");
+        MoveObj(objectBG.gameObject, x, "OnCompleteObject", "x");
         if(objDir == -1)
         {
             ObjectBtn.rotation = new Quaternion(0, 0, 0, 0);
             SceneBtn.rotation = new Quaternion(0, 0, 0, 0);
+            soundBtn.rotation = Quaternion.Euler(0, 0, 90);
 
         }
         else
@@ -236,8 +241,36 @@ public class SH_BtnManager : MonoBehaviour
         objDir *= -1;
        
 
-        MoveObj(sceneBG.gameObject, 50);
+        MoveObj(sceneBG.gameObject, 50, "OnCompleteScene","x");
+        MoveObj(soundBG.gameObject, -210, "OnCompleteObject", "y");
         bgDir = 1;
+        soundDir = 1;
+    }
+
+    int soundDir = 1;
+    public GameObject soundBG;
+    public RectTransform soundBtn;
+    public void SoundBG()
+    {
+        float y = soundBG.transform.position.y + 300 * soundDir;
+        MoveObj(soundBG.gameObject, y, "OnCompleteObject", "y");
+        if(soundDir == 1)
+        {
+            soundBtn.rotation = Quaternion.Euler(0, 0, -90);
+            ObjectBtn.rotation = new Quaternion(0, 0, 180, 0);
+            SceneBtn.rotation = new Quaternion(0, 0, 0, 0);
+
+        }
+        else
+        {
+            soundBtn.rotation = Quaternion.Euler(0, 0, 90);
+        }
+        soundDir *= -1;
+
+        MoveObj(sceneBG.gameObject, 50, "OnCompleteScene", "x");
+        MoveObj(objectBG.gameObject, /*Screen.width*/1865, "OnCompleteScene", "x");
+        bgDir = 1;
+        objDir = -1;
     }
     #endregion
 
@@ -267,6 +300,7 @@ public class SH_BtnManager : MonoBehaviour
         // 초기값 세팅
         txtDropdown.value = 0;
         txtSize = "20";
+        InputtxtSize.text = txtSize;
         txtColor = new Color(0, 0, 0, 1);
 
         inputText.info = new TextInfo
@@ -299,6 +333,8 @@ public class SH_BtnManager : MonoBehaviour
         txtSize = size.ToString();
         InputtxtSize.text = txtSize;
     }
+
+    
     #endregion
 
     public void ChangeTextColor()
@@ -363,12 +399,15 @@ public class SH_BtnManager : MonoBehaviour
         #endregion
 
         // 현재 선택되어 있는 오브젝트의 버튼을 꺼준다
-
-        List<GameObject> buttons = SH_EditorManager.Instance.activeObj.GetComponent<SH_SceneObj>().buttons;
-        for (int k = 0; k < buttons.Count; k++)
+        if(SH_EditorManager.Instance.activeObj != null)
         {
-            buttons[k].SetActive(false);
+            List<GameObject> buttons = SH_EditorManager.Instance.activeObj.GetComponent<SH_SceneObj>().buttons;
+            for (int k = 0; k < buttons.Count; k++)
+            {
+                buttons[k].SetActive(false);
+            }
         }
+        
 
 
         // 해당 y값이 0이면 내가 지금 scene0에 있다는 소리고 
@@ -387,7 +426,7 @@ public class SH_BtnManager : MonoBehaviour
         // 새로운 Rawimage 추가
         // 맨 밑에 추가해야한다
         GameObject raw = Instantiate(rawImage);
-        raw.transform.SetParent(GameObject.Find("Canvas").transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).transform);
+        raw.transform.SetParent(GameObject.Find("ContentRaw").transform.GetChild(0).transform);
         raw.transform.position = firstRawImage.position + transform.up * (-180* (i+1));
         raw.name = "RawImage_" + (i + 1);
         rawImages.Add(raw.GetComponent<RawImage>());
@@ -587,9 +626,10 @@ public class SH_BtnManager : MonoBehaviour
                     SH_InputField txt2 = Scenes_txt[i].transform.GetChild(k).GetComponent<SH_InputField>();
                     txtInfo.type = txt.objType.ToString();
                     txtInfo.position = txt.gameObject.GetComponent<RectTransform>().anchoredPosition;
-                    txtInfo.font = txt2.info.txtDropdown.ToString();       // 아마도 int 값으로 나올거야
+                    txtInfo.font = SH_EditorManager.Instance.fonts[txt2.info.txtDropdown].name;
                     txtInfo.size = txt2.info.txtSize;
                     txtInfo.content = txt2.transform.GetChild(3).GetComponent<Text>().text;
+                    txtInfo.color = ColorUtility.ToHtmlStringRGBA(txt2.transform.GetChild(3).GetComponent<Text>().color);
                     // 멀티 오브젝트 클래스 리스트에 담아준다
                     objsInfo.Add(pagesInfo.SerializePageInfo(txtInfo));
                 }

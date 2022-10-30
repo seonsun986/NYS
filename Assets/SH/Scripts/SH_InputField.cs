@@ -24,11 +24,19 @@ public class SH_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public GameObject transform_Tool;
     // 자기 자신에 대한 정보
     public TextInfo info;
+
     public void Click()
     {
         isClicked = true;
         // 선택한 InputField가 들어감
         SH_EditorManager.Instance.active_InputField = this;
+        SH_BtnManager.Instance.txtDropdown.value = SH_EditorManager.Instance.active_InputField.info.txtDropdown;
+        SH_BtnManager.Instance.txtSize = SH_EditorManager.Instance.active_InputField.info.txtSize.ToString();
+        SH_BtnManager.Instance.InputtxtSize.text = SH_EditorManager.Instance.active_InputField.info.txtSize.ToString();
+        SH_BtnManager.Instance.txtColor = SH_EditorManager.Instance.active_InputField.info.txtColor;
+
+
+
     }
     public void UnClick()
     {

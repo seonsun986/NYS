@@ -69,12 +69,15 @@ public class SH_EditorManager : MonoBehaviour
     
     void Update()
     {
+        fontSize = InputfontSize.text;
         if (active_InputField != null)
         {
+            // 이전의 인풋필드와 현재 선택한 인풋필드가 같지 않을때
             if (origin_InputField.name != active_InputField.name && origin_InputField != null)
             {
+                // UI에 따라 현재 인풋필드가 바뀌기 전에 미리 옵션을 변경해준다
                 origin_InputField = active_InputField;
-                font.value = origin_InputField.info.txtDropdown;
+                font.value = active_InputField.info.txtDropdown;
                 fontSize = active_InputField.info.txtSize.ToString();
                 fontColorImage.color = active_InputField.info.txtColor;
             }
@@ -82,13 +85,19 @@ public class SH_EditorManager : MonoBehaviour
             // 처음 만들어졌다면 기본 설정을 적용시키고 
             // 원래 만들어져있었다면 자기가 가지고 있는 설정을 다시 불러온다
             if (active_InputField.transform.childCount == 3) return;
-
-            active_InputField.info.txtDropdown = font.value;
-            active_InputField.transform.GetChild(3).GetComponent<Text>().font = fonts[active_InputField.info.txtDropdown];
-            active_InputField.info.txtSize = int.Parse(fontSize);
-            active_InputField.transform.GetChild(3).GetComponent<Text>().fontSize = active_InputField.info.txtSize;
-            active_InputField.info.txtColor = fontColorImage.color;
-            active_InputField.transform.GetChild(3).GetComponent<Text>().color = active_InputField.info.txtColor;
+            else
+            {
+                active_InputField.info.txtDropdown = font.value;
+                active_InputField.transform.GetChild(3).GetComponent<Text>().font = fonts[active_InputField.info.txtDropdown];
+                // 새로운 값 클래스에 저장
+                if(fontSize.Length !=0)
+                active_InputField.info.txtSize = int.Parse(fontSize);
+                // 실제로 반영
+                active_InputField.transform.GetChild(3).GetComponent<Text>().fontSize = active_InputField.info.txtSize;
+                active_InputField.info.txtColor = fontColorImage.color;
+                active_InputField.transform.GetChild(3).GetComponent<Text>().color = active_InputField.info.txtColor;
+            }
+            
 
         }
 
