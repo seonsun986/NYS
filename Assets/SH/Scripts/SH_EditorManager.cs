@@ -30,7 +30,10 @@ public class SH_EditorManager : MonoBehaviour
     public string activeObj_anim;
     private void Awake()
     {
-        Instance = this;
+        if(Instance == null)
+        {
+            Instance = this;
+        }
     }
     void Start()
     {

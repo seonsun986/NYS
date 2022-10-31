@@ -100,7 +100,10 @@ public class SH_BtnManager : MonoBehaviour
     public static SH_BtnManager Instance;
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
     }
 
     public Image sceneBG;
@@ -154,6 +157,13 @@ public class SH_BtnManager : MonoBehaviour
 
     // 텍스트 컬러 반영된 이미지
     public Image txtcolorImage;
+
+    // 효과음 리스트
+    public List<AudioClip> effectClips;
+    // 효과음 오디오소스
+    public AudioSource effectSoundSource;
+    public AudioSource bgSoundSource;
+    public AudioSource exSoundSource;
     void Start()
     {
         path = Application.dataPath + "/Capture/";
@@ -582,7 +592,106 @@ public class SH_BtnManager : MonoBehaviour
 
     }
 
+    public Sprite playing;
+    public Sprite notPlaying;
+    public AudioClip preClip;
+    public AudioClip curClip;
+    GameObject currentBtn;
+    GameObject preBtn;
 
+    // 선택한 버튼에 대한 소리를 바꾼다
+    // 선택한 버튼에 대한 이미지를 Playing으로 바꾼다.
+    // 만약 그전에 재생중인 버튼이 있다면
+    // 해당의 버튼의 이미지를 notPlaying으로 바꾼다
+    // 만약 재생중인 버튼을 다시한번 클릭한 것이라면
+    // 재생중인 버튼의 이미지를 notPlaying으로 바꾸고
+    // 소리 재생을 멈춘다
+
+    // 1. 재생 중인 소리의 버튼을 멈춘다
+
+    public void SelectSound()
+    {
+        GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
+        Image clickBtnImage = clickBtn.GetComponent<Image>();
+        string clickText = clickBtn.name.Substring(0, clickBtn.name.Length - 3);
+
+        for (int i = 0; i < effectClips.Count; i++)
+        {
+            if (clickText == effectClips[i].name)
+            {
+                // 현재 오디오 클립 및 현재 선택한 버튼으로 바꿈
+                exSoundSource.clip = effectClips[i];
+
+                // 처음 소리 설정 할 때 아무것도 들어가있지 않으므로 설정해줌
+                if (preClip == null)
+                {
+                    // 처음 소리 및 게임 오브젝트 설정
+                    preClip = exSoundSource.clip;
+                    preBtn = clickBtn;
+
+                    curClip = preClip;
+                    currentBtn = preBtn;
+
+                    exSoundSource.clip = curClip;
+                    exSoundSource.Play();
+
+                    // 현재 오브젝트 사진을 Playing으로 바꾼다
+                    currentBtn.GetComponent<Image>().sprite = playing;
+                }
+
+                // 그 전 오디오 클립이 들어가있다면
+                else
+                {
+                    // 현재 있던 버튼을 옛날 버튼으로 바꾸고
+                    preClip = curClip;
+                    preBtn = currentBtn;
+
+                    // 현재 버튼과 클립을 다시 업데이트 해준다
+                    curClip = exSoundSource.clip;
+                    currentBtn = clickBtn;
+
+                    // 만약 사용자가 소리를 바꾼다면
+                    if (preClip != exSoundSource.clip)
+                    {
+                        // 그 전 소리가 멈춰야 한다
+                        exSoundSource.Stop();
+                        // 전 오브젝트의 사진을 notPlaying으로 바꾼다
+                        preBtn.GetComponent<Image>().sprite = notPlaying;
+                        // 현재 오브젝트 사진을 Playing으로 바꾼다
+                        currentBtn.GetComponent<Image>().sprite = playing;
+
+                        exSoundSource.clip = curClip;
+                        exSoundSource.Play();
+                    }
+
+                    // 사용자가 또 똑같은 소리 버튼을 눌렀을 때
+                    // 재생 중이었다면 재생을 멈추고
+                    // 재생 중이 아니라면 재생을 시킨다
+                    else
+                    {
+                        // 재생 중이라면
+                        if (preBtn.GetComponent<Image>().sprite == playing)
+                        {
+                            preBtn.GetComponent<Image>().sprite = notPlaying;
+                            exSoundSource.Stop();
+                        }
+
+                        // 재생 중이 아니라면
+                        else
+                        {
+                            preBtn.GetComponent<Image>().sprite = playing;
+                            exSoundSource.clip = preClip;
+                            exSoundSource.Play();
+                        }
+                    }
+                }
+
+                return;
+
+            }
+        }     
+       
+    }
     // 제이슨 저장
     // PageInfo -> PagesInfo -> BookInfo -> Json
     private AnimatorClipInfo[] clipInfo;
