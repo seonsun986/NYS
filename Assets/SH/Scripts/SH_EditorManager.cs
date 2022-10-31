@@ -135,7 +135,7 @@ public class SH_EditorManager : MonoBehaviour
                 // 오브젝트가 아닐때
                 else
                 {
-                    if (activeObj.gameObject == null) return;
+                    if (activeObj == null) return;
                     for (int i = 0; i < raycastResults.Count; i++)
                     {
                         if (raycastResults[i].gameObject.layer == LayerMask.NameToLayer("Button"))
