@@ -183,6 +183,7 @@ public class NK_BookUI : MonoBehaviourPun
         textObj.transform.localPosition = position;
     }
 
+    Animator animator;
     [PunRPC]
     private void RPCCreateObject(int viewId, Vector3 scale, string anim)
     {
@@ -192,7 +193,16 @@ public class NK_BookUI : MonoBehaviourPun
         objPrefab.transform.localScale = scale;
         if (anim != "")
         {
-            Animator animator = objPrefab.GetComponent<Animator>();
+            if(objPrefab.GetComponent<Animator>() == null)
+            {
+                animator = objPrefab.transform.GetChild(0).GetComponent<Animator>();
+                
+            }
+            else
+            {
+                animator = objPrefab.GetComponent<Animator>();
+
+            }
             StartCoroutine(PlayAnim(animator, anim));
         }
     }
