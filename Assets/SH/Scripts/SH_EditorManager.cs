@@ -58,6 +58,8 @@ public class SH_EditorManager : MonoBehaviour
             { "SneakWalk", "»ì±Ý»ì±Ý °È±â"},
             {"DoongDoong", "¶°´Ù´Ï±â" },
             { "Headtilt", "°¼¿ì¶×"},
+            { "Lay", "´¯±â"},
+            {"Yell", "¼Ò¸®Áö¸£±â" },
         };
     }
     int i = 0;

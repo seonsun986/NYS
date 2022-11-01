@@ -32,7 +32,6 @@ public class BookInfo
     public string id;
     public string title;
     public string createAt;
-    public string recordingPath;
     public List<PagesInfo> pages;
 
 }
@@ -516,7 +515,7 @@ public class SH_BtnManager : MonoBehaviour
             if (raycastResults[j].gameObject.name.Contains("RawImage") && Scenes[0]!=null)
             {
                 // 현재 선택되어 있는 오브젝트의 버튼을 꺼준다
-
+                if (SH_EditorManager.Instance.activeObj == null) return;
                 List<GameObject> buttons = SH_EditorManager.Instance.activeObj.GetComponent<SH_SceneObj>().buttons;
                 for(int k=0;k<buttons.Count;k++)
                 {
@@ -752,7 +751,6 @@ public class SH_BtnManager : MonoBehaviour
         bookinfo.id = "심선혜 최고";
         bookinfo.title = "위인전 : 심선혜";
         bookinfo.createAt = DateTime.Now.ToString("yyyy / MM / dd");
-        bookinfo.recordingPath = "C:\\Users\\HP\\Desktop\\MTVS\\Final project\\NYS\\Assets\\Resources";
         // 이제 BookInfo 중 Pages에 이 정보들을 담아보자
         bookinfo.pages = pages;
         string jsonData = JsonUtility.ToJson(bookinfo, true);
