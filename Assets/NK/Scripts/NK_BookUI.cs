@@ -13,13 +13,13 @@ public class NK_BookUI : MonoBehaviourPun
 {
     public enum Book
     {
-        위인전,
+        양치기소년,
         신데렐라,
         오즈의마법사,
         용이야기,
     }
 
-    public Book selectedBook = Book.위인전;
+    public Book selectedBook = Book.양치기소년;
     public GameObject bookUI;
     public GameObject fairyTaleManager;
     public List<PageInfo> objs;
@@ -40,7 +40,7 @@ public class NK_BookUI : MonoBehaviourPun
 
     public void ClickBook1()
     {
-        SelectBook(Book.위인전);
+        SelectBook(Book.양치기소년);
         photonView.RPC("RPCSetActive", RpcTarget.All);
         ClickBook();
     }
