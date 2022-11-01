@@ -757,7 +757,7 @@ public class SH_BtnManager : MonoBehaviour
         string jsonData = JsonUtility.ToJson(bookinfo, true);
         print(jsonData);
 
-        string fileName = "Book1";
+        string fileName = "Book2";
         string path = Application.dataPath + "/" + fileName + ".Json";
         File.WriteAllText(path, jsonData);
     }
