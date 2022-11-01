@@ -752,7 +752,7 @@ public class SH_BtnManager : MonoBehaviour
         bookinfo.id = "심선혜 최고";
         bookinfo.title = "위인전 : 심선혜";
         bookinfo.createAt = DateTime.Now.ToString("yyyy / MM / dd");
-        bookinfo.recordingPath = "C:\\Users\\HP\\Desktop\\MTVS\\Final project\\NYS\\Assets\\SH\\Recording";
+        bookinfo.recordingPath = "C:\\Users\\HP\\Desktop\\MTVS\\Final project\\NYS\\Assets\\Resources";
         // 이제 BookInfo 중 Pages에 이 정보들을 담아보자
         bookinfo.pages = pages;
         string jsonData = JsonUtility.ToJson(bookinfo, true);
