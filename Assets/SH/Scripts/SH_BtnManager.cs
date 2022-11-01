@@ -433,7 +433,7 @@ public class SH_BtnManager : MonoBehaviour
         // 새로운 Rawimage 추가
         // 맨 밑에 추가해야한다
         GameObject raw = Instantiate(rawImage);
-        raw.transform.SetParent(GameObject.Find("ContentRaw").transform.GetChild(0).transform);
+        raw.transform.SetParent(GameObject.Find("ContentRaw").transform);
         raw.transform.position = firstRawImage.position + transform.up * (-180* (i+1));
         raw.name = "RawImage_" + (i + 1);
         rawImages.Add(raw.GetComponent<RawImage>());
