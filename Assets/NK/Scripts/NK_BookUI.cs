@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -25,6 +26,8 @@ public class NK_BookUI : MonoBehaviourPun
     public GameObject textFactory;
     public Transform fairyTaleUI;
     public Transform fairyTaleObject;
+
+    public AudioSource audioSource;
 
     Dictionary<int, List<PageInfo>> sceneObjects = new Dictionary<int, List<PageInfo>>();
 
@@ -116,20 +119,27 @@ public class NK_BookUI : MonoBehaviourPun
 
         for (int i = 0; i < objs.Count; i++)
         {
-            // 씬마다 텍스트 띄우기
+            // 페이지마다 텍스트 띄우기
             if (objs[i].type == "text")
             {
                 TxtInfo txt = (TxtInfo)objs[i];
                 GameObject textObj = PhotonNetwork.Instantiate("NK/" + textFactory.name, Vector3.zero, Quaternion.identity);
                 photonView.RPC("RPCCreateText", RpcTarget.All, textObj.GetPhotonView().ViewID, txt.content, txt.size, txt.position, txt.font, txt.color);
             }
-            // 씬마다 오브젝트 띄우기
+            // 페이지마다 오브젝트 띄우기
             if (objs[i].type == "obj")
             {
                 ObjInfo obj = (ObjInfo)objs[i];
                 GameObject objPrefab = PhotonNetwork.Instantiate(obj.prefab, obj.position + new Vector3(0, 2.36f, -1.4f) - new Vector3(0, 40, 0) * (sceneObjects.Count - (pageNum + 1)), obj.rotation);
                 photonView.RPC("RPCCreateObject", RpcTarget.All, objPrefab.GetPhotonView().ViewID, obj.scale / 2, obj.anim);
             }
+        }
+
+        // 페이지마다 음성파일 재생
+        if (Resources.Load<AudioClip>("Page" + pageNum) != null)
+        {
+            print("Page" + pageNum);
+            photonView.RPC("RPCCreateAudio", RpcTarget.All, pageNum);
         }
     }
 
@@ -163,6 +173,11 @@ public class NK_BookUI : MonoBehaviourPun
                 if (objects[i] != fairyTaleObject.transform)
                     Destroy(objects[i].gameObject);
             }
+        }
+
+        if (audioSource.clip != null)
+        {
+            audioSource.clip = null;
         }
     }
 
@@ -212,6 +227,13 @@ public class NK_BookUI : MonoBehaviourPun
             }
             StartCoroutine(PlayAnim(animator, anim));
         }
+    }
+
+    [PunRPC]
+    private void RPCCreateAudio(int index)
+    {
+        audioSource.clip = Resources.Load<AudioClip>("Page" + index);
+        audioSource.Play();
     }
 
 

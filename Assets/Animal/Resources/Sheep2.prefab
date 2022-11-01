@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2354364673805512880}
   - component: {fileID: 8298725995445694253}
   - component: {fileID: 4983620252522871378}
+  - component: {fileID: -4661824197690011286}
   m_Layer: 29
   m_Name: Sheep2
   m_TagString: Untagged
@@ -105,6 +106,28 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 510b14b9cef725a46936bb3c01760c61, type: 2}
   - {fileID: 7400000, guid: 8b7b9340341a18d4db979f20ebc77ef4, type: 2}
   - {fileID: 7400000, guid: b362ca38b9486824f82ae13e4b793a48, type: 2}
+--- !u!114 &-4661824197690011286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2855399649128144911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &5949281628842395675
 GameObject:
   m_ObjectHideFlags: 0
