@@ -130,8 +130,8 @@ public class NK_BookUI : MonoBehaviourPun
             if (objs[i].type == "obj")
             {
                 ObjInfo obj = (ObjInfo)objs[i];
-                GameObject objPrefab = PhotonNetwork.Instantiate(obj.prefab, obj.position + new Vector3(0, 2.36f, -1.4f) - new Vector3(0, 40, 0) * (sceneObjects.Count - (pageNum + 1)), obj.rotation);
-                photonView.RPC("RPCCreateObject", RpcTarget.All, objPrefab.GetPhotonView().ViewID, obj.scale / 2, obj.anim);
+                GameObject objPrefab = PhotonNetwork.Instantiate(obj.prefab, obj.position + new Vector3(0, 2.36f, -1.4f) - new Vector3(0, 20, 0) * (sceneObjects.Count - (pageNum + 1)), obj.rotation);
+                photonView.RPC("RPCCreateObject", RpcTarget.All, objPrefab.GetPhotonView().ViewID, obj.scale, obj.anim);
             }
         }
 
@@ -201,8 +201,10 @@ public class NK_BookUI : MonoBehaviourPun
         textInfo.color = colorInfo;
         // 폰트 사이즈 변경
         textInfo.fontSize = size;
+        textObj.GetComponent<RectTransform>().sizeDelta = new Vector2(textInfo.preferredWidth, textInfo.preferredHeight);
         textObj.transform.SetParent(fairyTaleUI);
-        textObj.transform.localPosition = position;
+        position = new Vector3(position.x, position.y / 3, position.z);
+        textObj.GetComponent<RectTransform>().anchoredPosition = position;
     }
 
     Animator animator;
@@ -267,6 +269,7 @@ public class NK_BookUI : MonoBehaviourPun
     {
         photonView.RPC("RPCDestroyObject", RpcTarget.All);
         photonView.RPC("RPCSetInactive", RpcTarget.All);
+        isOpen = false;
     }
     #endregion
 }
