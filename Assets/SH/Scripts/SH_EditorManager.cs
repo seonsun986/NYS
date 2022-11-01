@@ -60,6 +60,8 @@ public class SH_EditorManager : MonoBehaviour
             { "Headtilt", "°¼¿ì¶×"},
             { "Lay", "´¯±â"},
             {"Yell", "¼Ò¸®Áö¸£±â" },
+            { "HoldRun", "Áã°í ´Þ¸®±â"},
+            {"Laugh", "¿ô±â" },
         };
     }
     int i = 0;
