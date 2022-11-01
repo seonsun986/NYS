@@ -13,7 +13,7 @@ public class NK_SettingUI : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        Speaker = GameObject.FindWithTag("Teacher");
+        Speaker = GameManager.Instance.photonView.gameObject;
         audioSource = Speaker.transform.GetChild(2).GetComponent<AudioSource>();
     }
 
