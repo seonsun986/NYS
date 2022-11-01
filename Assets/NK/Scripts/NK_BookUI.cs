@@ -74,8 +74,10 @@ public class NK_BookUI : MonoBehaviourPun
 
     private void Update()
     {
+        // 오브젝트가 활성화 되어있을 때
         if (sceneObjects.Count > 0 && fairyTaleObject.gameObject.activeSelf && !isOpen)
         {
+            // 첫 페이지의 오브젝트를 띄움
             InstantiateObject();
             isOpen = true;
         }
@@ -109,16 +111,19 @@ public class NK_BookUI : MonoBehaviourPun
 
     public void InstantiateObject()
     {
+        // pageNum에 따른 씬 오브젝트 리스트에 저장
         List<PageInfo> objs = sceneObjects[pageNum];
 
         for (int i = 0; i < objs.Count; i++)
         {
+            // 씬마다 텍스트 띄우기
             if (objs[i].type == "text")
             {
                 TxtInfo txt = (TxtInfo)objs[i];
                 GameObject textObj = PhotonNetwork.Instantiate("NK/" + textFactory.name, Vector3.zero, Quaternion.identity);
                 photonView.RPC("RPCCreateText", RpcTarget.All, textObj.GetPhotonView().ViewID, txt.content, txt.size, txt.position, txt.font, txt.color);
             }
+            // 씬마다 오브젝트 띄우기
             if (objs[i].type == "obj")
             {
                 ObjInfo obj = (ObjInfo)objs[i];
@@ -130,6 +135,7 @@ public class NK_BookUI : MonoBehaviourPun
 
     IEnumerator PlayAnim(Animator animator, string anim)
     {
+        // 애니메이션 플레이
         yield return null;
         animator.Play(anim);
     }
@@ -137,6 +143,7 @@ public class NK_BookUI : MonoBehaviourPun
     [PunRPC]
     private void RPCDestroyObject()
     {
+        // 씬이 달라지면 오브젝트 지우기
         Transform[] texts = fairyTaleUI.GetComponentsInChildren<Transform>();
         Transform[] objects = fairyTaleObject.GetComponentsInChildren<Transform>();
 
@@ -177,7 +184,7 @@ public class NK_BookUI : MonoBehaviourPun
         Color colorInfo;
         ColorUtility.TryParseHtmlString("#" + color, out colorInfo);
         textInfo.color = colorInfo;
-
+        // 폰트 사이즈 변경
         textInfo.fontSize = size;
         textObj.transform.SetParent(fairyTaleUI);
         textObj.transform.localPosition = position;
@@ -191,17 +198,17 @@ public class NK_BookUI : MonoBehaviourPun
         GameObject objPrefab = view.gameObject;
         objPrefab.transform.SetParent(fairyTaleObject);
         objPrefab.transform.localScale = scale;
+        // 애니메이션이 있다면
         if (anim != "")
         {
-            if(objPrefab.GetComponent<Animator>() == null)
+            // 애니메이터를 가져옴
+            if (objPrefab.GetComponent<Animator>() == null)
             {
                 animator = objPrefab.transform.GetChild(0).GetComponent<Animator>();
-                
             }
             else
             {
                 animator = objPrefab.GetComponent<Animator>();
-
             }
             StartCoroutine(PlayAnim(animator, anim));
         }

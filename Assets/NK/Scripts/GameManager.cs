@@ -25,8 +25,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    // 현재 방에 있는 아이들 (포톤뷰로 바꿀 예정)
-    //public List<PhotonView> children = new List<PhotonView> ();
+    // 현재 방에 있는 아이들
     public List<PhotonView> children = new List<PhotonView>();
     public PhotonView photonView;
     public void AddPlayer(PhotonView pv)
