@@ -42,12 +42,14 @@ public class NK_BookUI : MonoBehaviourPun
     {
         SelectBook(Book.양치기소년);
         photonView.RPC("RPCSetActive", RpcTarget.All);
-        ClickBook();
+        ClickBook("Book1");
     }
 
     public void ClickBook2()
     {
         SelectBook(Book.신데렐라);
+        photonView.RPC("RPCSetActive", RpcTarget.All);
+        ClickBook("Book2");
     }
 
     public void ClickBook3()
@@ -86,10 +88,10 @@ public class NK_BookUI : MonoBehaviourPun
         }
     }
 
-    public void ClickBook()
+    public void ClickBook(string jsonName)
     {
         // Json 파일 받아오기
-        string fileName = "Book1";
+        string fileName = jsonName;
         string path = Application.dataPath + "/" + fileName + ".Json";
         string jsonData = File.ReadAllText(path);
         print(jsonData);
@@ -130,7 +132,7 @@ public class NK_BookUI : MonoBehaviourPun
             if (objs[i].type == "obj")
             {
                 ObjInfo obj = (ObjInfo)objs[i];
-                GameObject objPrefab = PhotonNetwork.Instantiate(obj.prefab, obj.position + new Vector3(0, 2.36f, -1.4f) - new Vector3(0, 20, 0) * (sceneObjects.Count - (pageNum + 1)), obj.rotation);
+                GameObject objPrefab = PhotonNetwork.Instantiate(obj.prefab, obj.position + new Vector3(0, 2.11f, -1.4f) - new Vector3(0, 20, 0) * (sceneObjects.Count - (pageNum + 1)), obj.rotation);
                 photonView.RPC("RPCCreateObject", RpcTarget.All, objPrefab.GetPhotonView().ViewID, obj.scale, obj.anim);
             }
         }

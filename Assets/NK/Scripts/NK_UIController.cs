@@ -44,11 +44,11 @@ public class NK_UIController : MonoBehaviourPun
     #region ClickMute // 음소거 버튼
     public void ClickMute()
     {
-        photonView.RPC("RPCMute", RpcTarget.All);
+        photonView.RPC("RPCMute", RpcTarget.All, IsMute);
     }
 
     [PunRPC]
-    private void RPCMute()
+    private void RPCMute(bool mute)
     {
         // 모든 아이들의 볼륨을 0으로 하거나 Mute 시킴
         for (int i = 0; i < GameManager.Instance.children.Count; i++)
@@ -56,7 +56,7 @@ public class NK_UIController : MonoBehaviourPun
             AudioSource audio = GameManager.Instance.children[i].transform.GetChild(2).GetComponent<AudioSource>();
             if (audio != null)
             {
-                audio.mute = IsMute;
+                audio.mute = mute;
             }
         }
     }
