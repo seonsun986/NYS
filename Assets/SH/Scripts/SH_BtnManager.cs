@@ -32,6 +32,7 @@ public class BookInfo
     public string id;
     public string title;
     public string createAt;
+    public string recordingPath;
     public List<PagesInfo> pages;
 
 }
@@ -116,9 +117,7 @@ public class SH_BtnManager : MonoBehaviour
     public List<SH_InputField> inputFields = new List<SH_InputField>();
     // 현재 선택되어있는 드롭다운과 텍스트 사이즈, 텍스트 컬러
     public Dropdown txtDropdown;
-    public string txtSize;
     public InputField InputtxtSize;
-    public Color txtColor;
     // 씬 추가하기
     public GameObject voidScene;
     public GameObject rawImage;
@@ -169,6 +168,9 @@ public class SH_BtnManager : MonoBehaviour
         path = Application.dataPath + "/Capture/";
         captureWidth = Screen.width;
         captureHeight = Screen.height;
+
+        txtDropdown.onValueChanged.AddListener(ChangeTextFont);
+        InputtxtSize.onValueChanged.AddListener(ChangeFontSize);
     }
 
     void Update()
@@ -296,52 +298,44 @@ public class SH_BtnManager : MonoBehaviour
     public void AddText()
     {
         SH_InputField inputText = Instantiate(inputField).GetComponent<SH_InputField>();
-        if(text==0)
-        {
-            SH_EditorManager.Instance.origin_InputField = inputText;
-            SH_EditorManager.Instance.active_InputField = inputText;
-        }
-        else
-        {
-            SH_EditorManager.Instance.active_InputField = inputText;
-        }
-        
-        inputText.gameObject.name = "Text" + text;
-        // 초기값 세팅
-        txtDropdown.value = 0;
-        txtSize = "20";
-        InputtxtSize.text = txtSize;
-        txtColor = new Color(0, 0, 0, 1);
-
-        inputText.info = new TextInfo
-        {
-            inputs = inputText.GetComponent<InputField>().text,
-            txtDropdown = txtDropdown.value,
-            txtSize = int.Parse(txtSize),
-            txtColor = txtColor,
-        };
-        // 선택되어있는 dropdown과 textSize값에 따라서 글자 크기를 바꾸기 위함
+       
+        SH_EditorManager.Instance.active_InputField = inputText;
         inputFields.Add(inputText);
-        inputText.transform.SetParent(Scenes_txt[currentSceneNum].transform);
-        inputText.transform.localPosition = new Vector3(0, -350, 0);
+        // 초기값 세팅
+        SetInfo(0, 20, Color.black);
+
+        inputText.Initialize(Scenes_txt[currentSceneNum].transform, text, new Vector3(0, -350, 0));
+        inputText.SetInfo(txtDropdown.value, int.Parse(InputtxtSize.text), txtcolorImage.color);
+        
         text++;
+    }
+
+    public void SetInfo(int dropdown, int inputTextSize , Color txtColor)
+    {
+        txtDropdown.value = dropdown;
+        InputtxtSize.text = inputTextSize.ToString();
+        txtcolorImage.color = txtColor;
     }
 
     #region 글씨 크기 조절
     public void PlusSize()
     {
-        int size = int.Parse(txtSize);
+        int size = int.Parse(InputtxtSize.text);
         size++;
-        txtSize = size.ToString();
-        InputtxtSize.text = txtSize;
+        InputtxtSize.text = size.ToString();
     }
 
     public void MinusSize()
     {
-        int size = int.Parse(txtSize);
+        int size = int.Parse(InputtxtSize.text);
         size--;
-        txtSize = size.ToString();
-        InputtxtSize.text = txtSize;
+        InputtxtSize.text = size.ToString();
+
+    }
+
+    public void ChangeFontSize(string size)
+    {
+        SH_EditorManager.Instance.active_InputField.SetFontSize(int.Parse(size));
     }
 
     
@@ -353,9 +347,13 @@ public class SH_BtnManager : MonoBehaviour
         int btnNum = int.Parse(name.Substring(3));               
         Color color;
         ColorUtility.TryParseHtmlString(hexColor[btnNum], out color);
-        txtColor = color;
         txtcolorImage.color = color;
+        SH_EditorManager.Instance.active_InputField.SetFontColor(color);
+    }
 
+    void ChangeTextFont(int index)
+    {
+        SH_EditorManager.Instance.active_InputField.SetFontType(index);
     }
 
     public GameObject palette;
@@ -490,7 +488,7 @@ public class SH_BtnManager : MonoBehaviour
                 GameObject createObj = Instantiate(obj[j]);
                 SH_EditorManager.Instance.activeObj = createObj;
                 createObj.transform.SetParent(Scenes[currentSceneNum].transform);
-                createObj.transform.position = new Vector3(0, 0, 0);
+                createObj.transform.position = new Vector3(0, -1, 0);
                 break;
             }
         }
@@ -754,6 +752,7 @@ public class SH_BtnManager : MonoBehaviour
         bookinfo.id = "심선혜 최고";
         bookinfo.title = "위인전 : 심선혜";
         bookinfo.createAt = DateTime.Now.ToString("yyyy / MM / dd");
+        bookinfo.recordingPath = "C:\\Users\\HP\\Desktop\\MTVS\\Final project\\NYS\\Assets\\SH\\Recording";
         // 이제 BookInfo 중 Pages에 이 정보들을 담아보자
         bookinfo.pages = pages;
         string jsonData = JsonUtility.ToJson(bookinfo, true);

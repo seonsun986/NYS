@@ -29,7 +29,8 @@ namespace Battlehub.RTHandles
 
         private void Update()
         {
-            if(m_editor.Tools.ActiveTool != null || m_editor.IsInputFieldActive)
+            m_editor.Tools.PivotRotation = RuntimePivotRotation.Global;
+            if (m_editor.Tools.ActiveTool != null || m_editor.IsInputFieldActive)
             {
                 return;
             }
@@ -61,14 +62,16 @@ namespace Battlehub.RTHandles
 
                 if (PivotRotationAction())
                 {
-                    if (m_editor.Tools.PivotRotation == RuntimePivotRotation.Local)
-                    {
-                        m_editor.Tools.PivotRotation = RuntimePivotRotation.Global;
-                    }
-                    else
-                    {
-                        m_editor.Tools.PivotRotation = RuntimePivotRotation.Local;
-                    }
+                    m_editor.Tools.PivotRotation = RuntimePivotRotation.Global;
+
+                    //if (m_editor.Tools.PivotRotation == RuntimePivotRotation.Local)
+                    //{
+                    //    m_editor.Tools.PivotRotation = RuntimePivotRotation.Global;
+                    //}
+                    //else
+                    //{
+                    //    m_editor.Tools.PivotRotation = RuntimePivotRotation.Local;
+                    //}
                 }
                 if (PivotModeAction())
                 {
