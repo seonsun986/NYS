@@ -29,27 +29,63 @@ public class SH_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         isClicked = true;
         // 선택한 InputField가 들어감
+
         SH_EditorManager.Instance.active_InputField = this;
-        SH_BtnManager.Instance.txtDropdown.value = SH_EditorManager.Instance.active_InputField.info.txtDropdown;
-        SH_BtnManager.Instance.txtSize = SH_EditorManager.Instance.active_InputField.info.txtSize.ToString();
-        SH_BtnManager.Instance.InputtxtSize.text = SH_EditorManager.Instance.active_InputField.info.txtSize.ToString();
-        SH_BtnManager.Instance.txtColor = SH_EditorManager.Instance.active_InputField.info.txtColor;
-
-
-
+        TextInfo activeInfo = SH_EditorManager.Instance.active_InputField.info;
+        SH_BtnManager.Instance.SetInfo(activeInfo.txtDropdown, activeInfo.txtSize, activeInfo.txtColor);
     }
     public void UnClick()
     {
         isClicked = false;
     }
-    
-    void Start()
+
+    void Awake()
     {
         inputF = GetComponent<InputField>();
         rect = GetComponent<RectTransform>();
         tool = transform.GetChild(0).gameObject;
         tool.SetActive(false);
+        info = new TextInfo();
     }
+    private void Start()
+    {
+        
+    }
+
+    public void Initialize(Transform parent, int idx, Vector3 pos)
+    {
+        gameObject.name = "Text" + idx;
+        transform.SetParent(parent);
+        transform.localPosition = pos;
+    }
+
+    public void SetInfo(int txtDropdown, int txtSize, Color txtColor)
+    {
+        
+        info.inputs = inputF.text;
+        info.txtDropdown = txtDropdown;
+        info.txtSize = txtSize;
+        info.txtColor = txtColor;
+    }
+
+    public void SetFontSize(int fontSize)
+    {
+        inputF.textComponent.fontSize = fontSize;
+        info.txtSize = fontSize;
+    }
+
+    public void SetFontColor(Color color)
+    {
+        inputF.textComponent.color = color;
+        info.txtColor = color;
+    }
+
+    public void SetFontType(int type)
+    {
+        inputF.textComponent.font = SH_EditorManager.Instance.fonts[type];
+        info.txtDropdown = type;
+    }
+   
 
     GameObject tool;
 
