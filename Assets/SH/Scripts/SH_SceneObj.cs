@@ -103,23 +103,27 @@ public class SH_SceneObj : MonoBehaviour
                 buttons.Add(animButton);
             }
 
-
-            // 삭제하기 버튼을 만들어준다
-            delete = Instantiate(deleteBtn);
-            if (animBtnParent == null)
+            if (GameObject.Find("GameManager") != null) return;
+            else
             {
-                animBtnParent = new GameObject(gameObject.name + "AnimBtn");
-                animBtnParent.transform.SetParent(GameObject.Find("AnimalAnimBtn").transform);
-                animBtnParent.transform.localPosition = new Vector3(0, 0, 0);
+                // 삭제하기 버튼을 만들어준다
+                delete = Instantiate(deleteBtn);
+                if (animBtnParent == null)
+                {
+                    animBtnParent = new GameObject(gameObject.name + "AnimBtn");
+                    animBtnParent.transform.SetParent(GameObject.Find("AnimalAnimBtn").transform);
+                    animBtnParent.transform.localPosition = new Vector3(0, 0, 0);
+                }
+                delete.transform.SetParent(animBtnParent.transform);
+                delete.transform.localPosition = new Vector3(0, 170, 0);
+                delete.GetComponent<Button>().onClick.AddListener(DeletePopUp);
+                delete.transform.GetChild(0).GetChild(1).GetComponent<Button>().onClick.AddListener(PopUpYes);
+                delete.transform.GetChild(0).GetChild(2).GetComponent<Button>().onClick.AddListener(PopUpNo);
+                // 정말로 끄겠습니까 팝업은 꺼둔다
+                delete.transform.GetChild(0).gameObject.SetActive(false);
+                buttons.Add(delete);
             }
-            delete.transform.SetParent(animBtnParent.transform);
-            delete.transform.localPosition = new Vector3(0, 170, 0);
-            delete.GetComponent<Button>().onClick.AddListener(DeletePopUp);
-            delete.transform.GetChild(0).GetChild(1).GetComponent<Button>().onClick.AddListener(PopUpYes);
-            delete.transform.GetChild(0).GetChild(2).GetComponent<Button>().onClick.AddListener(PopUpNo);
-            // 정말로 끄겠습니까 팝업은 꺼둔다
-            delete.transform.GetChild(0).gameObject.SetActive(false);
-            buttons.Add(delete);
+          
         }
     }
 

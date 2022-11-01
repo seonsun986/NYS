@@ -709,11 +709,12 @@ public class SH_BtnManager : MonoBehaviour
             {
                 for (int j = 0; j < Scenes[i].transform.childCount; j++)
                 {
+                    // 현재 씬 넘버에 따라서 y값 조절하자(마지막 씬을 0으로)
                     ObjInfo objInfo = new ObjInfo();
                     SH_SceneObj obj = Scenes[i].transform.GetChild(j).GetComponent<SH_SceneObj>();
                     objInfo.type = obj.objType.ToString();
                     objInfo.prefab = obj.name.Substring(0, obj.name.Length - 7);     //("(clone)" 빼고 저장해야함)
-                    objInfo.position = obj.transform.position;
+                    objInfo.position = new Vector3(obj.transform.position.x, obj.transform.position.y + (Scenes.Count - 1 - currentSceneNum) * 20, obj.transform.position.z);
                     objInfo.rotation = obj.transform.rotation;
                     objInfo.scale = obj.transform.localScale;
                     objInfo.anim = obj.GetComponent<SH_SceneObj>().currentAnim;
