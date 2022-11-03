@@ -51,49 +51,17 @@ public class YJ_UIManager : MonoBehaviour
     int maleButtonConut = 0;
     int femaleButtonConut = 0;
 
-    enum UIState
-    {
-        Login,
-        SignIn,
-        Interest
-    }
-    UIState uiState = UIState.Login;
 
     void Start()
     {
-        //nextButton = GameObject.Find("button_Next");
-        //nextDefaultColor = nextButton.GetComponent<Image>().color;
 
-        //loginUI.SetActive(true);
-        //signInUI.SetActive(false);
-        //InterestUI.SetActive(false);
     }
 
     void Update()
     {
-        switch(uiState)
-        {
-            case UIState.Login:
-                //LoginState();
-                break;
-            case UIState.SignIn:
-                SignInState();
-                break;
-            case UIState.Interest:
-                InterestState();
-                break;
-        }
+
     }
 
-    //private void LoginState()
-    //{
-    //    if (loginDataFlag)
-    //    {
-    //        login_ID = GameObject.Find("login_ID").GetComponent<InputField>();
-    //        login_PW = GameObject.Find("login_PW").GetComponent<InputField>();
-    //        loginDataFlag = false;
-    //    }
-    //}
 
     private void SignInState()
     {
@@ -167,35 +135,6 @@ public class YJ_UIManager : MonoBehaviour
         //StartCoroutine(UnityWebRequestPOSTTEST());
     }
 
-    // 네트워크 로그인정보 전송 > 엑세스토큰 받아오기
-    IEnumerator UnityWebRequestPOSTTEST()
-    {
-        string url = "http://43.201.10.63:8080/auth/login";
-        string loginJson = JsonUtility.ToJson(loginInfo, true);
-        
-        print(loginJson);
-
-        using (UnityWebRequest www = UnityWebRequest.Post(url, loginJson))  // 보낼 주소와 데이터 입력
-        {
-            www.SetRequestHeader("Content-Type", "application/json");
-            byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(loginJson);
-            www.uploadHandler = new UploadHandlerRaw(jsonToSend);
-
-            yield return www.SendWebRequest();  // 응답 대기
-
-            if (www.error == null)
-            {
-                Debug.Log(www.downloadHandler.text);    // 데이터 출력
-                
-            }
-            else
-            {
-                print(www.error);
-                Debug.Log("error");
-            }
-        }
-    }
-
     public void Save()
     {
         // ArrayJson -> json
@@ -208,69 +147,44 @@ public class YJ_UIManager : MonoBehaviour
         requester.postData = loginJson;
         requester.onComplete = (handler) => {
             print("유저정보 기입완료");
+            Login_1 login_1 = new Login_1();
+            Login_1_data data = new Login_1_data();
 
-            //string loginJson = JsonUtility.FromJson(handler.text);
+            login_1 = JsonUtility.FromJson<Login_1>(handler.text);
+            //data.grantType = login_1.data.grantType;
+            //data.memberName = login_1.data.memberName;
+            //data.accessToken = login_1.data.accessToken;
+            //data.accessTokenExpiresIn = login_1.data.accessTokenExpiresIn;
+            //data = login_1.data;
+            UserInfo.accessToken = data.accessToken;
+            print(UserInfo.accessToken);
         };
         YJ_HttpManager.instance.SendRequest(requester);
     }
-
-    public void Save2()
-    {
-        //ArrayJson arrayJson = new ArrayJson();
-        //arrayJson.data = interestInfo.interest;
-
-        //InterestJson interestJson = new InterestJson();
-        //interestJson.ID = userInfo.ID;
-        //interestJson.arrayJson = arrayJson;
-
-        //interestInfo.ID = userInfo.ID;
-
-        //string jsonData = JsonUtility.ToJson(interestInfo, true);
-
-        //print(jsonData);
-
-        YJ_HttpRequester requester = new YJ_HttpRequester();
-        requester.url = "http://192.168.1.29:8888/member/interest";
-        requester.requestType = RequestType.POST;
-        //requester.postData = jsonData;
-        requester.onComplete = (handler) => {
-            print("회원가입 완료");
-
-            uiState = UIState.Login;
-
-            InterestUI.SetActive(false);
-            loginUI.SetActive(true);
-        };
-        //YJ_HttpRequester.instance.SendRequest(requester);
-    }
-
 
     public void OnClickLoginButton()
     {
         // 로그인 정보 받아오기
         loginInfo.memberId = login_ID.text;
         loginInfo.memberPwd = login_PW.text;
-
-        //login_ID.text = loginInfo.memberId;
-        //login_PW.text = loginInfo.memberPwd;
-
-
-        // 제이슨 변경
-        //string jsonData = JsonUtility.ToJson(loginInfo, true);
-
-        //print(jsonData);
-
-        // 서버 알아야함
-        //YJ_HttpRequester requester = new YJ_HttpRequester();
-        //requester.url = "http://192.168.1.29:8888/member/login";
-        //requester.requestType = RequestType.POST;
-        //requester.postData = jsonData;
-        //requester.onComplete = (handler) => {
-        //    print("로그인 완료");
-
-        //    SceneManager.LoadScene("PlazaScene");
-        //};
-        //YJ_HttpRequester.instance.SendRequest(requester);
     }
 
+
+    // 첫번째 ] 로그인 시 받아올 토큰
+    public class Login_1
+    {
+        public string status;
+        public string message;
+        public Login_1_data data;// = new Login_1_data();
+    }
+
+    public class Login_1_data
+    {
+        public string grantType;
+        public string memberName;
+        public string accessToken;
+        public string accessTokenExpiresIn;
+    }
+
+    // 두번째 ] 로그인 시 받아올 토큰
 }
