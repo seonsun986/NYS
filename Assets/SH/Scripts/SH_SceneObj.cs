@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SH_SceneObj : MonoBehaviour
@@ -71,7 +72,7 @@ public class SH_SceneObj : MonoBehaviour
             anim.Play(gameObject.name.Substring(0, gameObject.name.Length - 7) + "_" +anims[0].name);
             for (int i = 0; i < anims.Count; i++)
             {
-                if (GameObject.Find("GameManager") != null) return;
+                if (SceneManager.GetActiveScene().name != "EditorScene") return;
                 // 빈 오브젝트가 없다면 만들어주고
                 if (GameObject.Find(gameObject.name + "AnimBtn") == null)
                 {
