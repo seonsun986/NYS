@@ -37,7 +37,7 @@ public static class UserInfo
 public class YJ_DataManager : MonoBehaviour
 {
     public static YJ_DataManager instance;
-
+    public string preScene;
     //public List<string> listPhotoUrl = new List<string>();
 
     private void Awake()

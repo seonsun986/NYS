@@ -29,28 +29,31 @@ public class Json
 [System.Serializable]
 public class BookInfo
 {
-    public string id;
-    public string title;
-    public string createAt;
-    public List<PagesInfo> pages;
+    public string id; //서버에 생성되는 차례 (고정)
+    public string title; //책 제목
+    public string createAt; //만든날짜
+    public List<PagesInfo> pages; //페이지들 정보
 
 }
 
 [System.Serializable]
 public class PagesInfo
 {
-    public int page;
+    public int page; //페이지 번호
     //public List<PageInfo> data;
-    public List<string> data;
+    public List<string> data; //텍스트 정보, 오브젝트 정보
 
     public string SerializePageInfo(PageInfo info)
     {
+        // Class -> Json
+        // 텍스트, 오브젝트 스트링 형식으로 변환
         string pageInfo = JsonUtility.ToJson(info);
         return pageInfo;
     }
 
     public PageInfo DeserializePageInfo(string s)
     {
+        // Json -> Class
         PageInfo pageInfo = JsonUtility.FromJson<PageInfo>(s);
         if(pageInfo.type == "text")
         {
@@ -65,14 +68,14 @@ public class PagesInfo
 }
 
 [System.Serializable]
-public class PageInfo
+public class PageInfo //공통정보 타입과 위치
 {
     public string type;
     public Vector3 position;
 }
 
 [System.Serializable]
-public class TxtInfo : PageInfo
+public class TxtInfo : PageInfo //텍스트일경우 가져올 정보
 {
     public string font;
     public int size;
@@ -81,9 +84,9 @@ public class TxtInfo : PageInfo
 }
 
 [System.Serializable]
-public class ObjInfo : PageInfo
+public class ObjInfo : PageInfo //오브젝트일경우 가져올 정보
 {
-    public string prefab;
+    public string prefab; //프리팹 이름
     //public string category;
     public Quaternion rotation;
     public Vector3 scale;
@@ -689,14 +692,21 @@ public class SH_BtnManager : MonoBehaviour
         }     
        
     }
-    // 제이슨 저장
-    // PageInfo -> PagesInfo -> BookInfo -> Json
     private AnimatorClipInfo[] clipInfo;
     public void Save()
     {
+        string jsonData = SaveInfo();
+
+        SaveJson("Book2", jsonData);
+    }
+
+    // 제이슨 저장
+    // PageInfo -> PagesInfo -> BookInfo -> Json
+    private string SaveInfo()
+    {
         BookInfo bookinfo = new BookInfo();
         // PageInfo 클래스에서 부터 오브젝트와 텍스트의 정보를 넣어보자
-        for(int i =0;i<Scenes.Count;i++)
+        for (int i = 0; i < Scenes.Count; i++)
         {
             PagesInfo pagesInfo = new PagesInfo();
             objsInfo = new List<string>();
@@ -705,7 +715,7 @@ public class SH_BtnManager : MonoBehaviour
             // 씬 하나
             // 오브젝트 담기(type, prefab, position, rotation, scale 필요함)
             // 그 안에 자식이 있을때만 for문을 돌리자!
-            if(Scenes[i].transform.childCount>0)
+            if (Scenes[i].transform.childCount > 0)
             {
                 for (int j = 0; j < Scenes[i].transform.childCount; j++)
                 {
@@ -722,8 +732,8 @@ public class SH_BtnManager : MonoBehaviour
                     objsInfo.Add(pagesInfo.SerializePageInfo(objInfo));
                 }
             }
-           
-            if(Scenes_txt[i].transform.childCount>0)
+
+            if (Scenes_txt[i].transform.childCount > 0)
             {
                 // 텍스트 담기
                 for (int k = 0; k < Scenes_txt[i].transform.childCount; k++)
@@ -741,7 +751,7 @@ public class SH_BtnManager : MonoBehaviour
                     objsInfo.Add(pagesInfo.SerializePageInfo(txtInfo));
                 }
             }
-           
+
             // 페이지 당 오브젝트를 다 담았으면 data를 할당해준다
             // objsInfo의 List를 초기화해준다
             pagesInfo.data = objsInfo;
@@ -756,9 +766,22 @@ public class SH_BtnManager : MonoBehaviour
         bookinfo.pages = pages;
         string jsonData = JsonUtility.ToJson(bookinfo, true);
         print(jsonData);
+        return jsonData;
+    }
 
-        string fileName = "Book2";
+    // 제이슨 저장
+    private void SaveJson(string fileName, string jsonData)
+    {
         string path = Application.dataPath + "/" + fileName + ".Json";
         File.WriteAllText(path, jsonData);
     }
+
+    #region PreviewScene // 동화 미리보기
+    public void PreviewScene()
+    {
+        string jsonData = SaveInfo();
+
+        SaveJson("PreviewBook", jsonData);
+    }
+    #endregion
 }

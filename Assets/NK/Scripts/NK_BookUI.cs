@@ -99,6 +99,8 @@ public class NK_BookUI : MonoBehaviourPun
         // 파싱
         BookInfo bookInfo = JsonUtility.FromJson<BookInfo>(jsonData);
         List<PagesInfo> pagesInfos = bookInfo.pages;
+
+        // pageinfo(단일) 내에서 text, obj로 구분지어 클래스 내 json 정렬 > pagesinfo.data(리스트)
         foreach (PagesInfo pagesInfo in pagesInfos)
         {
             objs = new List<PageInfo>();
