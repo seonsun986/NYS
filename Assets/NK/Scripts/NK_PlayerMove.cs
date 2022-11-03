@@ -96,17 +96,32 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     }
 
     // 애니메이션 조절할 bool값
-    bool moveBool;
+    bool moveBool = false;
+    Vector3 movePoint;
 
     void Update()
     {
         if (photonView.IsMine)
         {
-            if (h + v == 0)
-            {
-                moveBool = false;
-            }
-            else moveBool = true;
+            //// 마우스로 이동하기
+            //if (Input.GetMouseButtonUp(0))
+            //{
+            //    // 마우스 클릭 후 떼었을때 마우스 포지션으로 레이 생성
+            //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //    Debug.DrawLine(ray.origin, ray.direction * 10f, Color.green, 1f);
+
+            //    if (Physics.Raycast(ray, out RaycastHit raycastHit))
+            //    {
+            //        movePoint = raycastHit.point;
+            //        Debug.Log("어디로갈거임 : " + movePoint);
+            //        Debug.Log("지금 부딪힌 물체이름 : " + raycastHit.transform.name);
+            //    }
+            //}
+            ////if (h + v == 0)
+            ////{
+            ////    moveBool = false;
+            ////}
+            ////else moveBool = true;
 
             switch (state)
             {
@@ -117,6 +132,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                     {
                         return;
                     }
+                    //PlayerMouseMove();
                     PlayerMove();
                     break;
                 case State.Sit:
@@ -135,6 +151,45 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     float h = 0;
     float v = 0;
     int jumpCount = 0;
+
+
+    void PlayerMouseMove()
+    {
+        dir = movePoint - transform.position;
+        //dir.y = 0;
+        dir.Normalize();
+
+        // yVelocity값을 중력으로 감소시킴
+        yVelocity += gravity * Time.deltaTime;
+        // 만약에 바닥에 닿아있다면 yVelocity를 0으로 하자
+        if (controller.isGrounded)
+        {
+            yVelocity = 0;
+            jumpCount = 0;
+        }
+
+        // 스페이스바를 누르면 yVelocity에 jumpPower를 셋팅
+        if (Input.GetButtonDown("Jump") && jumpCount < 1)
+        {
+            yVelocity = jumpPower;
+            jumpCount++;
+        }
+        dir.y = yVelocity;
+
+
+        if (Vector3.Distance(movePoint, transform.position) < 0.1f)
+        {
+            moveBool = false;
+            return;
+        }
+        else
+        {
+            moveBool = true;
+            //transform.rotation = Quaternion.LookRotation(dir);
+            //transform.LookAt(movePoint);
+            controller.Move(dir * moveSpeed * Time.deltaTime);
+        }
+    }
 
     void PlayerMove()
     {

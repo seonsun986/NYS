@@ -15,8 +15,6 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         instance = this;
     }
 
-    [HideInInspector]
-    public UserInfo userInfo;
 
     // 들어와있는 인원 파악하기
     public int liveCount = 0;
