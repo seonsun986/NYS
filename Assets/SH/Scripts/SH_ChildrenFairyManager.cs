@@ -11,6 +11,8 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     public List<GameObject> pages = new List<GameObject>();
     // 선택지에 따라 바뀔 텍스트 리스트
     public List<Text> boxTexts = new List<Text>();
+    // 선택했을 때 나타날 오브젝트들의 리스트
+    public List<GameObject> selectObject;
     [Header("선택지가 있는 페이지")]
     // 선택 페이지 리스트(이때는 넥스트 버튼이 선택하면 넘어가면 안됨)
     public List<int> SelectPage = new List<int>();
@@ -20,6 +22,8 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     public int currentPage;
 
     bool pass;
+
+
     void Start()
     {
         
@@ -89,6 +93,19 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     {
         FailPopUp.SetActive(true);
         // 해당 FailBtn과 관련된 애니메이션 재생하자!
+        // 그러러면 일단 내가 선택한 버튼이 뭔지 알아야한다 
+        GameObject selectBtn = EventSystem.current.currentSelectedGameObject;
+        string selectBtnName = selectBtn.name.Substring(0, selectBtn.name.Length -3);
+        // 버튼을 모두 끈다
+        selectBtn.transform.parent.gameObject.SetActive(false);
+        for(int i=0;i<selectObject.Count;i++)
+        {
+            if(selectBtnName == selectObject[i].name)
+            {
+                selectObject[i].SetActive(true);
+            }
+        }
+
     }
 
     public void PassTrue()
@@ -99,6 +116,10 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     {
         GameObject closeBtn = EventSystem.current.currentSelectedGameObject;
         closeBtn.transform.parent.gameObject.SetActive(false);
+
+        // 다시 현재 페이지를 켜준다
+        string pageName = "Page" + currentPage;
+        GameObject.Find(pageName).SetActive(true);
     }
 
     // 클릭한 버튼의 이름을 넣어주는 것
