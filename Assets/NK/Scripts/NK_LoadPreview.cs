@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,9 +11,11 @@ using UnityEngine.UIElements;
 
 public class NK_LoadPreview : MonoBehaviour
 {
-    public GameObject textFactory;
-    public Transform fairyTaleUI;
-    public Transform fairyTaleObject;
+    public GameObject newScene;
+    public GameObject newScene_Canvas;
+    public GameObject inputField;
+    GameObject n_Scene;
+    GameObject n_Scene_Canvas;
 
     Animator animator;
     List<PageInfo> objs;
@@ -21,7 +24,7 @@ public class NK_LoadPreview : MonoBehaviour
 
     private void Start()
     {
-        if(YJ_DataManager.instance.preScene == "PreviewScene")
+        if (YJ_DataManager.instance.preScene == "PreviewScene")
         {
             LoadObjects("PreviewBook");
             YJ_DataManager.instance.preScene = null;
@@ -61,15 +64,17 @@ public class NK_LoadPreview : MonoBehaviour
                 objs.Add(pagesInfo.DeserializePageInfo(pageInfo));
                 sceneObjects[pagesInfo.page] = objs;
             }
+            InstantiateObject();
         }
-
-        InstantiateObject();
     }
 
     public int pageNum;
 
     public void InstantiateObject()
     {
+        // pageNum에 따른 씬 오브젝트 리스트에 저장
+        List<PageInfo> objs = sceneObjects[pageNum];
+        AddScene(pageNum);
         for (int i = 0; i < objs.Count; i++)
         {
             // 페이지마다 텍스트 띄우기
@@ -89,8 +94,8 @@ public class NK_LoadPreview : MonoBehaviour
 
     private void CreateText(TxtInfo txt)
     {
-        GameObject textObj = Instantiate(textFactory);
-        Text textInfo = textObj.GetComponent<Text>();
+        GameObject textObj = Instantiate(inputField);
+        Text textInfo = textObj.transform.GetChild(2).GetComponent<Text>();
         textInfo.text = txt.content;
         // 폰트 적용
         Font fontInfo;
@@ -106,14 +111,16 @@ public class NK_LoadPreview : MonoBehaviour
         // 폰트 사이즈 변경
         textInfo.fontSize = txt.size;
         textObj.GetComponent<RectTransform>().sizeDelta = new Vector2(textInfo.preferredWidth, textInfo.preferredHeight);
-        textObj.transform.SetParent(fairyTaleUI);
+        textObj.transform.SetParent(n_Scene_Canvas.transform);
         textObj.GetComponent<RectTransform>().anchoredPosition = txt.position;
     }
 
     private void CreateObject(ObjInfo obj)
     {
         GameObject objPrefab = (GameObject)Instantiate(Resources.Load(obj.prefab));
-        objPrefab.transform.SetParent(fairyTaleObject);
+        objPrefab.transform.SetParent(n_Scene.transform);
+        objPrefab.transform.position = obj.position;
+        objPrefab.transform.localRotation = obj.rotation;
         objPrefab.transform.localScale = obj.scale;
         // 애니메이션이 있다면
         if (obj.anim != "")
@@ -136,5 +143,30 @@ public class NK_LoadPreview : MonoBehaviour
         // 애니메이션 플레이
         yield return null;
         animator.Play(anim);
+    }
+
+    private void AddScene(int i)
+    {
+        if(i == 0)
+        {
+            n_Scene_Canvas = SH_BtnManager.Instance.Scenes_txt[0];
+            n_Scene = SH_BtnManager.Instance.Scenes[0];
+            pageNum++;
+            return;
+        }
+        // 이제 오브젝트들을 싹 다 올렸으니 새로운 빈 오브젝트들을 만들고
+        n_Scene = Instantiate(newScene);
+        // 빈 오브젝트들의 이름도 바꿔야한다!
+        n_Scene.name = "Scene" + (i);       // 씬 이름 : Scene0, Scene1, Scene2....
+        n_Scene_Canvas = Instantiate(newScene_Canvas);
+        n_Scene_Canvas.name = "Scene_txt" + (i);      // 씬 이름 : Scene0_txt, Scene1_txt....
+        n_Scene_Canvas.transform.SetParent(GameObject.Find("Canvas").transform);
+        // 빈 오브젝트들의 위치도 설정하자
+        n_Scene.transform.position = new Vector3(0, 0, 0);
+        n_Scene_Canvas.transform.position = GameObject.Find("Canvas").transform.position;
+        // 이 오브젝트들을 List에 추가해볼까?
+        SH_BtnManager.Instance.Scenes.Add(n_Scene);
+        SH_BtnManager.Instance.Scenes_txt.Add(n_Scene_Canvas);
+        pageNum++;
     }
 }

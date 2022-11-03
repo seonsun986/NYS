@@ -11121,9 +11121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7b2fdf3ce7f67f45a510889e1671af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textFactory: {fileID: 0}
-  fairyTaleUI: {fileID: 0}
-  fairyTaleObject: {fileID: 0}
+  newScene: {fileID: 3013943683154518292, guid: 27a5fe0ba25ef9646847db2b76a1e285, type: 3}
+  newScene_Canvas: {fileID: 149700314513890301, guid: c6f6377d6f49aad44b1a07e867ea665a, type: 3}
+  inputField: {fileID: 2232197492553210212, guid: fea1b73fbbd1fae439a53d43e113efc5, type: 3}
   pageNum: 0
 --- !u!1 &675271653
 GameObject:
@@ -16765,8 +16765,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1746314619}
   m_HandleRect: {fileID: 1746314618}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.99999845
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -33059,7 +33059,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -141.49966, y: 474.99988}
+  m_AnchoredPosition: {x: -141.49966, y: 475}
   m_SizeDelta: {x: 256, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2069426964
