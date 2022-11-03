@@ -209,7 +209,7 @@ public class YJ_UIManager : MonoBehaviour
         requester.onComplete = (handler) => {
             print("유저정보 기입완료");
 
-            string loginJson = JsonUtility.FromJson(handler.text);
+            //string loginJson = JsonUtility.FromJson(handler.text);
         };
         YJ_HttpManager.instance.SendRequest(requester);
     }
