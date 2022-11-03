@@ -9,8 +9,8 @@ using Photon.Pun;
 [System.Serializable]
 public class LoginInfo
 {
-    public string ID;
-    public string PW;
+    public string memberId;
+    public string memberPwd;
 }
 #endregion
 
@@ -19,11 +19,13 @@ public class LoginInfo
 [System.Serializable]
 public class UserInfo
 {
-    public string ID;
-    public string PW;
-    public string name;
-    public string birth;
-    public string position;
+    public string memberId;
+    public string memberPwd;
+    public string memberName;
+    public string age;
+    public string nickname;
+    public string email;
+    public string memberRole;
 }
 #endregion
 
