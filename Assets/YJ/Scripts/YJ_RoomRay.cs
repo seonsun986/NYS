@@ -26,6 +26,11 @@ public class YJ_RoomRay : MonoBehaviour
             // Hit된 지점에 박스를 그려준다.
             Gizmos.DrawWireCube(transform.position + Vector3.down * hit.distance, transform.lossyScale);
 
+            if (hit.transform.name == "Bank02")
+            {
+                return;
+            }
+
             transform.position = hit.point + new Vector3(Random.Range(-5,5),2);
         }
         else

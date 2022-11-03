@@ -5,6 +5,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 [System.Serializable]
 public class InterestJson
@@ -147,7 +148,7 @@ public class YJ_UIManager : MonoBehaviour
 
     public void SendAccesscode()
     {
-        string jsonData = JsonUtility.ToJson(loginInfo.ID, true);
+        string jsonData = JsonUtility.ToJson(loginInfo.memberId, true);
 
         print(jsonData);
     }
@@ -159,26 +160,58 @@ public class YJ_UIManager : MonoBehaviour
         //print(jsonData);
     }
 
+    public void OnclickHttp()
+    {
+        OnClickLoginButton();
+        Save();
+        //StartCoroutine(UnityWebRequestPOSTTEST());
+    }
+
+    // 네트워크 로그인정보 전송 > 엑세스토큰 받아오기
+    IEnumerator UnityWebRequestPOSTTEST()
+    {
+        string url = "http://43.201.10.63:8080/auth/login";
+        string loginJson = JsonUtility.ToJson(loginInfo, true);
+        
+        print(loginJson);
+
+        using (UnityWebRequest www = UnityWebRequest.Post(url, loginJson))  // 보낼 주소와 데이터 입력
+        {
+            www.SetRequestHeader("Content-Type", "application/json");
+            byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(loginJson);
+            www.uploadHandler = new UploadHandlerRaw(jsonToSend);
+
+            yield return www.SendWebRequest();  // 응답 대기
+
+            if (www.error == null)
+            {
+                Debug.Log(www.downloadHandler.text);    // 데이터 출력
+                
+            }
+            else
+            {
+                print(www.error);
+                Debug.Log("error");
+            }
+        }
+    }
+
     public void Save()
     {
         // ArrayJson -> json
-        string jsonData = JsonUtility.ToJson(loginInfo.ID + loginInfo.PW, true);
-
-        print(jsonData);
+        string loginJson = JsonUtility.ToJson(loginInfo, true);
+        print(loginJson);
 
         YJ_HttpRequester requester = new YJ_HttpRequester();
-        requester.url = "http://192.168.1.29:8888/member/regist";
+        requester.url = "http://43.201.10.63:8080/auth/login";
         requester.requestType = RequestType.POST;
-        requester.postData = jsonData;
+        requester.postData = loginJson;
         requester.onComplete = (handler) => {
             print("유저정보 기입완료");
 
-            uiState = UIState.Interest;
-
-            signInUI.SetActive(false);
-            InterestUI.SetActive(true);
+            string loginJson = JsonUtility.FromJson(handler.text);
         };
-        //YJ_HttpRequester.instance.SendRequest(requester);
+        YJ_HttpManager.instance.SendRequest(requester);
     }
 
     public void Save2()
@@ -215,14 +248,17 @@ public class YJ_UIManager : MonoBehaviour
     public void OnClickLoginButton()
     {
         // 로그인 정보 받아오기
-        loginInfo.ID = login_ID.text;
-        loginInfo.PW = login_PW.text;
+        loginInfo.memberId = login_ID.text;
+        loginInfo.memberPwd = login_PW.text;
+
+        //login_ID.text = loginInfo.memberId;
+        //login_PW.text = loginInfo.memberPwd;
 
 
         // 제이슨 변경
-        string jsonData = JsonUtility.ToJson(loginInfo, true);
+        //string jsonData = JsonUtility.ToJson(loginInfo, true);
 
-        print(jsonData);
+        //print(jsonData);
 
         // 서버 알아야함
         //YJ_HttpRequester requester = new YJ_HttpRequester();
