@@ -9,25 +9,28 @@ using Photon.Pun;
 [System.Serializable]
 public class LoginInfo
 {
-    public string ID;
-    public string PW;
+    public string memberId;
+    public string memberPwd;
 }
 #endregion
 
 
 #region 받아올 유저 정보
 [System.Serializable]
-public class UserInfo
+public static class UserInfo
 {
-    public string ID;
-    public string PW;
-    public string name;
-    public string birth;
-    public string position;
+    public static string accessToken;
+    public static string memberId;
+    public static string memberPwd;
+    public static string memberName;
+    public static string age;
+    public static string nickname;
+    public static string email;
+    public static string memberRole;
 }
 #endregion
 
-
+ 
 
 
 

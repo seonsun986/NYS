@@ -11,29 +11,17 @@ public class YJ_RoomTextUI : MonoBehaviourPun
 
     void Start()
     {
-        //text = transform.GetChild(0).transform.GetChild(0).GetComponent<Text>();
-        //text.text = YJ_DataManager.CreateRoomInfo.roomName;
-
-        if(photonView.IsMine)
+        if (photonView.IsMine)
         {
             roomName = YJ_DataManager.CreateRoomInfo.roomName;
             photonView.RPC("RpcTextChange", RpcTarget.All, roomName);
         }
-        
-
-        //if(photonView.IsMine)
-
     }
 
     float currentTime;
     void Update()
     {
-        //currentTime += Time.deltaTime;
-        //if (currentTime > 0.3 && currentTime < 0.8)
-        //{
-        //    if (photonView.IsMine)
-        //        photonView.RPC("RpcTextChange", RpcTarget.All, roomName);
-        //}
+
     }
 
     [PunRPC]

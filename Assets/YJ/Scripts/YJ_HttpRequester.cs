@@ -28,5 +28,6 @@ public class YJ_HttpRequester
     public Action<DownloadHandler> onComplete;
 
     // 반환자료형이 void, 매개변수가 없는 함수를 넣을 수 있다.
-
 }
+
+
