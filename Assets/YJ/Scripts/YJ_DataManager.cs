@@ -34,7 +34,9 @@ public class YJ_DataManager : MonoBehaviour
 {
     public static YJ_DataManager instance;
     public string preScene;
-    //public List<string> listPhotoUrl = new List<string>();
+
+    // 로그인 정보가 모두 들어와서 성공했을때 판단할 것
+    public int loginDone = 0;
 
     
     private void Awake()

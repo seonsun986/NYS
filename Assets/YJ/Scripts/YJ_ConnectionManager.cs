@@ -55,14 +55,10 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
     #endregion
 
 
-    public void OnSubmit(string s)
+    public void OnSubmit()
     {
-        // 둘 다 입력이 되었으면
-        if (id_input && pw_input)
-        {
-            // 접속하자
-            OnClickConnect();
-        }
+        // 접속하자
+        OnClickConnect();
     }
 
 
@@ -86,10 +82,7 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
         print(System.Reflection.MethodBase.GetCurrentMethod().Name);
 
         // 닉네임 설정 네트워크 필요
-        //PhotonNetwork.NickName = inputNickName.text; //"익명의_" + Random.Range(1,10000);
-        PhotonNetwork.NickName = inputId.text;
-        print(PhotonNetwork.NickName);
-        //print(photonView.name);
+        PhotonNetwork.NickName = UserInfo.nickname;
 
         // 기본 로비 진입
         PhotonNetwork.JoinLobby();

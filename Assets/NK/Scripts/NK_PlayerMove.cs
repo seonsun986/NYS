@@ -114,15 +114,8 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                 if (Physics.Raycast(ray, out RaycastHit raycastHit))
                 {
                     movePoint = raycastHit.point;
-                    Debug.Log("어디로갈거임 : " + movePoint);
-                    Debug.Log("지금 부딪힌 물체이름 : " + raycastHit.transform.name);
                 }
             }
-            //if (h + v == 0)
-            //{
-            //    moveBool = false;
-            //}
-            //else moveBool = true;
 
             switch (state)
             {
@@ -186,11 +179,11 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         }
 
         // 스페이스바를 누르면 yVelocity에 jumpPower를 셋팅
-        if (Input.GetButtonDown("Jump") && jumpCount < 1)
-        {
-            yVelocity = jumpPower;
-            jumpCount++;
-        }
+        //if (Input.GetButtonDown("Jump") && jumpCount < 1)
+        //{
+        //    yVelocity = jumpPower;
+        //    jumpCount++;
+        //}
         dir.y = yVelocity;
 
 
@@ -206,8 +199,6 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         else
         {
             moveBool = true;
-            //transform.rotation = Quaternion.LookRotation(dir);
-            //transform.LookAt(movePoint);
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * moveSpeed * 2);
             controller.Move(dir * moveSpeed * Time.deltaTime);
         }

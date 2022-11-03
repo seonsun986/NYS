@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class YJ_HttpManager : MonoBehaviour
 {
     public static YJ_HttpManager instance;
-
+    public GameObject loginFail;
 
     private void Awake()
     {
@@ -48,6 +49,7 @@ public class YJ_HttpManager : MonoBehaviour
                 break;
             case RequestType.GET:
                 webRequest = UnityWebRequest.Get(requester.url);
+                webRequest.SetRequestHeader("accesstoken", UserInfo.accessToken);
                 break;
             case RequestType.PUT:
                 webRequest = UnityWebRequest.Put(requester.url, requester.postData);
@@ -77,9 +79,13 @@ public class YJ_HttpManager : MonoBehaviour
         // 그렇지 않다면
         else
         {
-
             // 서버통신 실패...
             print("통신 실패" + webRequest.result + "\n" + webRequest.error + "\n" + webRequest.responseCode);
+
+            if (SceneManager.GetActiveScene().name == "ConnectionScene")
+            {
+                loginFail.SetActive(true);
+            }
         }
         yield return null;
         webRequest.Dispose();
