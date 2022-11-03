@@ -88,11 +88,12 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         if (photonView.IsMine)
         {
             faceCam.SetActive(true);
+            //movePoint = transform.position;
         }
 
         controller = GetComponent<CharacterController>();
         anim = transform.GetChild(0).GetComponent<Animator>();
-        state = State.Move;
+        state = State.Idle;
     }
 
     // 애니메이션 조절할 bool값
@@ -103,25 +104,25 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     {
         if (photonView.IsMine)
         {
-            //// 마우스로 이동하기
-            //if (Input.GetMouseButtonUp(0))
-            //{
-            //    // 마우스 클릭 후 떼었을때 마우스 포지션으로 레이 생성
-            //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //    Debug.DrawLine(ray.origin, ray.direction * 10f, Color.green, 1f);
+            // 마우스로 이동하기
+            if (Input.GetMouseButtonDown(0))
+            {
+                // 마우스 클릭 후 떼었을때 마우스 포지션으로 레이 생성
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Debug.DrawLine(ray.origin, ray.direction * 10f, Color.green, 1f);
 
-            //    if (Physics.Raycast(ray, out RaycastHit raycastHit))
-            //    {
-            //        movePoint = raycastHit.point;
-            //        Debug.Log("어디로갈거임 : " + movePoint);
-            //        Debug.Log("지금 부딪힌 물체이름 : " + raycastHit.transform.name);
-            //    }
+                if (Physics.Raycast(ray, out RaycastHit raycastHit))
+                {
+                    movePoint = raycastHit.point;
+                    Debug.Log("어디로갈거임 : " + movePoint);
+                    Debug.Log("지금 부딪힌 물체이름 : " + raycastHit.transform.name);
+                }
+            }
+            //if (h + v == 0)
+            //{
+            //    moveBool = false;
             //}
-            ////if (h + v == 0)
-            ////{
-            ////    moveBool = false;
-            ////}
-            ////else moveBool = true;
+            //else moveBool = true;
 
             switch (state)
             {
@@ -132,15 +133,30 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                     {
                         return;
                     }
-                    //PlayerMouseMove();
-                    PlayerMove();
+                    PlayerMouseMove();
+                    //PlayerMove();
                     break;
                 case State.Sit:
                     photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", true);
                     break;
                 case State.Idle:
                     photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", false);
-                    state = State.Move;
+
+                    // 처음 입장 시 떨어지게 만들기
+                    yVelocity += gravity * Time.deltaTime;
+                    if (controller.isGrounded)
+                    {
+                        yVelocity = 0;
+                    }
+                    dir.Normalize();
+                    dir.y = yVelocity;
+                    controller.Move(dir * moveSpeed * Time.deltaTime);
+
+                    // 어딘가 클릭했을때 무브로 이동
+                    if (movePoint != Vector3.zero)
+                    {
+                        state = State.Move;
+                    }
                     break;
 
             }
@@ -152,15 +168,16 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     float v = 0;
     int jumpCount = 0;
 
-
     void PlayerMouseMove()
     {
-        dir = movePoint - transform.position;
+
+            dir = movePoint - transform.position;
+            dir.Normalize();
+        
         //dir.y = 0;
-        dir.Normalize();
 
         // yVelocity값을 중력으로 감소시킴
-        yVelocity += gravity * Time.deltaTime;
+         yVelocity += gravity * Time.deltaTime;
         // 만약에 바닥에 닿아있다면 yVelocity를 0으로 하자
         if (controller.isGrounded)
         {
@@ -177,16 +194,21 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         dir.y = yVelocity;
 
 
-        if (Vector3.Distance(movePoint, transform.position) < 0.1f)
+        if (Vector3.Distance(movePoint, transform.position) < 0.1f )// || movePoint == Vector3.zero)
         {
             moveBool = false;
             return;
+        }
+        else if(Vector3.Distance(movePoint, transform.position) > 0.1f && movePoint == Vector3.zero )
+        {
+            moveBool = false;
         }
         else
         {
             moveBool = true;
             //transform.rotation = Quaternion.LookRotation(dir);
             //transform.LookAt(movePoint);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * moveSpeed * 2);
             controller.Move(dir * moveSpeed * Time.deltaTime);
         }
     }

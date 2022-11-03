@@ -20,12 +20,8 @@ public class LoginInfo
 public static class UserInfo
 {
     public static string accessToken;
-    public static string memberId;
-    public static string memberPwd;
     public static string memberName;
-    public static string age;
     public static string nickname;
-    public static string email;
     public static string memberRole;
 }
 #endregion
@@ -40,6 +36,7 @@ public class YJ_DataManager : MonoBehaviour
     public string preScene;
     //public List<string> listPhotoUrl = new List<string>();
 
+    
     private void Awake()
     {
         // 만약에 instance가 null이라면

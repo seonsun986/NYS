@@ -54,23 +54,6 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
     }
     #endregion
 
-    #region 서버에 보낼 ID, PW
-    //LoginInfo loginInfo = new LoginInfo();
-
-    //public void Login_ID(string s)
-    //{
-    //    // 서버에 보낼 아이디
-    //    loginInfo.ID = s;
-    //    print("ID : " + loginInfo.ID);
-    //}
-
-    //public void Login_PW(string s)
-    //{
-    //    // 서버에 보낼 비밀번호
-    //    loginInfo.PW = s;
-    //    print("ID : " + loginInfo.PW);
-    //}
-    #endregion
 
     public void OnSubmit(string s)
     {

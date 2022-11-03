@@ -13,6 +13,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     private void Awake()
     {
         instance = this;
+
     }
 
 
@@ -26,6 +27,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
 
     // 이동할 씬 이름
     public string sceneName;
+
 
     void Start()
     {
@@ -69,6 +71,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         if (!createBook)
         {
             me = PhotonNetwork.Instantiate("YJ/Player", spawnPos[liveCount], Quaternion.identity);
+            //me = PhotonNetwork.Instantiate("YJ/Player", Vector3.zero, Quaternion.identity);
         }
 
     }
