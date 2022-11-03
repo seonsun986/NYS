@@ -147,17 +147,14 @@ public class YJ_UIManager : MonoBehaviour
         requester.postData = loginJson;
         requester.onComplete = (handler) => {
             print("유저정보 기입완료");
-            Login_1 login_1 = new Login_1();
-            Login_1_data data = new Login_1_data();
+            Login_1 login_1 = JsonUtility.FromJson<Login_1>(handler.text);
+            Login_1_data data = login_1.data;
 
-            login_1 = JsonUtility.FromJson<Login_1>(handler.text);
-            //data.grantType = login_1.data.grantType;
-            //data.memberName = login_1.data.memberName;
-            //data.accessToken = login_1.data.accessToken;
-            //data.accessTokenExpiresIn = login_1.data.accessTokenExpiresIn;
-            //data = login_1.data;
+            data.grantType = login_1.data.grantType;
+            data.memberName = login_1.data.memberName;
+            data.accessToken = login_1.data.accessToken;
+            data.accessTokenExpiresIn = login_1.data.accessTokenExpiresIn;
             UserInfo.accessToken = data.accessToken;
-            print(UserInfo.accessToken);
         };
         YJ_HttpManager.instance.SendRequest(requester);
     }
@@ -171,6 +168,7 @@ public class YJ_UIManager : MonoBehaviour
 
 
     // 첫번째 ] 로그인 시 받아올 토큰
+    [Serializable]
     public class Login_1
     {
         public string status;
@@ -178,6 +176,8 @@ public class YJ_UIManager : MonoBehaviour
         public Login_1_data data;// = new Login_1_data();
     }
 
+    // 두번째 ] 로그인 시 받아올 토큰
+    [Serializable]
     public class Login_1_data
     {
         public string grantType;
@@ -186,5 +186,5 @@ public class YJ_UIManager : MonoBehaviour
         public string accessTokenExpiresIn;
     }
 
-    // 두번째 ] 로그인 시 받아올 토큰
+
 }
