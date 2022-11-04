@@ -92,6 +92,7 @@ public class NK_LoadPreview : MonoBehaviour
             {
                 ObjInfo obj = (ObjInfo)objs[i];
                 CreateObject(obj);
+
             }
         }
     }
@@ -122,6 +123,7 @@ public class NK_LoadPreview : MonoBehaviour
     private void CreateObject(ObjInfo obj)
     {
         GameObject objPrefab = (GameObject)Instantiate(Resources.Load(obj.prefab));
+        SH_EditorManager.Instance.activeObj = objPrefab;
         objPrefab.transform.SetParent(n_Scene.transform);
         objPrefab.transform.position = obj.position;
         objPrefab.transform.localRotation = obj.rotation;

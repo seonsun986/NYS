@@ -180,6 +180,20 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            inputId.text = "kimyj111";
+            inputPw.text = "pass01";
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            inputId.text = "kimng11";
+            inputPw.text = "pass01";
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            inputId.text = "simsh111";
+            inputPw.text = "pass01";
+        }
     }
 }
