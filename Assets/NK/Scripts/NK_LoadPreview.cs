@@ -1,13 +1,9 @@
-using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class NK_LoadPreview : MonoBehaviour
 {
@@ -100,7 +96,7 @@ public class NK_LoadPreview : MonoBehaviour
     private void CreateText(TxtInfo txt)
     {
         GameObject textObj = Instantiate(inputField);
-        Text textInfo = textObj.transform.GetChild(2).GetComponent<Text>();
+        InputField textInfo = textObj.GetComponent<InputField>();
         textInfo.text = txt.content;
         // 폰트 적용
         Font fontInfo;
@@ -108,13 +104,13 @@ public class NK_LoadPreview : MonoBehaviour
             fontInfo = Resources.GetBuiltinResource<Font>(txt.font + ".ttf");
         else
             fontInfo = (Font)Resources.Load(txt.font);
-        textInfo.font = fontInfo;
+        textInfo.textComponent.font = fontInfo;
         // 색깔 적용
         UnityEngine.Color colorInfo;
         ColorUtility.TryParseHtmlString("#" + txt.color, out colorInfo);
-        textInfo.color = colorInfo;
+        textInfo.textComponent.color = colorInfo;
         // 폰트 사이즈 변경
-        textInfo.fontSize = txt.size;
+        textInfo.textComponent.fontSize = txt.size;
         textObj.GetComponent<RectTransform>().sizeDelta = new Vector2(textInfo.preferredWidth, textInfo.preferredHeight);
         textObj.transform.SetParent(n_Scene_Canvas.transform);
         textObj.GetComponent<RectTransform>().anchoredPosition = txt.position;
@@ -153,6 +149,7 @@ public class NK_LoadPreview : MonoBehaviour
 
     private void AddScene(int i)
     {
+        // Scene0 오브젝트는 이미 있으므로
         if (i == 0)
         {
             n_Scene_Canvas = SH_BtnManager.Instance.Scenes_txt[0];
@@ -181,9 +178,13 @@ public class NK_LoadPreview : MonoBehaviour
 
     private void AddImage(int i)
     {
+        // RawImage 불러오기
+        // 지금은 로컬에 저장된 파일을 불러온다
+        // 서버 구축되면 서버에 저장된 RawImage 불러올 것
         string path = Application.dataPath + "/Capture/_CurrentScene_" + pageNum + ".png";
         byte[] byteTexture = System.IO.File.ReadAllBytes(path);
         Texture2D texture2D = new Texture2D(0, 0);
+        // RawImage0 오브젝트는 이미 있으므로
         if (i == 0)
         {
             texture2D.LoadImage(byteTexture);
@@ -199,6 +200,7 @@ public class NK_LoadPreview : MonoBehaviour
         texture2D.LoadImage(byteTexture);
         raw.GetComponent<RawImage>().texture = texture2D;
         SH_BtnManager.Instance.rawImages.Add(raw.GetComponent<RawImage>());
+        // 마지막 페이지의 RawImage만 RenderTexture로
         if (i == sceneObjects.Count - 1)
         {
             raw.GetComponent<RawImage>().texture = SH_BtnManager.Instance.sceneCamRenderTexture;
