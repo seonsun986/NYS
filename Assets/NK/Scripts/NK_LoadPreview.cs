@@ -64,8 +64,10 @@ public class NK_LoadPreview : MonoBehaviour
                 objs.Add(pagesInfo.DeserializePageInfo(pageInfo));
                 sceneObjects[pagesInfo.page] = objs;
             }
-            InstantiateObject();
         }
+
+        for (int i = 0; i < sceneObjects.Count; i++)
+            InstantiateObject();
     }
 
     public int pageNum;
@@ -74,6 +76,8 @@ public class NK_LoadPreview : MonoBehaviour
     {
         // pageNum에 따른 씬 오브젝트 리스트에 저장
         List<PageInfo> objs = sceneObjects[pageNum];
+        SH_BtnManager.Instance.currentSceneNum = pageNum;
+        AddImage(pageNum);
         AddScene(pageNum);
         for (int i = 0; i < objs.Count; i++)
         {
@@ -147,10 +151,13 @@ public class NK_LoadPreview : MonoBehaviour
 
     private void AddScene(int i)
     {
-        if(i == 0)
+        if (i == 0)
         {
             n_Scene_Canvas = SH_BtnManager.Instance.Scenes_txt[0];
             n_Scene = SH_BtnManager.Instance.Scenes[0];
+            // 빈 오브젝트들의 위치도 설정하자
+            n_Scene.transform.position = new Vector3(0, 20, 0) * (sceneObjects.Count - (pageNum + 1));
+            n_Scene_Canvas.transform.position = GameObject.Find("Canvas").transform.position + new Vector3(0, 20, 0) * (sceneObjects.Count - (pageNum + 1));
             pageNum++;
             return;
         }
@@ -162,11 +169,38 @@ public class NK_LoadPreview : MonoBehaviour
         n_Scene_Canvas.name = "Scene_txt" + (i);      // 씬 이름 : Scene0_txt, Scene1_txt....
         n_Scene_Canvas.transform.SetParent(GameObject.Find("Canvas").transform);
         // 빈 오브젝트들의 위치도 설정하자
-        n_Scene.transform.position = new Vector3(0, 0, 0);
-        n_Scene_Canvas.transform.position = GameObject.Find("Canvas").transform.position;
+        n_Scene.transform.position = new Vector3(0, 20, 0) * (sceneObjects.Count - (pageNum + 1));
+        n_Scene_Canvas.transform.position = GameObject.Find("Canvas").transform.position + new Vector3(0, 20, 0) * (sceneObjects.Count - (pageNum + 1));
         // 이 오브젝트들을 List에 추가해볼까?
         SH_BtnManager.Instance.Scenes.Add(n_Scene);
         SH_BtnManager.Instance.Scenes_txt.Add(n_Scene_Canvas);
         pageNum++;
+    }
+
+    private void AddImage(int i)
+    {
+        string path = Application.dataPath + "/Capture/_CurrentScene_" + pageNum + ".png";
+        byte[] byteTexture = System.IO.File.ReadAllBytes(path);
+        Texture2D texture2D = new Texture2D(0, 0);
+        if (i == 0)
+        {
+            texture2D.LoadImage(byteTexture);
+            SH_BtnManager.Instance.firstRawImage.gameObject.GetComponent<RawImage>().texture = texture2D;
+            return;
+        }
+        // 새로운 Rawimage 추가
+        // 맨 밑에 추가해야한다
+        GameObject raw = Instantiate(SH_BtnManager.Instance.rawImage);
+        raw.transform.SetParent(GameObject.Find("ContentRaw").transform);
+        raw.transform.position = SH_BtnManager.Instance.firstRawImage.position + transform.up * (-180 * (i + 1));
+        raw.name = "RawImage_" + i;
+        texture2D.LoadImage(byteTexture);
+        raw.GetComponent<RawImage>().texture = texture2D;
+        SH_BtnManager.Instance.rawImages.Add(raw.GetComponent<RawImage>());
+        if (i == sceneObjects.Count - 1)
+        {
+            raw.GetComponent<RawImage>().texture = SH_BtnManager.Instance.sceneCamRenderTexture;
+            SH_BtnManager.Instance.sceneCam.targetTexture = raw.GetComponent<RawImage>().texture as RenderTexture;
+        }
     }
 }
