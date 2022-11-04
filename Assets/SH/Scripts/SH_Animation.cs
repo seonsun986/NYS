@@ -11,12 +11,20 @@ public class SH_Animation : MonoBehaviour
 
     void Update()
     {
+
     }
 
     public void BearCarrot()
     {
         Rigidbody rb = gameObject.transform.GetChild(1).GetComponent<Rigidbody>();
         rb.useGravity = true;
-        rb.AddForce(transform.forward * 5, ForceMode.Impulse);
+        rb.AddForce(transform.forward * 18, ForceMode.Impulse);
+    }
+
+    public void TigerCarrot()
+    {
+        Rigidbody rb = gameObject.transform.GetChild(1).GetComponent<Rigidbody>();
+        rb.useGravity = true;
+        rb.AddForce(transform.right * -1 * 18, ForceMode.Impulse);
     }
 }
