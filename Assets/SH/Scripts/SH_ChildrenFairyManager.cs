@@ -70,6 +70,10 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         }
         pages[currentPage].SetActive(false);
         pages[currentPage + 1].SetActive(true);
+
+        // 나온 오브젝트를 꺼준다
+        if (selectObj != null) selectObj.SetActive(false);
+
         currentPage += 1;
         pass = false;
     }
@@ -87,8 +91,23 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     {
         PassPopUp.SetActive(true);
         pass = true;
+
+        GameObject selectBtn = EventSystem.current.currentSelectedGameObject;
+        string selectBtnName = selectBtn.name.Substring(0, selectBtn.name.Length - 3);
+        selectBtn.transform.parent.gameObject.SetActive(false);
+        for (int i = 0; i < selectObject.Count; i++)
+        {
+            if (selectBtnName == selectObject[i].name)
+            {
+                selectObj = selectObject[i];
+                if (selectBtnName == "Rabbit") selectObj.transform.GetChild(1).localPosition = new Vector3(0, 0.024f, 0.24f);
+                selectObj.SetActive(true);
+            }
+        }
+
     }
 
+    GameObject selectObj;
     public void OnFailPopUp()
     {
         FailPopUp.SetActive(true);
@@ -102,24 +121,38 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         {
             if(selectBtnName == selectObject[i].name)
             {
-                selectObject[i].SetActive(true);
+                selectObj = selectObject[i];
+                if(selectBtnName == "Bear") selectObj.transform.GetChild(1).localPosition = new Vector3(0, 2.22f, 2);
+                else if(selectBtnName == "Tiger") selectObj.transform.GetChild(1).localPosition = new Vector3(0, 0.68f, 1.81f);
+                selectObj.transform.GetChild(1).GetComponent<Rigidbody>().velocity = Vector3.zero;
+                selectObj.SetActive(true);
             }
         }
-
     }
 
     public void PassTrue()
     {
         pass = true;
     }
+
     public void PopUpClose()
     {
         GameObject closeBtn = EventSystem.current.currentSelectedGameObject;
         closeBtn.transform.parent.gameObject.SetActive(false);
 
+
+    }
+
+    public void TryAgain()
+    {
+        GameObject closeBtn = EventSystem.current.currentSelectedGameObject;
+        closeBtn.transform.parent.gameObject.SetActive(false);
+
         // 다시 현재 페이지를 켜준다
-        string pageName = "Page" + currentPage;
-        GameObject.Find(pageName).SetActive(true);
+        pages[currentPage].SetActive(true);
+        // 나온 오브젝트를 꺼준다
+        selectObj.SetActive(false);
+        selectObj.transform.GetChild(1).GetComponent<Rigidbody>().useGravity = false;       // 당근 중력 꺼주기..
     }
 
     // 클릭한 버튼의 이름을 넣어주는 것
