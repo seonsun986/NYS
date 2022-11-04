@@ -11,11 +11,21 @@ using Photon.Pun;
 public class YJ_UIManager_Plaza : MonoBehaviourPun
 {
 
-    // 닉네임 띄우기
+    // 닉네임
     public Text nickName;
+
+    // 방만들기 버튼
+    public GameObject createRoom_T_only;
     private void Start()
     {
+        // 닉네임 넣어주기
         nickName.text = PhotonNetwork.NickName;
+
+        // 선생님일때만 방만들기 버튼 보여주기
+        if (UserInfo.memberRole != "TEACHER")
+        {
+            createRoom_T_only.SetActive(false);
+        }
     }
 
 
@@ -37,6 +47,15 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
         roomList.SetActive(!roomList.activeSelf);
     }
     #endregion
+
+    #region 방에 들어가시겠습니까?
+    public GameObject auIn;
+    public void AUIn()
+    {
+        auIn.SetActive(!auIn.activeSelf);
+    }
+    #endregion
+
 
     #region 방만들기
     // 방만들기 버튼 누르기

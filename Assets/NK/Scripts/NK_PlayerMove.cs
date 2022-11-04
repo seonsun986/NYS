@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 
@@ -51,7 +52,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        ///
+
         // 선생님방에 있을 때
         if (GameObject.Find("GameManager"))
         {
@@ -88,7 +89,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         if (photonView.IsMine)
         {
             faceCam.SetActive(true);
-            //movePoint = transform.position;
+            UserInfo.photonId = this.gameObject.GetComponent<PhotonView>().ViewID.ToString();
         }
 
         controller = GetComponent<CharacterController>();
@@ -113,7 +114,17 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 
                 if (Physics.Raycast(ray, out RaycastHit raycastHit))
                 {
-                    movePoint = raycastHit.point;
+                    if (EventSystem.current.IsPointerOverGameObject() == false)
+                    {
+                        if (raycastHit.transform.gameObject.tag == "Room")
+                        {
+                            GameObject.Find("Canvas").transform.GetChild(12).gameObject.SetActive(true);
+                        }
+                        else
+                        {
+                            movePoint = raycastHit.point;
+                        }
+                    }
                 }
             }
 

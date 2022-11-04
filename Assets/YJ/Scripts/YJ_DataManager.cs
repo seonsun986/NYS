@@ -19,6 +19,7 @@ public class LoginInfo
 [System.Serializable]
 public static class UserInfo
 {
+    public static string photonId;
     public static string accessToken;
     public static string memberName;
     public static string nickname;
