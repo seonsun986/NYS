@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 
@@ -40,6 +41,11 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 
     // 얼굴카메라
     public GameObject faceCam;
+    // 머리위에 왕관
+    public GameObject crown;
+
+    // 방에있는 인원확인 (RPC를 다시 또 쏴주기위해서)
+    int playerIndex;
 
     public GameObject speaker;
 
@@ -51,7 +57,8 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        ///
+        playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
+
         // 선생님방에 있을 때
         if (GameObject.Find("GameManager"))
         {
@@ -88,7 +95,14 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         if (photonView.IsMine)
         {
             faceCam.SetActive(true);
-            //movePoint = transform.position;
+            UserInfo.photonId = this.gameObject.GetComponent<PhotonView>().ViewID.ToString();
+
+            // 선생님이면 머리위에 왕관쓰기
+            if (UserInfo.memberRole == "TEACHER")
+            {
+                photonView.RPC("RPCSetCrown", RpcTarget.All);
+                //crown.SetActive(true);
+            }
         }
 
         controller = GetComponent<CharacterController>();
@@ -102,6 +116,18 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 
     void Update()
     {
+        if (playerIndex != PhotonNetwork.CurrentRoom.Players.Count)
+        {
+            // 선생님이면 머리위에 왕관쓰기
+            if (UserInfo.memberRole == "TEACHER" && photonView.IsMine)
+            {
+                photonView.RPC("RPCSetCrown", RpcTarget.All);
+                //crown.SetActive(true);
+            }
+
+            playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
+        }
+
         if (photonView.IsMine)
         {
             // 마우스로 이동하기
@@ -113,7 +139,20 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 
                 if (Physics.Raycast(ray, out RaycastHit raycastHit))
                 {
-                    movePoint = raycastHit.point;
+                    if (EventSystem.current.IsPointerOverGameObject() == false)
+                    {
+                        if (raycastHit.transform.gameObject.tag == "Room")
+                        {
+                            GameObject.Find("Canvas").transform.GetChild(12).gameObject.SetActive(true);
+                            // 방정보 가져오기
+                            YJ_DataManager.instance.goingRoomName = raycastHit.transform.gameObject.GetComponent<YJ_RoomTrigger>().roomName;
+                            YJ_DataManager.instance.goingRoomType = raycastHit.transform.gameObject.GetComponent<YJ_RoomTrigger>().roomType;
+                        }
+                        else
+                        {
+                            movePoint = raycastHit.point;
+                        }
+                    }
                 }
             }
 
@@ -255,5 +294,11 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     {
         PhotonNetwork.LeaveRoom();
        // NK_TeacherManager.instance.JoinRoom();
+    }
+
+    [PunRPC]
+    public void RPCSetCrown()
+    {
+        crown.SetActive(true);
     }
 }

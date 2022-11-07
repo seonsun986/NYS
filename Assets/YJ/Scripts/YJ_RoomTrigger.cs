@@ -5,6 +5,8 @@ using Photon.Pun;
 
 public class YJ_RoomTrigger : MonoBehaviourPun
 {
+    public string roomName;
+    public int roomType;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,17 +28,17 @@ public class YJ_RoomTrigger : MonoBehaviourPun
         //        photonView.RPC("RpcNameSet", RpcTarget.All, roomName);
         //}
 
-        if(canJoinRoom)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                YJ_PlazaManager.instance.goingRoom = roomName;
-                YJ_PlazaManager.instance.goingRoomType = roomType;
-                YJ_PlazaManager.instance.OutPlaza();
-                //PhotonNetwork.JoinLobby();
-                //JoinRoom();
-            }
-        }
+        //if(canJoinRoom)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Space))
+        //    {
+        //        YJ_PlazaManager.instance.goingRoom = roomName;
+        //        YJ_PlazaManager.instance.goingRoomType = roomType;
+        //        YJ_PlazaManager.instance.OutPlaza();
+        //        //PhotonNetwork.JoinLobby();
+        //        //JoinRoom();
+        //    }
+        //}
     }
 
     [PunRPC]
@@ -46,25 +48,23 @@ public class YJ_RoomTrigger : MonoBehaviourPun
         roomType = type;
     }
 
-    public string roomName;
-    public int roomType;
 
-    bool canJoinRoom;
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == 6 && other.GetComponent<PhotonView>().IsMine )
-        {
-            canJoinRoom = true;
-        }
-    }
+    //bool canJoinRoom;
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.layer == 6 && other.GetComponent<PhotonView>().IsMine )
+    //    {
+    //        canJoinRoom = true;
+    //    }
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.layer == 6 && other.GetComponent<PhotonView>().IsMine )
-        {
-            canJoinRoom = false;
-        }
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.layer == 6 && other.GetComponent<PhotonView>().IsMine )
+    //    {
+    //        canJoinRoom = false;
+    //    }
+    //}
 
  
 

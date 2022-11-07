@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 
 
-#region 로그인 시 넘겨줄 정보
+#region 내 ID/PW 저장
 [System.Serializable]
 public class LoginInfo
 {
@@ -19,6 +19,13 @@ public class LoginInfo
 [System.Serializable]
 public static class UserInfo
 {
+    // 캐릭터정보
+    public static string animal;
+    public static string material;
+    public static string objectName;
+
+    // 기본정보
+    public static string photonId;
     public static string accessToken;
     public static string memberName;
     public static string nickname;
@@ -38,6 +45,9 @@ public class YJ_DataManager : MonoBehaviour
     // 로그인 정보가 모두 들어와서 성공했을때 판단할 것
     public int loginDone = 0;
 
+    // 내가 들어갈 방 이름 , 타입
+    public string goingRoomName;
+    public int goingRoomType;
     
     private void Awake()
     {
@@ -73,6 +83,7 @@ public class YJ_DataManager : MonoBehaviour
         public static int roomType;
     }
     #endregion
+
 
     #region 방목록
 
