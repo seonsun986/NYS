@@ -48,6 +48,7 @@ public class NK_Emotion : MonoBehaviourPun
             if (emotion != NK_EmotionUI.emotion)
             {
                 InitializationEmotion();
+                // 상대방을 마주봄
                 //clickUser.transform.forward = - gameObject.transform.forward;
                 emotion = NK_EmotionUI.emotion;
                 StopAllCoroutines();
@@ -67,7 +68,7 @@ public class NK_Emotion : MonoBehaviourPun
             clickUser = hit.transform.gameObject;
 
             // LayerMask가 Player이면
-            if (hit.transform.gameObject.layer == 6)
+            if (hit.transform.gameObject.layer == 6 && hit.transform.gameObject != gameObject)
             {
                 emotionUI.gameObject.SetActive(true);
             }
@@ -87,7 +88,7 @@ public class NK_Emotion : MonoBehaviourPun
             currentTime += Time.deltaTime;
             if (emotion != Emotion.NoSelection)
             {
-                photonView.RPC("RPCShowEmotion", RpcTarget.All);
+                photonView.RPC("RPCShowEmotion", RpcTarget.All, emotion, clickUser.GetPhotonView().ViewID);
             }
             yield return null;
         }
@@ -96,27 +97,29 @@ public class NK_Emotion : MonoBehaviourPun
     }
 
     [PunRPC]
-    private void RPCShowEmotion()
+    private void RPCShowEmotion(Emotion currentEmotion, int viewId)
     {
-        emojis[(int)emotion - 1].SetActive(true);
-        face.GetComponent<Renderer>().material = expressions[(int)emotion - 1];
-        anim.SetBool(emotion.ToString(), true);
+        GameObject user = PhotonView.Find(viewId).gameObject;
+        user.transform.LookAt(transform);
+        emojis[(int)currentEmotion - 1].SetActive(true);
+        face.GetComponent<Renderer>().material = expressions[(int)currentEmotion - 1];
+        anim.SetBool(currentEmotion.ToString(), true);
     }
 
     private void InitializationEmotion()
     {
         if (emotion != Emotion.NoSelection)
         {
-            photonView.RPC("RPCInitializationEmotion", RpcTarget.All);
+            photonView.RPC("RPCInitializationEmotion", RpcTarget.All, emotion);
             emotion = Emotion.NoSelection;
         }
     }
 
     [PunRPC]
-    private void RPCInitializationEmotion()
+    private void RPCInitializationEmotion(Emotion currentEmotion)
     {
-        emojis[(int)emotion - 1].SetActive(false);
-        anim.SetBool(emotion.ToString(), false);
+        emojis[(int)currentEmotion - 1].SetActive(false);
+        anim.SetBool(currentEmotion.ToString(), false);
         face.GetComponent<Renderer>().material = expressions[0];
     }
 }
