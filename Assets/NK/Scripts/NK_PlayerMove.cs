@@ -67,10 +67,10 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
             // 방 만든 사람(선생님)이 아닐 경우
             if (UserInfo.memberRole != "TEACHER")
             {
-                gameObject.tag = "Child";
-                GameManager.Instance.AddPlayer(photonView);
                 if (photonView.IsMine)
                 {
+                    photonView.RPC("RPCAddPlayer", RpcTarget.All);
+                    photonView.RPC("RPCSetTag", RpcTarget.All, "Child");
                     GameObject.Find("TeacherUI").SetActive(false);
                     GameObject.Find("BookBtn").SetActive(false);
                     GameManager.Instance.photonView = photonView;
@@ -79,9 +79,9 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
             // 방 만든 사람(선생님)일 경우
             else
             {
-                gameObject.tag = "Teacher";
                 if (photonView.IsMine)
                 {
+                    photonView.RPC("RPCSetTag", RpcTarget.All, "Teacher");
                     GameObject.Find("ChildUI").SetActive(false);
                     GameManager.Instance.photonView = photonView;
                 }
@@ -204,13 +204,13 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     void PlayerMouseMove()
     {
 
-            dir = movePoint - transform.position;
-            dir.Normalize();
-        
+        dir = movePoint - transform.position;
+        dir.Normalize();
+
         //dir.y = 0;
 
         // yVelocity값을 중력으로 감소시킴
-         yVelocity += gravity * Time.deltaTime;
+        yVelocity += gravity * Time.deltaTime;
         // 만약에 바닥에 닿아있다면 yVelocity를 0으로 하자
         if (controller.isGrounded)
         {
@@ -227,12 +227,12 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         dir.y = yVelocity;
 
 
-        if (Vector3.Distance(movePoint, transform.position) < 0.1f )// || movePoint == Vector3.zero)
+        if (Vector3.Distance(movePoint, transform.position) < 0.1f)// || movePoint == Vector3.zero)
         {
             moveBool = false;
             return;
         }
-        else if(Vector3.Distance(movePoint, transform.position) > 0.1f && movePoint == Vector3.zero )
+        else if (Vector3.Distance(movePoint, transform.position) > 0.1f && movePoint == Vector3.zero)
         {
             moveBool = false;
         }
@@ -294,12 +294,24 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     private void RPCLeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
-       // NK_TeacherManager.instance.JoinRoom();
+        // NK_TeacherManager.instance.JoinRoom();
     }
 
     [PunRPC]
     public void RPCSetCrown()
     {
         crown.SetActive(true);
+    }
+
+    [PunRPC]
+    public void RPCSetTag(string tag)
+    {
+        gameObject.tag = tag;
+    }
+
+    [PunRPC]
+    public void RPCAddPlayer()
+    {
+        GameManager.Instance.AddPlayer(photonView);
     }
 }

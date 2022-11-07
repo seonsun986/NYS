@@ -16,13 +16,13 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // 현재 방에 있는 아이들
@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
     public PhotonView photonView;
     public void AddPlayer(PhotonView pv)
     {
-        if(pv.CompareTag("Child"))
-            children.Add(pv);
+        children.Add(pv);
     }
 }
