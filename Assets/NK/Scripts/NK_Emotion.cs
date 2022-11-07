@@ -2,6 +2,7 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class NK_Emotion : MonoBehaviourPun
 {
@@ -61,7 +62,7 @@ public class NK_Emotion : MonoBehaviourPun
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit) && !EventSystem.current.IsPointerOverGameObject())
         {
             clickUser = hit.transform.gameObject;
 
@@ -69,10 +70,6 @@ public class NK_Emotion : MonoBehaviourPun
             if (hit.transform.gameObject.layer == 6)
             {
                 emotionUI.gameObject.SetActive(true);
-            }
-            else if(hit.transform.gameObject.layer == 5)
-            {
-                return;
             }
             else
             {
