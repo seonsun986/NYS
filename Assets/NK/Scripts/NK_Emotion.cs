@@ -65,11 +65,11 @@ public class NK_Emotion : MonoBehaviourPun
 
         if (Physics.Raycast(ray, out hit) && !EventSystem.current.IsPointerOverGameObject())
         {
-            clickUser = hit.transform.gameObject;
 
             // LayerMask°¡ PlayerÀÌ¸é
             if (hit.transform.gameObject.layer == 6 && hit.transform.gameObject != gameObject)
             {
+            clickUser = hit.transform.gameObject;
                 emotionUI.gameObject.SetActive(true);
             }
             else
@@ -86,7 +86,7 @@ public class NK_Emotion : MonoBehaviourPun
         while (emotionTime > currentTime)
         {
             currentTime += Time.deltaTime;
-            if (emotion != Emotion.NoSelection)
+            if (emotion != Emotion.NoSelection && clickUser != null)
             {
                 photonView.RPC("RPCShowEmotion", RpcTarget.All, emotion, clickUser.GetPhotonView().ViewID);
             }
