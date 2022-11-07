@@ -19,7 +19,9 @@ public class NK_Emotion : MonoBehaviourPun
     public GameObject clickUser;
     public Emotion emotion = Emotion.NoSelection;
     public List<GameObject> emojis = new List<GameObject>();
+    public List<Material> expressions = new List<Material>();
     public Animator anim;
+    public GameObject face;
     public float emotionTime = 2f;
     bool mouseClick;
     float currentTime;
@@ -32,35 +34,30 @@ public class NK_Emotion : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             mouseClick = true;
         }
 
-        if(mouseClick && emotionUI != null)
+        if (mouseClick && emotionUI != null)
         {
             ClickUser();
         }
 
-        if(NK_EmotionUI.emotion != Emotion.NoSelection)
-        {
-            //clickUser.transform.forward = - gameObject.transform.forward;
-            emotion = NK_EmotionUI.emotion;
-            ShowEmotion();
-            currentTime += Time.deltaTime;
-        }
-
-        if(emotionTime < currentTime)
+        if (emotion != NK_EmotionUI.emotion)
         {
             InitializationEmotion();
-            currentTime = 0;
+            //clickUser.transform.forward = - gameObject.transform.forward;
+            emotion = NK_EmotionUI.emotion;
+            StopAllCoroutines();
+            StartCoroutine(ShowEmotion());
         }
     }
 
     private void ClickUser()
     {
         emotionUI.gameObject.SetActive(true);
-        emotionUI.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+        emotionUI.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position + new Vector3(0,1,0));
         mouseClick = false;
         /*        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
@@ -72,22 +69,40 @@ public class NK_Emotion : MonoBehaviourPun
                     if (hit.transform.gameObject.tag == "Child")
                     {
                         emotionUI.gameObject.SetActive(true);
-                        emotionUI.transform.position = gameObject.transform.position;
+                        emotionUI.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position + new Vector3(0,1,0));
                         mouseClick = false;
                     }
                 }*/
     }
 
-    private void ShowEmotion()
+    private IEnumerator ShowEmotion()
     {
-        emojis[(int)emotion - 1].SetActive(true);
-        anim.SetTrigger(emotion.ToString());
+        currentTime = 0;
+
+        while (emotionTime > currentTime)
+        {
+            currentTime += Time.deltaTime;
+            if (emotion != Emotion.NoSelection)
+            {
+                emojis[(int)emotion - 1].SetActive(true);
+                face.GetComponent<Renderer>().material = expressions[(int)emotion - 1];
+                anim.SetBool(emotion.ToString(), true);
+            }
+            yield return null;
+        }
+        NK_EmotionUI.emotion = Emotion.NoSelection;
+        InitializationEmotion();
     }
 
     private void InitializationEmotion()
     {
-        emojis[(int)emotion - 1].SetActive(false);
-        anim.SetTrigger("Idle");
-        emotion = Emotion.NoSelection;
+        if (emotion != Emotion.NoSelection)
+        {
+            emojis[(int)emotion - 1].SetActive(false);
+            anim.SetBool(emotion.ToString(), false);
+            face.GetComponent<Renderer>().material = expressions[0];
+            emotion = Emotion.NoSelection;
+            print("dd");
+        }
     }
 }
