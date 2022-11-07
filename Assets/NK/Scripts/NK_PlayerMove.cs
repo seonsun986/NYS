@@ -65,7 +65,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
             // 임시로 아이와 선생님 분류
             speaker.GetComponent<AudioSource>().mute = false;
             // 방 만든 사람(선생님)이 아닐 경우
-            if (PhotonNetwork.MasterClient.NickName != photonView.Owner.NickName)
+            if (UserInfo.memberRole != "TEACHER")
             {
                 gameObject.tag = "Child";
                 GameManager.Instance.AddPlayer(photonView);
@@ -97,12 +97,12 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
             faceCam.SetActive(true);
             UserInfo.photonId = this.gameObject.GetComponent<PhotonView>().ViewID.ToString();
 
-            // 선생님이면 머리위에 왕관쓰기
-            if (UserInfo.memberRole == "TEACHER")
-            {
-                photonView.RPC("RPCSetCrown", RpcTarget.All);
-                //crown.SetActive(true);
-            }
+            //// 선생님이면 머리위에 왕관쓰기
+            //if (UserInfo.memberRole == "TEACHER")
+            //{
+            //    photonView.RPC("RPCSetCrown", RpcTarget.All);
+            //    //crown.SetActive(true);
+            //}
         }
 
         controller = GetComponent<CharacterController>();
@@ -116,17 +116,17 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 
     void Update()
     {
-        if (playerIndex != PhotonNetwork.CurrentRoom.Players.Count)
-        {
-            // 선생님이면 머리위에 왕관쓰기
-            if (UserInfo.memberRole == "TEACHER" && photonView.IsMine)
-            {
-                photonView.RPC("RPCSetCrown", RpcTarget.All);
-                //crown.SetActive(true);
-            }
+        //if (playerIndex != PhotonNetwork.CurrentRoom.Players.Count)
+        //{
+        //    // 선생님이면 머리위에 왕관쓰기
+        //    if (UserInfo.memberRole == "TEACHER" && photonView.IsMine)
+        //    {
+        //        photonView.RPC("RPCSetCrown", RpcTarget.All);
+        //        //crown.SetActive(true);
+        //    }
 
-            playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
-        }
+        //    playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
+        //}
 
         if (photonView.IsMine)
         {

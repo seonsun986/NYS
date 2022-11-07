@@ -23,7 +23,6 @@ public class NK_Emotion : MonoBehaviourPun
     public Animator anim;
     public GameObject face;
     public float emotionTime = 2f;
-    bool mouseClick;
     float currentTime;
     // Start is called before the first frame update
     void Start()
@@ -34,45 +33,52 @@ public class NK_Emotion : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (photonView.IsMine && emotionUI != null)
         {
-            mouseClick = true;
-        }
+            // 상호작용 UI 유저 머리 위에 띄우기
+            emotionUI.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position + new Vector3(0, 1, 0));
 
-        if (mouseClick && emotionUI != null)
-        {
-            ClickUser();
-        }
+            // 마우스 클릭하면
+            if (Input.GetMouseButtonDown(0))
+            {
+                ClickUser();
+            }
 
-        if (emotion != NK_EmotionUI.emotion)
-        {
-            InitializationEmotion();
-            //clickUser.transform.forward = - gameObject.transform.forward;
-            emotion = NK_EmotionUI.emotion;
-            StopAllCoroutines();
-            StartCoroutine(ShowEmotion());
+            if (emotion != NK_EmotionUI.emotion)
+            {
+                InitializationEmotion();
+                //clickUser.transform.forward = - gameObject.transform.forward;
+                emotion = NK_EmotionUI.emotion;
+                StopAllCoroutines();
+                StartCoroutine(ShowEmotion());
+            }
+
         }
     }
 
     private void ClickUser()
     {
-        emotionUI.gameObject.SetActive(true);
-        emotionUI.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position + new Vector3(0,1,0));
-        mouseClick = false;
-        /*        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
-                if(Physics.Raycast(ray, out hit))
-                {
-                    clickUser = hit.transform.gameObject;
+        if (Physics.Raycast(ray, out hit))
+        {
+            clickUser = hit.transform.gameObject;
 
-                    if (hit.transform.gameObject.tag == "Child")
-                    {
-                        emotionUI.gameObject.SetActive(true);
-                        emotionUI.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position + new Vector3(0,1,0));
-                        mouseClick = false;
-                    }
-                }*/
+            // LayerMask가 Player이면
+            if (hit.transform.gameObject.layer == 6)
+            {
+                emotionUI.gameObject.SetActive(true);
+            }
+            else if(hit.transform.gameObject.layer == 5)
+            {
+                return;
+            }
+            else
+            {
+                emotionUI.gameObject.SetActive(false);
+            }
+        }
     }
 
     private IEnumerator ShowEmotion()
@@ -84,9 +90,7 @@ public class NK_Emotion : MonoBehaviourPun
             currentTime += Time.deltaTime;
             if (emotion != Emotion.NoSelection)
             {
-                emojis[(int)emotion - 1].SetActive(true);
-                face.GetComponent<Renderer>().material = expressions[(int)emotion - 1];
-                anim.SetBool(emotion.ToString(), true);
+                photonView.RPC("RPCShowEmotion", RpcTarget.All);
             }
             yield return null;
         }
@@ -94,15 +98,28 @@ public class NK_Emotion : MonoBehaviourPun
         InitializationEmotion();
     }
 
+    [PunRPC]
+    private void RPCShowEmotion()
+    {
+        emojis[(int)emotion - 1].SetActive(true);
+        face.GetComponent<Renderer>().material = expressions[(int)emotion - 1];
+        anim.SetBool(emotion.ToString(), true);
+    }
+
     private void InitializationEmotion()
     {
         if (emotion != Emotion.NoSelection)
         {
-            emojis[(int)emotion - 1].SetActive(false);
-            anim.SetBool(emotion.ToString(), false);
-            face.GetComponent<Renderer>().material = expressions[0];
+            photonView.RPC("RPCInitializationEmotion", RpcTarget.All);
             emotion = Emotion.NoSelection;
-            print("dd");
         }
+    }
+
+    [PunRPC]
+    private void RPCInitializationEmotion()
+    {
+        emojis[(int)emotion - 1].SetActive(false);
+        anim.SetBool(emotion.ToString(), false);
+        face.GetComponent<Renderer>().material = expressions[0];
     }
 }
