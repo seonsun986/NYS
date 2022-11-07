@@ -52,7 +52,18 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
     public GameObject auIn;
     public void AUIn()
     {
+        
         auIn.SetActive(!auIn.activeSelf);
+    }
+
+    // O버튼을 눌렀을때 실행할 것
+    public string goingRoomName;
+    public int goingRoomType;
+    public void EnterRoom()
+    {
+        YJ_PlazaManager.instance.goingRoom = YJ_DataManager.instance.goingRoomName;
+        YJ_PlazaManager.instance.goingRoomType = YJ_DataManager.instance.goingRoomType;
+        YJ_PlazaManager.instance.OutPlaza();
     }
     #endregion
 

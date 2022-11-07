@@ -18,10 +18,18 @@ public class YJ_RoomTextUI : MonoBehaviourPun
         }
     }
 
-    float currentTime;
+    int playerIndex;
     void Update()
     {
+        if (playerIndex != PhotonNetwork.CurrentRoom.Players.Count)
+        {
+            if (photonView.IsMine)
+            {
+                photonView.RPC("RpcTextChange", RpcTarget.All, roomName);
+            }
 
+            playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
+        }
     }
 
     [PunRPC]
