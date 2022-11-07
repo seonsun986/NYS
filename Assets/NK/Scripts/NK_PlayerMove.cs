@@ -116,18 +116,6 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 
     void Update()
     {
-        //if (playerIndex != PhotonNetwork.CurrentRoom.Players.Count)
-        //{
-        //    // 선생님이면 머리위에 왕관쓰기
-        //    if (UserInfo.memberRole == "TEACHER" && photonView.IsMine)
-        //    {
-        //        photonView.RPC("RPCSetCrown", RpcTarget.All);
-        //        //crown.SetActive(true);
-        //    }
-
-        //    playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
-        //}
-
         if (photonView.IsMine)
         {
             // 마우스로 이동하기
