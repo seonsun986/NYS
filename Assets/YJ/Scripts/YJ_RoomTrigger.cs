@@ -10,6 +10,8 @@ public class YJ_RoomTrigger : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
+        playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
+
         if (photonView.IsMine)
         {
             roomName = YJ_DataManager.CreateRoomInfo.roomName;
@@ -18,27 +20,21 @@ public class YJ_RoomTrigger : MonoBehaviourPun
             photonView.RPC("RpcNameSet", RpcTarget.All, roomName, roomType);
         }
     }
+    int playerIndex;
 
     void Update()
     {
-        //currentTime += Time.deltaTime;
-        //if (currentTime > 0.3 && currentTime < 0.8)
-        //{
-        //    if (photonView.IsMine)
-        //        photonView.RPC("RpcNameSet", RpcTarget.All, roomName);
-        //}
+        // 새로운 사람이 들어왔을때 RPC 다시 쏴주기
+        if (playerIndex != PhotonNetwork.CurrentRoom.Players.Count)
+        {
+            // 내캐릭터 정보 쏘기
+            if (photonView.IsMine)
+            {
+                photonView.RPC("RpcNameSet", RpcTarget.All, roomName, roomType);
+            }
 
-        //if(canJoinRoom)
-        //{
-        //    if (Input.GetKeyDown(KeyCode.Space))
-        //    {
-        //        YJ_PlazaManager.instance.goingRoom = roomName;
-        //        YJ_PlazaManager.instance.goingRoomType = roomType;
-        //        YJ_PlazaManager.instance.OutPlaza();
-        //        //PhotonNetwork.JoinLobby();
-        //        //JoinRoom();
-        //    }
-        //}
+            playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
+        }
     }
 
     [PunRPC]
@@ -48,60 +44,4 @@ public class YJ_RoomTrigger : MonoBehaviourPun
         roomType = type;
     }
 
-
-    //bool canJoinRoom;
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.layer == 6 && other.GetComponent<PhotonView>().IsMine )
-    //    {
-    //        canJoinRoom = true;
-    //    }
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.layer == 6 && other.GetComponent<PhotonView>().IsMine )
-    //    {
-    //        canJoinRoom = false;
-    //    }
-    //}
-
- 
-
-    //// 마스터 서버에 접속, 로비 생성 및 진입 가능
-    //public override void OnConnectedToMaster()
-    //{
-    //    base.OnConnectedToMaster();
-    //    print(System.Reflection.MethodBase.GetCurrentMethod().Name);
-
-    //    // 닉네임 설정 네트워크 필요
-    //    //PhotonNetwork.NickName = inputNickName.text; //"익명의_" + Random.Range(1,10000);
-
-    //    // 기본 로비 진입
-    //    PhotonNetwork.JoinLobby();
-    //}
-
-    //// 로비 접속 성공 시 호출
-    //public override void OnJoinedLobby()
-    //{
-    //    base.OnJoinedLobby();
-    //    print(System.Reflection.MethodBase.GetCurrentMethod().Name);
-    //    JoinRoom();
-    //}
-
-    //// 방입장 ( 방생성자는 자동으로 입장이 됨 )
-    //public virtual void JoinRoom()
-    //{
-    //    // XR_A라는 방으로 입장
-    //    PhotonNetwork.JoinRoom(roomName);
-    //}
-
-    //// 방입장에 성공했을때 불리는 함수
-    //public override void OnJoinedRoom()
-    //{
-    //    base.OnJoinedRoom();
-
-    //    // LobbyScene 이동
-    //    PhotonNetwork.LoadLevel("TeacherScene");
-    //}
 }

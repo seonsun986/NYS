@@ -24,19 +24,7 @@ public class YJ_PlayerAvatarSet : MonoBehaviourPun
 
     void Start()
     {
-        // 캐릭터 세팅
-        //avt = avatar[(int.Parse(UserInfo.animal))];
-        //avt.SetActive(true);
-
-        // 메터리얼 적용
-        //avt.transform.GetChild(1).transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material = catMt[(int.Parse(UserInfo.material))];
-
-        // 왕관 켜주기
-        //if (UserInfo.memberRole == "TEACHER")
-        //{
-        //    crown = avt.transform.GetChild(2).transform.GetChild(2).transform.GetChild(0).transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject;//.SetActive(true);
-        //}
-
+        // 현재 방에 입장해있는사람
         playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
 
         if (photonView.IsMine)
@@ -49,7 +37,6 @@ public class YJ_PlayerAvatarSet : MonoBehaviourPun
     void Update()
     {
         // 새로운 사람이 들어왔을때 RPC 다시 쏴주기
-
         if (playerIndex != PhotonNetwork.CurrentRoom.Players.Count)
         {
             // 내캐릭터 정보 쏘기
