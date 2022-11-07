@@ -113,27 +113,7 @@ public class YJ_UIManager : MonoBehaviour
         };
         YJ_HttpManager.instance.SendRequest(requester);
     }
-    //public void Login_3_API()
-    //{
-    //    // ArrayJson -> json
-    //    string tokenJson = JsonUtility.ToJson(UserInfo.accessToken, true);
-    //    print(UserInfo.accessToken);
 
-    //    YJ_HttpRequester requester = new YJ_HttpRequester();
-    //    requester.url = "http://43.201.10.63:8080/avatar";
-    //    requester.requestType = RequestType.GET;
-    //    requester.onComplete = (handler) => {
-    //        print("캐릭터 정보 세팅");
-    //        Login_3 login_3 = JsonUtility.FromJson<Login_3>(handler.text);
-    //        Login_3_data data = login_3.data;
-    //        UserInfo.memberCode = data.memberCode;
-    //        UserInfo.animal = data.animal;
-    //        UserInfo.material = data.material;
-    //        UserInfo.objectName = data.objectName;
-            
-    //    };
-    //    YJ_HttpManager.instance.SendRequest(requester);
-    //}
     // 로그인 ID, PW 저장
     public void OnClickLoginButton()
     {
