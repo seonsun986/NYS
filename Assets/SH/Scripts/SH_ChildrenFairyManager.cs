@@ -30,18 +30,9 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     }
 
     void Update()
-    {
-        // 선택지가 정해졌다면 박스 채우기 
-        // 한번만 채우개 하자
-        if(boxText != "")
-        {
-            for(int i =0;i< boxTexts.Count;i++)
-            {
-                boxTexts[i].text = boxText;
-            }
-        }
+    {     
 
-        if(bookWorldOpen == true)
+        if (bookWorldOpen == true)
         {
             currentTime += Time.deltaTime;
             if(currentTime > bookOpenTime)
@@ -74,6 +65,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                 }             
             }
         }
+
         // 만약 패스 버튼이었다면 팝업을 꺼준다
         GameObject PassPopUp = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
         if (PassPopUp.name.Contains("Pass"))
@@ -193,11 +185,11 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         }
     }
 
-    // 클릭한 버튼의 이름을 넣어주는 것
-    public string boxText;
+    public GameObject selectPages;
     public void FillEmptyBox()
     {
-        GameObject SelectBtn = EventSystem.current.currentSelectedGameObject;
-        boxText = SelectBtn.transform.GetChild(0).GetComponent<Text>().text;
+        string GoName = EventSystem.current.currentSelectedGameObject.name;
+        string selectBtnName = GoName.Substring(0, GoName.Length - 3);
+        selectPages = GameObject.Find(selectBtnName + "Pages");
     }
 }
