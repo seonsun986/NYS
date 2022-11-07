@@ -22,7 +22,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     public int currentPage;
 
     bool pass;
-
+    public GameObject bookWorld;            // 책 골랐을 때 나타나는 월드 오브젝트
 
     void Start()
     {
@@ -39,6 +39,18 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             {
                 boxTexts[i].text = boxText;
             }
+        }
+
+        if(bookWorldOpen == true)
+        {
+            currentTime += Time.deltaTime;
+            if(currentTime > bookOpenTime)
+            {
+                bookWorld.SetActive(true);
+                currentTime = 0;
+                bookWorldOpen = false;
+            }
+            
         }
     }
 
@@ -108,6 +120,10 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     }
 
     GameObject selectObj;
+    // 책을 골랐을 경우 책이 열리고 나서 고래가 떴으면 좋겠다!
+    float currentTime;
+    public float bookOpenTime;
+    bool bookWorldOpen;
     public void OnFailPopUp()
     {
         FailPopUp.SetActive(true);
@@ -122,9 +138,20 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             if(selectBtnName == selectObject[i].name)
             {
                 selectObj = selectObject[i];
-                if(selectBtnName == "Bear") selectObj.transform.GetChild(1).localPosition = new Vector3(0, 2.22f, 2);
-                else if(selectBtnName == "Tiger") selectObj.transform.GetChild(1).localPosition = new Vector3(0, 0.68f, 1.81f);
-                selectObj.transform.GetChild(1).GetComponent<Rigidbody>().velocity = Vector3.zero;
+                if (selectBtnName == "Bear") selectObj.transform.GetChild(1).localPosition = new Vector3(0, 2.22f, 2);
+                else if (selectBtnName == "Tiger") selectObj.transform.GetChild(1).localPosition = new Vector3(0, 0.68f, 1.81f);
+                else if(selectBtnName == "Book")
+                {
+                    bookWorldOpen = true;
+                }
+                if(selectObj.transform.childCount > 1)
+                {
+                    if (selectObj.transform.GetChild(1).GetComponent<Rigidbody>() != null)
+                    {
+                        selectObj.transform.GetChild(1).GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    }
+                }
+                
                 selectObj.SetActive(true);
             }
         }
@@ -152,7 +179,18 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         pages[currentPage].SetActive(true);
         // 나온 오브젝트를 꺼준다
         selectObj.SetActive(false);
-        selectObj.transform.GetChild(1).GetComponent<Rigidbody>().useGravity = false;       // 당근 중력 꺼주기..
+        if (selectObj.transform.childCount > 1)
+        {
+            if (selectObj.transform.GetChild(1).GetComponent<Rigidbody>() != null)
+            {
+                selectObj.transform.GetChild(1).GetComponent<Rigidbody>().useGravity = false;       // 당근 중력 꺼주기..
+            }
+        }       
+
+        if(bookWorld.activeSelf == true)
+        {
+            bookWorld.SetActive(false);
+        }
     }
 
     // 클릭한 버튼의 이름을 넣어주는 것
