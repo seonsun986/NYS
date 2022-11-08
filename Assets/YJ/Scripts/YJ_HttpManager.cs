@@ -53,7 +53,7 @@ public class YJ_HttpManager : MonoBehaviour
                 break;
             case RequestType.PUT:
                 webRequest = UnityWebRequest.Put(requester.url, requester.postData);
-                webRequest.SetRequestHeader("Content-Type", "application/json");
+                webRequest.SetRequestHeader("accesstoken", UserInfo.accessToken);
                 break;
             case RequestType.DELETE:
                 webRequest = UnityWebRequest.Delete(requester.url);
