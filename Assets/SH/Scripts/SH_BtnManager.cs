@@ -7,6 +7,7 @@ using System.IO;
 using System;
 using Photon.Pun;
 using UnityEditor;
+using UnityEngine.Networking;
 
 
 
@@ -182,7 +183,6 @@ public class SH_BtnManager : MonoBehaviour
             GoScene();
         }
         currentScene = (int)Scenes[0].transform.position.y / 20;
-
     }
 
 
@@ -808,4 +808,55 @@ public class SH_BtnManager : MonoBehaviour
         SaveJson("PreviewBook", jsonData);
     }
     #endregion
+
+
+    [Serializable]
+    public class Test_m
+    {
+        public string str;
+    }
+
+    public void Mp3_Test(string path, string text)
+    {
+        Test_m test = new Test_m();
+        test.str = text;
+        // ArrayJson -> json
+        string getmp3 = JsonUtility.ToJson(test, true);
+        print(getmp3);
+
+        YJ_HttpRequester requester = new YJ_HttpRequester();
+        requester.url = "http://43.201.10.63:8080/tts/play";
+        requester.requestType = RequestType.POST;
+        requester.postData = getmp3;
+        requester.onComplete = (handler) =>
+        {
+            print("mp3파일생성!");
+            print(handler.text);
+            byte[] byteData = handler.data;
+            File.WriteAllBytes(/*Application.streamingAssetsPath + "/" + "ex"*/path + ".wav", byteData);
+        };
+        YJ_HttpManager.instance.SendRequest(requester);
+    }
+
+
+
+    // 해당 씬에 텍스트가 비어있지 않다면
+    // UIManager에 있는 str에 넣어주고
+    // 다운 받은 파일을 재생시켜준다
+    public AudioSource ttsSound;
+    public void TTS()
+    {
+        string filePath = Application.dataPath + "/Resources" + "/" + "Audio_" + currentSceneNum;
+        string text = "";
+        if (Scenes_txt[currentSceneNum].transform.childCount < 1) return;
+        for(int i =0; i< Scenes_txt[currentSceneNum].transform.childCount;i++)
+        {
+            text += Scenes_txt[currentSceneNum].transform.GetChild(i).GetComponent<InputField>().text;
+            text += "\n";
+        }
+
+        Mp3_Test(filePath, text);
+    }
+
+    
 }
