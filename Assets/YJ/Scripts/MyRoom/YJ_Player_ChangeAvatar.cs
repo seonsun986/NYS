@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,7 +48,7 @@ public class YJ_Player_ChangeAvatar : MonoBehaviour
         
     }
 
-    // 아바타 설정
+    #region 아바타 설정
     int avatarNum;
     public void OnClickAvatar(int i)
     {
@@ -75,8 +76,11 @@ public class YJ_Player_ChangeAvatar : MonoBehaviour
         avt.SetActive(true);
         avatarNum = i;
     }
+    #endregion
 
+    #region 무늬변경
     // Mt 버튼
+    int setmt = 0;
     public void OnClickCatMt(int i)
     {
         if (avatarNum == 0)
@@ -91,7 +95,10 @@ public class YJ_Player_ChangeAvatar : MonoBehaviour
         {
             mt.material = bunnyMt[i];
         }
+
+        setmt = i;
     }
+    #endregion
 
     #region 오브젝트 꾸미기
 
@@ -116,7 +123,7 @@ public class YJ_Player_ChangeAvatar : MonoBehaviour
     // 안경
     GameObject glass0;
     GameObject glass1;
-
+        
     public void OnClickObj(int i)
     {
         if (i < 2)
@@ -268,5 +275,45 @@ public class YJ_Player_ChangeAvatar : MonoBehaviour
         }
 
     }
+    #endregion
+
+    #region 뒤로가기 (저장)
+
+    public void OnclickSave()
+    {
+        AvatarSet avtSet = new AvatarSet();
+        avtSet.animal = avatarNum.ToString();
+        avtSet.metarial = setmt.ToString();
+        avtSet.objectName = "0";
+
+        //UserInfo.animal = avatarNum.ToString();
+        //UserInfo.material = setmt.ToString();
+
+        AvatarChange();
+    }
+    public void AvatarChange()
+    {
+        // ArrayJson -> json
+        string tokenJson = JsonUtility.ToJson(UserInfo.accessToken, true);
+        print(UserInfo.accessToken);
+
+        YJ_HttpRequester requester = new YJ_HttpRequester();
+        requester.url = "http://43.201.10.63:8080/avatar/update";
+        requester.requestType = RequestType.PUT;
+        requester.onComplete = (handler) => {
+            print("정보 가져옴!");
+            
+        };
+        YJ_HttpManager.instance.SendRequest(requester);
+    }
+
+    [Serializable]
+    public class AvatarSet
+    {
+        public string animal;
+        public string metarial;
+        public string objectName;
+    }
+
     #endregion
 }
