@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
+using UnityEngine.SceneManagement;
 
 public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 {
@@ -118,28 +119,31 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     {
         if (photonView.IsMine)
         {
-            // 마우스로 이동하기
-            if (Input.GetMouseButtonDown(0))
+            if (SceneManager.GetActiveScene().name != "MyRoomScene")
             {
-                // 마우스 클릭 후 떼었을때 마우스 포지션으로 레이 생성
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                Debug.DrawLine(ray.origin, ray.direction * 10f, Color.green, 1f);
-
-                if (Physics.Raycast(ray, out RaycastHit raycastHit))
+                // 마우스로 이동하기
+                if (Input.GetMouseButtonDown(0))
                 {
-                    // UI를 선택한 경우와 플레이어를 선택한 경우가 아니라면
-                    if (EventSystem.current.IsPointerOverGameObject() == false && raycastHit.transform.gameObject.layer != 6)
+                    // 마우스 클릭 후 떼었을때 마우스 포지션으로 레이 생성
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    Debug.DrawLine(ray.origin, ray.direction * 10f, Color.green, 1f);
+
+                    if (Physics.Raycast(ray, out RaycastHit raycastHit))
                     {
-                        if (raycastHit.transform.gameObject.tag == "Room")
+                        // UI를 선택한 경우와 플레이어를 선택한 경우가 아니라면
+                        if (EventSystem.current.IsPointerOverGameObject() == false && raycastHit.transform.gameObject.layer != 6)
                         {
-                            GameObject.Find("Canvas").transform.GetChild(12).gameObject.SetActive(true);
-                            // 방정보 가져오기
-                            YJ_DataManager.instance.goingRoomName = raycastHit.transform.gameObject.GetComponent<YJ_RoomTrigger>().roomName;
-                            YJ_DataManager.instance.goingRoomType = raycastHit.transform.gameObject.GetComponent<YJ_RoomTrigger>().roomType;
-                        }
-                        else
-                        {
-                            movePoint = raycastHit.point;
+                            if (raycastHit.transform.gameObject.tag == "Room")
+                            {
+                                GameObject.Find("Canvas").transform.GetChild(12).gameObject.SetActive(true);
+                                // 방정보 가져오기
+                                YJ_DataManager.instance.goingRoomName = raycastHit.transform.gameObject.GetComponent<YJ_RoomTrigger>().roomName;
+                                YJ_DataManager.instance.goingRoomType = raycastHit.transform.gameObject.GetComponent<YJ_RoomTrigger>().roomType;
+                            }
+                            else
+                            {
+                                movePoint = raycastHit.point;
+                            }
                         }
                     }
                 }

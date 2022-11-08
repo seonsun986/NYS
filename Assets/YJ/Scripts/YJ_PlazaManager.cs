@@ -163,11 +163,25 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         if (!createBook)// && photonView.IsMine)
         {
             createBook = true;
-            YJ_DataManager.CreateRoomInfo.roomName = PhotonNetwork.NickName;
+            YJ_DataManager.CreateRoomInfo.roomName = PhotonNetwork.NickName + "createBook";
             OutPlaza();
         }
-
     }
+
+    // 마이룸 버튼
+    bool goMyRoom = false;
+    public void OnClickMyRoom()
+    {
+        if (!goMyRoom)
+        {
+            goMyRoom = true;
+            YJ_DataManager.CreateRoomInfo.roomName = PhotonNetwork.NickName + "MyRoom";
+            OutPlaza();
+        }
+    }
+
+
+
 
     // 마스터 서버에 접속, 로비 생성 및 진입 가능
     public override void OnConnectedToMaster()
@@ -258,6 +272,13 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         {
             sceneName = "EditorScene";
             YJ_DataManager.CreateRoomInfo.roomName = null;
+            createBook = false;
+        }
+        else if(goMyRoom)
+        {
+            sceneName = "MyRoomScene";
+            YJ_DataManager.CreateRoomInfo.roomName = null;
+            goMyRoom = false;
         }
         else if(YJ_DataManager.CreateRoomInfo.roomType == 1)
         {
