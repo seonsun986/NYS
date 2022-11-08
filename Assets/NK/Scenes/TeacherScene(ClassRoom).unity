@@ -10761,7 +10761,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 418238, guid: b18d39bb534373b429cf2b28c88444bb, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 418238, guid: b18d39bb534373b429cf2b28c88444bb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14211,7 +14211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 477342, guid: d9bceb03cfca7d14dba580b158dd2d1b, type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 477342, guid: d9bceb03cfca7d14dba580b158dd2d1b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15984,7 +15984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 477342, guid: d9bceb03cfca7d14dba580b158dd2d1b, type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 477342, guid: d9bceb03cfca7d14dba580b158dd2d1b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18011,6 +18011,45 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1720183388}
   m_CullTransparentMesh: 1
+--- !u!1 &1720304903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 112636, guid: 5ec2e00798d669847839a887ca847b24, type: 3}
+  m_PrefabInstance: {fileID: 1214804360}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1720304908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720304903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &1720304909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720304903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf10ac1f6fe436e4b80860a02b96e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1724486878
 GameObject:
   m_ObjectHideFlags: 0
