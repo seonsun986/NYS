@@ -36,6 +36,7 @@ public class SH_SceneObj : MonoBehaviour
 
     void Start()
     {
+        if (SceneManager.GetActiveScene().name != "EditorScene") return;
 
         if (GetComponent<SH_InputField>())
         {
@@ -72,7 +73,6 @@ public class SH_SceneObj : MonoBehaviour
             anim.Play(gameObject.name.Substring(0, gameObject.name.Length - 7) + "_" +anims[0].name);
             for (int i = 0; i < anims.Count; i++)
             {
-                if (SceneManager.GetActiveScene().name != "EditorScene") return;
                 // 빈 오브젝트가 없다면 만들어주고
                 if (GameObject.Find(gameObject.name + "AnimBtn") == null)
                 {

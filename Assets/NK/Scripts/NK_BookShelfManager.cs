@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static NK_Emotion;
 
@@ -10,8 +11,12 @@ public class NK_BookShelfManager : MonoBehaviour
     public List<string> titles = new List<string>();
     public GameObject booksParent;
     public GameObject bookFactory;
-    public GameObject DetailUI;
     public float spacing = 4;
+    // 책 세부 내용 보기에 필요한 속성
+    public GameObject detailUI;
+    public Text detailTitle;
+    // 책 표지 수정에 필요한 속성
+    public GameObject bookCoverUI;
 
     // Start is called before the first frame update
     void Start()
@@ -26,39 +31,41 @@ public class NK_BookShelfManager : MonoBehaviour
             GameObject book = Instantiate(bookFactory, booksParent.transform);
             // JSON에서 불러온 제목으로 텍스트 지정
             book.GetComponentInChildren<Text>().text = titles[i];
-            // 간격만큼 동화책 정렬
-            book.transform.position += new Vector3(spacing * i, 0, 0);
+            book.GetComponent<Button>().onClick.AddListener(ClickBook);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 마우스 클릭하면
-        if (Input.GetMouseButtonDown(0))
-        {
-            ClickBook();
-        }
+
     }
 
     public void ClickBook()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+        detailTitle.text = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text;
+        detailUI.SetActive(true);
+        booksParent.SetActive(false);
+    }
 
-        if (Physics.Raycast(ray, out hit))
-        {
-            // LayerMask가 Book이면
-            if (hit.transform.gameObject.layer == 7)
-            {
-                DetailUI.SetActive(true);
-                booksParent.SetActive(false);
-            }
-            else
-            {
-                DetailUI.SetActive(false);
-                booksParent.SetActive(true);
-            }
-        }
+    public void UpdateBookCover()
+    {
+        bookCoverUI.SetActive(true);
+    }
+
+    public void UpdateBookContent()
+    {
+        SceneManager.LoadScene("EditorScene");
+    }
+
+    public void ExitDetail()
+    {
+        detailUI.SetActive(false);
+        booksParent.SetActive(true);
+    }
+
+    public void ExitPopup()
+    {
+        bookCoverUI.SetActive(false);
     }
 }
