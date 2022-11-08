@@ -8,6 +8,7 @@ using System;
 using Photon.Pun;
 using UnityEditor;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 
 
@@ -178,6 +179,8 @@ public class SH_BtnManager : MonoBehaviour
 
     void Update()
     {
+        if (SceneManager.GetActiveScene().name != "EditorScene")
+            return;
         if (Input.GetMouseButtonDown(0))
         {
             GoScene();
@@ -818,6 +821,11 @@ public class SH_BtnManager : MonoBehaviour
 
     public void Mp3_Test(string path, string text)
     {
+        byte[] data = File.ReadAllBytes(Application.dataPath + "/Resources/Audio_0.wav");
+        AudioClip audioClip = WAV.ToAudioClip(Application.dataPath + "/Resources/Audio_0.wav");
+        ttsSound.clip = audioClip;
+
+        return;
         Test_m test = new Test_m();
         test.str = text;
         // ArrayJson -> json
@@ -833,7 +841,8 @@ public class SH_BtnManager : MonoBehaviour
             print("mp3파일생성!");
             print(handler.text);
             byte[] byteData = handler.data;
-            File.WriteAllBytes(/*Application.streamingAssetsPath + "/" + "ex"*/path + ".wav", byteData);
+            
+            //File.WriteAllBytes(/*Application.streamingAssetsPath + "/" + "ex"*/path + ".wav", byteData);
         };
         YJ_HttpManager.instance.SendRequest(requester);
     }

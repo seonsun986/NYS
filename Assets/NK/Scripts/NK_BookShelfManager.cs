@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static NK_Emotion;
 
@@ -10,8 +11,13 @@ public class NK_BookShelfManager : MonoBehaviour
     public List<string> titles = new List<string>();
     public GameObject booksParent;
     public GameObject bookFactory;
-    public GameObject DetailUI;
     public float spacing = 4;
+    // 책 세부 내용 보기에 필요한 속성
+    public GameObject detailUI;
+    public Text detailTitle;
+    // 책 표지 수정에 필요한 속성
+    public GameObject bookCoverUI;
+    public GameObject customBook;
 
     // Start is called before the first frame update
     void Start()
@@ -51,14 +57,26 @@ public class NK_BookShelfManager : MonoBehaviour
             // LayerMask가 Book이면
             if (hit.transform.gameObject.layer == 7)
             {
-                DetailUI.SetActive(true);
+                detailTitle.text = hit.transform.gameObject.GetComponentInChildren<Text>().text;
+                detailUI.SetActive(true);
                 booksParent.SetActive(false);
             }
             else
             {
-                DetailUI.SetActive(false);
+                detailUI.SetActive(false);
                 booksParent.SetActive(true);
             }
         }
+    }
+
+    public void UpdateBookCover()
+    {
+        bookCoverUI.SetActive(true);
+        customBook.SetActive(true);
+    }
+
+    public void UpdateBookContent()
+    {
+        SceneManager.LoadScene("EditorScene");
     }
 }
