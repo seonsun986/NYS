@@ -11,11 +11,8 @@ public class YJ_Player_ChangeAvatar : MonoBehaviour
 
     // 머티리얼 정보
     public Material[] catMt;
-    public Button[] catMtList;
     public Material[] bearMt;
-    public Button[] bearMtList;
     public Material[] bunnyMt;
-    public Button[] bunnyMtList;
     // 오브젝트 정보
     public GameObject[] obj;
 
@@ -34,6 +31,14 @@ public class YJ_Player_ChangeAvatar : MonoBehaviour
     {
         
     }
+
+    public void OnClickAvatar(int i)
+    {
+        avt.SetActive(false);
+        avt = avatar[i];
+        avt.SetActive(true);
+    }
+
 
     // Cat Mt 버튼
     public void OnClickCatMt(int i)

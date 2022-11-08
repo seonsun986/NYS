@@ -845,73 +845,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590741049}
   m_CullTransparentMesh: 1
---- !u!1 &662308619
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 662308622}
-  - component: {fileID: 662308621}
-  - component: {fileID: 662308620}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &662308620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662308619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &662308621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662308619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &662308622
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662308619}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &674487817
 GameObject:
   m_ObjectHideFlags: 0
@@ -11277,15 +11210,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 41b4531de298363479f0a35d26cce2df, type: 2}
   - {fileID: 2100000, guid: e4c543b556f611b489a291f5c946c035, type: 2}
   - {fileID: 2100000, guid: b97563860dc40d34e9c574d5169a13fb, type: 2}
-  catMtList:
-  - {fileID: 1797471123}
-  - {fileID: 687622747}
-  - {fileID: 1558193017}
-  - {fileID: 451252847}
-  - {fileID: 731709507}
-  - {fileID: 498940584}
-  - {fileID: 831453607}
-  - {fileID: 1165919981}
   bearMt:
   - {fileID: 2100000, guid: b953deb7e9f8f8244adce812880fc24a, type: 2}
   - {fileID: 2100000, guid: 4a1cff5c43b115146afe71f3990bd2f0, type: 2}
@@ -11295,7 +11219,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 8a120760c420f16409f23bff9b189561, type: 2}
   - {fileID: 2100000, guid: c77ca7578f7f9b24cadc281813fdfd45, type: 2}
   - {fileID: 2100000, guid: 202410f1bbf41ca4f8a3c3f9e8abe9e3, type: 2}
-  bearMtList: []
   bunnyMt:
   - {fileID: 2100000, guid: b7b0724527ac2c448b5e2ba718ffbf4b, type: 2}
   - {fileID: 2100000, guid: 4fb38f233f665394a8308143832c2dc2, type: 2}
@@ -11305,7 +11228,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: da220719f853f5c41b8d2cd20201a493, type: 2}
   - {fileID: 2100000, guid: 11c209555f39bdd4abcec67309459c69, type: 2}
   - {fileID: 2100000, guid: 63685f439044e2f44a3b0f4300ff4de4, type: 2}
-  bunnyMtList: []
   obj: []
 --- !u!1 &7962132127941354999
 GameObject:
