@@ -9,8 +9,12 @@ public class SH_ChildrenFairyManager : MonoBehaviour
 {
     // 동화책 페이지를 담아 둘 리스트
     public List<GameObject> pages = new List<GameObject>();
-    // 선택했을 때 나타날 오브젝트들의 리스트
+    // 선택했을 때 나타날 오브젝트들의 리스트(토끼, 호랑이, 곰 등등)
     public List<GameObject> selectObject;
+    // 여동생인지 남동생인지 선택하면 채워질 텍스트  
+    public List<Text> broText;
+    // 엄마 아빠인지 선택하면 채워질 텍스트
+    public List<Text> parentText;
     [Header("선택지가 있는 페이지")]
     // 선택 페이지 리스트(이때는 넥스트 버튼이 선택하면 넘어가면 안됨)
     public List<int> SelectPage = new List<int>();
@@ -214,4 +218,37 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         pages[currentPage + 2].SetActive(true);
         currentPage += 2;
     }
+
+    public void Girl()
+    {
+        for(int i =0; i<broText.Count;i++)
+        {
+            broText[i].text = "여동생";
+        }
+    }
+
+    public void Boy()
+    {
+        for (int i = 0; i < broText.Count; i++)
+        {
+            broText[i].text = "남동생";
+        }
+    }
+
+    public void Mom()
+    {
+        for (int i = 0; i < parentText.Count; i++)
+        {
+            parentText[i].text = "엄마";
+        }
+    }
+
+    public void Dad()
+    {
+        for (int i = 0; i < parentText.Count; i++)
+        {
+            parentText[i].text = "아빠";
+        }
+    }
+
 }
