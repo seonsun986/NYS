@@ -9,8 +9,6 @@ public class SH_ChildrenFairyManager : MonoBehaviour
 {
     // 동화책 페이지를 담아 둘 리스트
     public List<GameObject> pages = new List<GameObject>();
-    // 선택지에 따라 바뀔 텍스트 리스트
-    public List<Text> boxTexts = new List<Text>();
     // 선택했을 때 나타날 오브젝트들의 리스트
     public List<GameObject> selectObject;
     [Header("선택지가 있는 페이지")]
@@ -41,7 +39,6 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                 currentTime = 0;
                 bookWorldOpen = false;
             }
-            
         }
     }
 
@@ -62,16 +59,26 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     // 아직 선택을 하지 않았다면
                     selectPopUp.SetActive(true);
                     return;
-                }             
+                }   
+                else
+                {
+                    if(PassPopUp.activeSelf == true)
+                    {
+                        PassPopUp.SetActive(false);
+                    }
+                }
+
             }
         }
 
         // 만약 패스 버튼이었다면 팝업을 꺼준다
-        GameObject PassPopUp = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
-        if (PassPopUp.name.Contains("Pass"))
+        GameObject PassPopUpj = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
+        if (PassPopUpj.name.Contains("Pass"))
         {
-            PassPopUp.SetActive(false);
+            PassPopUpj.SetActive(false);
         }
+
+        
         pages[currentPage].SetActive(false);
         pages[currentPage + 1].SetActive(true);
 
@@ -158,8 +165,6 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     {
         GameObject closeBtn = EventSystem.current.currentSelectedGameObject;
         closeBtn.transform.parent.gameObject.SetActive(false);
-
-
     }
 
     public void TryAgain()
@@ -191,5 +196,22 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         string GoName = EventSystem.current.currentSelectedGameObject.name;
         string selectBtnName = GoName.Substring(0, GoName.Length - 3);
         selectPages = GameObject.Find(selectBtnName + "Pages");
+        
+        // 선택한 페이지에 따라서 Page들을 Pages에 추가해준다
+        for(int i =0;i<selectPages.transform.childCount;i++)
+        {
+            pages.Insert(i + 10, selectPages.transform.GetChild(i).gameObject);
+        }
+        // NextPage 함수 그냥 여기서 실행함
+        pages[currentPage].SetActive(false);
+        pages[currentPage + 1].SetActive(true);
+        currentPage += 1;
+    }
+
+    public void TryNo()
+    {
+        pages[currentPage].SetActive(false);
+        pages[currentPage + 2].SetActive(true);
+        currentPage += 2;
     }
 }

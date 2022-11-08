@@ -24,7 +24,6 @@ using UnityEngine.Networking;
 public class YJ_UIManager : MonoBehaviour
 {
     public LoginInfo loginInfo = new LoginInfo();
-    //public UserInfo userInfo = new UserInfo();
 
     public GameObject loginUI;
     public GameObject signInUI;
@@ -114,6 +113,31 @@ public class YJ_UIManager : MonoBehaviour
         YJ_HttpManager.instance.SendRequest(requester);
     }
 
+    [Serializable]
+    public class Test_m
+    {
+        public string str = "양치기 소년!";
+    }
+    Test_m test = new Test_m();
+    public void Mp3_Test()
+    {
+        // ArrayJson -> json
+        string getmp3 = JsonUtility.ToJson(test, true);
+        print(getmp3);
+
+        YJ_HttpRequester requester = new YJ_HttpRequester();
+        requester.url = "http://43.201.10.63:8080/tts/play";
+        requester.requestType = RequestType.POST;
+        requester.postData = getmp3;
+        requester.onComplete = (handler) => {
+            print("mp3파일생성!");
+            print(handler.text);
+            byte[] byteData = handler.data;
+            File.WriteAllBytes(Application.dataPath + "/" + "ex" + ".wav", byteData);
+
+        };
+        YJ_HttpManager.instance.SendRequest(requester);
+    }
     // 로그인 ID, PW 저장
     public void OnClickLoginButton()
     {
