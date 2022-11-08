@@ -66,7 +66,7 @@ public class NK_Emotion : MonoBehaviourPun
         if (Physics.Raycast(ray, out hit) && !EventSystem.current.IsPointerOverGameObject())
         {
 
-            // LayerMask가 Player이면
+            // 클릭한 오브젝트의 LayerMask가 Player이고 자기자신이 아니면
             if (hit.transform.gameObject.layer == 6 && hit.transform.gameObject != gameObject)
             {
             clickUser = hit.transform.gameObject;
