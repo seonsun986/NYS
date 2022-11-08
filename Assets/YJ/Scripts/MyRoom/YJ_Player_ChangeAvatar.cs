@@ -24,10 +24,8 @@ public class YJ_Player_ChangeAvatar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //avt = avatar[(int.Parse(UserInfo.animal))];
         avt = avatar[0];
         avt.SetActive(true);
-        //avt.transform.GetChild(1).transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material = catMt[(int.Parse(UserInfo.material))];
         avt.transform.GetChild(1).transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material = catMt[0];
     }
 
@@ -36,18 +34,10 @@ public class YJ_Player_ChangeAvatar : MonoBehaviour
     {
         
     }
-    int j = 0;
-    public void OnClickCatMt()
+
+    // Cat Mt ¹öÆ°
+    public void OnClickCatMt(int i)
     {
-        GameObject catMtChoice = EventSystem.current.currentSelectedGameObject;
-        for (int i = 0; i <= catMtList.Length; i++)
-        {
-            if (catMtList[i].gameObject.name == catMtChoice.name)
-            {
-                j = i;
-                avt.transform.GetChild(1).transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material = catMt[j];
-            }
-            
-        }
+        avt.transform.GetChild(1).transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material = catMt[i];
     }
 }
