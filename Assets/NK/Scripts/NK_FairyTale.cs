@@ -12,7 +12,7 @@ public class NK_FairyTale : MonoBehaviour
     public Transform book;
     public List<Transform> objs;
 
-    Vector3 originalScale;
+    bool isOpen = false;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -32,49 +32,31 @@ public class NK_FairyTale : MonoBehaviour
             }
         }
 
-        //AddObjectList(fairyTaleUI);
-
-        //AddObjectList(fairyTaleObject);
-    }
-
-    private void AddObjectList(GameObject fairyTaleContent)
-    {
-        foreach (Transform child in fairyTaleContent.GetComponentsInChildren<Transform>())
-        {
-            if (child.name == fairyTaleContent.name)
-                continue;
-            //child.localScale = new Vector3(0, 0, 0);
-            if (child.GetComponent<Renderer>() != null)
-            {
-                Renderer ren = child.GetComponent<Renderer>();
-                Color color = ren.material.color;
-                print(color);
-                color.a = 0;
-                ren.material.color = color;
-            }
-            objs.Add(child);
-        }
+        //fairyTaleUI.transform.localScale = new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
         // 책이 거의 다 펼쳐지면 활성화
-        if (book.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f)
+        if (book.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f && !isOpen)
         {
             fairyTaleUI.SetActive(true);
             fairyTaleObject.SetActive(true);
+            fairyTaleObject.transform.localScale = new Vector3(0, 0, 0);
+            isOpen = true;
         }
 
         // 크기 변형 (수정 중)
-        for (int i = 0; i < objs.Count; i++)
+        if (isOpen)
         {
-            if (objs[i].gameObject.activeSelf == true)
+            if (fairyTaleUI.transform.localScale.x <= 1f)
             {
-                if (objs[i].transform.localScale.x < 1f)
-                {
-                    objs[i].transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
-                }
+                fairyTaleUI.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+            }
+            if (fairyTaleObject.transform.localScale.x <= 1f)
+            {
+                fairyTaleObject.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
             }
         }
     }
