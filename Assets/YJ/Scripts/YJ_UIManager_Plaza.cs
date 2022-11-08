@@ -28,6 +28,13 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
         }
     }
 
+    #region 마이룸이동
+    public void GoMyRoom()
+    {
+
+    }
+    #endregion
+
 
     #region 환경설정
     public GameObject settingSet;
@@ -66,6 +73,7 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
         YJ_PlazaManager.instance.OutPlaza();
     }
     #endregion
+
 
 
     #region 방만들기
