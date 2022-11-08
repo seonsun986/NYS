@@ -614,10 +614,19 @@ public class SH_BtnManager : MonoBehaviour
         GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
         Image clickBtnImage = clickBtn.GetComponent<Image>();
         string clickText = clickBtn.name.Substring(0, clickBtn.name.Length - 3);
-
+        string effectClipName;
         for (int i = 0; i < effectClips.Count; i++)
         {
-            if (clickText == effectClips[i].name)
+            if (effectClips[i] != null)
+            {
+                effectClipName = effectClips[i].name;
+            }
+            else
+            {
+                effectClipName = "None";
+            }
+
+            if (clickText == effectClipName)
             {
                 // 현재 오디오 클립 및 현재 선택한 버튼으로 바꿈
                 exSoundSource.clip = effectClips[i];
@@ -692,6 +701,21 @@ public class SH_BtnManager : MonoBehaviour
         }     
        
     }
+
+    // 효과음 적용하기 버튼 클릭 시
+    public void ClickApplySound()
+    {
+        // 현재 씬 빈 오브젝트의 오디오 소스에 접근
+        AudioSource audioSource = Scenes[currentSceneNum].GetComponent<AudioSource>();
+        if(audioSource != null)
+        {
+            // 현재 적용한 오디오 파일 저장
+            audioSource.clip = exSoundSource.clip;
+        }
+        // UI 밑으로 내리기
+        SoundBG();
+    }
+
     private AnimatorClipInfo[] clipInfo;
     public void Save()
     {
