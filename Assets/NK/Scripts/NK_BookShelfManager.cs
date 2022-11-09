@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -53,46 +54,53 @@ public class NK_BookShelfManager : MonoBehaviour
 
     public void ClickBook()
     {
+        // 책 선택하면 책 미리보기 보여짐
         detailTitle.text = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text;
         detailUI.SetActive(true);
         booksParent.SetActive(false);
 
-        // rawImage 초기화
-        rawImage.texture = images[0];
+        // rawImage 불러오고 초기화
+        index = 0;
+        rawImage.texture = images[index];
     }
 
     int index = 0;
     public void ClickBefore()
     {
+        // 책 미리보기에서 이전 버튼 클릭 시
         if (0 < index)
         {
-            rawImage.texture = images[index];
             index--;
+            rawImage.texture = images[index];
         }
     }
 
     public void ClickNext()
     {
+        // 책 미리보기에서 다음 버튼 클릭 시
         if(index < images.Count - 1)
         {
-            rawImage.texture = images[index];
             index++;
+            rawImage.texture = images[index];
         }
     }
 
     public void UpdateBookCover()
     {
+        // 책 표지 수정
         bookCoverUI.SetActive(true);
         NK_BookCover.instance.inputField.text = detailTitle.text;
     }
 
     public void UpdateBookContent()
     {
+        // 책 내용 수정
         SceneManager.LoadScene("EditorScene");
     }
 
     public void DeleteObj()
     {
+        // 삭제 버튼 눌러서 마지막에 클릭된 스티커 삭제
         if(delSticker != null)
             Destroy(delSticker);
     }
