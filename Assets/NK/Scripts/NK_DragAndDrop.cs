@@ -42,7 +42,11 @@ public class NK_DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHand
 
     public void OnPointerDown(PointerEventData eventData)
     {
-
+        // 积己等 胶萍目老锭
+        if (gameObject.name.Contains("Clone"))
+        {
+            NK_BookShelfManager.instance.delSticker = gameObject;
+        }
     }
 
     public void OnDrop(PointerEventData eventData)

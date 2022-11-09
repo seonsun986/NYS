@@ -20,6 +20,7 @@ public class NK_BookCover : MonoBehaviour
     public List<string> hexColor;
     // Object Instantiate¸¦ À§ÇÑ List
     public GameObject[] obj;
+    public Image bookCoverColor;
     int text;
 
     private void Awake()
@@ -103,5 +104,14 @@ public class NK_BookCover : MonoBehaviour
         createObj.GetComponent<RectTransform>().localPosition = Vector3.zero;
         createObj.GetComponent <RectTransform>().localScale = new Vector3(1, 1, 1);
         createObj.GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+    }
+
+    public void ChangeBookColor()
+    {
+        string name = EventSystem.current.currentSelectedGameObject.name;
+        int btnNum = int.Parse(name.Substring(3));
+        Color color;
+        ColorUtility.TryParseHtmlString(hexColor[btnNum], out color);
+        bookCoverColor.color = color;
     }
 }

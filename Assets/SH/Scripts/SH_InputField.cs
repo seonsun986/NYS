@@ -102,7 +102,7 @@ public class SH_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         // inputField의 text길이도 맞춰서 늘어나야한다.
         // 폰트 크기에 맞춰서도 늘어나야한다
         // 무언가가 적히기 시작한 순간
-        print("문자 길이 : " + inputF.text.Length);
+        //print("문자 길이 : " + inputF.text.Length);
         if (inputF.text.Length > 5)
         {
             // 에디터 씬이라면
