@@ -401,7 +401,7 @@ public class SH_BtnManager : MonoBehaviour
             Directory.CreateDirectory(path);
         }
         
-        // 캡쳐파일 이름 정하기
+        // 캡쳐파일 이름 정하기(동화이름으로 바꾸기)
         fileName = path + "_" + i + ".png";
         
         // 캡쳐하기 
