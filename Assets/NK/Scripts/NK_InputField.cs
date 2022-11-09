@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class SH_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class NK_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     // UI 옮기고 싶다! -> 기본 위치
     public static Vector3 defaultPos;
@@ -30,7 +30,7 @@ public class SH_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         isClicked = true;
         // 선택한 InputField가 들어감
 
-        SH_EditorManager.Instance.active_InputField = this;
+        //SH_EditorManager.Instance.active_InputField = this;
         TextInfo activeInfo = SH_EditorManager.Instance.active_InputField.info;
 
         if (NK_BookCover.instance != null)
@@ -102,19 +102,10 @@ public class SH_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         // inputField의 text길이도 맞춰서 늘어나야한다.
         // 폰트 크기에 맞춰서도 늘어나야한다
         // 무언가가 적히기 시작한 순간
-        //print("문자 길이 : " + inputF.text.Length);
-        if (inputF.text.Length > 5)
+        print("문자 길이 : " + inputF.text.Length);
+        if (inputF.text.Length > 5 && NK_BookCover.instance == null)
         {
-            // 에디터 씬이라면
-            if(NK_BookCover.instance == null)
-                rect.sizeDelta = new Vector2(inputF.preferredWidth + 50, inputF.preferredHeight + 10);
-            else
-            {
-                if(inputF.preferredWidth != rect.sizeDelta.x)
-                {
-                    inputF.textComponent.rectTransform.sizeDelta = new Vector2(rect.sizeDelta.x, inputF.preferredHeight);
-                }
-            }
+            rect.sizeDelta = new Vector2(inputF.preferredWidth + 50, inputF.preferredHeight + 10);
         }
 
         // 누르는 중이라면
