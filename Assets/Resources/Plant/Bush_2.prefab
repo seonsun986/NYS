@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4661051229156556}
-  - component: {fileID: 205189634183317368}
   - component: {fileID: 2653233360372731629}
   - component: {fileID: 4556874629018909617}
+  - component: {fileID: -1280677056737377328}
   m_Layer: 0
   m_Name: Bush_2
   m_TagString: Untagged
@@ -36,29 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!205 &205189634183317368
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1090827394831544}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: 0.058096826, y: 0.34651363, z: 0.0048874617}
-  m_Size: 2.3960252
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.20961079
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 23244496692058340}
-  - screenRelativeHeight: 0.025073556
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 23639250883304060}
-  m_Enabled: 1
 --- !u!114 &2653233360372731629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +71,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objType: 0
+--- !u!65 &-1280677056737377328
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090827394831544}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.436782, y: 1.2281123, z: 2.0769706}
+  m_Center: {x: 0.054450512, y: 0.34740335, z: 0.0021006465}
 --- !u!1 &1216233455527292
 GameObject:
   m_ObjectHideFlags: 0

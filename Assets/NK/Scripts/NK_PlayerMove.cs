@@ -2,7 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
+using UnityEngine.SceneManagement;
 
 public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 {
@@ -36,91 +39,202 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     Quaternion receiveRot;
     // 보간속력
     public float lerpSpeed = 100;
-    // 스피커
+
+    // 얼굴카메라
+    public GameObject faceCam;
+    // 머리위에 왕관
+    public GameObject crown;
+
+    // 방에있는 인원확인 (RPC를 다시 또 쏴주기위해서)
+    int playerIndex;
+
     public GameObject speaker;
 
     private void Awake()
     {
-        // 임시로 아이와 선생님 나눠줌
-        if (GameObject.Find("GameManager"))
-        {
-            speaker.GetComponent<AudioSource>().mute = false;
-            if (PhotonNetwork.MasterClient.NickName != photonView.Owner.NickName)
-            {
-                gameObject.tag = "Child";
-                if (photonView.IsMine)
-                {
-                    GameObject.Find("TeacherUI").SetActive(false);
-                    GameManager.Instance.photonView = photonView;
-                }
-            }
-            else
-            {
-                gameObject.tag = "Teacher";
-                if (photonView.IsMine)
-                {
-                    GameObject.Find("ChildUI").SetActive(false);
-                    GameManager.Instance.photonView = photonView;
-                }
-            }
-            GameManager.Instance.AddPlayer(photonView);
-        }
-        else
-        {
-            speaker.GetComponent<AudioSource>().mute = true;
-        }
-        
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
+
+        // 선생님방에 있을 때
+        if (GameObject.Find("GameManager"))
+        {
+            // 임시로 아이와 선생님 분류
+            speaker.GetComponent<AudioSource>().mute = false;
+            // 방 만든 사람(선생님)이 아닐 경우
+            if (UserInfo.memberRole != "TEACHER")
+            {
+                if (photonView.IsMine)
+                {
+                    photonView.RPC("RPCAddPlayer", RpcTarget.All);
+                    photonView.RPC("RPCSetTag", RpcTarget.All, "Child");
+                    GameObject.Find("TeacherUI").SetActive(false);
+                    GameObject.Find("BookBtn").SetActive(false);
+                    GameManager.Instance.photonView = photonView;
+                }
+            }
+            // 방 만든 사람(선생님)일 경우
+            else
+            {
+                if (photonView.IsMine)
+                {
+                    photonView.RPC("RPCSetTag", RpcTarget.All, "Teacher");
+                    GameObject.Find("ChildUI").SetActive(false);
+                    GameManager.Instance.photonView = photonView;
+                }
+            }
+        }
+        else
+        {
+            speaker.GetComponent<AudioSource>().mute = true;
+        }
+        ///
+        if (photonView.IsMine)
+        {
+            faceCam.SetActive(true);
+            UserInfo.photonId = this.gameObject.GetComponent<PhotonView>().ViewID.ToString();
+
+            //// 선생님이면 머리위에 왕관쓰기
+            //if (UserInfo.memberRole == "TEACHER")
+            //{
+            //    photonView.RPC("RPCSetCrown", RpcTarget.All);
+            //    //crown.SetActive(true);
+            //}
+        }
+
         controller = GetComponent<CharacterController>();
         anim = transform.GetChild(0).GetComponent<Animator>();
-        state = State.Move;
+        state = State.Idle;
     }
 
     // 애니메이션 조절할 bool값
-    bool moveBool;
+    bool moveBool = false;
+    Vector3 movePoint;
 
     void Update()
     {
         if (photonView.IsMine)
         {
-            if (h + v == 0)
+            if (SceneManager.GetActiveScene().name != "MyRoomScene")
             {
-                moveBool = false;
+                // 마우스로 이동하기
+                if (Input.GetMouseButtonDown(0))
+                {
+                    // 마우스 클릭 후 떼었을때 마우스 포지션으로 레이 생성
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    Debug.DrawLine(ray.origin, ray.direction * 10f, Color.green, 1f);
+
+                    if (Physics.Raycast(ray, out RaycastHit raycastHit))
+                    {
+                        // UI를 선택한 경우와 플레이어를 선택한 경우가 아니라면
+                        if (EventSystem.current.IsPointerOverGameObject() == false && raycastHit.transform.gameObject.layer != 6)
+                        {
+                            if (raycastHit.transform.gameObject.tag == "Room")
+                            {
+                                GameObject.Find("Canvas").transform.GetChild(12).gameObject.SetActive(true);
+                                // 방정보 가져오기
+                                YJ_DataManager.instance.goingRoomName = raycastHit.transform.gameObject.GetComponent<YJ_RoomTrigger>().roomName;
+                                YJ_DataManager.instance.goingRoomType = raycastHit.transform.gameObject.GetComponent<YJ_RoomTrigger>().roomType;
+                            }
+                            else
+                            {
+                                movePoint = raycastHit.point;
+                            }
+                        }
+                    }
+                }
             }
-            else moveBool = true;
 
             switch (state)
             {
                 case State.Move:
                     //anim.SetBool("Move", moveBool);
                     photonView.RPC("RpcSetBool", RpcTarget.All, "Move", moveBool);
-                    PlayerMove();
+                    if (GameObject.Find("CreateRoomSet") != null || GameObject.Find("RoomList") != null)
+                    {
+                        return;
+                    }
+                    PlayerMouseMove();
+                    //PlayerMove();
                     break;
                 case State.Sit:
                     photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", true);
                     break;
                 case State.Idle:
                     photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", false);
-                    state = State.Move;
+
+                    // 처음 입장 시 떨어지게 만들기
+                    yVelocity += gravity * Time.deltaTime;
+                    if (controller.isGrounded)
+                    {
+                        yVelocity = 0;
+                    }
+                    dir.Normalize();
+                    dir.y = yVelocity;
+                    controller.Move(dir * moveSpeed * Time.deltaTime);
+
+                    // 어딘가 클릭했을때 무브로 이동
+                    if (movePoint != Vector3.zero)
+                    {
+                        state = State.Move;
+                    }
                     break;
 
             }
         }
-        //else
-        //{
-        //    // Lerp를 이용해서 목적지, 목적방향까지 이동 및 회전
-        //    transform.position = Vector3.Lerp(transform.position, receivePos, lerpSpeed * Time.deltaTime);
-        //    transform.rotation = Quaternion.Lerp(transform.rotation, receiveRot, lerpSpeed * Time.deltaTime);
-        //}
     }
 
     Vector3 dir;
     float h = 0;
     float v = 0;
+    int jumpCount = 0;
+
+    void PlayerMouseMove()
+    {
+
+        dir = movePoint - transform.position;
+        dir.Normalize();
+
+        //dir.y = 0;
+
+        // yVelocity값을 중력으로 감소시킴
+        yVelocity += gravity * Time.deltaTime;
+        // 만약에 바닥에 닿아있다면 yVelocity를 0으로 하자
+        if (controller.isGrounded)
+        {
+            yVelocity = 0;
+            jumpCount = 0;
+        }
+
+        // 스페이스바를 누르면 yVelocity에 jumpPower를 셋팅
+        //if (Input.GetButtonDown("Jump") && jumpCount < 1)
+        //{
+        //    yVelocity = jumpPower;
+        //    jumpCount++;
+        //}
+        dir.y = yVelocity;
+
+
+        if (Vector3.Distance(movePoint, transform.position) < 0.1f)// || movePoint == Vector3.zero)
+        {
+            moveBool = false;
+            return;
+        }
+        else if (Vector3.Distance(movePoint, transform.position) > 0.1f && movePoint == Vector3.zero)
+        {
+            moveBool = false;
+        }
+        else
+        {
+            moveBool = true;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * moveSpeed * 2);
+            controller.Move(dir * moveSpeed * Time.deltaTime);
+        }
+    }
 
     void PlayerMove()
     {
@@ -141,11 +255,17 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         yVelocity += gravity * Time.deltaTime;
         // 만약에 바닥에 닿아있다면 yVelocity를 0으로 하자
         if (controller.isGrounded)
+        {
             yVelocity = 0;
+            jumpCount = 0;
+        }
 
         // 스페이스바를 누르면 yVelocity에 jumpPower를 셋팅
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && jumpCount < 1)
+        {
             yVelocity = jumpPower;
+            jumpCount++;
+        }
 
 
         dir.y = yVelocity;
@@ -155,27 +275,35 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     }
 
 
-    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    //{
-    //    // 데이터 보내기
-    //    if (stream.IsWriting) // 내가 데이터를 보낼 수 있는 상태인 경우 (ismine)
-    //    {
-    //        // positon, rotation
-    //        stream.SendNext(transform.position); // Value타입만 보낼 수 있음
-    //        stream.SendNext(transform.rotation);
-    //    }
-    //    // 데이터 받기
-    //    else // if(stream.IsReading)
-    //    {
-    //        receivePos = (Vector3)stream.ReceiveNext(); // 강제형변환필요
-    //        receiveRot = (Quaternion)stream.ReceiveNext();
-    //    }
-    //}
-
     [PunRPC]
     public void RpcSetBool(string s, bool b)
     {
         if (anim != null)
             anim.SetBool(s, b);
+    }
+
+    [PunRPC]
+    private void RPCLeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+        // NK_TeacherManager.instance.JoinRoom();
+    }
+
+    [PunRPC]
+    public void RPCSetCrown()
+    {
+        crown.SetActive(true);
+    }
+
+    [PunRPC]
+    public void RPCSetTag(string tag)
+    {
+        gameObject.tag = tag;
+    }
+
+    [PunRPC]
+    public void RPCAddPlayer()
+    {
+        GameManager.Instance.AddPlayer(photonView);
     }
 }

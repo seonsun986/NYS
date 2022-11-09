@@ -8,8 +8,8 @@ public class NK_ManageUI : MonoBehaviourPun
 {
     public GameObject childListFactory;
     public Transform childrenListContent;
-    // Start is called before the first frame update
-    void Start()
+
+    void OnEnable()
     {
         foreach (PhotonView child in GameManager.Instance.children)
         {
@@ -21,9 +21,18 @@ public class NK_ManageUI : MonoBehaviourPun
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
+        // child 에는 부모와 자식이 함께 설정 된다.
+        var child = childrenListContent.GetComponentsInChildren<Transform>();
 
+        foreach (var iter in child)
+        {
+            // 부모(this.gameObject)는 삭제 하지 않기 위한 처리
+            if (iter != childrenListContent.transform)
+            {
+                Destroy(iter.gameObject);
+            }
+        }
     }
 }

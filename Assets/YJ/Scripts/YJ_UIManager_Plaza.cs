@@ -11,12 +11,29 @@ using Photon.Pun;
 public class YJ_UIManager_Plaza : MonoBehaviourPun
 {
 
-    // 닉네임 띄우기
+    // 닉네임
     public Text nickName;
+
+    // 방만들기 버튼
+    public GameObject createRoom_T_only;
     private void Start()
     {
+        // 닉네임 넣어주기
         nickName.text = PhotonNetwork.NickName;
+
+        // 선생님일때만 방만들기 버튼 보여주기
+        if (UserInfo.memberRole != "TEACHER")
+        {
+            createRoom_T_only.SetActive(false);
+        }
     }
+
+    #region 마이룸이동
+    public void GoMyRoom()
+    {
+
+    }
+    #endregion
 
 
     #region 환경설정
@@ -26,37 +43,38 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
     public void Setting()
     {
         settingSet.SetActive(!settingSet.activeSelf);
-        //if (settingCount > 0)
-        //{
-        //    settingSet.SetActive(false);
-        //    settingCount = 0;
-        //}
-        //else
-        //{
-        //    settingSet.SetActive(true);
-        //    settingCount++;
-        //}
     }
     #endregion
 
     #region 방목록
     public GameObject roomList;
-    int roomListCount = 0;
 
     public void RoomList()
     {
-        if (roomListCount > 0)
-        {
-            roomList.SetActive(false);
-            roomListCount = 0;
-        }
-        else
-        {
-            roomList.SetActive(true);
-            roomListCount++;
-        }
+        roomList.SetActive(!roomList.activeSelf);
     }
     #endregion
+
+    #region 방에 들어가시겠습니까?
+    public GameObject auIn;
+    public void AUIn()
+    {
+        
+        auIn.SetActive(!auIn.activeSelf);
+    }
+
+    // O버튼을 눌렀을때 실행할 것
+    public string goingRoomName;
+    public int goingRoomType;
+    public void EnterRoom()
+    {
+        YJ_PlazaManager.instance.goingRoom = YJ_DataManager.instance.goingRoomName;
+        YJ_PlazaManager.instance.goingRoomType = YJ_DataManager.instance.goingRoomType;
+        YJ_PlazaManager.instance.OutPlaza();
+    }
+    #endregion
+
+
 
     #region 방만들기
     // 방만들기 버튼 누르기
@@ -64,16 +82,7 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
     int createCount = 0;
     public void CreateRoomBT()
     {
-        if (createCount > 0)
-        {
-            createRoomSet.SetActive(false);
-            createCount = 0;
-        }
-        else
-        {
-            createRoomSet.SetActive(true);
-            createCount++;
-        }
+        createRoomSet.SetActive(!createRoomSet.activeSelf);
     }
 
 
@@ -158,58 +167,71 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
     #endregion
 
     #region BGM On/Off
-    public GameObject bgmHandle;
+    public Toggle bgmOnOff;
+    public GameObject bgmOn, bgmOff;
     // 228, 291
+    // 배경음악 On/Off
     public void BGMOnAndOff()
     {
-        if (bgmHandle.GetComponent<Toggle>().isOn)
+        if (bgmOnOff.isOn)
         {
-            //handle.transform.position = new Vector2(228, 19);
-            bgmHandle.GetComponent<RectTransform>().anchoredPosition = new Vector2(228, 19);
+            bgmOff.SetActive(false);
+            bgmOn.SetActive(true);
         }
         else
         {
-            //handle.transform.position = new Vector2(291, 19);
-            bgmHandle.GetComponent<RectTransform>().anchoredPosition = new Vector2(291, 19);
+            bgmOn.SetActive(false);
+            bgmOff.SetActive(true);
         }
     }
     #endregion
 
     #region EffectSound On/Off
-    public GameObject ESHandle;
+    public Toggle effectOnOff;
+    public GameObject effectOn, effectOff;
     // 228, 291
-    public void ESOnAndOff()
+    // 배경음악 On/Off
+    public void EffectOnAndOff()
     {
-        if (ESHandle.GetComponent<Toggle>().isOn)
+        if (effectOnOff.isOn)
         {
-            //handle.transform.position = new Vector2(228, 19);
-            ESHandle.GetComponent<RectTransform>().anchoredPosition = new Vector2(228, 19);
+            effectOff.SetActive(false);
+            effectOn.SetActive(true);
         }
         else
         {
-            //handle.transform.position = new Vector2(291, 19);
-            ESHandle.GetComponent<RectTransform>().anchoredPosition = new Vector2(291, 19);
+            effectOn.SetActive(false);
+            effectOff.SetActive(true);
         }
     }
     #endregion
 
     #region Invitation On/Off
-    public GameObject invitation;
+    public Toggle invitOnOff;
+    public GameObject invitOn, invitOff;
     // 228, 291
-    public void InvOnAndOff()
+    // 배경음악 On/Off
+    public void invitOnAndOff()
     {
-        if (invitation.GetComponent<Toggle>().isOn)
+        if (invitOnOff.isOn)
         {
-            //handle.transform.position = new Vector2(228, 19);
-            invitation.GetComponent<RectTransform>().anchoredPosition = new Vector2(228, 19);
+            invitOff.SetActive(false);
+            invitOn.SetActive(true);
         }
         else
         {
-            //handle.transform.position = new Vector2(291, 19);
-            invitation.GetComponent<RectTransform>().anchoredPosition = new Vector2(291, 19);
+            invitOn.SetActive(false);
+            invitOff.SetActive(true);
         }
     }
     #endregion
 
+    #region 게임종료버튼
 
+    public void GameExit()
+    {
+        Application.Quit();
+    }
+
+    #endregion
 }

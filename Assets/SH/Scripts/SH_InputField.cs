@@ -19,38 +19,85 @@ public class SH_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     bool isDragging;
     InputField inputF;
     RectTransform rect;
-
+    int fontSize;
     // 옮기기 위한 Transform 만들기
     public GameObject transform_Tool;
     // 자기 자신에 대한 정보
     public TextInfo info;
+
     public void Click()
     {
         isClicked = true;
         // 선택한 InputField가 들어감
+
         SH_EditorManager.Instance.active_InputField = this;
+        TextInfo activeInfo = SH_EditorManager.Instance.active_InputField.info;
+        SH_BtnManager.Instance.SetInfo(activeInfo.txtDropdown, activeInfo.txtSize, activeInfo.txtColor);
     }
     public void UnClick()
     {
         isClicked = false;
     }
-    
-    void Start()
+
+    void Awake()
     {
         inputF = GetComponent<InputField>();
         rect = GetComponent<RectTransform>();
         tool = transform.GetChild(0).gameObject;
-        tool.SetActive(false);        
+        tool.SetActive(false);
+        info = new TextInfo();
     }
+    private void Start()
+    {
+        
+    }
+
+    public void Initialize(Transform parent, int idx, Vector3 pos)
+    {
+        gameObject.name = "Text" + idx;
+        transform.SetParent(parent);
+        transform.localPosition = pos;
+    }
+
+    public void SetInfo(int txtDropdown, int txtSize, Color txtColor)
+    {
+        
+        info.inputs = inputF.text;
+        info.txtDropdown = txtDropdown;
+        info.txtSize = txtSize;
+        info.txtColor = txtColor;
+    }
+
+    public void SetFontSize(int fontSize)
+    {
+        inputF.textComponent.fontSize = fontSize;
+        info.txtSize = fontSize;
+    }
+
+    public void SetFontColor(Color color)
+    {
+        inputF.textComponent.color = color;
+        info.txtColor = color;
+    }
+
+    public void SetFontType(int type)
+    {
+        inputF.textComponent.font = SH_EditorManager.Instance.fonts[type];
+        info.txtDropdown = type;
+    }
+   
 
     GameObject tool;
 
     void Update()
     {
         // inputField의 text길이도 맞춰서 늘어나야한다.
+        // 폰트 크기에 맞춰서도 늘어나야한다
+        // 무언가가 적히기 시작한 순간
+        print("문자 길이 : " + inputF.text.Length);
         if(inputF.text.Length > 5)
         {
-            rect.sizeDelta = new Vector2(100 + inputF.text.Length * 15, 50);
+            rect.sizeDelta = new Vector2(inputF.preferredWidth + 50, inputF.preferredHeight + 10);
         }
 
         // 누르는 중이라면
@@ -69,11 +116,11 @@ public class SH_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                     RectTransform tool_image = tool.GetComponent<Image>().rectTransform;
                     if (inputF.text.Length == 0)
                     {
-                        tool_image.sizeDelta = new Vector2(100, 65);
+                        tool_image.sizeDelta = new Vector2(250, 65);
                     }
                     else
                     {
-                        tool_image.sizeDelta = new Vector2(inputF.preferredWidth + 50, 65);
+                        tool_image.sizeDelta = new Vector2(inputF.preferredWidth + 50, inputF.preferredHeight + 40);
                     }
 
                     inputF.interactable = false;

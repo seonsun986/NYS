@@ -26,7 +26,6 @@ public class NK_Like : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        likeCount = GameObject.Find("LikeCount").GetComponent<Text>();
         likeCount.text = "0";
         count = 0;
     }
@@ -39,7 +38,7 @@ public class NK_Like : MonoBehaviourPun
 
     public void ClickLike()
     {
-        if (GameManager.Instance.photonView.IsMine)
+        if (GameManager.Instance.photonView.IsMine && GameManager.Instance.photonView.gameObject.CompareTag("Child"))
         {
             photonView.RPC("RPCClickLike", RpcTarget.All);
             // 하트 애니메이션 뜨기

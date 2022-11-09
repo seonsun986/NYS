@@ -10,38 +10,14 @@ public class NK_SettingUI : MonoBehaviourPun
     // 자신만의 Speaker로 변환
     public GameObject Speaker;
     AudioSource audioSource;
-    // Start is called before the first frame update
-    void Start()
-    {
-        Speaker = GameObject.FindWithTag("Teacher");
-        audioSource = Speaker.GetComponent<AudioSource>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void ClickMinus()
-    {
-        RPCClickMinus();
-    }
-
-    [PunRPC]
-    private void RPCClickMinus()
     {
         // 마이너스 버튼 눌렀을 때
         slider.value -= 0.1f;
     }
 
     public void ClickPlus()
-    {
-        RPCClickPlus();
-    }
-
-    [PunRPC]
-    private void RPCClickPlus()
     {
         // 플러스 버튼 눌렀을 때
         slider.value += 0.1f;
@@ -50,6 +26,11 @@ public class NK_SettingUI : MonoBehaviourPun
     public void ChangeSliderValue()
     {
         // 슬라이더 값 변경되면 호출됨
-        audioSource.volume = slider.value;
+        foreach (PhotonView child in GameManager.Instance.children)
+        {
+            Speaker = child.gameObject;
+            audioSource = Speaker.transform.GetChild(2).GetComponent<AudioSource>();
+            audioSource.volume = slider.value;
+        }
     }
 }

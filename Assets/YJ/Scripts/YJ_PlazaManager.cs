@@ -13,10 +13,9 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     private void Awake()
     {
         instance = this;
+
     }
 
-    [HideInInspector]
-    public UserInfo userInfo;
 
     // 들어와있는 인원 파악하기
     public int liveCount = 0;
@@ -28,6 +27,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
 
     // 이동할 씬 이름
     public string sceneName;
+
 
     void Start()
     {
@@ -70,7 +70,8 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         // 일단 큐브생성하자
         if (!createBook)
         {
-            me = PhotonNetwork.Instantiate("YJ/Cube", spawnPos[liveCount], Quaternion.identity);
+            me = PhotonNetwork.Instantiate("YJ/Player", spawnPos[liveCount], Quaternion.identity);
+            //me = PhotonNetwork.Instantiate("YJ/Player", Vector3.zero, Quaternion.identity);
         }
 
     }
@@ -127,7 +128,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     }
 
     public void OutPlaza()
-    {
+    { 
         // 내 게임 오브젝트 없애기
         PhotonNetwork.Destroy(me.gameObject);
         // 광장씬 방 나가기
@@ -159,14 +160,28 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     bool createBook = false;
     public void OnClickCreateBook()
     {
-        if (!createBook && photonView.IsMine)
+        if (!createBook)// && photonView.IsMine)
         {
             createBook = true;
-            YJ_DataManager.CreateRoomInfo.roomName = PhotonNetwork.NickName;
+            YJ_DataManager.CreateRoomInfo.roomName = PhotonNetwork.NickName + "createBook";
             OutPlaza();
         }
-
     }
+
+    // 마이룸 버튼
+    bool goMyRoom = false;
+    public void OnClickMyRoom()
+    {
+        if (!goMyRoom)
+        {
+            goMyRoom = true;
+            YJ_DataManager.CreateRoomInfo.roomName = PhotonNetwork.NickName + "MyRoom";
+            OutPlaza();
+        }
+    }
+
+
+
 
     // 마스터 서버에 접속, 로비 생성 및 진입 가능
     public override void OnConnectedToMaster()
@@ -196,6 +211,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     {
         // 방정보 셋팅
         RoomOptions roomOptions = new RoomOptions();
+        //roomOptions.MaxPlayers = (byte)YJ_DataManager.CreateRoomInfo.roomNumber;
 
         // 방을 만든다
         PhotonNetwork.CreateRoom(YJ_DataManager.CreateRoomInfo.roomName, roomOptions);
@@ -218,6 +234,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     }
 
     public string goingRoom;
+    public int goingRoomType;
 
     // 방입장 ( 방생성자는 자동으로 입장이 됨 )
     public virtual void JoinRoom()
@@ -226,7 +243,10 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         if(YJ_DataManager.CreateRoomInfo.roomName != null)
             PhotonNetwork.JoinRoom(YJ_DataManager.CreateRoomInfo.roomName);
         else
+        {
             PhotonNetwork.JoinRoom(goingRoom);
+            YJ_DataManager.CreateRoomInfo.roomType = goingRoomType;
+        }
 
     }
 
@@ -252,10 +272,28 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         {
             sceneName = "EditorScene";
             YJ_DataManager.CreateRoomInfo.roomName = null;
+            createBook = false;
         }
-        else
+        else if(goMyRoom)
         {
-            sceneName = "TeacherScene";
+            sceneName = "MyRoomScene";
+            YJ_DataManager.CreateRoomInfo.roomName = null;
+            goMyRoom = false;
+        }
+        else if(YJ_DataManager.CreateRoomInfo.roomType == 1)
+        {
+            sceneName = "TeacherScene(Candy)";
+            YJ_DataManager.CreateRoomInfo.roomType = 0;
+        }
+        else if (YJ_DataManager.CreateRoomInfo.roomType == 2)
+        {
+            sceneName = "TeacherScene(ClassRoom)";
+            YJ_DataManager.CreateRoomInfo.roomType = 0;
+        }
+        else if (YJ_DataManager.CreateRoomInfo.roomType == 3)
+        {
+            sceneName = "TeacherScene(Christmas)";
+            YJ_DataManager.CreateRoomInfo.roomType = 0;
         }
         return sceneName;
     }

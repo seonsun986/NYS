@@ -17,7 +17,7 @@ public class YJ_MainCamera : MonoBehaviourPun
 
         if (player == null)
         {
-            player = GameObject.Find("Cube(Clone)");
+            player = GameObject.Find("Player(Clone)");
         }
 
         else if (player != null)

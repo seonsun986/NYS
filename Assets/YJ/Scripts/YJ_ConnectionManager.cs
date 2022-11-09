@@ -54,32 +54,11 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
     }
     #endregion
 
-    #region 서버에 보낼 ID, PW
-    //LoginInfo loginInfo = new LoginInfo();
 
-    //public void Login_ID(string s)
-    //{
-    //    // 서버에 보낼 아이디
-    //    loginInfo.ID = s;
-    //    print("ID : " + loginInfo.ID);
-    //}
-
-    //public void Login_PW(string s)
-    //{
-    //    // 서버에 보낼 비밀번호
-    //    loginInfo.PW = s;
-    //    print("ID : " + loginInfo.PW);
-    //}
-    #endregion
-
-    public void OnSubmit(string s)
+    public void OnSubmit()
     {
-        // 둘 다 입력이 되었으면
-        if (id_input && pw_input)
-        {
-            // 접속하자
-            OnClickConnect();
-        }
+        // 접속하자
+        OnClickConnect();
     }
 
 
@@ -103,10 +82,7 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
         print(System.Reflection.MethodBase.GetCurrentMethod().Name);
 
         // 닉네임 설정 네트워크 필요
-        //PhotonNetwork.NickName = inputNickName.text; //"익명의_" + Random.Range(1,10000);
-        PhotonNetwork.NickName = inputId.text;
-        print(PhotonNetwork.NickName);
-        //print(photonView.name);
+        PhotonNetwork.NickName = UserInfo.nickname;
 
         // 기본 로비 진입
         PhotonNetwork.JoinLobby();
@@ -204,6 +180,20 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            inputId.text = "kimyj111";
+            inputPw.text = "pass01";
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            inputId.text = "kimng11";
+            inputPw.text = "pass01";
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            inputId.text = "simsh111";
+            inputPw.text = "pass01";
+        }
     }
 }

@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 using System.IO;
 using System;
 using Photon.Pun;
+using UnityEditor;
+using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 
 
@@ -15,6 +18,7 @@ public class TextInfo
     public string inputs { get; set; }
     public int txtDropdown { get; set; }
     public int txtSize { get; set; }
+    public Color txtColor { get; set; }
 }
 
 public class Json
@@ -27,28 +31,31 @@ public class Json
 [System.Serializable]
 public class BookInfo
 {
-    public string id;
-    public string title;
-    public string createAt;
-    public List<PagesInfo> pages;
+    public string id; //서버에 생성되는 차례 (고정)
+    public string title; //책 제목
+    public string createAt; //만든날짜
+    public List<PagesInfo> pages; //페이지들 정보
 
 }
 
 [System.Serializable]
 public class PagesInfo
 {
-    public int page;
+    public int page; //페이지 번호
     //public List<PageInfo> data;
-    public List<string> data;
+    public List<string> data; //텍스트 정보, 오브젝트 정보
 
     public string SerializePageInfo(PageInfo info)
     {
+        // Class -> Json
+        // 텍스트, 오브젝트 스트링 형식으로 변환
         string pageInfo = JsonUtility.ToJson(info);
         return pageInfo;
     }
 
     public PageInfo DeserializePageInfo(string s)
     {
+        // Json -> Class
         PageInfo pageInfo = JsonUtility.FromJson<PageInfo>(s);
         if(pageInfo.type == "text")
         {
@@ -63,26 +70,29 @@ public class PagesInfo
 }
 
 [System.Serializable]
-public class PageInfo
+public class PageInfo //공통정보 타입과 위치
 {
     public string type;
     public Vector3 position;
 }
 
 [System.Serializable]
-public class TxtInfo : PageInfo
+public class TxtInfo : PageInfo //텍스트일경우 가져올 정보
 {
     public string font;
     public int size;
     public string content;
+    public string color;
 }
 
 [System.Serializable]
-public class ObjInfo : PageInfo
+public class ObjInfo : PageInfo //오브젝트일경우 가져올 정보
 {
-    public string prefab;
+    public string prefab; //프리팹 이름
+    //public string category;
     public Quaternion rotation;
     public Vector3 scale;
+    public string anim;
 }
 
 
@@ -93,10 +103,12 @@ public class ObjInfo : PageInfo
 public class SH_BtnManager : MonoBehaviour
 {
     public static SH_BtnManager Instance;
-
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
     }
 
     public Image sceneBG;
@@ -107,10 +119,9 @@ public class SH_BtnManager : MonoBehaviour
 
     public GameObject inputField;       // inputField 프리팹
     public List<SH_InputField> inputFields = new List<SH_InputField>();
-    // 현재 선택되어있는 드롭다운과 텍스트 사이즈
+    // 현재 선택되어있는 드롭다운과 텍스트 사이즈, 텍스트 컬러
     public Dropdown txtDropdown;
-    public Text txtSize;
-
+    public InputField InputtxtSize;
     // 씬 추가하기
     public GameObject voidScene;
     public GameObject rawImage;
@@ -144,19 +155,43 @@ public class SH_BtnManager : MonoBehaviour
     // 현재 내가 있는 씬 번호
     public int currentSceneNum;
 
+    // 텍스트 컬러 hex Color List
+    public List<string> hexColor;
 
+    // 텍스트 컬러 반영된 이미지
+    public Image txtcolorImage;
+
+    // 효과음 리스트
+    public List<AudioClip> effectClips;
+    // 효과음 오디오소스
+    public AudioSource effectSoundSource;
+    public AudioSource bgSoundSource;
+    public AudioSource exSoundSource;
     void Start()
     {
         path = Application.dataPath + "/Capture/";
         captureWidth = Screen.width;
         captureHeight = Screen.height;
+
+        txtDropdown.onValueChanged.AddListener(ChangeTextFont);
+        InputtxtSize.onValueChanged.AddListener(ChangeFontSize);
     }
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (SceneManager.GetActiveScene().name != "EditorScene")
+            return;
+        if (Input.GetMouseButtonDown(0))
         {
             GoScene();
+
+        }
+        currentScene = (int)Scenes[0].transform.position.y / 20;
+
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ReadAudio();
+
         }
     }
 
@@ -170,9 +205,9 @@ public class SH_BtnManager : MonoBehaviour
     {
         print("Scene");
     }
-    void MoveObj(GameObject go, float destination, string completeFun = "")
+    void MoveObj(GameObject go, float destination, string completeFun = "", string axis= "")
     {
-        Hashtable hash = iTween.Hash("x", destination,
+        Hashtable hash = iTween.Hash(axis, destination,
             "time", 0.5f);
             
         if(completeFun.Length > 0)
@@ -184,17 +219,20 @@ public class SH_BtnManager : MonoBehaviour
         //"easetype", iTween.EaseType.linear));
     }
 
+    public GameObject Scenebuttonon;
+    public GameObject Scenebuttonoff;
     int bgDir = 1;      // 씬 BG가 나타나 있지 않을때(나타나 있을 때는 -1이다)
     public void MoveSceneBG()
     {
-        float x = sceneBG.transform.position.x + sceneBG.GetComponent<RectTransform>().sizeDelta.x * bgDir;
-        MoveObj(sceneBG.gameObject, x, "OnCompleteScene");
+        float x = sceneBG.transform.position.x + (sceneBG.GetComponent<RectTransform>().sizeDelta.x - 55) * bgDir;
+        MoveObj(sceneBG.gameObject, x, "OnCompleteScene", "x");
         if(bgDir== 1)       // 나타나 있지 않는 상태 -> 나타나는 상태
         {
             SceneBtn.rotation = new Quaternion(0, 0, 180 * -(bgDir), 0);
             // 이때 objDir이 나타나있는 상태라면(objDir = 1)
             // objDir을 돌려준다
             ObjectBtn.rotation = new Quaternion(0, 0, 180, 0);
+            soundBtn.rotation = Quaternion.Euler(0, 0, 90);
         }
         else
         {
@@ -202,19 +240,22 @@ public class SH_BtnManager : MonoBehaviour
         }
         bgDir *= -1;
 
-        MoveObj(objectBG.gameObject, Screen.width);
+        MoveObj(objectBG.gameObject, /*Screen.width*/1865, "OnCompleteScene", "x");
+        MoveObj(soundBG.gameObject, -210, "OnCompleteObject", "y");
         objDir = -1;
+        soundDir = 1;
     }
 
     int objDir = -1;
     public void MoveObjectBG()
     {
-        float x = objectBG.transform.position.x + objectBG.GetComponent<RectTransform>().sizeDelta.x * objDir;
-        MoveObj(objectBG.gameObject, x, "OnCompleteObject");
+        float x = objectBG.transform.position.x + (objectBG.GetComponent<RectTransform>().sizeDelta.x - 65) * objDir;
+        MoveObj(objectBG.gameObject, x, "OnCompleteObject", "x");
         if(objDir == -1)
         {
             ObjectBtn.rotation = new Quaternion(0, 0, 0, 0);
             SceneBtn.rotation = new Quaternion(0, 0, 0, 0);
+            soundBtn.rotation = Quaternion.Euler(0, 0, 90);
 
         }
         else
@@ -224,8 +265,36 @@ public class SH_BtnManager : MonoBehaviour
         objDir *= -1;
        
 
-        MoveObj(sceneBG.gameObject, 0);
+        MoveObj(sceneBG.gameObject, 50, "OnCompleteScene","x");
+        MoveObj(soundBG.gameObject, -210, "OnCompleteObject", "y");
         bgDir = 1;
+        soundDir = 1;
+    }
+
+    int soundDir = 1;
+    public GameObject soundBG;
+    public RectTransform soundBtn;
+    public void SoundBG()
+    {
+        float y = soundBG.transform.position.y + 300 * soundDir;
+        MoveObj(soundBG.gameObject, y, "OnCompleteObject", "y");
+        if(soundDir == 1)
+        {
+            soundBtn.rotation = Quaternion.Euler(0, 0, -90);
+            ObjectBtn.rotation = new Quaternion(0, 0, 180, 0);
+            SceneBtn.rotation = new Quaternion(0, 0, 0, 0);
+
+        }
+        else
+        {
+            soundBtn.rotation = Quaternion.Euler(0, 0, 90);
+        }
+        soundDir *= -1;
+
+        MoveObj(sceneBG.gameObject, 50, "OnCompleteScene", "x");
+        MoveObj(objectBG.gameObject, /*Screen.width*/1865, "OnCompleteScene", "x");
+        bgDir = 1;
+        objDir = -1;
     }
     #endregion
 
@@ -237,37 +306,80 @@ public class SH_BtnManager : MonoBehaviour
     // 변경할 때마다의 값을 각자만의 클래스에 저장해놓는다.
     // 해당 함수는 시작할 때만 값을 할당한다
     // 현재 있는 씬을 기억한다
+    int text;
     public void AddText()
     {
         SH_InputField inputText = Instantiate(inputField).GetComponent<SH_InputField>();
-        inputText.info = new TextInfo
-        {
-            inputs = inputText.GetComponent<InputField>().text,
-            txtDropdown = txtDropdown.value,
-            txtSize = int.Parse(txtSize.text),
-        };
-        // 선택되어있는 dropdown과 textSize값에 따라서 글자 크기를 바꾸기 위함
+       
+        SH_EditorManager.Instance.active_InputField = inputText;
         inputFields.Add(inputText);
-        inputText.transform.SetParent(Scenes_txt[currentSceneNum].transform);
-        inputText.transform.localPosition = new Vector3(0, 0, 0);
+        // 초기값 세팅
+        SetInfo(0, 20, Color.black);
+
+        inputText.Initialize(Scenes_txt[currentSceneNum].transform, text, new Vector3(0, -350, 0));
+        inputText.SetInfo(txtDropdown.value, int.Parse(InputtxtSize.text), txtcolorImage.color);
+        
+        text++;
+    }
+
+    public void SetInfo(int dropdown, int inputTextSize , Color txtColor)
+    {
+        txtDropdown.value = dropdown;
+        InputtxtSize.text = inputTextSize.ToString();
+        txtcolorImage.color = txtColor;
     }
 
     #region 글씨 크기 조절
     public void PlusSize()
     {
-        int size = int.Parse( txtSize.text);
+        int size = int.Parse(InputtxtSize.text);
         size++;
-        txtSize.text = size.ToString();
+        InputtxtSize.text = size.ToString();
     }
 
     public void MinusSize()
     {
-        int size = int.Parse(txtSize.text);
+        int size = int.Parse(InputtxtSize.text);
         size--;
-        txtSize.text = size.ToString();
+        InputtxtSize.text = size.ToString();
+
     }
+
+    public void ChangeFontSize(string size)
+    {
+        SH_EditorManager.Instance.active_InputField.SetFontSize(int.Parse(size));
+    }
+
+    
     #endregion
 
+    public void ChangeTextColor()
+    {
+        string name = EventSystem.current.currentSelectedGameObject.name;
+        int btnNum = int.Parse(name.Substring(3));               
+        Color color;
+        ColorUtility.TryParseHtmlString(hexColor[btnNum], out color);
+        txtcolorImage.color = color;
+        SH_EditorManager.Instance.active_InputField.SetFontColor(color);
+    }
+
+    void ChangeTextFont(int index)
+    {
+        SH_EditorManager.Instance.active_InputField.SetFontType(index);
+    }
+
+    public GameObject palette;
+    public void PaletteOnOff()
+    {
+        if(palette.activeSelf == true)
+        {
+            palette.SetActive(false);
+        }
+        else
+        {
+            palette.SetActive(true);
+        }
+    }
     // 씬 추가하기 함수
     // rawImage를 리스트에 담는다
     // Save를 누르거나, 씬을 추가하는 순간 해당 씬을 캡쳐한다.
@@ -278,6 +390,7 @@ public class SH_BtnManager : MonoBehaviour
 
     string fileName;            // 파일 저장 이름
     public int i = 0;
+    public int currentScene;
     public void AddScene()
     {
         #region 캡쳐하기
@@ -305,6 +418,21 @@ public class SH_BtnManager : MonoBehaviour
         File.WriteAllBytes(fileName, bytes);
         #endregion
 
+        // 현재 선택되어 있는 오브젝트의 버튼을 꺼준다
+        if(SH_EditorManager.Instance.activeObj != null)
+        {
+            List<GameObject> buttons = SH_EditorManager.Instance.activeObj.GetComponent<SH_SceneObj>().buttons;
+            for (int k = 0; k < buttons.Count; k++)
+            {
+                buttons[k].SetActive(false);
+            }
+        }
+        
+
+
+        // 해당 y값이 0이면 내가 지금 scene0에 있다는 소리고 
+        // 20으로 나눈 몫이 1이면 내가 지금 Scene1에 있다는 소리다
+        currentScene = (int)Scenes[0].transform.position.y / 20;
 
         // 캡쳐파일 RawImage에 넣기
         byte[] textureBytes = File.ReadAllBytes(fileName);
@@ -312,12 +440,13 @@ public class SH_BtnManager : MonoBehaviour
         {
             Texture2D loadedTexture = new Texture2D(0, 0);
             loadedTexture.LoadImage(textureBytes);
-            rawImages[i].GetComponent<RawImage>().texture = loadedTexture;
+            rawImages[currentScene].GetComponent<RawImage>().texture = loadedTexture;
         }
         
         // 새로운 Rawimage 추가
+        // 맨 밑에 추가해야한다
         GameObject raw = Instantiate(rawImage);
-        raw.transform.SetParent(GameObject.Find("Canvas").transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).transform);
+        raw.transform.SetParent(GameObject.Find("ContentRaw").transform);
         raw.transform.position = firstRawImage.position + transform.up * (-180* (i+1));
         raw.name = "RawImage_" + (i + 1);
         rawImages.Add(raw.GetComponent<RawImage>());
@@ -329,11 +458,11 @@ public class SH_BtnManager : MonoBehaviour
         // 카메라 내리지 않기로 결정(Scenecam, MainCamera 모두!)
         for(int j =0;j<Scenes.Count;j++)
         {
-            Scenes[j].transform.position += new Vector3(0, 20, 0);
+            Scenes[j].transform.position += new Vector3(0, 20 * ((i+1) - currentScene), 0);
         }
         for(int k =0;k<Scenes_txt.Count;k++)
         {
-            Scenes_txt[k].transform.position += new Vector3(0, Screen.height, 0);
+            Scenes_txt[k].transform.position += new Vector3(0, Screen.height * ((i + 1) - currentScene), 0);
         }
 
 
@@ -358,6 +487,7 @@ public class SH_BtnManager : MonoBehaviour
 
     // Object 생성 함수
     // 해당 Object를 Scenes List에 담는다
+    GameObject assetPath;
     public void InstantiateObj()
     {
         GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
@@ -368,8 +498,9 @@ public class SH_BtnManager : MonoBehaviour
             if(obj[j].name.Contains(clickText))
             {
                 GameObject createObj = Instantiate(obj[j]);
+                SH_EditorManager.Instance.activeObj = createObj;
                 createObj.transform.SetParent(Scenes[currentSceneNum].transform);
-                createObj.transform.position = new Vector3(0, 0, 0);
+                createObj.transform.position = new Vector3(0, -1, 0);
                 break;
             }
         }
@@ -394,11 +525,18 @@ public class SH_BtnManager : MonoBehaviour
             
             // 씬을 클릭했다는 뜻이므로
             // 해당 씬으로 돌아가야한다
-            if (raycastResults[j].gameObject.name.Contains("RawImage"))
+            if (raycastResults[j].gameObject.name.Contains("RawImage") && Scenes[0]!=null)
             {
-                print(raycastResults[j].gameObject.name);
+                // 현재 선택되어 있는 오브젝트의 버튼을 꺼준다
+                if (SH_EditorManager.Instance.activeObj == null) return;
+                List<GameObject> buttons = SH_EditorManager.Instance.activeObj.GetComponent<SH_SceneObj>().buttons;
+                for(int k=0;k<buttons.Count;k++)
+                {
+                    buttons[k].SetActive(false);
+                }
+
                 // 해당 y값이 0이면 내가 지금 scene0에 있다는 소리고 
-                // 20이면 내가 지금 Scene1에 있다는 소리다
+                // 20으로 나눈 몫이 1이면 내가 지금 Scene1에 있다는 소리다
                 int currentScene = (int)Scenes[0].transform.position.y / 20;
                 // 원래 있었던 씬을 캡쳐해서 바꿔준다
                 // 캡쳐하기 
@@ -464,14 +602,145 @@ public class SH_BtnManager : MonoBehaviour
 
     }
 
+    public Sprite playing;
+    public Sprite notPlaying;
+    public AudioClip preClip;
+    public AudioClip curClip;
+    GameObject currentBtn;
+    GameObject preBtn;
+
+    // 선택한 버튼에 대한 소리를 바꾼다
+    // 선택한 버튼에 대한 이미지를 Playing으로 바꾼다.
+    // 만약 그전에 재생중인 버튼이 있다면
+    // 해당의 버튼의 이미지를 notPlaying으로 바꾼다
+    // 만약 재생중인 버튼을 다시한번 클릭한 것이라면
+    // 재생중인 버튼의 이미지를 notPlaying으로 바꾸고
+    // 소리 재생을 멈춘다
+
+    // 1. 재생 중인 소리의 버튼을 멈춘다
+
+    public void SelectSound()
+    {
+        GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
+        Image clickBtnImage = clickBtn.GetComponent<Image>();
+        string clickText = clickBtn.name.Substring(0, clickBtn.name.Length - 3);
+        string effectClipName;
+        for (int i = 0; i < effectClips.Count; i++)
+        {
+            if (effectClips[i] != null)
+            {
+                effectClipName = effectClips[i].name;
+            }
+            else
+            {
+                effectClipName = "None";
+            }
+
+            if (clickText == effectClipName)
+            {
+                // 현재 오디오 클립 및 현재 선택한 버튼으로 바꿈
+                exSoundSource.clip = effectClips[i];
+
+                // 처음 소리 설정 할 때 아무것도 들어가있지 않으므로 설정해줌
+                if (preClip == null)
+                {
+                    // 처음 소리 및 게임 오브젝트 설정
+                    preClip = exSoundSource.clip;
+                    preBtn = clickBtn;
+
+                    curClip = preClip;
+                    currentBtn = preBtn;
+
+                    exSoundSource.clip = curClip;
+                    exSoundSource.Play();
+
+                    // 현재 오브젝트 사진을 Playing으로 바꾼다
+                    currentBtn.GetComponent<Image>().sprite = playing;
+                }
+
+                // 그 전 오디오 클립이 들어가있다면
+                else
+                {
+                    // 현재 있던 버튼을 옛날 버튼으로 바꾸고
+                    preClip = curClip;
+                    preBtn = currentBtn;
+
+                    // 현재 버튼과 클립을 다시 업데이트 해준다
+                    curClip = exSoundSource.clip;
+                    currentBtn = clickBtn;
+
+                    // 만약 사용자가 소리를 바꾼다면
+                    if (preClip != exSoundSource.clip)
+                    {
+                        // 그 전 소리가 멈춰야 한다
+                        exSoundSource.Stop();
+                        // 전 오브젝트의 사진을 notPlaying으로 바꾼다
+                        preBtn.GetComponent<Image>().sprite = notPlaying;
+                        // 현재 오브젝트 사진을 Playing으로 바꾼다
+                        currentBtn.GetComponent<Image>().sprite = playing;
+
+                        exSoundSource.clip = curClip;
+                        exSoundSource.Play();
+                    }
+
+                    // 사용자가 또 똑같은 소리 버튼을 눌렀을 때
+                    // 재생 중이었다면 재생을 멈추고
+                    // 재생 중이 아니라면 재생을 시킨다
+                    else
+                    {
+                        // 재생 중이라면
+                        if (preBtn.GetComponent<Image>().sprite == playing)
+                        {
+                            preBtn.GetComponent<Image>().sprite = notPlaying;
+                            exSoundSource.Stop();
+                        }
+
+                        // 재생 중이 아니라면
+                        else
+                        {
+                            preBtn.GetComponent<Image>().sprite = playing;
+                            exSoundSource.clip = preClip;
+                            exSoundSource.Play();
+                        }
+                    }
+                }
+
+                return;
+
+            }
+        }     
+       
+    }
+
+    // 효과음 적용하기 버튼 클릭 시
+    public void ClickApplySound()
+    {
+        // 현재 씬 빈 오브젝트의 오디오 소스에 접근
+        AudioSource audioSource = Scenes[currentSceneNum].GetComponent<AudioSource>();
+        if(audioSource != null)
+        {
+            // 현재 적용한 오디오 파일 저장
+            audioSource.clip = exSoundSource.clip;
+        }
+        // UI 밑으로 내리기
+        SoundBG();
+    }
+
+    private AnimatorClipInfo[] clipInfo;
+    public void Save()
+    {
+        string jsonData = SaveInfo();
+
+        SaveJson("Book2", jsonData);
+    }
 
     // 제이슨 저장
     // PageInfo -> PagesInfo -> BookInfo -> Json
-    public void Save()
+    private string SaveInfo()
     {
         BookInfo bookinfo = new BookInfo();
         // PageInfo 클래스에서 부터 오브젝트와 텍스트의 정보를 넣어보자
-        for(int i =0;i<Scenes.Count;i++)
+        for (int i = 0; i < Scenes.Count; i++)
         {
             PagesInfo pagesInfo = new PagesInfo();
             objsInfo = new List<string>();
@@ -480,23 +749,25 @@ public class SH_BtnManager : MonoBehaviour
             // 씬 하나
             // 오브젝트 담기(type, prefab, position, rotation, scale 필요함)
             // 그 안에 자식이 있을때만 for문을 돌리자!
-            if(Scenes[i].transform.childCount>0)
+            if (Scenes[i].transform.childCount > 0)
             {
                 for (int j = 0; j < Scenes[i].transform.childCount; j++)
                 {
+                    // 현재 씬 넘버에 따라서 y값 조절하자(마지막 씬을 0으로)
                     ObjInfo objInfo = new ObjInfo();
                     SH_SceneObj obj = Scenes[i].transform.GetChild(j).GetComponent<SH_SceneObj>();
                     objInfo.type = obj.objType.ToString();
                     objInfo.prefab = obj.name.Substring(0, obj.name.Length - 7);     //("(clone)" 빼고 저장해야함)
-                    objInfo.position = obj.transform.position;
+                    objInfo.position = new Vector3(obj.transform.position.x, obj.transform.position.y + (Scenes.Count - 1 - currentSceneNum) * 20, obj.transform.position.z);
                     objInfo.rotation = obj.transform.rotation;
                     objInfo.scale = obj.transform.localScale;
+                    objInfo.anim = obj.GetComponent<SH_SceneObj>().currentAnim;
                     // 멀티 오브젝트 클래스 리스트에 담아준다
                     objsInfo.Add(pagesInfo.SerializePageInfo(objInfo));
                 }
             }
-           
-            if(Scenes_txt[i].transform.childCount>0)
+
+            if (Scenes_txt[i].transform.childCount > 0)
             {
                 // 텍스트 담기
                 for (int k = 0; k < Scenes_txt[i].transform.childCount; k++)
@@ -506,14 +777,15 @@ public class SH_BtnManager : MonoBehaviour
                     SH_InputField txt2 = Scenes_txt[i].transform.GetChild(k).GetComponent<SH_InputField>();
                     txtInfo.type = txt.objType.ToString();
                     txtInfo.position = txt.gameObject.GetComponent<RectTransform>().anchoredPosition;
-                    txtInfo.font = txt2.info.txtDropdown.ToString();       // 아마도 int 값으로 나올거야
+                    txtInfo.font = SH_EditorManager.Instance.fonts[txt2.info.txtDropdown].name;
                     txtInfo.size = txt2.info.txtSize;
                     txtInfo.content = txt2.transform.GetChild(3).GetComponent<Text>().text;
+                    txtInfo.color = ColorUtility.ToHtmlStringRGBA(txt2.transform.GetChild(3).GetComponent<Text>().color);
                     // 멀티 오브젝트 클래스 리스트에 담아준다
                     objsInfo.Add(pagesInfo.SerializePageInfo(txtInfo));
                 }
             }
-           
+
             // 페이지 당 오브젝트를 다 담았으면 data를 할당해준다
             // objsInfo의 List를 초기화해준다
             pagesInfo.data = objsInfo;
@@ -523,14 +795,102 @@ public class SH_BtnManager : MonoBehaviour
         // 하나의 책에 페이지 당 오브젝트 정보들이 모두 담겼다
         bookinfo.id = "심선혜 최고";
         bookinfo.title = "위인전 : 심선혜";
-        bookinfo.createAt = DateTime.Now.ToString("yyyy - MM - dd");
+        bookinfo.createAt = DateTime.Now.ToString("yyyy / MM / dd");
         // 이제 BookInfo 중 Pages에 이 정보들을 담아보자
         bookinfo.pages = pages;
         string jsonData = JsonUtility.ToJson(bookinfo, true);
         print(jsonData);
+        return jsonData;
+    }
 
-        string fileName = "Book1";
+    // 제이슨 저장
+    private void SaveJson(string fileName, string jsonData)
+    {
         string path = Application.dataPath + "/" + fileName + ".Json";
         File.WriteAllText(path, jsonData);
     }
+
+    #region PreviewScene // 동화 미리보기
+    public void PreviewScene()
+    {
+        string jsonData = SaveInfo();
+
+        SaveJson("PreviewBook", jsonData);
+    }
+    #endregion
+
+
+    [Serializable]
+    public class Test_m
+    {
+        public string str;
+    }
+
+    public void Mp3_Test(string path, string text)
+    {
+        //byte[] data = File.ReadAllBytes(Application.dataPath + "/Resources/Audio_0.wav");
+        //AudioClip audioClip = WAV.ToAudioClip(Application.dataPath + "/Resources/Audio_0.wav");
+        //ttsSound.clip = audioClip;
+
+        Test_m test = new Test_m();
+        test.str = text;
+        // ArrayJson -> json
+        string getmp3 = JsonUtility.ToJson(test, true);
+        print(getmp3);
+
+        YJ_HttpRequester requester = new YJ_HttpRequester();
+        requester.url = "http://43.201.10.63:8080/tts/play";
+        requester.requestType = RequestType.POST;
+        requester.postData = getmp3;
+        requester.onComplete = (handler) =>
+        {
+            print("mp3파일생성!");
+            //print(handler.downloadHandler.text);
+            byte[] byteData = handler.downloadHandler.data;
+
+            File.WriteAllBytes(/*Application.streamingAssetsPath + "/" + "ex"*/path + ".mp3", byteData);
+// 빌드파일에서만 오디오 파일 재생
+//#if !UNITY_EDITOR
+            ReadAudio();
+//#endif
+        };
+        YJ_HttpManager.instance.SendRequest(requester);
+    }
+
+    public void ReadAudio()
+    {
+        YJ_HttpRequester requester = new YJ_HttpRequester();
+        requester.url = Application.dataPath + "/Resources" + "/" + "Audio_" + currentSceneNum + ".mp3";
+        requester.requestType = RequestType.AUDIO;
+        requester.onComplete = (handler) =>
+        {
+            AudioClip clip = DownloadHandlerAudioClip.GetContent(handler);
+            ttsSound.clip = clip;
+            ttsSound.Play();
+        };
+        YJ_HttpManager.instance.SendRequest(requester);
+    }
+
+
+
+    // 해당 씬에 텍스트가 비어있지 않다면
+    // UIManager에 있는 str에 넣어주고
+    // 다운 받은 파일을 재생시켜준다
+    public AudioSource ttsSound;
+    public void TTS()
+    {
+        string filePath = Application.dataPath + "/Resources" + "/" + "Audio_" + currentSceneNum;
+        string text = "";
+        if (Scenes_txt[currentSceneNum].transform.childCount < 1) return;
+        for(int i =0; i< Scenes_txt[currentSceneNum].transform.childCount;i++)
+        {
+            text += Scenes_txt[currentSceneNum].transform.GetChild(i).GetComponent<InputField>().text;
+            text += "\n";
+        }
+
+        Mp3_Test(filePath, text);
+
+    }
+
+    
 }

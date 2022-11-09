@@ -5,25 +5,25 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-[System.Serializable]
-public class InterestJson
-{
-    public string ID;
-    public ArrayJson arrayJson;
-}
+//[System.Serializable]
+//public class InterestJson
+//{
+//    public string ID;
+//    public ArrayJson arrayJson;
+//}
 
-[System.Serializable]
-public class ArrayJson
-{
-    public bool[] data;
-}
+//[System.Serializable]
+//public class ArrayJson
+//{
+//    public bool[] data;
+//}
 
 
 public class YJ_UIManager : MonoBehaviour
 {
     public LoginInfo loginInfo = new LoginInfo();
-    //public UserInfo userInfo = new UserInfo();
 
     public GameObject loginUI;
     public GameObject signInUI;
@@ -32,12 +32,7 @@ public class YJ_UIManager : MonoBehaviour
     public InputField login_ID;
     public InputField login_PW;
 
-    InputField ID;
-    InputField accessCode;
-    InputField PW;
-    InputField PWCheck;
-    InputField userName;
-    InputField birth;
+    public GameObject loginFail;
 
     GameObject nextButton;
     Color nextDefaultColor;
@@ -50,191 +45,143 @@ public class YJ_UIManager : MonoBehaviour
     int maleButtonConut = 0;
     int femaleButtonConut = 0;
 
-    enum UIState
-    {
-        Login,
-        SignIn,
-        Interest
-    }
-    UIState uiState = UIState.Login;
 
     void Start()
     {
-        //nextButton = GameObject.Find("button_Next");
-        //nextDefaultColor = nextButton.GetComponent<Image>().color;
 
-        //loginUI.SetActive(true);
-        //signInUI.SetActive(false);
-        //InterestUI.SetActive(false);
     }
 
     void Update()
     {
-        switch(uiState)
-        {
-            case UIState.Login:
-                //LoginState();
-                break;
-            case UIState.SignIn:
-                SignInState();
-                break;
-            case UIState.Interest:
-                InterestState();
-                break;
-        }
+
     }
 
-    //private void LoginState()
-    //{
-    //    if (loginDataFlag)
-    //    {
-    //        login_ID = GameObject.Find("login_ID").GetComponent<InputField>();
-    //        login_PW = GameObject.Find("login_PW").GetComponent<InputField>();
-    //        loginDataFlag = false;
-    //    }
-    //}
-
-    private void SignInState()
+    // 로그인 버튼 눌렀을때
+    public void OnclickHttp()
     {
-        if (signDataFlag)
-        {
-            ID = GameObject.Find("input_ID").GetComponent<InputField>();
-            accessCode = GameObject.Find("input_AccessCode").GetComponent<InputField>();
-            PW = GameObject.Find("input_PW").GetComponent<InputField>();
-            PWCheck = GameObject.Find("input_PWCheck").GetComponent<InputField>();
-            userName = GameObject.Find("input_Name").GetComponent<InputField>();
-            birth = GameObject.Find("input_Birth").GetComponent<InputField>();
-            signDataFlag = false;
-        }
+        OnClickLoginButton();
+        Login_1_API();
 
-        
-
-        if (!PWSuccess)
-        {
-            nextButton.GetComponent<Image>().color = Color.gray;
-            nextButton.GetComponent<Button>().interactable = false;
-        }
-        else
-        {
-            nextButton.GetComponent<Image>().color = nextDefaultColor;
-            nextButton.GetComponent<Button>().interactable = true;
-        }
     }
 
-    private void InterestState()
-    {
-        if (interestDataFlag)
-        {
-            for (int i = 0; i < 20; i++)
-            {
-                //interestArray[i] = InterestUI.transform.GetChild(i + 1).gameObject;
-            }
-
-            interestDataFlag = false;
-        }
-    }
-
-    bool Login()
-    {
-        string jsonData = JsonUtility.ToJson(loginInfo, true);
-
-        print(jsonData);
-
-        return false;
-
-        // 네트워크 분들한테 url로 전달
-    }
-
-    public void SendAccesscode()
-    {
-        string jsonData = JsonUtility.ToJson(loginInfo.ID, true);
-
-        print(jsonData);
-    }
-
-    public void VerifyAccessCode()
-    {
-        //string jsonData = JsonUtility.ToJson(code, true);
-
-        //print(jsonData);
-    }
-
-    public void Save()
+    public void Login_1_API()
     {
         // ArrayJson -> json
-        string jsonData = JsonUtility.ToJson(loginInfo.ID + loginInfo.PW, true);
-
-        print(jsonData);
+        string loginJson = JsonUtility.ToJson(loginInfo, true);
+        print(loginJson);
 
         YJ_HttpRequester requester = new YJ_HttpRequester();
-        requester.url = "http://192.168.1.29:8888/member/regist";
+        requester.url = "http://43.201.10.63:8080/auth/login";
         requester.requestType = RequestType.POST;
-        requester.postData = jsonData;
+        requester.postData = loginJson;
         requester.onComplete = (handler) => {
-            print("유저정보 기입완료");
-
-            uiState = UIState.Interest;
-
-            signInUI.SetActive(false);
-            InterestUI.SetActive(true);
+            print("토큰 받아오기 완료");
+            Login_1 login_1 = JsonUtility.FromJson<Login_1>(handler.downloadHandler.text);
+            Login_1_data data = login_1.data;
+            UserInfo.accessToken = data.accessToken;
+            Login_2_API();
         };
-        //YJ_HttpRequester.instance.SendRequest(requester);
+        YJ_HttpManager.instance.SendRequest(requester);
     }
-
-    public void Save2()
+    public void Login_2_API()
     {
-        //ArrayJson arrayJson = new ArrayJson();
-        //arrayJson.data = interestInfo.interest;
-
-        //InterestJson interestJson = new InterestJson();
-        //interestJson.ID = userInfo.ID;
-        //interestJson.arrayJson = arrayJson;
-
-        //interestInfo.ID = userInfo.ID;
-
-        //string jsonData = JsonUtility.ToJson(interestInfo, true);
-
-        //print(jsonData);
+        // ArrayJson -> json
+        string tokenJson = JsonUtility.ToJson(UserInfo.accessToken, true);
+        print(UserInfo.accessToken);
 
         YJ_HttpRequester requester = new YJ_HttpRequester();
-        requester.url = "http://192.168.1.29:8888/member/interest";
-        requester.requestType = RequestType.POST;
-        //requester.postData = jsonData;
+        requester.url = "http://43.201.10.63:8080/members/optional-info";
+        requester.requestType = RequestType.GET;
         requester.onComplete = (handler) => {
-            print("회원가입 완료");
+            print("정보 가져옴!");
+            Login_2 login_2 = JsonUtility.FromJson<Login_2>(handler.downloadHandler.text);
+            Login_2_data data = login_2.data;
+            avetarSet avatar = login_2.data.avatar;
+            memberSet member = login_2.data.member;
 
-            uiState = UIState.Login;
+            // 아바타 정보 세팅
+            UserInfo.animal = data.avatar.animal;
+            UserInfo.material = data.avatar.material;
+            UserInfo.objectName = data.avatar.objectName;
 
-            InterestUI.SetActive(false);
-            loginUI.SetActive(true);
+            // 유저 정보 세팅
+            UserInfo.memberName = data.member.memberName;
+            UserInfo.nickname = data.member.nickname;
+            UserInfo.memberRole = data.member.memberRole;
+            GameObject.Find("ConnectionManager").GetComponent<YJ_ConnectionManager>().OnSubmit();
         };
-        //YJ_HttpRequester.instance.SendRequest(requester);
+        YJ_HttpManager.instance.SendRequest(requester);
     }
 
 
+    // 로그인 ID, PW 저장
     public void OnClickLoginButton()
     {
-        // 로그인 정보 받아오기
-        loginInfo.ID = login_ID.text;
-        loginInfo.PW = login_PW.text;
-
-
-        // 제이슨 변경
-        string jsonData = JsonUtility.ToJson(loginInfo, true);
-
-        print(jsonData);
-
-        // 서버 알아야함
-        //YJ_HttpRequester requester = new YJ_HttpRequester();
-        //requester.url = "http://192.168.1.29:8888/member/login";
-        //requester.requestType = RequestType.POST;
-        //requester.postData = jsonData;
-        //requester.onComplete = (handler) => {
-        //    print("로그인 완료");
-
-        //    SceneManager.LoadScene("PlazaScene");
-        //};
-        //YJ_HttpRequester.instance.SendRequest(requester);
+        loginInfo.memberId = login_ID.text;
+        loginInfo.memberPwd = login_PW.text;
     }
+
+    #region 로그인 시 받아올 정보 목록
+    // 첫번째 ] 로그인 시 받아올 토큰
+    [Serializable]
+    public class Login_1
+    {
+        public string status;
+        public string message;
+        public Login_1_data data;
+    }
+
+    [Serializable]
+    public class Login_1_data
+    {
+        public string grantType;
+        public string memberName;
+        public string accessToken;
+        public string accessTokenExpiresIn;
+    }
+
+    // 두번째 ] 로그인 시 받아올 토큰
+    [Serializable]
+    public class Login_2
+    {
+        public string status;
+        public string message;
+        public Login_2_data data;
+    }
+    [Serializable]
+    public class Login_2_data
+    {
+        public avetarSet avatar;
+        public memberSet member;
+    }
+
+    // 세번째] 캐릭터 정보
+    [Serializable]
+    public class avetarSet
+    {
+        public string memberCode;
+        public string animal;
+        public string material;
+        public string objectName;
+    }
+    // 세번째] 내 캐릭터 정보
+    [Serializable]
+    public class memberSet
+    {
+        public string memberCode;
+        public string memberName;
+        public string nickname;
+        public string memberRole;
+    }
+    #endregion
+
+    // 잘못 입력했을때 창 끄기
+    public void ButtonClose()
+    {
+        login_ID.text = "";
+        login_PW.text = "";
+        loginFail.SetActive(!loginFail.activeSelf);
+    }
+
 
 }
