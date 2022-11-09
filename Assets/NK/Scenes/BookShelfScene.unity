@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 17487086}
   - component: {fileID: 17487085}
-  - component: {fileID: 17487087}
   m_Layer: 0
   m_Name: BookShelfManager
   m_TagString: Untagged
@@ -175,54 +174,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &17487087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17487084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6adbe14628d7e04bb460c7a59ef3e45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bookCover: {fileID: 1001990528}
-  inputField: {fileID: 1902358551}
-  inputFields: []
-  txtDropdown: {fileID: 1844520594}
-  InputtxtSize: {fileID: 544493829}
-  txtcolorImage: {fileID: 463204983}
-  hexColor:
-  - '#000000'
-  - '#FF0000'
-  - '#FF9900'
-  - '#FFFF00'
-  - '#00FF00'
-  - '#4C86FF'
-  - '#0000FF'
-  - '#9900FF'
-  - '#FF00FF'
-  - '#B7B7B7'
-  - '#E06666'
-  - '#FFB26B'
-  - '#FFE599'
-  - '#B6D7A8'
-  - '#C9DAF8'
-  - '#9FC5E8'
-  - '#B4A7D6'
-  - '#D5A6BD'
-  - '#FFFFFF'
-  - '#971F07'
-  - '#B45F08'
-  - '#BC8F06'
-  - '#38761D'
-  - '#124F5C'
-  - '#105593'
-  - '#351C75'
-  - '#741B47'
-  obj: []
-  palette: {fileID: 2119067525}
 --- !u!1 &44190719
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,7 +387,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4160749687
+    m_Bits: 2013266423
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -459,8 +410,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1701355116}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -547,7 +497,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -680,7 +630,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -1136,19 +1086,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3511717977687620027, guid: 4b5abdb346c760a4a98b2e96b3965842, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3511717977687620027, guid: 4b5abdb346c760a4a98b2e96b3965842, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3511717977687620027, guid: 4b5abdb346c760a4a98b2e96b3965842, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3511717977687620027, guid: 4b5abdb346c760a4a98b2e96b3965842, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3511717977687620027, guid: 4b5abdb346c760a4a98b2e96b3965842, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1188,11 +1138,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3511717977687620027, guid: 4b5abdb346c760a4a98b2e96b3965842, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 430
+      value: -320
       objectReference: {fileID: 0}
     - target: {fileID: 3511717977687620027, guid: 4b5abdb346c760a4a98b2e96b3965842, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 526
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 3511717977687620027, guid: 4b5abdb346c760a4a98b2e96b3965842, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1206,8 +1156,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6673173702513065880, guid: 4b5abdb346c760a4a98b2e96b3965842, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6673173702513065880, guid: 4b5abdb346c760a4a98b2e96b3965842, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6673173702513065880, guid: 4b5abdb346c760a4a98b2e96b3965842, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 252
+      objectReference: {fileID: 0}
+    - target: {fileID: 6673173702513065880, guid: 4b5abdb346c760a4a98b2e96b3965842, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6673173702513065880, guid: 4b5abdb346c760a4a98b2e96b3965842, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 136
+      objectReference: {fileID: 0}
+    - target: {fileID: 6673173702513065880, guid: 4b5abdb346c760a4a98b2e96b3965842, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -19.999996
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b5abdb346c760a4a98b2e96b3965842, type: 3}
+--- !u!1 &194230030 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3511717977687620026, guid: 4b5abdb346c760a4a98b2e96b3965842, type: 3}
+  m_PrefabInstance: {fileID: 159043546}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &209962601
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,6 +1199,7 @@ GameObject:
   - component: {fileID: 209962604}
   - component: {fileID: 209962603}
   - component: {fileID: 209962605}
+  - component: {fileID: 209962606}
   m_Layer: 5
   m_Name: sticker (7)
   m_TagString: Untagged
@@ -1298,6 +1278,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 367391131}
+--- !u!114 &209962606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209962601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 209962603}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2111456176}
+        m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
+        m_MethodName: InstantiateObj
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &212672954
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,7 +1417,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -1443,6 +1479,7 @@ GameObject:
   - component: {fileID: 217253610}
   - component: {fileID: 217253609}
   - component: {fileID: 217253611}
+  - component: {fileID: 217253612}
   m_Layer: 5
   m_Name: sticker (5)
   m_TagString: Untagged
@@ -1521,6 +1558,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 367391131}
+--- !u!114 &217253612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217253607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 217253609}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2111456176}
+        m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
+        m_MethodName: InstantiateObj
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &229432997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,7 +1702,7 @@ GameObject:
   - component: {fileID: 233890764}
   - component: {fileID: 233890763}
   - component: {fileID: 233890766}
-  - component: {fileID: 233890765}
+  - component: {fileID: 233890767}
   m_Layer: 5
   m_Name: sticker (1)
   m_TagString: Untagged
@@ -1675,7 +1768,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233890761}
   m_CullTransparentMesh: 1
---- !u!114 &233890765
+--- !u!114 &233890766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233890761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 764f0abbcebf55540a355b8f4670d442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 367391131}
+--- !u!114 &233890767
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1715,11 +1821,11 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 590849994}
+  m_TargetGraphic: {fileID: 233890763}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: InstantiateObj
         m_Mode: 1
@@ -1731,19 +1837,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &233890766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 233890761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 764f0abbcebf55540a355b8f4670d442, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 367391131}
 --- !u!1 &247829069
 GameObject:
   m_ObjectHideFlags: 0
@@ -2057,7 +2150,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: MinusSize
         m_Mode: 1
@@ -2266,7 +2359,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -2490,7 +2583,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -2610,7 +2703,7 @@ Canvas:
   m_GameObject: {fileID: 367391128}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 60762584}
   m_PlaneDistance: 0.3001
   m_PixelPerfect: 0
@@ -2960,6 +3053,7 @@ GameObject:
   - component: {fileID: 429922855}
   - component: {fileID: 429922854}
   - component: {fileID: 429922856}
+  - component: {fileID: 429922857}
   m_Layer: 5
   m_Name: sticker (2)
   m_TagString: Untagged
@@ -3038,6 +3132,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 367391131}
+--- !u!114 &429922857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429922852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 429922854}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2111456176}
+        m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
+        m_MethodName: InstantiateObj
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &453878561
 GameObject:
   m_ObjectHideFlags: 0
@@ -3192,6 +3342,7 @@ GameObject:
   - component: {fileID: 477010360}
   - component: {fileID: 477010359}
   - component: {fileID: 477010361}
+  - component: {fileID: 477010362}
   m_Layer: 5
   m_Name: sticker (6)
   m_TagString: Untagged
@@ -3270,6 +3421,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 367391131}
+--- !u!114 &477010362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477010357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 477010359}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2111456176}
+        m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
+        m_MethodName: InstantiateObj
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &491364124
 GameObject:
   m_ObjectHideFlags: 0
@@ -3697,7 +3904,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -3758,8 +3965,8 @@ GameObject:
   - component: {fileID: 590849993}
   - component: {fileID: 590849995}
   - component: {fileID: 590849994}
-  - component: {fileID: 590849996}
   - component: {fileID: 590849997}
+  - component: {fileID: 590849998}
   m_Layer: 5
   m_Name: sticker
   m_TagString: Untagged
@@ -3825,7 +4032,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590849992}
   m_CullTransparentMesh: 1
---- !u!114 &590849996
+--- !u!114 &590849997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590849992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 764f0abbcebf55540a355b8f4670d442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 367391131}
+--- !u!114 &590849998
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3869,7 +4089,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: InstantiateObj
         m_Mode: 1
@@ -3881,19 +4101,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &590849997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 590849992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 764f0abbcebf55540a355b8f4670d442, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 367391131}
 --- !u!1 &611444982
 GameObject:
   m_ObjectHideFlags: 0
@@ -4413,7 +4620,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -4626,7 +4833,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -4855,7 +5062,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: PaletteOnOff
         m_Mode: 1
@@ -4910,6 +5117,19 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3511717977687620027, guid: 4b5abdb346c760a4a98b2e96b3965842, type: 3}
   m_PrefabInstance: {fileID: 159043546}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1001990531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194230030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
 --- !u!1 &1009218422
 GameObject:
   m_ObjectHideFlags: 0
@@ -4993,7 +5213,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -5126,7 +5346,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -5259,7 +5479,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -5556,7 +5776,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -5689,7 +5909,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -6078,7 +6298,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -6211,7 +6431,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -6976,7 +7196,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -7261,7 +7481,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -7394,7 +7614,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -7558,7 +7778,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0004144784}
+  m_AnchoredPosition: {x: 0, y: 0.00020687204}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1664142423
@@ -7679,6 +7899,7 @@ GameObject:
   - component: {fileID: 1674159110}
   - component: {fileID: 1674159109}
   - component: {fileID: 1674159111}
+  - component: {fileID: 1674159112}
   m_Layer: 5
   m_Name: sticker (4)
   m_TagString: Untagged
@@ -7757,6 +7978,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 367391131}
+--- !u!114 &1674159112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674159107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1674159109}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2111456176}
+        m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
+        m_MethodName: InstantiateObj
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1675549279
 GameObject:
   m_ObjectHideFlags: 0
@@ -7841,7 +8118,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 229432998}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999924
+  m_Size: 0.99999076
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8094,7 +8371,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -8220,81 +8497,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691449077}
   m_CullTransparentMesh: 1
---- !u!1 &1701355115
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1701355116}
-  - component: {fileID: 1701355117}
-  m_Layer: 0
-  m_Name: UICamera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1701355116
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701355115}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 60762585}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &1701355117
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701355115}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 3
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 128
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
 --- !u!1 &1730353999
 GameObject:
   m_ObjectHideFlags: 0
@@ -8614,7 +8816,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -9018,7 +9220,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -9171,6 +9373,7 @@ GameObject:
   - component: {fileID: 1911264928}
   - component: {fileID: 1911264927}
   - component: {fileID: 1911264929}
+  - component: {fileID: 1911264930}
   m_Layer: 5
   m_Name: sticker (3)
   m_TagString: Untagged
@@ -9249,6 +9452,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 367391131}
+--- !u!114 &1911264930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911264925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1911264927}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2111456176}
+        m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
+        m_MethodName: InstantiateObj
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1931585075
 GameObject:
   m_ObjectHideFlags: 0
@@ -9492,7 +9751,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: PlusSize
         m_Mode: 1
@@ -9926,7 +10185,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -10176,7 +10435,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -10309,7 +10568,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -10370,6 +10629,7 @@ GameObject:
   - component: {fileID: 2111456173}
   - component: {fileID: 2111456175}
   - component: {fileID: 2111456174}
+  - component: {fileID: 2111456176}
   m_Layer: 5
   m_Name: BookCoverUI
   m_TagString: Untagged
@@ -10440,6 +10700,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111456172}
   m_CullTransparentMesh: 1
+--- !u!114 &2111456176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111456172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6adbe14628d7e04bb460c7a59ef3e45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bookCover: {fileID: 1001990528}
+  inputField: {fileID: 1902358551}
+  inputFields: []
+  txtDropdown: {fileID: 1844520594}
+  InputtxtSize: {fileID: 544493829}
+  txtcolorImage: {fileID: 463204983}
+  hexColor:
+  - '#000000'
+  - '#FF0000'
+  - '#FF9900'
+  - '#FFFF00'
+  - '#00FF00'
+  - '#4C86FF'
+  - '#0000FF'
+  - '#9900FF'
+  - '#FF00FF'
+  - '#B7B7B7'
+  - '#E06666'
+  - '#FFB26B'
+  - '#FFE599'
+  - '#B6D7A8'
+  - '#C9DAF8'
+  - '#9FC5E8'
+  - '#B4A7D6'
+  - '#D5A6BD'
+  - '#FFFFFF'
+  - '#971F07'
+  - '#B45F08'
+  - '#BC8F06'
+  - '#38761D'
+  - '#124F5C'
+  - '#105593'
+  - '#351C75'
+  - '#741B47'
+  obj: []
+  palette: {fileID: 2119067525}
 --- !u!1 &2115711338
 GameObject:
   m_ObjectHideFlags: 0
@@ -10523,7 +10831,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -10886,7 +11194,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1
@@ -11019,7 +11327,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487087}
+      - m_Target: {fileID: 2111456176}
         m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: ChangeTextColor
         m_Mode: 1

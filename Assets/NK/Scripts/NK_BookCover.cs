@@ -29,9 +29,11 @@ public class NK_BookCover : MonoBehaviour
 
     private void Start()
     {
-        SH_EditorManager.Instance.active_InputField = inputField.GetComponent<SH_InputField>();
+        SH_InputField inputText = inputField.GetComponent<SH_InputField>();
+
+        SH_EditorManager.Instance.active_InputField = inputText;
         SetInfo(0, 30, Color.black);
-        SH_EditorManager.Instance.active_InputField.SetInfo(txtDropdown.value, int.Parse(InputtxtSize.text), txtcolorImage.color);
+        inputText.SetInfo(txtDropdown.value, int.Parse(InputtxtSize.text), txtcolorImage.color);
 
         txtDropdown.onValueChanged.AddListener(ChangeTextFont);
         InputtxtSize.onValueChanged.AddListener(ChangeFontSize);
