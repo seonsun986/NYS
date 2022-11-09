@@ -32,7 +32,16 @@ public class SH_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         SH_EditorManager.Instance.active_InputField = this;
         TextInfo activeInfo = SH_EditorManager.Instance.active_InputField.info;
+
+        if(NK_BookCover.instance !=null)
+        {
+            NK_BookCover.instance.SetInfo(activeInfo.txtDropdown, activeInfo.txtSize, activeInfo.txtColor);
+        }
+        else
+        {
+
         SH_BtnManager.Instance.SetInfo(activeInfo.txtDropdown, activeInfo.txtSize, activeInfo.txtColor);
+        }
     }
     public void UnClick()
     {

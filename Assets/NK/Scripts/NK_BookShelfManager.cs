@@ -51,11 +51,19 @@ public class NK_BookShelfManager : MonoBehaviour
     public void UpdateBookCover()
     {
         bookCoverUI.SetActive(true);
+        NK_BookCover.instance.inputField.text = detailTitle.text;
     }
 
     public void UpdateBookContent()
     {
         SceneManager.LoadScene("EditorScene");
+    }
+
+    public void SaveBookCover()
+    {
+        // Json으로 책 표지 저장
+        // NK_BookCover.instance.bookCover.gameObject
+        ExitPopup();
     }
 
     public void ExitDetail()
