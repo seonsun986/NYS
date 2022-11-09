@@ -13,8 +13,13 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     public List<GameObject> selectObject;
     // 여동생인지 남동생인지 선택하면 채워질 텍스트  
     public List<Text> broText;
+    // 여동생, 남동생 게임 오브젝트 리스트
+    public List<GameObject> sister;
+    public List<GameObject> brother;
     // 엄마 아빠인지 선택하면 채워질 텍스트
     public List<Text> parentText;
+    // 오디오 클립 리스트
+    public List<AudioClip> audioClips;
     [Header("선택지가 있는 페이지")]
     // 선택 페이지 리스트(이때는 넥스트 버튼이 선택하면 넘어가면 안됨)
     public List<int> SelectPage = new List<int>();
@@ -22,6 +27,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     public GameObject FailPopUp;
     public GameObject selectPopUp;
     public int currentPage;
+
 
     bool pass;
     public GameObject bookWorld;            // 책 골랐을 때 나타나는 월드 오브젝트
@@ -33,7 +39,6 @@ public class SH_ChildrenFairyManager : MonoBehaviour
 
     void Update()
     {     
-
         if (bookWorldOpen == true)
         {
             currentTime += Time.deltaTime;
@@ -43,8 +48,107 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                 currentTime = 0;
                 bookWorldOpen = false;
             }
-        }
+        }     
     }
+
+    public GameObject broBtn;
+    public GameObject sisBtn;
+    public GameObject momBtn;
+    public GameObject dadBtn;
+    // 여동생을 선택했을 때
+    public void SelectSis()
+    {
+        pages[0].GetComponent<AudioSource>().clip = audioClips[0];
+        pages[2].GetComponent<AudioSource>().clip = audioClips[7];
+        pages[4].GetComponent<AudioSource>().clip = audioClips[9];
+        pages[6].GetComponent<AudioSource>().clip = audioClips[11];
+        pages[8].GetComponent<AudioSource>().clip = audioClips[13];
+        pages[0].GetComponent<AudioSource>().enabled = true;
+        // 남동생 끄기
+        for(int i =0;i<brother.Count;i++)
+        {
+            brother[i].SetActive(false);
+        }
+        // 여동생 키기
+        for(int j =0; j<sister.Count;j++)
+        {
+            sister[j].SetActive(true);
+        }
+
+        // 버튼 끄기
+        broBtn.SetActive(false);
+        sisBtn.SetActive(false);
+    }
+
+
+    // 남동생을 선택했을 때
+    public void SelectBro()
+    {
+        pages[0].GetComponent<AudioSource>().clip = audioClips[1];
+        pages[2].GetComponent<AudioSource>().clip = audioClips[6];
+        pages[4].GetComponent<AudioSource>().clip = audioClips[8];
+        pages[6].GetComponent<AudioSource>().clip = audioClips[10];
+        pages[6].GetComponent<AudioSource>().clip = audioClips[12];
+        pages[0].GetComponent<AudioSource>().enabled = true;
+        // 남동생 키키
+        for (int i = 0; i < brother.Count; i++)
+        {
+            brother[i].SetActive(true);
+        }
+        // 여동생 끄기
+        for (int j = 0; j < sister.Count; j++)
+        {
+            sister[j].SetActive(false);
+        }
+
+        // 버튼 끄기
+        broBtn.SetActive(false);
+        sisBtn.SetActive(false);
+    }
+
+    // 엄마를 선택했을 때
+    public void SelectMom()
+    {
+        // 남동생일 때
+        if(pages[0].GetComponent<AudioSource>().clip == audioClips[1])
+        {
+            pages[1].GetComponent<AudioSource>().clip = audioClips[4];
+        }
+        // 여동생일 때
+        else
+        {
+            pages[1].GetComponent<AudioSource>().clip = audioClips[5];
+        }
+
+        pages[1].GetComponent<AudioSource>().enabled = true;
+
+        // 버튼 끄기
+        momBtn.SetActive(false);
+        dadBtn.SetActive(false);
+    }
+
+    // 아빠를 선택했을 때
+    public void SelectDad()
+    {
+        // 남동생일 때
+        if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
+        {
+            pages[1].GetComponent<AudioSource>().clip = audioClips[2];
+        }
+        // 여동생일 때
+        else
+        {
+            pages[1].GetComponent<AudioSource>().clip = audioClips[3];
+        }
+
+        pages[1].GetComponent<AudioSource>().enabled = true;
+
+        // 버튼 끄기
+        momBtn.SetActive(false);
+        dadBtn.SetActive(false);
+    }
+
+
 
 
     public void NextPage()
@@ -82,14 +186,23 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             PassPopUpj.SetActive(false);
         }
 
-        
         pages[currentPage].SetActive(false);
-        pages[currentPage + 1].SetActive(true);
+        // 먹어볼까요? 페이지(이때는 3페이지를 뛰어넘어야 한다)
+        if(currentPage == 15)
+        {
+            pages[currentPage + 3].SetActive(true);
+            currentPage += 3;
+        }
+        else
+        {
+            pages[currentPage + 1].SetActive(true);
+            currentPage += 1;
+        }
 
         // 나온 오브젝트를 꺼준다
         if (selectObj != null) selectObj.SetActive(false);
 
-        currentPage += 1;
+        
         pass = false;
     }
 
@@ -206,6 +319,40 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         {
             pages.Insert(i + 10, selectPages.transform.GetChild(i).gameObject);
         }
+
+        // 선택한게 버섯일 때
+        if(selectBtnName == "Mushroom")
+        {
+            // 남동생일 때
+            if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
+            {
+                pages[10].GetComponent<AudioSource>().clip = audioClips[14];
+                pages[11].GetComponent<AudioSource>().clip = audioClips[16];
+                pages[13].GetComponent<AudioSource>().clip = audioClips[18];
+                pages[15].GetComponent<AudioSource>().clip = audioClips[20];
+                pages[17].GetComponent<AudioSource>().clip = audioClips[22];
+                pages[18].GetComponent<AudioSource>().clip = audioClips[24];
+                pages[20].GetComponent<AudioSource>().clip = audioClips[26];
+                pages[21].GetComponent<AudioSource>().clip = audioClips[28];
+            }
+            // 여동생일 때
+            else
+            {
+                pages[10].GetComponent<AudioSource>().clip = audioClips[15];
+                pages[11].GetComponent<AudioSource>().clip = audioClips[17];
+                pages[13].GetComponent<AudioSource>().clip = audioClips[19];
+                pages[15].GetComponent<AudioSource>().clip = audioClips[21];
+                pages[17].GetComponent<AudioSource>().clip = audioClips[23];
+                pages[18].GetComponent<AudioSource>().clip = audioClips[25];
+                pages[20].GetComponent<AudioSource>().clip = audioClips[27];
+                pages[21].GetComponent<AudioSource>().clip = audioClips[29];
+            }
+        }
+        // 선택한게 계란일 때
+        // 선택한게 시금치일 때
+        // 선택한게 양파일 때
+        // 선택한게 밥일 때
+        // 선택한게 감자일 때
         // NextPage 함수 그냥 여기서 실행함
         pages[currentPage].SetActive(false);
         pages[currentPage + 1].SetActive(true);
