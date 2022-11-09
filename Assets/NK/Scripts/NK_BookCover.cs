@@ -97,7 +97,9 @@ public class NK_BookCover : MonoBehaviour
 
     public void InstantiateObj()
     {
+        // 스티커 선택하면
         GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
+        // 스티커에서 버튼 기능을 뺀 같은 객체가 책 위에 생성됨
         GameObject createObj = Instantiate(clickBtn);
         createObj.transform.SetParent(bookCover);
         createObj.GetComponent<Button>().enabled = false;
@@ -108,8 +110,10 @@ public class NK_BookCover : MonoBehaviour
 
     public void ChangeBookColor()
     {
+        // 팔레트에서 색 선택하면
         string name = EventSystem.current.currentSelectedGameObject.name;
         int btnNum = int.Parse(name.Substring(3));
+        // 책 표지 색상 변경
         Color color;
         ColorUtility.TryParseHtmlString(hexColor[btnNum], out color);
         bookCoverColor.color = color;
