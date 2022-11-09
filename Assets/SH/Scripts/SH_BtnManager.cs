@@ -116,7 +116,6 @@ public class SH_BtnManager : MonoBehaviour
     public RectTransform SceneBtn;
     public RectTransform ObjectBtn;
 
-
     public GameObject inputField;       // inputField 프리팹
     public List<SH_InputField> inputFields = new List<SH_InputField>();
     // 현재 선택되어있는 드롭다운과 텍스트 사이즈, 텍스트 컬러
@@ -712,6 +711,14 @@ public class SH_BtnManager : MonoBehaviour
        
     }
 
+    public string title;
+    public GameObject titlePanel;
+    public void TitleOk()
+    {
+        title = titlePanel.transform.GetChild(4).GetChild(2).GetComponent<Text>().text;
+        titlePanel.SetActive(false);
+    }
+
     // 효과음 적용하기 버튼 클릭 시
     public void ClickApplySound()
     {
@@ -794,7 +801,7 @@ public class SH_BtnManager : MonoBehaviour
         }
         // 하나의 책에 페이지 당 오브젝트 정보들이 모두 담겼다
         bookinfo.id = "심선혜 최고";
-        bookinfo.title = "위인전 : 심선혜";
+        bookinfo.title = title;
         bookinfo.createAt = DateTime.Now.ToString("yyyy / MM / dd");
         // 이제 BookInfo 중 Pages에 이 정보들을 담아보자
         bookinfo.pages = pages;
