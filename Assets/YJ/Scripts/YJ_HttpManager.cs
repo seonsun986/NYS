@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -61,6 +62,11 @@ public class YJ_HttpManager : MonoBehaviour
             case RequestType.IMAGE:
                 webRequest = UnityWebRequestTexture.GetTexture(requester.url);
                 break;
+            case RequestType.AUDIO:
+                // 파일 경로를 URL 형태로 바꿔줌(File:// 경로 형태로 만들어줌)
+                Uri uri = new Uri(requester.url);
+                webRequest = UnityWebRequestMultimedia.GetAudioClip(uri, AudioType.MPEG);
+                break;
 
         }
         // 서버에 요청을 보내고 응답이 올때까지 기다린다.
@@ -69,10 +75,16 @@ public class YJ_HttpManager : MonoBehaviour
         // 만약에 응답이 성공했다면
         if (webRequest.result == UnityWebRequest.Result.Success)
         {
-            print(webRequest.downloadHandler.text);
-
+            if(requester.requestType != RequestType.AUDIO)
+            {
+                print(webRequest.downloadHandler.text);
+            }
+            else
+            {
+                // 오디오 타입일 때
+            }
             // 완료되었다고 requester.onComplete를 실행
-            requester.onComplete(webRequest.downloadHandler);
+            requester.onComplete(webRequest);
 
 
         }

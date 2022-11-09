@@ -11,7 +11,8 @@ public enum RequestType
     GET, //받기
     PUT, //수정
     DELETE, //삭제
-    IMAGE //이미지
+    IMAGE, //이미지
+    AUDIO,  // 오디오
 }
 
 public class YJ_HttpRequester
@@ -25,7 +26,7 @@ public class YJ_HttpRequester
 
     // 응답이 왔을 때 호출해줄 함수 (Action)
     // Action : 함수를 넣을 수 있는 자료형
-    public Action<DownloadHandler> onComplete;
+    public Action<UnityWebRequest> onComplete;
 
     // 반환자료형이 void, 매개변수가 없는 함수를 넣을 수 있다.
 }

@@ -76,7 +76,7 @@ public class YJ_UIManager : MonoBehaviour
         requester.postData = loginJson;
         requester.onComplete = (handler) => {
             print("토큰 받아오기 완료");
-            Login_1 login_1 = JsonUtility.FromJson<Login_1>(handler.text);
+            Login_1 login_1 = JsonUtility.FromJson<Login_1>(handler.downloadHandler.text);
             Login_1_data data = login_1.data;
             UserInfo.accessToken = data.accessToken;
             Login_2_API();
@@ -94,7 +94,7 @@ public class YJ_UIManager : MonoBehaviour
         requester.requestType = RequestType.GET;
         requester.onComplete = (handler) => {
             print("정보 가져옴!");
-            Login_2 login_2 = JsonUtility.FromJson<Login_2>(handler.text);
+            Login_2 login_2 = JsonUtility.FromJson<Login_2>(handler.downloadHandler.text);
             Login_2_data data = login_2.data;
             avetarSet avatar = login_2.data.avatar;
             memberSet member = login_2.data.member;

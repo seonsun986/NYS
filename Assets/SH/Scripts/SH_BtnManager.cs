@@ -184,8 +184,15 @@ public class SH_BtnManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GoScene();
+
         }
         currentScene = (int)Scenes[0].transform.position.y / 20;
+
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ReadAudio();
+
+        }
     }
 
 
@@ -821,11 +828,10 @@ public class SH_BtnManager : MonoBehaviour
 
     public void Mp3_Test(string path, string text)
     {
-        byte[] data = File.ReadAllBytes(Application.dataPath + "/Resources/Audio_0.wav");
-        AudioClip audioClip = WAV.ToAudioClip(Application.dataPath + "/Resources/Audio_0.wav");
-        ttsSound.clip = audioClip;
+        //byte[] data = File.ReadAllBytes(Application.dataPath + "/Resources/Audio_0.wav");
+        //AudioClip audioClip = WAV.ToAudioClip(Application.dataPath + "/Resources/Audio_0.wav");
+        //ttsSound.clip = audioClip;
 
-        return;
         Test_m test = new Test_m();
         test.str = text;
         // ArrayJson -> json
@@ -839,10 +845,28 @@ public class SH_BtnManager : MonoBehaviour
         requester.onComplete = (handler) =>
         {
             print("mp3파일생성!");
-            print(handler.text);
-            byte[] byteData = handler.data;
-            
-            //File.WriteAllBytes(/*Application.streamingAssetsPath + "/" + "ex"*/path + ".wav", byteData);
+            //print(handler.downloadHandler.text);
+            byte[] byteData = handler.downloadHandler.data;
+
+            File.WriteAllBytes(/*Application.streamingAssetsPath + "/" + "ex"*/path + ".mp3", byteData);
+// 빌드파일에서만 오디오 파일 재생
+//#if !UNITY_EDITOR
+            ReadAudio();
+//#endif
+        };
+        YJ_HttpManager.instance.SendRequest(requester);
+    }
+
+    public void ReadAudio()
+    {
+        YJ_HttpRequester requester = new YJ_HttpRequester();
+        requester.url = Application.dataPath + "/Resources" + "/" + "Audio_" + currentSceneNum + ".mp3";
+        requester.requestType = RequestType.AUDIO;
+        requester.onComplete = (handler) =>
+        {
+            AudioClip clip = DownloadHandlerAudioClip.GetContent(handler);
+            ttsSound.clip = clip;
+            ttsSound.Play();
         };
         YJ_HttpManager.instance.SendRequest(requester);
     }
@@ -865,6 +889,7 @@ public class SH_BtnManager : MonoBehaviour
         }
 
         Mp3_Test(filePath, text);
+
     }
 
     
