@@ -33,10 +33,6 @@ public static class UserInfo
 }
 #endregion
 
- 
-
-
-
 public class YJ_DataManager : MonoBehaviour
 {
     public static YJ_DataManager instance;
@@ -48,7 +44,7 @@ public class YJ_DataManager : MonoBehaviour
     // 내가 들어갈 방 이름 , 타입
     public string goingRoomName;
     public int goingRoomType;
-    
+
     private void Awake()
     {
         // 만약에 instance가 null이라면

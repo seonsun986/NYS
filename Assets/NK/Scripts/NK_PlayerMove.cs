@@ -58,6 +58,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
+        print("또하니?");
         playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
 
         // 선생님방에 있을 때
@@ -107,7 +108,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         }
 
         controller = GetComponent<CharacterController>();
-        anim = transform.GetChild(0).GetComponent<Animator>();
+        anim = transform.GetChild((int.Parse(UserInfo.animal))).GetComponent<Animator>();
         state = State.Idle;
     }
 
@@ -163,9 +164,14 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                     break;
                 case State.Sit:
                     photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", true);
+                    sit = true;
                     break;
                 case State.Idle:
-                    photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", false);
+                    if (sit)
+                    {
+                        photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", false);
+                        sit = false;
+                    }
 
                     // 처음 입장 시 떨어지게 만들기
                     yVelocity += gravity * Time.deltaTime;
@@ -187,6 +193,8 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
             }
         }
     }
+
+    bool sit = false;
 
     Vector3 dir;
     float h = 0;

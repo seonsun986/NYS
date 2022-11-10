@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.TextCore.Text;
-using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 public class YJ_PlazaManager : MonoBehaviourPunCallbacks
 {
@@ -19,9 +19,6 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
 
     // 들어와있는 인원 파악하기
     public int liveCount = 0;
-
-    // 플레이어 접속 리스트
-    List<PhotonView> playerList = new List<PhotonView>();
 
     public Vector3[] spawnPos;
 
@@ -71,7 +68,6 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         if (!createBook)
         {
             me = PhotonNetwork.Instantiate("YJ/Player", spawnPos[liveCount], Quaternion.identity);
-            //me = PhotonNetwork.Instantiate("YJ/Player", Vector3.zero, Quaternion.identity);
         }
 
     }
@@ -128,9 +124,12 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     }
 
     public void OutPlaza()
-    { 
+    {
         // 내 게임 오브젝트 없애기
-        PhotonNetwork.Destroy(me.gameObject);
+        if (SceneManager.GetActiveScene().name != "MyRoomScene")
+        {
+            PhotonNetwork.Destroy(me.gameObject);
+        }
         // 광장씬 방 나가기
         PhotonNetwork.LeaveRoom();
     }
@@ -176,6 +175,17 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         {
             goMyRoom = true;
             YJ_DataManager.CreateRoomInfo.roomName = PhotonNetwork.NickName + "MyRoom";
+            OutPlaza();
+        }
+    }
+
+    bool outMyRoom = false;
+    public void OnClickOutMyRoom()
+    {
+        if (!outMyRoom)
+        {
+            outMyRoom = true;
+            YJ_DataManager.CreateRoomInfo.roomName = null;
             OutPlaza();
         }
     }
@@ -294,6 +304,11 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         {
             sceneName = "TeacherScene(Christmas)";
             YJ_DataManager.CreateRoomInfo.roomType = 0;
+        }
+        else if (outMyRoom)
+        {
+            sceneName = "PlazaScene";
+            goMyRoom = false;
         }
         return sceneName;
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class YJ_UIManager_Avatar : MonoBehaviour
 {
@@ -46,5 +47,11 @@ public class YJ_UIManager_Avatar : MonoBehaviour
         animalList.SetActive(false);
         MatList[animNum].SetActive(false);
         objList.SetActive(!objList.activeSelf);
+    }
+
+    // 뒤로가기
+    public void OnClickBackBTN()
+    {
+        SceneManager.LoadScene("MyRoomScene");
     }
 }
