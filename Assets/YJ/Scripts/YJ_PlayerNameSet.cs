@@ -15,24 +15,25 @@ public class YJ_PlayerNameSet : MonoBehaviourPun
     {
         playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
 
-        if (photonView.IsMine)
-        {
-            photonView.RPC("RpcPlayerNameSet", RpcTarget.All, UserInfo.nickname);
-        }
+        gameObject.GetComponent<Text>().text = photonView.Owner.NickName;
+        //if (photonView.IsMine)
+        //{
+        //    photonView.RPC("RpcPlayerNameSet", RpcTarget.All, UserInfo_e.nickname);
+        //}
 
     }
 
     void Update()
     {
-        if (playerIndex != PhotonNetwork.CurrentRoom.Players.Count)
-        {
-            if (photonView.IsMine)
-            {
-                photonView.RPC("RpcPlayerNameSet", RpcTarget.All, UserInfo.nickname);
-            }
+        //if (playerIndex != PhotonNetwork.CurrentRoom.Players.Count)
+        //{
+        //    if (photonView.IsMine)
+        //    {
+        //        photonView.RPC("RpcPlayerNameSet", RpcTarget.All, UserInfo_e.nickname);
+        //    }
 
-            playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
-        }
+        //    playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
+        //}
     }
 
     [PunRPC]

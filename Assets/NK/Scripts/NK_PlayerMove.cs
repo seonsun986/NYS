@@ -67,7 +67,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
             // 임시로 아이와 선생님 분류
             speaker.GetComponent<AudioSource>().mute = false;
             // 방 만든 사람(선생님)이 아닐 경우
-            if (UserInfo.memberRole != "TEACHER")
+            if (UserInfo_e.memberRole != "TEACHER")
             {
                 if (photonView.IsMine)
                 {
@@ -97,18 +97,17 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         if (photonView.IsMine)
         {
             faceCam.SetActive(true);
-            UserInfo.photonId = this.gameObject.GetComponent<PhotonView>().ViewID.ToString();
-
-            //// 선생님이면 머리위에 왕관쓰기
-            //if (UserInfo.memberRole == "TEACHER")
-            //{
-            //    photonView.RPC("RPCSetCrown", RpcTarget.All);
-            //    //crown.SetActive(true);
-            //}
+            //UserInfo_e.photonId = this.gameObject.GetComponent<PhotonView>().ViewID.ToString();     
         }
 
         controller = GetComponent<CharacterController>();
-        anim = transform.GetChild((int.Parse(UserInfo.animal))).GetComponent<Animator>();
+
+        
+    }
+
+    public void SetAnim(int animalId)
+    {
+        anim = transform.GetChild(animalId).GetComponent<Animator>();
         state = State.Idle;
     }
 

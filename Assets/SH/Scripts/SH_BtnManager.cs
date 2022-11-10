@@ -831,8 +831,8 @@ public class SH_BtnManager : MonoBehaviour
         requester.onComplete = (handler) =>
         {
             print("mp3파일생성!");
-            print(handler.text);
-            byte[] byteData = handler.data;
+            print(handler.downloadHandler.text);
+            byte[] byteData = handler.downloadHandler.data;
             File.WriteAllBytes(/*Application.streamingAssetsPath + "/" + "ex"*/path + ".wav", byteData);
         };
         YJ_HttpManager.instance.SendRequest(requester);
