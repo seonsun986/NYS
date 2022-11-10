@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -23,6 +24,7 @@ public class NK_BookShelfManager : MonoBehaviour
     public GameObject bookCoverUI;
     // 삭제될 스티커
     public GameObject delSticker;
+    string path;
 
     private void Awake()
     {
@@ -32,6 +34,7 @@ public class NK_BookShelfManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        path = Application.dataPath + "/BookCover/";
         // 동화책 제목 추가하면
         titles.Add("난 콩 시러!!!");
         titles.Add("난 버섯 시러!!!");
@@ -78,7 +81,7 @@ public class NK_BookShelfManager : MonoBehaviour
     public void ClickNext()
     {
         // 책 미리보기에서 다음 버튼 클릭 시
-        if(index < images.Count - 1)
+        if (index < images.Count - 1)
         {
             index++;
             rawImage.texture = images[index];
@@ -101,15 +104,43 @@ public class NK_BookShelfManager : MonoBehaviour
     public void DeleteObj()
     {
         // 삭제 버튼 눌러서 마지막에 클릭된 스티커 삭제
-        if(delSticker != null)
+        if (delSticker != null)
             Destroy(delSticker);
     }
 
     public void SaveBookCover()
     {
+        // 책 표지 캡쳐
+        StopAllCoroutines();
+        StartCoroutine(TakeScreenShotRoutine());
         // Json으로 책 표지 저장
         // NK_BookCover.instance.bookCover.gameObject
-        ExitPopup();
+        //ExitPopup();
+    }
+
+    private IEnumerator TakeScreenShotRoutine()
+    {
+        yield return new WaitForEndOfFrame();
+
+        // 화면 크기의 텍스쳐 생성
+        Texture2D screenTex = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+        // 캡쳐할 영역 지정
+        Rect area = new Rect(450f, 370f, 350f, 430f);
+        // 텍스쳐 픽셀에 지정
+        screenTex.ReadPixels(area, 0, 0);
+        Texture2D resizeTexture = new Texture2D((int)area.width, (int)area.height, TextureFormat.RGB24, false);
+        
+        // 폴더가 존재하지 않으면 새로 생성
+        if (Directory.Exists(path) == false)
+        {
+            Directory.CreateDirectory(path);
+        }
+        string fileName = path + "book" + ".png";
+
+        // 스크린샷 저장
+        File.WriteAllBytes(fileName, screenTex.EncodeToPNG());
+        // 텍스쳐 메모리 해제
+        Destroy(screenTex);
     }
 
     public void ExitDetail()
