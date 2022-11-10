@@ -20,7 +20,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     public State state;
 
     // 애니메이션
-    Animator anim;
+    public Animator anim;
 
     // 속력
     public float moveSpeed = 3;
@@ -59,7 +59,8 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
+        if(SceneManager.GetActiveScene().name != "MyRoomScene")
+            playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
 
         // 선생님방에 있을 때
         if (GameObject.Find("GameManager"))
