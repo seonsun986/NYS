@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class SH_ChildrenFairyManager : MonoBehaviour
 {
+    public static SH_ChildrenFairyManager Instance;
     // 동화책 페이지를 담아 둘 리스트
     public List<GameObject> pages = new List<GameObject>();
     // 선택했을 때 나타날 오브젝트들의 리스트(토끼, 호랑이, 곰 등등)
@@ -32,6 +33,10 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     bool pass;
     public GameObject bookWorld;            // 책 골랐을 때 나타나는 월드 오브젝트
 
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         
@@ -62,7 +67,6 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         pages[2].GetComponent<AudioSource>().clip = audioClips[7];
         pages[4].GetComponent<AudioSource>().clip = audioClips[9];
         pages[6].GetComponent<AudioSource>().clip = audioClips[11];
-        pages[8].GetComponent<AudioSource>().clip = audioClips[13];
         pages[0].GetComponent<AudioSource>().enabled = true;
         // 남동생 끄기
         for(int i =0;i<brother.Count;i++)
@@ -88,7 +92,6 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         pages[2].GetComponent<AudioSource>().clip = audioClips[6];
         pages[4].GetComponent<AudioSource>().clip = audioClips[8];
         pages[6].GetComponent<AudioSource>().clip = audioClips[10];
-        pages[8].GetComponent<AudioSource>().clip = audioClips[12];
         pages[0].GetComponent<AudioSource>().enabled = true;
         // 남동생 키키
         for (int i = 0; i < brother.Count; i++)

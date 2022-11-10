@@ -44,4 +44,9 @@ public class SH_Animation : MonoBehaviour
         transform.GetChild(2).gameObject.SetActive(true);
     }
 
+    public void Test()
+    {
+        print("¹Ùº¸");
+    }
+
 }
