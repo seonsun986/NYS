@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using UnityEngine.SceneManagement;
-using System.Threading;
 
 public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 {
@@ -68,11 +67,11 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
             // 임시로 아이와 선생님 분류
             speaker.GetComponent<AudioSource>().mute = false;
             // 방 만든 사람(선생님)이 아닐 경우
-            if (UserInfo.memberRole != "TEACHER")
+            if (UserInfo_e.memberRole != "TEACHER")
             {
                 if (photonView.IsMine)
                 {
-                    photonView.RPC("RPCAddPlayer", RpcTarget.AllBuffered);
+                    photonView.RPC("RPCAddPlayer", RpcTarget.All);
                     photonView.RPC("RPCSetTag", RpcTarget.All, "Child");
                     GameObject.Find("TeacherUI").SetActive(false);
                     GameObject.Find("BookBtn").SetActive(false);
@@ -98,18 +97,17 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         if (photonView.IsMine)
         {
             faceCam.SetActive(true);
-            UserInfo.photonId = this.gameObject.GetComponent<PhotonView>().ViewID.ToString();
-
-            //// 선생님이면 머리위에 왕관쓰기
-            //if (UserInfo.memberRole == "TEACHER")
-            //{
-            //    photonView.RPC("RPCSetCrown", RpcTarget.All);
-            //    //crown.SetActive(true);
-            //}
+            //UserInfo_e.photonId = this.gameObject.GetComponent<PhotonView>().ViewID.ToString();     
         }
 
         controller = GetComponent<CharacterController>();
-        anim = transform.GetChild(0).GetComponent<Animator>();
+
+        
+    }
+
+    public void SetAnim(int animalId)
+    {
+        anim = transform.GetChild(animalId).GetComponent<Animator>();
         state = State.Idle;
     }
 
@@ -166,13 +164,18 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                 case State.Sit:
                     photonView.RPC("RpcSetBool", RpcTarget.All, "HandUp", false);
                     photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", true);
+                    sit = true;
                     break;
                 case State.HandUp:
                     photonView.RPC("RpcSetBool", RpcTarget.All, "HandUp", true);
                     break;
                 case State.Idle:
-                    photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", false);
-                    photonView.RPC("RpcSetBool", RpcTarget.All, "HandUp", false);
+                    if (sit)
+                    {
+                        photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", false);
+                        photonView.RPC("RpcSetBool", RpcTarget.All, "HandUp", false);
+                        sit = false;
+                    }
 
                     // 처음 입장 시 떨어지게 만들기
                     yVelocity += gravity * Time.deltaTime;
@@ -194,6 +197,8 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
             }
         }
     }
+
+    bool sit = false;
 
     Vector3 dir;
     float h = 0;
@@ -330,4 +335,5 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
             }
         }
     }
+
 }
