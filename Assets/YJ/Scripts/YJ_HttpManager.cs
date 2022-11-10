@@ -54,7 +54,6 @@ public class YJ_HttpManager : MonoBehaviour
                 {
                     SetCustomHeader(webRequest, requester.headers);
                 }               
-
                 break;
             case RequestType.PUT:
                 webRequest = UnityWebRequest.Put(requester.url, requester.postData);                
