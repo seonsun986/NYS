@@ -22,6 +22,9 @@ public class YJ_Player_ChangeAvatar : YJ_AvatarSet
         userInfo = YJ_DataManager.instance.myInfo;
 
         AvtSet();
+        mt = avt.transform.GetChild(1).transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>();
+        avatarNum = int.Parse(userInfo.animal);
+        setmt = int.Parse(userInfo.material);
     }
 
     void Update()
