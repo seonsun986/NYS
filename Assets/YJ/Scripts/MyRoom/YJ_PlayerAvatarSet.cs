@@ -123,12 +123,27 @@ public class YJ_PlayerAvatarSet : MonoBehaviourPun
             obj_4 = int.Parse(s.Substring(4, 1));
         }
 
+        //if(가방 != 8)
+        //{
+        //    Instantiate(obj[가방].gameObject, bag.transform);
+        //}
+
+        //if (생선 != 8)
+        //{
+        //    Instantiate(obj[생선+2].gameObject, bag.transform);
+        //}
+
+        //if (모자 != 8)
+        //{
+        //    Instantiate(obj[모자 + 4].gameObject, bag.transform);
+        //}
+
         if (obj_1 < 2 || obj_2 <2 || obj_3 < 2 || obj_4 < 2)
         {
             bag = avt.transform.GetChild(2).transform.GetChild(2).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject;
             if (obj_1 == 0 || obj_2 == 0 || obj_3 == 0 || obj_4 == 0)
             {
-                minibag0 = Instantiate(obj[objNum].gameObject, bag.transform);
+                minibag0 = Instantiate(obj[0].gameObject, bag.transform);
             }
             else if (obj_1 == 1 || obj_2 == 1 || obj_3 == 1 || obj_4 == 1)
             {
