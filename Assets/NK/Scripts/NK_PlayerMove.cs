@@ -67,7 +67,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
             // 임시로 아이와 선생님 분류
             speaker.GetComponent<AudioSource>().mute = false;
             // 방 만든 사람(선생님)이 아닐 경우
-            if (UserInfo_e.memberRole != "TEACHER")
+            if (YJ_DataManager.instance.myInfo.memberRole != "TEACHER")
             {
                 if (photonView.IsMine)
                 {
