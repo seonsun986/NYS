@@ -88,7 +88,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         pages[2].GetComponent<AudioSource>().clip = audioClips[6];
         pages[4].GetComponent<AudioSource>().clip = audioClips[8];
         pages[6].GetComponent<AudioSource>().clip = audioClips[10];
-        pages[6].GetComponent<AudioSource>().clip = audioClips[12];
+        pages[8].GetComponent<AudioSource>().clip = audioClips[12];
         pages[0].GetComponent<AudioSource>().enabled = true;
         // 남동생 키키
         for (int i = 0; i < brother.Count; i++)
@@ -349,12 +349,163 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             }
         }
         // 선택한게 계란일 때
+        else if (selectBtnName == "Egg")
+        {
+            // 남동생일 때
+            if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
+            {
+                pages[10].GetComponent<AudioSource>().clip = audioClips[30];
+                pages[11].GetComponent<AudioSource>().clip = audioClips[32];
+                pages[13].GetComponent<AudioSource>().clip = audioClips[34];
+                pages[15].GetComponent<AudioSource>().clip = audioClips[36];
+                pages[17].GetComponent<AudioSource>().clip = audioClips[22];        // Page17 재활용
+                pages[18].GetComponent<AudioSource>().clip = audioClips[24];
+                pages[20].GetComponent<AudioSource>().clip = audioClips[26];
+                pages[21].GetComponent<AudioSource>().clip = audioClips[28];
+
+
+            }
+            // 여동생일 때 
+            else
+            {
+                pages[10].GetComponent<AudioSource>().clip = audioClips[31];
+                pages[11].GetComponent<AudioSource>().clip = audioClips[33];
+                pages[13].GetComponent<AudioSource>().clip = audioClips[35];
+                pages[15].GetComponent<AudioSource>().clip = audioClips[37];
+                pages[17].GetComponent<AudioSource>().clip = audioClips[23];        // Page17 재활용
+                pages[18].GetComponent<AudioSource>().clip = audioClips[25];
+                pages[20].GetComponent<AudioSource>().clip = audioClips[27];
+                pages[21].GetComponent<AudioSource>().clip = audioClips[29];
+
+            }
+        }
         // 선택한게 시금치일 때
+        else if (selectBtnName == "Spinach")
+        {
+            // 남동생일 때
+            if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
+            {
+                pages[10].GetComponent<AudioSource>().clip = audioClips[38];
+                pages[11].GetComponent<AudioSource>().clip = audioClips[40];
+                pages[13].GetComponent<AudioSource>().clip = audioClips[42];
+                pages[15].GetComponent<AudioSource>().clip = audioClips[44];
+                pages[17].GetComponent<AudioSource>().clip = audioClips[22];
+                pages[18].GetComponent<AudioSource>().clip = audioClips[24];
+                pages[20].GetComponent<AudioSource>().clip = audioClips[26];
+                pages[21].GetComponent<AudioSource>().clip = audioClips[28];
+
+            }
+            // 여동생일 때
+            else
+            {
+                pages[10].GetComponent<AudioSource>().clip = audioClips[39];
+                pages[11].GetComponent<AudioSource>().clip = audioClips[41];
+                pages[13].GetComponent<AudioSource>().clip = audioClips[43];
+                pages[15].GetComponent<AudioSource>().clip = audioClips[45];
+                pages[17].GetComponent<AudioSource>().clip = audioClips[22];
+                pages[18].GetComponent<AudioSource>().clip = audioClips[25];
+                pages[20].GetComponent<AudioSource>().clip = audioClips[27];
+                pages[21].GetComponent<AudioSource>().clip = audioClips[29];
+
+            }
+        }
+
         // 선택한게 양파일 때
+        else if (selectBtnName == "Onion")
+        {
+            // 남동생일 때
+            if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
+            {
+                pages[10].GetComponent<AudioSource>().clip = audioClips[46];
+                pages[11].GetComponent<AudioSource>().clip = audioClips[48];
+                pages[13].GetComponent<AudioSource>().clip = audioClips[50];
+                pages[15].GetComponent<AudioSource>().clip = audioClips[44];
+
+                pages[17].GetComponent<AudioSource>().clip = audioClips[22];
+                pages[18].GetComponent<AudioSource>().clip = audioClips[24];
+                pages[20].GetComponent<AudioSource>().clip = audioClips[26];
+                pages[21].GetComponent<AudioSource>().clip = audioClips[28];
+            }
+            // 여동생일 때
+            else
+            {
+                pages[10].GetComponent<AudioSource>().clip = audioClips[47];
+                pages[11].GetComponent<AudioSource>().clip = audioClips[49];
+                pages[13].GetComponent<AudioSource>().clip = audioClips[51];
+                pages[15].GetComponent<AudioSource>().clip = audioClips[45];
+
+                pages[17].GetComponent<AudioSource>().clip = audioClips[22];
+                pages[18].GetComponent<AudioSource>().clip = audioClips[25];
+                pages[20].GetComponent<AudioSource>().clip = audioClips[27];
+                pages[21].GetComponent<AudioSource>().clip = audioClips[29];
+            }
+        }
+
         // 선택한게 밥일 때
+        else if (selectBtnName == "Rice")
+        {
+            // 남동생일 때
+            if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
+            {
+                pages[10].GetComponent<AudioSource>().clip = audioClips[52];
+                pages[11].GetComponent<AudioSource>().clip = audioClips[54];
+                pages[13].GetComponent<AudioSource>().clip = audioClips[56];
+                pages[15].GetComponent<AudioSource>().clip = audioClips[44];
+
+                pages[17].GetComponent<AudioSource>().clip = audioClips[22];
+                pages[18].GetComponent<AudioSource>().clip = audioClips[24];
+                pages[20].GetComponent<AudioSource>().clip = audioClips[26];
+                pages[21].GetComponent<AudioSource>().clip = audioClips[28];
+            }
+            // 여동생일 때
+            else
+            {
+                pages[10].GetComponent<AudioSource>().clip = audioClips[53];
+                pages[11].GetComponent<AudioSource>().clip = audioClips[55];
+                pages[13].GetComponent<AudioSource>().clip = audioClips[57];
+                pages[15].GetComponent<AudioSource>().clip = audioClips[45];
+
+                pages[17].GetComponent<AudioSource>().clip = audioClips[22];
+                pages[18].GetComponent<AudioSource>().clip = audioClips[25];
+                pages[20].GetComponent<AudioSource>().clip = audioClips[27];
+                pages[21].GetComponent<AudioSource>().clip = audioClips[29];
+            }
+        }
+
         // 선택한게 감자일 때
-        // NextPage 함수 그냥 여기서 실행함
-        pages[currentPage].SetActive(false);
+        else
+        {
+            // 남동생일 때
+            if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
+            {
+                pages[10].GetComponent<AudioSource>().clip = audioClips[58];
+                pages[11].GetComponent<AudioSource>().clip = audioClips[60];
+                pages[13].GetComponent<AudioSource>().clip = audioClips[62];
+                pages[15].GetComponent<AudioSource>().clip = audioClips[44];
+
+                pages[17].GetComponent<AudioSource>().clip = audioClips[22];
+                pages[18].GetComponent<AudioSource>().clip = audioClips[24];
+                pages[20].GetComponent<AudioSource>().clip = audioClips[26];
+                pages[21].GetComponent<AudioSource>().clip = audioClips[28];
+            }
+            // 여동생일 때
+            else
+            {
+                pages[10].GetComponent<AudioSource>().clip = audioClips[59];
+                pages[11].GetComponent<AudioSource>().clip = audioClips[61];
+                pages[13].GetComponent<AudioSource>().clip = audioClips[63];
+                pages[15].GetComponent<AudioSource>().clip = audioClips[45];
+
+                pages[17].GetComponent<AudioSource>().clip = audioClips[22];
+                pages[18].GetComponent<AudioSource>().clip = audioClips[25];
+                pages[20].GetComponent<AudioSource>().clip = audioClips[27];
+                pages[21].GetComponent<AudioSource>().clip = audioClips[29];
+            }
+        }
+
+
+            // NextPage 함수 그냥 여기서 실행함
+            pages[currentPage].SetActive(false);
         pages[currentPage + 1].SetActive(true);
         currentPage += 1;
     }
