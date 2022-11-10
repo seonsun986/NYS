@@ -21,10 +21,9 @@ public class NK_Emotion : MonoBehaviourPun
     public Emotion emotion = Emotion.NoSelection;
     public List<GameObject> emojis = new List<GameObject>();
     public List<Material> expressions = new List<Material>();
-    public Animator anim;
-    public GameObject face;
     public float emotionTime = 2f;
     float currentTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,8 +47,6 @@ public class NK_Emotion : MonoBehaviourPun
             if (emotion != NK_EmotionUI.emotion)
             {
                 InitializationEmotion();
-                // 상대방을 마주봄
-                //clickUser.transform.forward = - gameObject.transform.forward;
                 emotion = NK_EmotionUI.emotion;
                 StopAllCoroutines();
                 StartCoroutine(ShowEmotion());
@@ -69,7 +66,7 @@ public class NK_Emotion : MonoBehaviourPun
             // 클릭한 오브젝트의 LayerMask가 Player이고 자기자신이 아니면
             if (hit.transform.gameObject.layer == 6 && hit.transform.gameObject != gameObject)
             {
-            clickUser = hit.transform.gameObject;
+                clickUser = hit.transform.gameObject;
                 emotionUI.gameObject.SetActive(true);
             }
             else
@@ -88,7 +85,7 @@ public class NK_Emotion : MonoBehaviourPun
             currentTime += Time.deltaTime;
             if (emotion != Emotion.NoSelection && clickUser != null)
             {
-                photonView.RPC("RPCShowEmotion", RpcTarget.All, emotion, clickUser.GetPhotonView().ViewID);
+                photonView.RPC("RPCShowEmotion", RpcTarget.All, emotion, photonView.ViewID, clickUser.GetPhotonView().ViewID);
             }
             yield return null;
         }
@@ -97,29 +94,38 @@ public class NK_Emotion : MonoBehaviourPun
     }
 
     [PunRPC]
-    private void RPCShowEmotion(Emotion currentEmotion, int viewId)
+    private void RPCShowEmotion(Emotion currentEmotion, int myViewId, int clickUserViewId)
     {
-        GameObject user = PhotonView.Find(viewId).gameObject;
+        GameObject user = PhotonView.Find(clickUserViewId).gameObject;
+        // 상대방을 마주봄
         user.transform.LookAt(transform);
         emojis[(int)currentEmotion - 1].SetActive(true);
-        face.GetComponent<Renderer>().material = expressions[(int)currentEmotion - 1];
-        anim.SetBool(currentEmotion.ToString(), true);
+        GameObject subject = PhotonView.Find(myViewId).gameObject;
+        GameObject avt = subject.GetComponent<YJ_PlayerAvatarSet>().avt;
+        // 표정 변화
+        avt.transform.GetChild(1).transform.GetChild(1).GetComponent<Renderer>().material = expressions[(int)currentEmotion - 1];
+        // 애니메이션 변화
+        avt.GetComponent<Animator>().SetBool(currentEmotion.ToString(), true);
     }
 
     private void InitializationEmotion()
     {
         if (emotion != Emotion.NoSelection)
         {
-            photonView.RPC("RPCInitializationEmotion", RpcTarget.All, emotion);
+            photonView.RPC("RPCInitializationEmotion", RpcTarget.All, emotion, photonView.ViewID);
             emotion = Emotion.NoSelection;
         }
     }
 
     [PunRPC]
-    private void RPCInitializationEmotion(Emotion currentEmotion)
+    private void RPCInitializationEmotion(Emotion currentEmotion, int myViewId)
     {
         emojis[(int)currentEmotion - 1].SetActive(false);
-        anim.SetBool(currentEmotion.ToString(), false);
-        face.GetComponent<Renderer>().material = expressions[0];
+        GameObject subject = PhotonView.Find(myViewId).gameObject;
+        GameObject avt = subject.GetComponent<YJ_PlayerAvatarSet>().avt;
+        // 애니메이션 초기화
+        avt.GetComponent<Animator>().SetBool(currentEmotion.ToString(), false);
+        // 표정 초기화
+        avt.transform.GetChild(1).transform.GetChild(1).GetComponent<Renderer>().material = expressions[0];
     }
 }

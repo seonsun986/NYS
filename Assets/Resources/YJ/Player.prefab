@@ -4461,7 +4461,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4445227752899247846}
-  - component: {fileID: 7753289912552773938}
   - component: {fileID: 4445227752899247845}
   - component: {fileID: 4445227752899247847}
   - component: {fileID: 4445227752899247840}
@@ -4469,6 +4468,7 @@ GameObject:
   - component: {fileID: 2658633769867848628}
   - component: {fileID: 3692770572996616269}
   - component: {fileID: 8864919160826868246}
+  - component: {fileID: 7753289912552773938}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -4497,36 +4497,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7753289912552773938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4445227752899247844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15ddded676725734ab0b8f1d496568cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  emotionUI: {fileID: 0}
-  clickUser: {fileID: 0}
-  emotion: 0
-  emojis:
-  - {fileID: 7335566500170604969}
-  - {fileID: 7470354480487809393}
-  - {fileID: 1344768479620723935}
-  - {fileID: 5183034259770751935}
-  - {fileID: 8657766447557089164}
-  expressions:
-  - {fileID: 2100000, guid: e915bafde1f6b484093e7901d17e5ad3, type: 2}
-  - {fileID: 2100000, guid: df5e63d62c1689d4e822fc9f9ae61123, type: 2}
-  - {fileID: 2100000, guid: 04c6d5f6a8ef7e049a3c0637983883d1, type: 2}
-  - {fileID: 2100000, guid: 43dec6c669bac8b459601b330dd0be37, type: 2}
-  - {fileID: 2100000, guid: e52b43a6ae076894cb0bbcfc108cabb9, type: 2}
-  anim: {fileID: 5224924807683222512}
-  face: {fileID: 5319610674734689878}
-  emotionTime: 2
 --- !u!114 &4445227752899247845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4771,6 +4741,34 @@ MonoBehaviour:
   - {fileID: 1868308724477174, guid: cd9a0f2aaec20c74db47636d5ed725ba, type: 3}
   - {fileID: 1347363639899658, guid: 8b436dadfcc966e4182be7da1b0cd7e6, type: 3}
   avt: {fileID: 0}
+--- !u!114 &7753289912552773938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4445227752899247844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ddded676725734ab0b8f1d496568cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emotionUI: {fileID: 0}
+  clickUser: {fileID: 0}
+  emotion: 0
+  emojis:
+  - {fileID: 7335566500170604969}
+  - {fileID: 7470354480487809393}
+  - {fileID: 1344768479620723935}
+  - {fileID: 5183034259770751935}
+  - {fileID: 8657766447557089164}
+  expressions:
+  - {fileID: 2100000, guid: e915bafde1f6b484093e7901d17e5ad3, type: 2}
+  - {fileID: 2100000, guid: df5e63d62c1689d4e822fc9f9ae61123, type: 2}
+  - {fileID: 2100000, guid: 04c6d5f6a8ef7e049a3c0637983883d1, type: 2}
+  - {fileID: 2100000, guid: 43dec6c669bac8b459601b330dd0be37, type: 2}
+  - {fileID: 2100000, guid: e52b43a6ae076894cb0bbcfc108cabb9, type: 2}
+  emotionTime: 2
 --- !u!1 &4504897665774012290
 GameObject:
   m_ObjectHideFlags: 0
