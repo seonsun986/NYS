@@ -11,6 +11,7 @@ public class NK_FairyTale : MonoBehaviour
     public GameObject childUI;
     public Transform book;
     public List<Transform> objs;
+    public GameObject stage;
 
     bool isOpen = false;
 
@@ -41,14 +42,15 @@ public class NK_FairyTale : MonoBehaviour
         // 책이 거의 다 펼쳐지면 활성화
         if (book.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f && !isOpen)
         {
+            stage.SetActive(true);
             fairyTaleUI.SetActive(true);
             fairyTaleObject.SetActive(true);
-            fairyTaleObject.transform.localScale = new Vector3(0, 0, 0);
-            isOpen = true;
+            //fairyTaleObject.transform.localScale = new Vector3(0, 0, 0);
+            //isOpen = true;
         }
 
         // 크기 변형 (수정 중)
-        if (isOpen)
+/*        if (isOpen)
         {
             if (fairyTaleUI.transform.localScale.x <= 1f)
             {
@@ -58,7 +60,7 @@ public class NK_FairyTale : MonoBehaviour
             {
                 fairyTaleObject.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
             }
-        }
+        }*/
     }
 
     private void OnDisable()
