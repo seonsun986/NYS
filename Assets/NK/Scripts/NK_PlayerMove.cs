@@ -14,6 +14,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         Idle,
         Move,
         Sit,
+        HandUp,
     }
 
     public State state;
@@ -58,7 +59,6 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        print("또하니?");
         playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
 
         // 선생님방에 있을 때
@@ -162,13 +162,18 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                     //PlayerMove();
                     break;
                 case State.Sit:
+                    photonView.RPC("RpcSetBool", RpcTarget.All, "HandUp", false);
                     photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", true);
                     sit = true;
+                    break;
+                case State.HandUp:
+                    photonView.RPC("RpcSetBool", RpcTarget.All, "HandUp", true);
                     break;
                 case State.Idle:
                     if (sit)
                     {
                         photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", false);
+                        photonView.RPC("RpcSetBool", RpcTarget.All, "HandUp", false);
                         sit = false;
                     }
 
@@ -313,4 +318,22 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     {
         GameManager.Instance.AddPlayer(photonView);
     }
+
+    [PunRPC]
+    public void RPCSingleMute()
+    {
+        AudioSource audio = transform.Find("Speaker").GetComponent<AudioSource>();
+        if (audio != null)
+        {
+            if (audio.mute)
+            {
+                audio.mute = false;
+            }
+            else
+            {
+                audio.mute = true;
+            }
+        }
+    }
+
 }
