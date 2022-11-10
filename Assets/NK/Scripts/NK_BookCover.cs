@@ -105,7 +105,7 @@ public class NK_BookCover : MonoBehaviour
         createObj.GetComponent<Button>().enabled = false;
         createObj.GetComponent<RectTransform>().localPosition = Vector3.zero;
         //createObj.GetComponent <RectTransform>().localScale = new Vector3(1, 1, 1);
-        createObj.GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+        createObj.GetComponent<RectTransform>().sizeDelta = new Vector2(120, 120);
     }
 
     public void ChangeBookColor()
