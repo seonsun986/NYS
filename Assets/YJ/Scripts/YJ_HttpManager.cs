@@ -72,10 +72,6 @@ public class YJ_HttpManager : MonoBehaviour
                 Uri uri = new Uri(requester.url);
                 webRequest = UnityWebRequestMultimedia.GetAudioClip(uri, AudioType.MPEG);
                 break;
-<<<<<<< HEAD
-
-=======
->>>>>>> YJ_test
         }
         // 서버에 요청을 보내고 응답이 올때까지 기다린다.
         yield return webRequest.SendWebRequest();
@@ -84,11 +80,7 @@ public class YJ_HttpManager : MonoBehaviour
 
         if (webRequest.result == UnityWebRequest.Result.Success)
         {
-<<<<<<< HEAD
-            if(requester.requestType != RequestType.AUDIO)
-=======
             if (requester.requestType != RequestType.AUDIO)
->>>>>>> YJ_test
             {
                 print(webRequest.downloadHandler.text);
             }
@@ -98,11 +90,6 @@ public class YJ_HttpManager : MonoBehaviour
             }
             // 완료되었다고 requester.onComplete를 실행
             requester.onComplete(webRequest);
-<<<<<<< HEAD
-
-
-=======
->>>>>>> YJ_test
         }
         else
         { 
