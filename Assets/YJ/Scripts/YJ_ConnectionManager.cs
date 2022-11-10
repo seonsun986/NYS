@@ -103,7 +103,7 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
         
         for (int i = 0; i < roomList.Count; i++)
         {
-            if (roomList[i].Name == "Lobby1")
+            if (roomList[i].Name == "Lobby")
             {
                 roomset = true;
                 break;
@@ -127,7 +127,7 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
         roomOptions.CleanupCacheOnLeave = false;
 
         // 방을 만든다
-        PhotonNetwork.CreateRoom("Lobby1", roomOptions);
+        PhotonNetwork.CreateRoom("Lobby", roomOptions);
 
     }
 
@@ -149,7 +149,7 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
     public void JoinRoom()
     {
         // XR_A라는 방으로 입장
-        PhotonNetwork.JoinRoom("Lobby1");
+        PhotonNetwork.JoinRoom("Lobby");
     }
 
 

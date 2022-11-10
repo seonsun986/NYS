@@ -82,8 +82,6 @@ public class YJ_UIManager : MonoBehaviour
         requester.headers["accesstoken"] = YJ_DataManager.instance.myInfo.accessToken;
         requester.onComplete = (handler) => {
 
-            print("Á¤º¸ °¡Á®¿È!");
-
             JObject jsonData = JObject.Parse(handler.downloadHandler.text);
 
             UserInfo myInfo = YJ_DataManager.instance.myInfo;
