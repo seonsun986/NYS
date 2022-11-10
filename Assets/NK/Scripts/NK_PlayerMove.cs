@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using UnityEngine.SceneManagement;
+using System.Threading;
 
 public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 {
@@ -14,6 +15,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         Idle,
         Move,
         Sit,
+        HandUp,
     }
 
     public State state;
@@ -70,7 +72,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
             {
                 if (photonView.IsMine)
                 {
-                    photonView.RPC("RPCAddPlayer", RpcTarget.All);
+                    photonView.RPC("RPCAddPlayer", RpcTarget.AllBuffered);
                     photonView.RPC("RPCSetTag", RpcTarget.All, "Child");
                     GameObject.Find("TeacherUI").SetActive(false);
                     GameObject.Find("BookBtn").SetActive(false);
@@ -162,10 +164,15 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                     //PlayerMove();
                     break;
                 case State.Sit:
+                    photonView.RPC("RpcSetBool", RpcTarget.All, "HandUp", false);
                     photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", true);
+                    break;
+                case State.HandUp:
+                    photonView.RPC("RpcSetBool", RpcTarget.All, "HandUp", true);
                     break;
                 case State.Idle:
                     photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", false);
+                    photonView.RPC("RpcSetBool", RpcTarget.All, "HandUp", false);
 
                     // 처음 입장 시 떨어지게 만들기
                     yVelocity += gravity * Time.deltaTime;
@@ -305,5 +312,22 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     public void RPCAddPlayer()
     {
         GameManager.Instance.AddPlayer(photonView);
+    }
+
+    [PunRPC]
+    public void RPCSingleMute()
+    {
+        AudioSource audio = transform.Find("Speaker").GetComponent<AudioSource>();
+        if (audio != null)
+        {
+            if (audio.mute)
+            {
+                audio.mute = false;
+            }
+            else
+            {
+                audio.mute = true;
+            }
+        }
     }
 }

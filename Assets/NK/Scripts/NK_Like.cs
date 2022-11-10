@@ -8,6 +8,7 @@ public class NK_Like : MonoBehaviourPun
 {
     public GameObject likeFactory;
     public Text likeCount;
+    public Text teacherLikeCount;
     int count;
 
     public int Count
@@ -20,6 +21,7 @@ public class NK_Like : MonoBehaviourPun
         {
             count = value;
             likeCount.text = value.ToString();
+            teacherLikeCount.text = value.ToString();
         }
     }
 
