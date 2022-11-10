@@ -9,6 +9,11 @@ public class NK_Mute : MonoBehaviour
     public Sprite muteSprite;
     public Sprite voiceSprite;
 
+    private void Start()
+    {
+        muteImage.sprite = voiceSprite;
+    }
+
     // 음소거 여부에 따른 버튼 이미지 변경
     public void ChangeImage()
     {

@@ -41,6 +41,19 @@ public class NK_UIController : MonoBehaviourPun
     }
     #endregion
 
+    bool isHandUp = false;
+    bool IsHandUp
+    {
+        get
+        {
+            if (isHandUp)
+                isHandUp = false;
+            else
+                isHandUp = true;
+            return isHandUp;
+        }
+    }
+
     #region ClickMute // 음소거 버튼
     public void ClickMute()
     {
@@ -53,7 +66,7 @@ public class NK_UIController : MonoBehaviourPun
         // 모든 아이들의 볼륨을 0으로 하거나 Mute 시킴
         for (int i = 0; i < GameManager.Instance.children.Count; i++)
         {
-            AudioSource audio = GameManager.Instance.children[i].transform.GetChild(2).GetComponent<AudioSource>();
+            AudioSource audio = GameManager.Instance.children[i].transform.Find("Speaker").GetComponent<AudioSource>();
             if (audio != null)
             {
                 audio.mute = mute;
@@ -126,4 +139,38 @@ public class NK_UIController : MonoBehaviourPun
         }
     }
     #endregion
+
+    GameObject hand;
+
+    public void ClickHandUp()
+    {
+        if (GameManager.Instance.photonView.IsMine && IsHandUp)
+        {
+            photonView.RPC("RpcHandUp", RpcTarget.All, GameManager.Instance.photonView.ViewID);
+            hand = PhotonNetwork.Instantiate("Hand", GameManager.Instance.photonView.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+        }
+        else
+        {
+            photonView.RPC("RpcEndHandUp", RpcTarget.All, GameManager.Instance.photonView.ViewID);
+            PhotonNetwork.Destroy(hand);
+        }
+    }
+
+    [PunRPC]
+    private void RpcHandUp(int viewId)
+    {
+        GameObject child = PhotonView.Find(viewId).gameObject;
+        // HandUp 애니메이션 설정
+        NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
+        move.state = NK_PlayerMove.State.HandUp;
+    }
+
+    [PunRPC]
+    private void RpcEndHandUp(int viewId)
+    {
+        GameObject child = PhotonView.Find(viewId).gameObject;
+        // HandUp 애니메이션 설정
+        NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
+        move.state = NK_PlayerMove.State.Sit;
+    }
 }

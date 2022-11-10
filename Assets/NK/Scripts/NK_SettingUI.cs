@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class NK_SettingUI : MonoBehaviourPun
 {
     public Slider slider;
-    // 자신만의 Speaker로 변환
-    public GameObject Speaker;
     AudioSource audioSource;
 
     public void ClickMinus()
@@ -25,11 +23,11 @@ public class NK_SettingUI : MonoBehaviourPun
 
     public void ChangeSliderValue()
     {
+        GameObject[] speakers = GameObject.FindGameObjectsWithTag("Speaker");
         // 슬라이더 값 변경되면 호출됨
-        foreach (PhotonView child in GameManager.Instance.children)
+        foreach (GameObject speaker in speakers)
         {
-            Speaker = child.gameObject;
-            audioSource = Speaker.transform.GetChild(2).GetComponent<AudioSource>();
+            audioSource = speaker.GetComponent<AudioSource>();
             audioSource.volume = slider.value;
         }
     }

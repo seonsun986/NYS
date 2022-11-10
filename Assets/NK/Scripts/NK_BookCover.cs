@@ -104,7 +104,7 @@ public class NK_BookCover : MonoBehaviour
         createObj.transform.SetParent(bookCover);
         createObj.GetComponent<Button>().enabled = false;
         createObj.GetComponent<RectTransform>().localPosition = Vector3.zero;
-        createObj.GetComponent <RectTransform>().localScale = new Vector3(1, 1, 1);
+        //createObj.GetComponent <RectTransform>().localScale = new Vector3(1, 1, 1);
         createObj.GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
     }
 
