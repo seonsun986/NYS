@@ -22,7 +22,7 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
         nickName.text = PhotonNetwork.NickName;
 
         // 선생님일때만 방만들기 버튼 보여주기
-        if (UserInfo.memberRole != "TEACHER")
+        if (YJ_DataManager.instance.myInfo.memberRole != "TEACHER")
         {
             createRoom_T_only.SetActive(false);
         }

@@ -50,11 +50,16 @@ public class YJ_HttpManager : MonoBehaviour
                 break;
             case RequestType.GET:
                 webRequest = UnityWebRequest.Get(requester.url);
-                webRequest.SetRequestHeader("accesstoken", UserInfo.accessToken);
+                if(requester.headers != null)
+                {
+                    SetCustomHeader(webRequest, requester.headers);
+                }               
+
                 break;
             case RequestType.PUT:
-                webRequest = UnityWebRequest.Put(requester.url, requester.postData);
+                webRequest = UnityWebRequest.Put(requester.url, requester.postData);                
                 webRequest.SetRequestHeader("Content-Type", "application/json");
+                webRequest.SetRequestHeader("accesstoken", YJ_DataManager.instance.myInfo.accessToken);
                 break;
             case RequestType.DELETE:
                 webRequest = UnityWebRequest.Delete(requester.url);
@@ -67,15 +72,23 @@ public class YJ_HttpManager : MonoBehaviour
                 Uri uri = new Uri(requester.url);
                 webRequest = UnityWebRequestMultimedia.GetAudioClip(uri, AudioType.MPEG);
                 break;
+<<<<<<< HEAD
 
+=======
+>>>>>>> YJ_test
         }
         // 서버에 요청을 보내고 응답이 올때까지 기다린다.
         yield return webRequest.SendWebRequest();
 
         // 만약에 응답이 성공했다면
+
         if (webRequest.result == UnityWebRequest.Result.Success)
         {
+<<<<<<< HEAD
             if(requester.requestType != RequestType.AUDIO)
+=======
+            if (requester.requestType != RequestType.AUDIO)
+>>>>>>> YJ_test
             {
                 print(webRequest.downloadHandler.text);
             }
@@ -85,12 +98,14 @@ public class YJ_HttpManager : MonoBehaviour
             }
             // 완료되었다고 requester.onComplete를 실행
             requester.onComplete(webRequest);
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> YJ_test
         }
-        // 그렇지 않다면
         else
-        {
+        { 
             // 서버통신 실패...
             print("통신 실패" + webRequest.result + "\n" + webRequest.error + "\n" + webRequest.responseCode);
 
@@ -101,5 +116,13 @@ public class YJ_HttpManager : MonoBehaviour
         }
         yield return null;
         webRequest.Dispose();
+    }
+
+    void SetCustomHeader(UnityWebRequest r, Dictionary<string, string> headers)
+    {
+        foreach(KeyValuePair<string, string> kvp in headers)
+        {
+            r.SetRequestHeader(kvp.Key, kvp.Value);
+        }
     }
 }

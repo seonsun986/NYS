@@ -24,6 +24,9 @@ public class YJ_HttpRequester
     // Post Data
     public string postData; // -> body
 
+    // Header Data
+    public Dictionary<string, string> headers;
+
     // 응답이 왔을 때 호출해줄 함수 (Action)
     // Action : 함수를 넣을 수 있는 자료형
     public Action<UnityWebRequest> onComplete;

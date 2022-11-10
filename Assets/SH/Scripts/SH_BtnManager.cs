@@ -852,6 +852,7 @@ public class SH_BtnManager : MonoBehaviour
         requester.onComplete = (handler) =>
         {
             print("mp3파일생성!");
+<<<<<<< HEAD
             //print(handler.downloadHandler.text);
             byte[] byteData = handler.downloadHandler.data;
 
@@ -874,6 +875,11 @@ public class SH_BtnManager : MonoBehaviour
             AudioClip clip = DownloadHandlerAudioClip.GetContent(handler);
             ttsSound.clip = clip;
             ttsSound.Play();
+=======
+            print(handler.downloadHandler.text);
+            byte[] byteData = handler.downloadHandler.data;
+            File.WriteAllBytes(/*Application.streamingAssetsPath + "/" + "ex"*/path + ".wav", byteData);
+>>>>>>> YJ_test
         };
         YJ_HttpManager.instance.SendRequest(requester);
     }

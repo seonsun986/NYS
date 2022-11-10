@@ -82,7 +82,7 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
         print(System.Reflection.MethodBase.GetCurrentMethod().Name);
 
         // 닉네임 설정 네트워크 필요
-        PhotonNetwork.NickName = UserInfo.nickname;
+        PhotonNetwork.NickName = YJ_DataManager.instance.myInfo.nickname;
 
         // 기본 로비 진입
         PhotonNetwork.JoinLobby();
@@ -103,7 +103,7 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
         
         for (int i = 0; i < roomList.Count; i++)
         {
-            if (roomList[i].Name == "Lobby")
+            if (roomList[i].Name == "Lobby1")
             {
                 roomset = true;
                 break;
@@ -127,7 +127,7 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
         roomOptions.CleanupCacheOnLeave = false;
 
         // 방을 만든다
-        PhotonNetwork.CreateRoom("Lobby", roomOptions);
+        PhotonNetwork.CreateRoom("Lobby1", roomOptions);
 
     }
 
@@ -149,7 +149,7 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
     public void JoinRoom()
     {
         // XR_A라는 방으로 입장
-        PhotonNetwork.JoinRoom("Lobby");
+        PhotonNetwork.JoinRoom("Lobby1");
     }
 
 
