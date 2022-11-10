@@ -21,6 +21,8 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     public List<Text> parentText;
     // 오디오 클립 리스트
     public List<AudioClip> audioClips;
+    // 뒷 배경 리스트
+    public List<GameObject> bgImage;
     [Header("선택지가 있는 페이지")]
     // 선택 페이지 리스트(이때는 넥스트 버튼이 선택하면 넘어가면 안됨)
     public List<int> SelectPage = new List<int>();
@@ -54,6 +56,49 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                 bookWorldOpen = false;
             }
         }     
+
+        // 주방
+        if(currentPage == 1 || currentPage == 4 || currentPage == 5 || currentPage == 8 || currentPage == 9 || currentPage == 10 || currentPage == 11 || currentPage == 22)
+        {
+            for(int i =0;i<bgImage.Count;i++)
+            {
+                bgImage[i].SetActive(false);
+            }
+            // 주방만 키기
+            bgImage[1].SetActive(true);
+        }
+
+        else if(currentPage == 2 || currentPage == 3)
+        {
+            for (int i = 0; i < bgImage.Count; i++)
+            {
+                bgImage[i].SetActive(false);
+            }
+            // 들판만 키기
+            bgImage[2].SetActive(true);
+        }
+
+        else if(currentPage == 6)
+        {
+            for (int i = 0; i < bgImage.Count; i++)
+            {
+                bgImage[i].SetActive(false);
+            }
+            // 축구장만 키기
+            bgImage[3].SetActive(true);
+        }
+
+        else if(currentPage == 7 || currentPage == 18)
+        {
+            for (int i = 0; i < bgImage.Count; i++)
+            {
+                bgImage[i].SetActive(false);
+            }
+            // 주방만 키기
+            bgImage[3].SetActive(true);
+        }
+
+       
     }
 
     public GameObject broBtn;
