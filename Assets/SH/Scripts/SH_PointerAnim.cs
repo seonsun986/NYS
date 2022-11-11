@@ -19,8 +19,7 @@ public class SH_PointerAnim : MonoBehaviour
         Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue);
         if(Physics.Raycast(ray, out hitInfo))
         {
-            print(hitInfo.transform.name);
-            if(hitInfo.transform.name == "Bear")
+            if(hitInfo.transform.name == "BearBtn")
             {
                 if(bear.enabled == false)
                 {
@@ -34,7 +33,7 @@ public class SH_PointerAnim : MonoBehaviour
                     SH_ChildrenFairyManager.Instance.OnFailPopUp();
                 }
             }
-            else if(hitInfo.transform.name == "Tiger")
+            else if(hitInfo.transform.name == "TigerBtn")
             {
                 if (tiger.enabled == false)
                 {
@@ -50,7 +49,7 @@ public class SH_PointerAnim : MonoBehaviour
                     SH_ChildrenFairyManager.Instance.OnFailPopUp();
                 }
             }
-            else if (hitInfo.transform.name == "Rabbit")
+            else if (hitInfo.transform.name == "RabbitBtn")
             {
                 if (rabbit.enabled == false)
                 {
@@ -63,7 +62,7 @@ public class SH_PointerAnim : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    SH_ChildrenFairyManager.Instance.OnFailPopUp();
+                    SH_ChildrenFairyManager.Instance.OnPassPopUp();
                 }
             }
             else
