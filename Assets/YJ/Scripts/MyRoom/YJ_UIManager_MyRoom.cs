@@ -22,4 +22,11 @@ public class YJ_UIManager_MyRoom : MonoBehaviour
         SceneManager.LoadScene("CreateCharacter");
     }
     #endregion
+
+    #region 책만들기 버튼
+    public void OnClickCreateBook()
+    {
+        SceneManager.LoadScene("EditorScene");
+    }
+    #endregion
 }
