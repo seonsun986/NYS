@@ -100,7 +100,6 @@ public class YJ_HttpManager : MonoBehaviour
                 loginFail.SetActive(true);
             }
         }
-        yield return null;
         webRequest.Dispose();
     }
 

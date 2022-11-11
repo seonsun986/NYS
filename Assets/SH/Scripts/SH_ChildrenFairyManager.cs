@@ -50,6 +50,11 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     bool riceB;
     bool onionB;
     bool potatoB;
+    public GameObject girlNo;
+    public GameObject girlYes;
+    public GameObject boyYes;
+    public GameObject boyNo;
+
 
     void Update()
     {     
@@ -127,6 +132,41 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             // 초록왕국 배경만 키기
 
             bgImage[10].SetActive(true);
+        }
+
+        // 먹어볼까요? 때 여동생? 남동생?
+        if(currentPage == 14)
+        {
+            // 남동생 선택했을 때
+            if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
+            {
+                if(boyNo.activeSelf== false)
+                {
+                    boyNo.SetActive(true);
+                    boyYes.SetActive(true);
+                }
+                
+            }
+            // 여동생 선택했을 때
+            else
+            {
+                if(girlNo.activeSelf == false)
+                {
+                    girlNo.SetActive(true);
+                    girlYes.SetActive(true);
+                }
+            }
+        }
+        else
+        {
+            if(girlNo.activeSelf == true || boyNo.activeSelf == true)
+            {
+                boyNo.SetActive(false);
+                boyYes.SetActive(false);
+                girlNo.SetActive(false);
+                girlYes.SetActive(false);
+
+            }
         }
 
         // 싫어하는 음식 선택하고 나서
@@ -328,10 +368,14 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         }
 
         // 만약 패스 버튼이었다면 팝업을 꺼준다
-        GameObject PassPopUpj = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
-        if (PassPopUpj.name.Contains("Pass"))
+        if(EventSystem.current.currentSelectedGameObject != null)
         {
-            PassPopUpj.SetActive(false);
+            GameObject PassPopUpj = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
+            if (PassPopUpj.name.Contains("Pass"))
+            {
+                PassPopUpj.SetActive(false);
+            }
+
         }
 
         pages[currentPage].SetActive(false);

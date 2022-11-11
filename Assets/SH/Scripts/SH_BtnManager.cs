@@ -169,8 +169,8 @@ public class SH_BtnManager : MonoBehaviour
     void Start()
     {
         path = Application.dataPath + "/Capture/";
-        captureWidth = Screen.width;
-        captureHeight = Screen.height;
+        captureWidth = /*Screen.width;*/640;
+        captureHeight = /*Screen.height;*/360;
 
         txtDropdown.onValueChanged.AddListener(ChangeTextFont);
         InputtxtSize.onValueChanged.AddListener(ChangeFontSize);
@@ -187,10 +187,10 @@ public class SH_BtnManager : MonoBehaviour
         }
         currentScene = (int)Scenes[0].transform.position.y / 20;
 
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            ReadAudio();
 
+        if(isTTS == true && ttsSound.clip != null)
+        {
+            
         }
     }
 
@@ -442,6 +442,7 @@ public class SH_BtnManager : MonoBehaviour
             rawImages[currentScene].GetComponent<RawImage>().texture = loadedTexture;
         }
         
+
         // 새로운 Rawimage 추가
         // 맨 밑에 추가해야한다
         GameObject raw = Instantiate(rawImage);
@@ -552,11 +553,14 @@ public class SH_BtnManager : MonoBehaviour
                 screenShot.ReadPixels(new Rect(0, 0, captureWidth, captureHeight), 0, 0);
                 screenShot.Apply();
 
+                // 이미지 바이트를 PNG로 변환
                 byte[] bytes = screenShot.EncodeToPNG();
                 File.WriteAllBytes(fileName, bytes);
 
                 // 캡쳐파일 RawImage에 넣기
+                // 경로를 통해서 바이트 받아오기
                 byte[] textureBytes = File.ReadAllBytes(fileName);
+                // 안 봐도됨!
                 if (textureBytes.Length > 0)
                 {
                     Texture2D loadedTexture = new Texture2D(0, 0);
@@ -874,6 +878,8 @@ public class SH_BtnManager : MonoBehaviour
             AudioClip clip = DownloadHandlerAudioClip.GetContent(handler);
             ttsSound.clip = clip;
             ttsSound.Play();
+
+            StartCoroutine(IESoundLength());
         };
         YJ_HttpManager.instance.SendRequest(requester);
     }
@@ -892,7 +898,11 @@ public class SH_BtnManager : MonoBehaviour
 
     public void RealTTS()
     {
-        if(isTTS == false)
+        print(isTTS);
+        ttsSound.Stop();
+        StopAllCoroutines();
+
+        if (isTTS == false)
         {
             TTS();
             ttsBtnImg.sprite = ttsNotPlayImage;
@@ -900,11 +910,24 @@ public class SH_BtnManager : MonoBehaviour
         }
         else
         {
-            ttsSound.Stop();
+            
             ttsBtnImg.sprite = ttsPlayImage;
             isTTS = false;
         }
     }
+
+
+    // TTS 재생이 끝나면 알아서 ttsSound를 멈추고 이미지도 바꾸고 isTTS도 false로 바꾼다
+    IEnumerator IESoundLength()
+    {
+        yield return new WaitForSeconds(ttsSound.clip.length);
+        // 반복문 멈추기
+        isTTS = false;       
+        ttsSound.Stop();
+        ttsBtnImg.sprite = ttsPlayImage;
+        print("111111111");
+    }
+
     public void TTS()
     {
         string filePath = Application.dataPath + "/Resources" + "/" + "Audio_" + currentSceneNum;
