@@ -58,7 +58,21 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             currentTime += Time.deltaTime;
             if(currentTime > bookOpenTime)
             {
+                // 남동생 선택했을 때
+                if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
+                {
+                    bookWorld.GetComponent<AudioSource>().clip = audioClips[12];
+                }
+                // 여동생 선택했을 때
+                else
+                {
+                    bookWorld.GetComponent<AudioSource>().clip = audioClips[13];
+                }
+
                 bookWorld.SetActive(true);
+                // 크기 커지면서 보이도록
+                iTween.ScaleTo(bookWorld, iTween.Hash("x", 1, "y", 1, "z", 1, "easeType", "easeOutQuad", "time", 0.5f));
+
                 currentTime = 0;
                 bookWorldOpen = false;
             }
@@ -366,7 +380,33 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                 if (selectBtnName == selectObject[i].name)
                 {
                     selectObj = selectObject[i];
-                    if (selectBtnName == "Rabbit") selectObj.transform.GetChild(1).localPosition = new Vector3(0, 0.024f, 0.24f);
+                    if (selectBtnName == "Rabbit")
+                    {
+                        selectObj.transform.GetChild(1).localPosition = new Vector3(0, 0.024f, 0.24f);
+                        // 남동생 선택했을 때
+                        if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
+                        {
+                            selectObj.GetComponent<AudioSource>().clip = audioClips[72];
+                        }
+                        // 여동생 선택했을 때
+                        else
+                        {
+                            selectObj.GetComponent<AudioSource>().clip = audioClips[73];
+                        }
+                    }
+                    else if(selectBtnName == "Ball")
+                    {
+                        // 남동생 선택했을 때
+                        if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
+                        {
+                            selectObj.GetComponent<AudioSource>().clip = audioClips[66];
+                        }
+                        // 여동생 선택했을 때
+                        else
+                        {
+                            selectObj.GetComponent<AudioSource>().clip = audioClips[67];
+                        }
+                    }
                     selectObj.SetActive(true);
                 }
             }
@@ -401,11 +441,51 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                 if (selectBtnName == selectObject[i].name)
                 {
                     selectObj = selectObject[i];
-                    if (selectBtnName == "Bear") selectObj.transform.GetChild(1).localPosition = new Vector3(0, 2.22f, 2);
-                    else if (selectBtnName == "Tiger") selectObj.transform.GetChild(1).localPosition = new Vector3(0, 0.68f, 1.81f);
+                    if (selectBtnName == "Bear")
+                    {
+                        selectObj.transform.GetChild(1).localPosition = new Vector3(0, 2.22f, 2);
+                        // 남동생 선택했을 때
+                        if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
+                        {
+                            selectObj.GetComponent<AudioSource>().clip = audioClips[68];
+                        }
+                        // 여동생 선택했을 때
+                        else
+                        {
+                            selectObj.GetComponent<AudioSource>().clip = audioClips[69];
+                        }
+
+                    }
+                    else if (selectBtnName == "Tiger")
+                    {
+                        selectObj.transform.GetChild(1).localPosition = new Vector3(0, 0.68f, 1.81f);
+                        // 남동생 선택했을 때
+                        if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
+                        {
+                            selectObj.GetComponent<AudioSource>().clip = audioClips[70];
+                        }
+                        // 여동생 선택했을 때
+                        else
+                        {
+                            selectObj.GetComponent<AudioSource>().clip = audioClips[71];
+                        }
+                    }
                     else if (selectBtnName == "Book")
                     {
                         bookWorldOpen = true;
+                    }
+                    else if(selectBtnName == "Box")
+                    {
+                        // 남동생 선택했을 때
+                        if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
+                        {
+                            selectObj.GetComponent<AudioSource>().clip = audioClips[64];
+                        }
+                        // 여동생 선택했을 때
+                        else
+                        {
+                            selectObj.GetComponent<AudioSource>().clip = audioClips[65];
+                        }
                     }
                     if (selectObj.transform.childCount > 1)
                     {
@@ -453,7 +533,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
 
         if(bookWorld.activeSelf == true)
         {
-            bookWorld.SetActive(false);
+            bookWorld.SetActive(false);            
         }
     }
 

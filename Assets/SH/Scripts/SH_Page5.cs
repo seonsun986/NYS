@@ -17,6 +17,11 @@ public class SH_Page5 : MonoBehaviour
     bool boxB;
     bool ballB;
     bool bookB;
+
+    public GameObject ballText;
+    public GameObject boxText;
+    public GameObject bookText;
+
     void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -29,6 +34,7 @@ public class SH_Page5 : MonoBehaviour
                 {
                     box.Play("BoxSizeUp");
                     boxB = true;
+                    boxText.SetActive(true);
                 }
 
                 // 이때 마우스 누르면 함수 실행
@@ -43,6 +49,8 @@ public class SH_Page5 : MonoBehaviour
                 ball.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                 bookB = false;
                 ballB = false;
+                bookText.SetActive(false);
+                ballText.SetActive(false);
                 
             }
 
@@ -55,11 +63,9 @@ public class SH_Page5 : MonoBehaviour
                     book.Rebind();
                     book.enabled = true;
                     bookB = true;
+                    bookText.SetActive(true);
                 }
-                else
-                {
-                    return;
-                }
+
 
                 // 이때 마우스 누르면 함수 실행
                 if (Input.GetMouseButtonDown(0))
@@ -71,6 +77,8 @@ public class SH_Page5 : MonoBehaviour
                 box.gameObject.transform.localScale = new Vector3(0.0001034214f, 0.0001034214f, 0.0001034214f);
                 ballB = false;
                 boxB = false;
+                ballText.SetActive(false);
+                boxText.SetActive(false);
             }
 
             // 공에 마우스 올려뒀을 때
@@ -80,6 +88,7 @@ public class SH_Page5 : MonoBehaviour
                 {
                     ball.Play("BallSizeUp");
                     ballB = true;
+                    ballText.SetActive(true);
                 }
 
                 // 이때 마우스 누르면 함수 실행
@@ -94,6 +103,8 @@ public class SH_Page5 : MonoBehaviour
                 book.gameObject.transform.localScale = new Vector3(1, 1, 1);
                 boxB = false;
                 bookB = false;
+                boxText.SetActive(false);
+                bookText.SetActive(false);
             }
 
             // 다른 거에 부딪혔을 때 다 작게 해준다
@@ -106,6 +117,9 @@ public class SH_Page5 : MonoBehaviour
                 ballB = false;
                 boxB = false;
                 bookB = false;
+                ballText.SetActive(false);
+                boxText.SetActive(false);
+                bookText.SetActive(false);
             }    
 
         }
@@ -120,6 +134,9 @@ public class SH_Page5 : MonoBehaviour
             ballB = false;
             boxB = false;
             bookB = false;
+            ballText.SetActive(false);
+            boxText.SetActive(false);
+            bookText.SetActive(false);
         }
     }
 

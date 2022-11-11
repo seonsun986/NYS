@@ -1,13 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SH_VoiceRecord : MonoBehaviour
 {
 
 
     AudioClip recordClip;
+    bool record;
 
+    public Image recordingBtn;
+    public Sprite recordImg;
+    public Sprite stopRecordImg;
+    public void Record()
+    {
+        // ≥Ï¿Ω Ω√¿€
+        if(record == false)
+        {
+            StartRecordMicrophone();
+            record = true;
+            recordingBtn.sprite = stopRecordImg;
+        }
+
+        // ≥Ï¿Ω ≥°
+        else
+        {
+            StopRecordMicrophone();
+            record = false;
+            recordingBtn.sprite = recordImg;
+        }
+    }
     public void StartRecordMicrophone()
     {
         //foreach(var device in Microphone.devices)

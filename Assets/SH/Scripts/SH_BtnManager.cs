@@ -884,6 +884,27 @@ public class SH_BtnManager : MonoBehaviour
     // UIManager에 있는 str에 넣어주고
     // 다운 받은 파일을 재생시켜준다
     public AudioSource ttsSound;
+    [Header("TTS 관련 이미지")]
+    public Sprite ttsPlayImage;
+    public Sprite ttsNotPlayImage;
+    public Image ttsBtnImg;
+    bool isTTS;
+
+    public void RealTTS()
+    {
+        if(isTTS == false)
+        {
+            TTS();
+            ttsBtnImg.sprite = ttsNotPlayImage;
+            isTTS = true;
+        }
+        else
+        {
+            ttsSound.Stop();
+            ttsBtnImg.sprite = ttsPlayImage;
+            isTTS = false;
+        }
+    }
     public void TTS()
     {
         string filePath = Application.dataPath + "/Resources" + "/" + "Audio_" + currentSceneNum;

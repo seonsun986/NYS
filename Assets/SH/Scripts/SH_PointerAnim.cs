@@ -12,6 +12,9 @@ public class SH_PointerAnim : MonoBehaviour
     public Animator bear;
     public Animator tiger;
     public Animator rabbit;
+    public GameObject bearText;
+    public GameObject tigerText;
+    public GameObject rabbitText;
     void Update()
     {
         // ¸¶¿ì½º Ray
@@ -24,8 +27,11 @@ public class SH_PointerAnim : MonoBehaviour
                 if(bear.enabled == false)
                 {
                     bear.enabled = true;
+                    bearText.SetActive(true);
                     rabbit.Rebind();
                     tiger.Rebind();
+                    tigerText.SetActive(false);
+                    rabbitText.SetActive(false);
                 }
 
                 if(Input.GetMouseButtonDown(0))
@@ -38,10 +44,13 @@ public class SH_PointerAnim : MonoBehaviour
                 if (tiger.enabled == false)
                 {
                     tiger.enabled = true;
+                    tigerText.SetActive(true);
                     bear.Rebind();
                     bear.enabled = false;
                     rabbit.Rebind();
                     rabbit.enabled = false;
+                    bearText.SetActive(false);
+                    rabbitText.SetActive(false);
                 }
 
                 if (Input.GetMouseButtonDown(0))
@@ -54,10 +63,13 @@ public class SH_PointerAnim : MonoBehaviour
                 if (rabbit.enabled == false)
                 {
                     rabbit.enabled = true;
+                    rabbitText.SetActive(true);
                     bear.Rebind();
                     bear.enabled = false;
                     tiger.Rebind();
                     tiger.enabled = false;
+                    bearText.SetActive(false);
+                    tigerText.SetActive(false);
                 }
 
                 if (Input.GetMouseButtonDown(0))
@@ -73,6 +85,9 @@ public class SH_PointerAnim : MonoBehaviour
                 tiger.enabled = false;
                 bear.Rebind();
                 bear.enabled = false;
+                bearText.SetActive(false);
+                tigerText.SetActive(false);
+                rabbitText.SetActive(false);
             }
         }
         else
@@ -83,6 +98,9 @@ public class SH_PointerAnim : MonoBehaviour
             tiger.enabled = false;
             bear.Rebind();
             bear.enabled = false;
+            bearText.SetActive(false);
+            tigerText.SetActive(false);
+            rabbitText.SetActive(false);
         }
 
     }
