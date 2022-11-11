@@ -25,7 +25,8 @@ public class YJ_RoomText : MonoBehaviourPun
 
         if (photonView.IsMine)
         {
-            roomNameSet = YJ_DataManager.CreateRoomInfo.roomName + " (" + PhotonNetwork.NickName + "¼±»ý´Ô )";
+            //roomNameSet = YJ_DataManager.CreateRoomInfo.roomName + " (" + PhotonNetwork.NickName + "¼±»ý´Ô )";
+            roomNameSet = " (" + PhotonNetwork.NickName + "¼±»ý´Ô )";
             roomName = YJ_DataManager.CreateRoomInfo.roomName;
             roomType = YJ_DataManager.CreateRoomInfo.roomType;
             createRoomerCode = YJ_DataManager.instance.myInfo.memberCode;
@@ -49,7 +50,7 @@ public class YJ_RoomText : MonoBehaviourPun
     void RpcRoomSet(string roomSet, string name, int type)
     {
         roomNameSet = roomSet;
-        transform.GetChild(1).GetComponent<Text>().text = roomNameSet;
+        transform.GetChild(2).GetComponent<Text>().text = roomNameSet;
 
         roomName = name;
         roomType = type;
