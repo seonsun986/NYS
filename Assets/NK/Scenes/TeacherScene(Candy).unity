@@ -9656,6 +9656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  anim: {fileID: 0}
   moveSpeed: 5
   jumpPower: 5
   lerpSpeed: 100
@@ -14678,7 +14679,7 @@ MonoBehaviour:
   childUI: {fileID: 1186346392}
   book: {fileID: 361151836}
   objs: []
-  stage: {fileID: 5655942743792743290}
+  stage: {fileID: 4106170673776704239}
 --- !u!4 &1160228228
 Transform:
   m_ObjectHideFlags: 0
@@ -27246,13 +27247,14 @@ GameObject:
   - component: {fileID: 4794123599188394880}
   - component: {fileID: 4376140224467866204}
   - component: {fileID: 4895905277947983256}
+  - component: {fileID: 4895905277947983257}
   m_Layer: 0
   m_Name: MAIN STAGE OUTDOOR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &4376140224467866204
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27344,6 +27346,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.037299983, y: 0.0011800877, z: 0.021843098}
   m_Center: {x: -0.00008542965, y: -0.014342879, z: 0.007958192}
+--- !u!114 &4895905277947983257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4106170673776704239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd31ab5cce2d84040a31e985917c19a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4987210303948630464
 Transform:
   m_ObjectHideFlags: 0
@@ -27376,7 +27390,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6006514248320530247
 Transform:
   m_ObjectHideFlags: 0
