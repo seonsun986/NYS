@@ -59,46 +59,50 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        if(SceneManager.GetActiveScene().name != "MyRoomScene")
-            playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
-
-        // 선생님방에 있을 때
-        if (GameObject.Find("GameManager"))
+        if (this.gameObject.layer != 5)
         {
-            // 임시로 아이와 선생님 분류
-            speaker.GetComponent<AudioSource>().mute = false;
-            // 방 만든 사람(선생님)이 아닐 경우
-            if (YJ_DataManager.instance.myInfo.memberRole != "TEACHER")
+            if(SceneManager.GetActiveScene().name != "MyRoomScene")
+                playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
+
+            // 선생님방에 있을 때
+            if (GameObject.Find("GameManager"))
             {
-                if (photonView.IsMine)
+                // 임시로 아이와 선생님 분류
+                speaker.GetComponent<AudioSource>().mute = false;
+                // 방 만든 사람(선생님)이 아닐 경우
+                if (YJ_DataManager.instance.myInfo.memberRole != "TEACHER")
                 {
-                    photonView.RPC("RPCAddPlayer", RpcTarget.All);
-                    photonView.RPC("RPCSetTag", RpcTarget.All, "Child");
-                    GameObject.Find("TeacherUI").SetActive(false);
-                    GameObject.Find("BookBtn").SetActive(false);
-                    GameManager.Instance.photonView = photonView;
+                    if (photonView.IsMine)
+                    {
+                        photonView.RPC("RPCAddPlayer", RpcTarget.All);
+                        photonView.RPC("RPCSetTag", RpcTarget.All, "Child");
+                        GameObject.Find("TeacherUI").SetActive(false);
+                        GameObject.Find("BookBtn").SetActive(false);
+                        GameManager.Instance.photonView = photonView;
+                    }
+                }
+                // 방 만든 사람(선생님)일 경우
+                else
+                {
+                    if (photonView.IsMine)
+                    {
+                        photonView.RPC("RPCSetTag", RpcTarget.All, "Teacher");
+                        GameObject.Find("ChildUI").SetActive(false);
+                        GameManager.Instance.photonView = photonView;
+                    }
                 }
             }
-            // 방 만든 사람(선생님)일 경우
             else
             {
-                if (photonView.IsMine)
-                {
-                    photonView.RPC("RPCSetTag", RpcTarget.All, "Teacher");
-                    GameObject.Find("ChildUI").SetActive(false);
-                    GameManager.Instance.photonView = photonView;
-                }
+                speaker.GetComponent<AudioSource>().mute = true;
             }
-        }
-        else
-        {
-            speaker.GetComponent<AudioSource>().mute = true;
-        }
-        ///
-        if (photonView.IsMine)
-        {
-            faceCam.SetActive(true);
-            //UserInfo_e.photonId = this.gameObject.GetComponent<PhotonView>().ViewID.ToString();     
+            ///
+            if (photonView.IsMine)
+            {
+                faceCam.SetActive(true);
+                //UserInfo_e.photonId = this.gameObject.GetComponent<PhotonView>().ViewID.ToString();     
+            }
+
         }
 
         controller = GetComponent<CharacterController>();
@@ -118,7 +122,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 
     void Update()
     {
-        if (photonView.IsMine)
+        if (photonView.IsMine && this.gameObject.layer != 5 )
         {
             if (SceneManager.GetActiveScene().name != "MyRoomScene")
             {

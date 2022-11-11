@@ -11,8 +11,11 @@ public class YJ_RoomText : MonoBehaviourPun
     GameObject roomSet;
     string roomNameSet;
 
+    public string createRoomerCode;
+
     void Start()
     {
+
         // 부모가 될 Content 찾기
         roomSet = GameObject.Find("Canvas").transform.Find("RoomList").transform.Find("RoomListSet").transform.Find("Viewport").transform.Find("Content").gameObject;
 
@@ -25,6 +28,7 @@ public class YJ_RoomText : MonoBehaviourPun
             roomNameSet = YJ_DataManager.CreateRoomInfo.roomName + " (" + PhotonNetwork.NickName + "선생님 )";
             roomName = YJ_DataManager.CreateRoomInfo.roomName;
             roomType = YJ_DataManager.CreateRoomInfo.roomType;
+            createRoomerCode = YJ_DataManager.instance.myInfo.memberCode;
         }
     }
 
