@@ -233,6 +233,8 @@ public class NK_BookUI : MonoBehaviourPun
             }
             StartCoroutine(PlayAnim(animator, anim));
         }
+        // 크기 커지면서 보이도록
+        iTween.ScaleFrom(objPrefab, iTween.Hash("x", 0, "y", 0, "z", 0, "easeType", "easeInOutBack"));
     }
 
     [PunRPC]
