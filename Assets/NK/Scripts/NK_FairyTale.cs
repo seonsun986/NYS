@@ -13,8 +13,6 @@ public class NK_FairyTale : MonoBehaviour
     public List<Transform> objs;
     public GameObject stage;
 
-    bool isOpen = false;
-
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -32,43 +30,27 @@ public class NK_FairyTale : MonoBehaviour
                 teacherUI.SetActive(true);
             }
         }
-
-        //fairyTaleUI.transform.localScale = new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
         // 책이 거의 다 펼쳐지면 활성화
-        if (book.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f && !isOpen)
+        if (book.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f)
         {
             stage.SetActive(true);
             fairyTaleUI.SetActive(true);
             fairyTaleObject.SetActive(true);
-            //fairyTaleObject.transform.localScale = new Vector3(0, 0, 0);
-            //isOpen = true;
         }
-
-        // 크기 변형 (수정 중)
-/*        if (isOpen)
-        {
-            if (fairyTaleUI.transform.localScale.x <= 1f)
-            {
-                fairyTaleUI.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
-            }
-            if (fairyTaleObject.transform.localScale.x <= 1f)
-            {
-                fairyTaleObject.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
-            }
-        }*/
     }
 
     private void OnDisable()
     {
-        // 페어리테일 매니저가 꺼지면 UI, 오브젝트들 모두 꺼지도록
+        // 페어리테일 매니저가 꺼지면 UI, 무대, 오브젝트들 모두 꺼지도록
         fairyTaleUI.SetActive(false);
         fairyTaleObject.SetActive(false);
         book.gameObject.SetActive(false);
+        stage.SetActive(false);
 
         if (GameManager.Instance.photonView.IsMine)
         {
