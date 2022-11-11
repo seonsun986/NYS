@@ -94,8 +94,18 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             {
                 bgImage[i].SetActive(false);
             }
-            // 주방만 키기
-            bgImage[3].SetActive(true);
+            // 전구배경만 키기
+            bgImage[4].SetActive(true);
+        }
+        else if(currentPage >= 19 && currentPage <=21)
+        {
+            for (int i = 0; i < bgImage.Count; i++)
+            {
+                bgImage[i].SetActive(false);
+            }
+            // 초록왕국 배경만 키기
+
+            bgImage[10].SetActive(true);
         }
 
        
@@ -262,28 +272,37 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         pages[currentPage - 1].SetActive(true);
         currentPage -= 1;
     }
-
+    RaycastHit passHit;
     public void OnPassPopUp()
     {
         PassPopUp.SetActive(true);
         pass = true;
 
-        GameObject selectBtn = EventSystem.current.currentSelectedGameObject;
-        string selectBtnName = selectBtn.name.Substring(0, selectBtn.name.Length - 3);
-        selectBtn.transform.parent.gameObject.SetActive(false);
-        for (int i = 0; i < selectObject.Count; i++)
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if(Physics.Raycast(ray, out passHit))
         {
-            if (selectBtnName == selectObject[i].name)
+            GameObject selectBtn = passHit.transform.gameObject;
+            string selectBtnName = selectBtn.name.Substring(0, selectBtn.name.Length - 3);
+
+            selectBtn.transform.parent.gameObject.SetActive(false);
+            for (int i = 0; i < selectObject.Count; i++)
             {
-                selectObj = selectObject[i];
-                if (selectBtnName == "Rabbit") selectObj.transform.GetChild(1).localPosition = new Vector3(0, 0.024f, 0.24f);
-                selectObj.SetActive(true);
+                if (selectBtnName == selectObject[i].name)
+                {
+                    selectObj = selectObject[i];
+                    if (selectBtnName == "Rabbit") selectObj.transform.GetChild(1).localPosition = new Vector3(0, 0.024f, 0.24f);
+                    selectObj.SetActive(true);
+                }
             }
+
         }
+
+      
 
     }
 
     GameObject selectObj;
+    RaycastHit failHit;
     // 책을 골랐을 경우 책이 열리고 나서 고래가 떴으면 좋겠다!
     float currentTime;
     public float bookOpenTime;
@@ -293,32 +312,39 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         FailPopUp.SetActive(true);
         // 해당 FailBtn과 관련된 애니메이션 재생하자!
         // 그러러면 일단 내가 선택한 버튼이 뭔지 알아야한다 
-        GameObject selectBtn = EventSystem.current.currentSelectedGameObject;
-        string selectBtnName = selectBtn.name.Substring(0, selectBtn.name.Length -3);
-        // 버튼을 모두 끈다
-        selectBtn.transform.parent.gameObject.SetActive(false);
-        for(int i=0;i<selectObject.Count;i++)
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if(Physics.Raycast(ray, out failHit))
         {
-            if(selectBtnName == selectObject[i].name)
+            GameObject selectBtn = failHit.transform.gameObject;
+            string selectBtnName = selectBtn.name.Substring(0, selectBtn.name.Length - 3);
+
+            // 버튼을 모두 끈다
+            selectBtn.transform.parent.gameObject.SetActive(false);
+            for (int i = 0; i < selectObject.Count; i++)
             {
-                selectObj = selectObject[i];
-                if (selectBtnName == "Bear") selectObj.transform.GetChild(1).localPosition = new Vector3(0, 2.22f, 2);
-                else if (selectBtnName == "Tiger") selectObj.transform.GetChild(1).localPosition = new Vector3(0, 0.68f, 1.81f);
-                else if(selectBtnName == "Book")
+                if (selectBtnName == selectObject[i].name)
                 {
-                    bookWorldOpen = true;
-                }
-                if(selectObj.transform.childCount > 1)
-                {
-                    if (selectObj.transform.GetChild(1).GetComponent<Rigidbody>() != null)
+                    selectObj = selectObject[i];
+                    if (selectBtnName == "Bear") selectObj.transform.GetChild(1).localPosition = new Vector3(0, 2.22f, 2);
+                    else if (selectBtnName == "Tiger") selectObj.transform.GetChild(1).localPosition = new Vector3(0, 0.68f, 1.81f);
+                    else if (selectBtnName == "Book")
                     {
-                        selectObj.transform.GetChild(1).GetComponent<Rigidbody>().velocity = Vector3.zero;
+                        bookWorldOpen = true;
                     }
+                    if (selectObj.transform.childCount > 1)
+                    {
+                        if (selectObj.transform.GetChild(1).GetComponent<Rigidbody>() != null)
+                        {
+                            selectObj.transform.GetChild(1).GetComponent<Rigidbody>().velocity = Vector3.zero;
+                        }
+                    }
+
+                    selectObj.SetActive(true);
                 }
-                
-                selectObj.SetActive(true);
             }
         }
+
+        
     }
 
     public void PassTrue()
@@ -368,9 +394,18 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             pages.Insert(i + 10, selectPages.transform.GetChild(i).gameObject);
         }
 
-        // 선택한게 버섯일 때
-        if(selectBtnName == "Mushroom")
+        // 모든 뒷 배경 끄기
+        for (int i = 0; i < bgImage.Count; i++)
         {
+            bgImage[i].SetActive(false);
+        }
+
+        // 선택한게 버섯일 때
+        if (selectBtnName == "Mushroom")
+        {           
+            // 우주배경만 키기
+            bgImage[5].SetActive(true);
+
             // 남동생일 때
             if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
             {
@@ -399,6 +434,10 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         // 선택한게 계란일 때
         else if (selectBtnName == "Egg")
         {
+
+            // 우주배경만 키기
+            bgImage[5].SetActive(true);
+
             // 남동생일 때
             if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
             {
@@ -430,6 +469,12 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         // 선택한게 시금치일 때
         else if (selectBtnName == "Spinach")
         {
+
+
+            // 숲배경만 키기
+            bgImage[6].SetActive(true);
+
+
             // 남동생일 때
             if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
             {
@@ -461,6 +506,11 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         // 선택한게 양파일 때
         else if (selectBtnName == "Onion")
         {
+
+            // 바디배경만 키기
+            bgImage[7].SetActive(true);
+
+
             // 남동생일 때
             if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
             {
@@ -492,6 +542,10 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         // 선택한게 밥일 때
         else if (selectBtnName == "Rice")
         {
+
+            // 눈 배경만 키기
+            bgImage[8].SetActive(true);
+
             // 남동생일 때
             if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
             {
@@ -523,6 +577,11 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         // 선택한게 감자일 때
         else
         {
+
+            // 사막배경만 키기
+            bgImage[9].SetActive(true);
+
+
             // 남동생일 때
             if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
             {
@@ -552,8 +611,8 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         }
 
 
-            // NextPage 함수 그냥 여기서 실행함
-            pages[currentPage].SetActive(false);
+        // NextPage 함수 그냥 여기서 실행함
+        pages[currentPage].SetActive(false);
         pages[currentPage + 1].SetActive(true);
         currentPage += 1;
     }

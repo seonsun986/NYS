@@ -9,40 +9,119 @@ public class SH_Page5 : MonoBehaviour
         
     }
 
-    public GameObject box;
-    public GameObject ball;
-    public GameObject book;
-
+    public Animation box;
+    public Animation ball;
+    public Animator book;
     RaycastHit hitInfo;
-        int i = 0;
+
+    bool boxB;
+    bool ballB;
+    bool bookB;
     void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out hitInfo))
+        if (Physics.Raycast(ray, out hitInfo))
         {
-
-            if(hitInfo.transform.name == "Box")
+            // 박스에 마우스 올려뒀을 때
+            if(hitInfo.transform.name == "BoxBtn")
             {
-                if (i < 1)
+                if(boxB == false)
                 {
-                    // 박스 크기 키우기
-                    ScaleUp(box, 0.00015f, "x");
-                    ScaleUp(box, 0.00015f, "y");
-                    ScaleUp(box, 0.00015f, "z");
-                    i++;
+                    box.Play("BoxSizeUp");
+                    boxB = true;
                 }
 
+                // 이때 마우스 누르면 함수 실행
+                if(Input.GetMouseButtonDown(0))
+                {
+                    SH_ChildrenFairyManager.Instance.OnFailPopUp();
+                }
+
+                // 책, 공 작게 해주기
+                book.enabled = false;
+                book.gameObject.transform.localScale = new Vector3(1, 1, 1);
+                ball.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                bookB = false;
+                ballB = false;
+                
             }
+
+            // 책에 마우스 올려뒀을 때
+            else if (hitInfo.transform.name == "BookBtn")
+            {
+                
+                if(bookB == false)
+                {
+                    book.Rebind();
+                    book.enabled = true;
+                    bookB = true;
+                }
+                else
+                {
+                    return;
+                }
+
+                // 이때 마우스 누르면 함수 실행
+                if (Input.GetMouseButtonDown(0))
+                {
+                    SH_ChildrenFairyManager.Instance.OnFailPopUp();
+                }
+                // 박스, 공 작게 해주기
+                ball.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                box.gameObject.transform.localScale = new Vector3(0.0001034214f, 0.0001034214f, 0.0001034214f);
+                ballB = false;
+                boxB = false;
+            }
+
+            // 공에 마우스 올려뒀을 때
+            else if(hitInfo.transform.name == "BallBtn")
+            {
+                if(ballB == false)
+                {
+                    ball.Play("BallSizeUp");
+                    ballB = true;
+                }
+
+                // 이때 마우스 누르면 함수 실행
+                if (Input.GetMouseButtonDown(0))
+                {
+                    SH_ChildrenFairyManager.Instance.OnPassPopUp();
+                }
+
+                // 박스, 책 작게 해주기
+                box.gameObject.transform.localScale = new Vector3(0.0001034214f, 0.0001034214f, 0.0001034214f);
+                book.enabled = false;
+                book.gameObject.transform.localScale = new Vector3(1, 1, 1);
+                boxB = false;
+                bookB = false;
+            }
+
+            // 다른 거에 부딪혔을 때 다 작게 해준다
+            else
+            {
+                ball.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                box.gameObject.transform.localScale = new Vector3(0.0001034214f, 0.0001034214f, 0.0001034214f);
+                book.enabled = false;
+                book.gameObject.transform.localScale = new Vector3(1, 1, 1);
+                ballB = false;
+                boxB = false;
+                bookB = false;
+            }    
+
+        }
+
+        // 아무것도 부딪히지 않았을 때도 다 작게 해준다
+        else
+        {
+            ball.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            box.gameObject.transform.localScale = new Vector3(0.0001034214f, 0.0001034214f, 0.0001034214f);
+            book.enabled = false;
+            book.transform.localScale = new Vector3(1, 1, 1);
+            ballB = false;
+            boxB = false;
+            bookB = false;
         }
     }
 
-
-    public void ScaleUp(GameObject go, float scaleSize, string axis = "")
-    {
-        Hashtable hash = iTween.Hash(axis, scaleSize,
-            "time", 0.3f); 
-
-        iTween.ScaleTo(go, hash);
-    }
 
 }
