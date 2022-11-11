@@ -16,7 +16,6 @@ public class NK_BookShelfManager : MonoBehaviour
     public List<Texture2D> images = new List<Texture2D>();
     public GameObject booksParent;
     public GameObject bookFactory;
-    public float spacing = 4;
     // 책 세부 내용 보기에 필요한 속성
     public GameObject detailUI;
     public Text detailTitle;
