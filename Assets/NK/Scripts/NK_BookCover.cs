@@ -16,6 +16,8 @@ public class NK_BookCover : MonoBehaviour
     public InputField InputtxtSize;
     // 텍스트 컬러 반영된 이미지
     public Image txtcolorImage;
+    // 배경 컬러 반영된 이미지
+    public Image bgColorImage;
     // 텍스트 컬러 hex Color List
     public List<string> hexColor;
     // Object Instantiate를 위한 List
@@ -30,6 +32,9 @@ public class NK_BookCover : MonoBehaviour
 
     private void Start()
     {
+        // 색, 폰트, 크기, 팔레트 켜짐 초기화
+
+
         SH_InputField inputText = inputField.GetComponent<SH_InputField>();
 
         SH_EditorManager.Instance.active_InputField = inputText;
@@ -94,6 +99,19 @@ public class NK_BookCover : MonoBehaviour
             palette.SetActive(true);
         }
     }
+    
+    public GameObject bgPalette;
+    public void BGPaletteOnOff()
+    {
+        if (bgPalette.activeSelf == true)
+        {
+            bgPalette.SetActive(false);
+        }
+        else
+        {
+            bgPalette.SetActive(true);
+        }
+    }
 
     public void InstantiateObj()
     {
@@ -116,6 +134,7 @@ public class NK_BookCover : MonoBehaviour
         // 책 표지 색상 변경
         Color color;
         ColorUtility.TryParseHtmlString(hexColor[btnNum], out color);
+        bgColorImage.color = color;
         bookCoverColor.color = color;
     }
 }

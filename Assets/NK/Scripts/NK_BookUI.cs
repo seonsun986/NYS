@@ -7,37 +7,49 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class NK_BookUI : MonoBehaviourPun
 {
-    public enum Book
-    {
-        양치기소년,
-        신데렐라,
-        오즈의마법사,
-        용이야기,
-    }
-
-    public Book selectedBook = Book.양치기소년;
+    public List<string> titles = new List<string>();
     public GameObject bookUI;
     public GameObject fairyTaleManager;
     public List<PageInfo> objs;
     public GameObject textFactory;
     public Transform fairyTaleUI;
     public Transform fairyTaleObject;
+    public GameObject booksParent;
+    public GameObject bookFactory;
 
     public AudioSource audioSource;
 
     Dictionary<int, List<PageInfo>> sceneObjects = new Dictionary<int, List<PageInfo>>();
 
-    void SelectBook(Book book)
+    private void Start()
     {
-        pageNum = 0;
-        selectedBook = book;
-        print(book);
+        // 동화책 제목 추가하면
+        titles.Add("양치기 소년");
+        titles.Add("신데렐라");
+        titles.Add("오즈의 마법사");
+        for (int i = 0; i < titles.Count; i++)
+        {
+            // 제목 추가된 개수만큼 동화책 생성
+            GameObject book = Instantiate(bookFactory, booksParent.transform);
+            // JSON에서 불러온 제목으로 텍스트 지정
+            book.GetComponentInChildren<Text>().text = titles[i];
+            book.GetComponent<Button>().onClick.AddListener(ClickBook);
+        }
     }
 
+    public void ClickBook()
+    {
+        pageNum = 0;
+        GameObject book = EventSystem.current.currentSelectedGameObject;
+        photonView.RPC("RPCSetActive", RpcTarget.All);
+        ClickBook("Book1");
+        //ClickBook(book.GetComponentInChildren<Text>().text);
+        print(book.GetComponentInChildren<Text>().text);
+    }
+/*
     public void ClickBook1()
     {
         SelectBook(Book.양치기소년);
@@ -61,7 +73,7 @@ public class NK_BookUI : MonoBehaviourPun
         SelectBook(Book.용이야기);
         bookUI.SetActive(false);
         fairyTaleManager.SetActive(true);
-    }
+    }*/
 
     [PunRPC]
     private void RPCSetActive()
