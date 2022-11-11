@@ -1001,7 +1001,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1993271466395474484, guid: a8d32d112de34774db526dce14324c06, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993271466395474484, guid: a8d32d112de34774db526dce14324c06, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1430957332}
+    - target: {fileID: 1993271466395474484, guid: a8d32d112de34774db526dce14324c06, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickCreateBook
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993271466395474484, guid: a8d32d112de34774db526dce14324c06, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: YJ_UIManager_MyRoom, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993271466395474484, guid: a8d32d112de34774db526dce14324c06, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1993271466395474485, guid: a8d32d112de34774db526dce14324c06, type: 3}
       propertyPath: m_Pivot.x
