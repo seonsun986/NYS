@@ -15,9 +15,9 @@ public class YJ_RoomListAvatar : YJ_AvatarSet
 
     public override void Start()
     {
+        base.Start();
         if (code == null)
         {
-            base.Start();
 
             if (photonView.IsMine)
             {   // 현재 방에 입장해있는사람
@@ -26,8 +26,8 @@ public class YJ_RoomListAvatar : YJ_AvatarSet
                 code = this.transform.GetComponentInParent<YJ_RoomText>().createRoomerCode;
 
                 userInfo = YJ_DataManager.instance.myInfo;
-                GetComponent<NK_PlayerMove>().SetAnim(int.Parse(userInfo.animal));
-                photonView.RPC("RpcMemberId", RpcTarget.All, code);
+                GetComponent<NK_PlayerMove>().SetListAnim(int.Parse(userInfo.animal));
+                photonView.RPC("RpcListAvt", RpcTarget.All, code);
                 //AvtSet();
 
             }
@@ -37,7 +37,7 @@ public class YJ_RoomListAvatar : YJ_AvatarSet
         }
     }
     [PunRPC]
-    void RpcMemberId(string memberId)
+    void RpcListAvt(string memberId)
     {
         if (userInfo.memberCode != null && code.Length > 0) return;
 

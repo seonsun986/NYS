@@ -48,10 +48,31 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
 
     #region 방목록
     public GameObject roomList;
+    public RectTransform roomPos1;
+    public RectTransform roomPos2;
+    private bool isHide = false;
+    public bool IsHide
+    {
+        get
+        {
+            if (isHide)
+                isHide = false;
+            else
+                isHide = true;
+            return isHide;
+        }
+    }
 
     public void RoomList()
     {
-        roomList.SetActive(!roomList.activeSelf);
+        if (!IsHide)
+        {
+            roomList.GetComponent<RectTransform>().anchoredPosition = roomPos2.anchoredPosition;
+        }
+        else
+        {
+            roomList.GetComponent<RectTransform>().anchoredPosition = roomPos1.anchoredPosition;
+        }
     }
     #endregion
 
@@ -59,7 +80,7 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
     public GameObject auIn;
     public void AUIn()
     {
-        
+
         auIn.SetActive(!auIn.activeSelf);
     }
 
@@ -97,7 +118,7 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
     // 방만들기 버튼을 눌렀을때
     public void CreateRoom()
     {
-        YJ_DataManager.CreateRoomInfo.roomName = roomName.text; 
+        YJ_DataManager.CreateRoomInfo.roomName = roomName.text;
         YJ_DataManager.CreateRoomInfo.roomPw = roomPw.text;
         int.TryParse(roomNumber.text, out YJ_DataManager.CreateRoomInfo.roomNumber);
         YJ_DataManager.CreateRoomInfo.roomType = roomType;
@@ -122,7 +143,7 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
             type2.interactable = false;
             type3.interactable = false;
         }
-        else if(!type1.isOn)
+        else if (!type1.isOn)
         {
             roomType = 0;
             type2.interactable = true;

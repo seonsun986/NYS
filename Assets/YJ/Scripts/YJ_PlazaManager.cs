@@ -146,7 +146,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         roomSet = PhotonNetwork.Instantiate("YJ/RoomItem", new Vector3(0, 0, 0), Quaternion.identity);
 
         // 룸 리스트를 한번 띄워야 텍스트가 갱신됨
-        roomList.SetActive(true);
+        //roomList.SetActive(true);
         //roomList.SetActive(false);
 
 

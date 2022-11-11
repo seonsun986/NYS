@@ -15,6 +15,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         Move,
         Sit,
         HandUp,
+        List,
     }
 
     public State state;
@@ -116,6 +117,13 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         state = State.Idle;
     }
 
+    public void SetListAnim(int animalId)
+    {
+        print("손흔들어");
+        anim = transform.GetChild(animalId).GetComponent<Animator>();
+        state = State.List;
+    }
+
     // 애니메이션 조절할 bool값
     bool moveBool = false;
     Vector3 movePoint;
@@ -159,7 +167,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                 case State.Move:
                     //anim.SetBool("Move", moveBool);
                     photonView.RPC("RpcSetBool", RpcTarget.All, "Move", moveBool);
-                    if (GameObject.Find("CreateRoomSet") != null || GameObject.Find("RoomList") != null)
+                    if (GameObject.Find("CreateRoomSet") != null)// || GameObject.Find("RoomList") != null)
                     {
                         return;
                     }
@@ -197,6 +205,9 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                     {
                         state = State.Move;
                     }
+                    break;
+                case State.List:
+                    photonView.RPC("RpcSetBool", RpcTarget.All, "ListHi", true);
                     break;
 
             }

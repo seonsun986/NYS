@@ -49,6 +49,8 @@ public class YJ_AvatarSet : MonoBehaviourPun
         avt.SetActive(true);
 
         SetItemParent();
+        print(avt);
+        print(avtMat);
         //¸öÃ¼
         avt.transform.GetChild(1).transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material = avtMat[int.Parse(userInfo.animal), int.Parse(userInfo.material)];
 
