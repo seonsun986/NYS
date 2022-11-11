@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -48,6 +49,32 @@ public class NK_BookShelfManager : MonoBehaviour
             book.GetComponent<Button>().onClick.AddListener(ClickBook);
         }
     }
+
+    // 동화책 목록가져오기
+    public void Login_2_API()
+    {
+        YJ_HttpRequester requester = new YJ_HttpRequester();
+        requester.url = "http://43.201.10.63:8080/tale/mylist";
+        requester.requestType = RequestType.GET;
+        requester.headers = new Dictionary<string, string>();
+        requester.headers["accesstoken"] = YJ_DataManager.instance.myInfo.accessToken;
+        requester.onComplete = (handler) => {
+
+            JObject jsonData = JObject.Parse(handler.downloadHandler.text);
+
+            UserInfo myInfo = YJ_DataManager.instance.myInfo;
+            myInfo.animal = jsonData["data"]["avatar"]["animal"].ToString();
+            myInfo.material = jsonData["data"]["avatar"]["material"].ToString();
+            myInfo.objectName = jsonData["data"]["avatar"]["objectName"].ToString();
+            myInfo.nickname = jsonData["data"]["member"]["nickname"].ToString();
+            myInfo.memberRole = jsonData["data"]["member"]["memberRole"].ToString();
+            myInfo.memberCode = jsonData["data"]["member"]["memberCode"].ToString();
+
+            GameObject.Find("ConnectionManager").GetComponent<YJ_ConnectionManager>().OnSubmit();
+        };
+        YJ_HttpManager.instance.SendRequest(requester);
+    }
+
 
     // Update is called once per frame
     void Update()

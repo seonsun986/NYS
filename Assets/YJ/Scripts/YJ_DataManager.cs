@@ -5,26 +5,6 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 
 
-
-
-#region 받아올 유저 정보
-[System.Serializable]
-public static class UserInfo_e
-{
-    // 캐릭터정보
-    public static string animal;
-    public static string material;
-    public static string objectName;
-
-    // 기본정보
-    public static string photonId;
-    public static string accessToken;
-    public static string memberName;
-    public static string nickname;
-    public static string memberRole;
-}
-#endregion
-
 public class UserInfo
 {
     // 캐릭터정보
@@ -40,6 +20,12 @@ public class UserInfo
     public string memberRole;
 }
 
+public class MyBookList
+{
+    public string id;
+    public string title;
+    public string createAt;
+}
 
 public class YJ_DataManager : MonoBehaviour
 {
@@ -48,6 +34,9 @@ public class YJ_DataManager : MonoBehaviour
 
     // 내정보
     public UserInfo myInfo = new UserInfo();
+    
+    // 내 책 목록
+    public MyBookList myBookList = new MyBookList();
 
     // 로그인 정보가 모두 들어와서 성공했을때 판단할 것
     public int loginDone = 0;

@@ -5,9 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class YJ_UIManager_MyRoom : MonoBehaviour
 {
+    public GameObject T_BookBtn;
+    public GameObject C_BookBtn;
+
     void Start()
     {
-        
+        if (YJ_DataManager.instance.myInfo.memberRole == "TEACHER")
+        {
+            C_BookBtn.SetActive(false);
+        }
+        else
+        {
+            T_BookBtn.SetActive(false);
+        }
     }
 
     void Update()
