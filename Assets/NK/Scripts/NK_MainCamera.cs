@@ -5,8 +5,8 @@ using UnityEngine;
 public class NK_MainCamera : MonoBehaviour
 {
     public GameObject fairyTaleManager;
+    public Vector3 fairyTalePosition;
     GameObject player;
-    Vector3 fairyTalePosition = new Vector3(0, 0.5f, -10);
     void Start()
     {
 
