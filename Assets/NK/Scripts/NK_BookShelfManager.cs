@@ -150,12 +150,11 @@ public class NK_BookShelfManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         // 화면 크기의 텍스쳐 생성
-        Texture2D screenTex = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+        Texture2D screenTex = new Texture2D(310, 410, TextureFormat.RGB24, false);
         // 캡쳐할 영역 지정
-        Rect area = new Rect(450f, 370f, 350f, 430f);
+        Rect area = new Rect(485f, 400f, 310f, 410f);
         // 텍스쳐 픽셀에 지정
         screenTex.ReadPixels(area, 0, 0);
-        Texture2D resizeTexture = new Texture2D((int)area.width, (int)area.height, TextureFormat.RGB24, false);
         
         // 폴더가 존재하지 않으면 새로 생성
         if (Directory.Exists(path) == false)
@@ -168,6 +167,11 @@ public class NK_BookShelfManager : MonoBehaviour
         File.WriteAllBytes(fileName, screenTex.EncodeToPNG());
         // 텍스쳐 메모리 해제
         Destroy(screenTex);
+    }
+
+    public void ExitBookShelf()
+    {
+        SceneManager.LoadScene("MyRoomScene");
     }
 
     public void ExitDetail()
