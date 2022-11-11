@@ -52,6 +52,8 @@ public class YJ_AvatarSet : MonoBehaviourPun
         //몸체
         avt.transform.GetChild(1).transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material = avtMat[int.Parse(userInfo.animal), int.Parse(userInfo.material)];
 
+        print("적용끝");
+
         //objectName(Json정보) 정보를 Parsing 해야한다.
         JObject jsonData = JObject.Parse(userInfo.objectName);
         bagId = jsonData["bag"].ToObject<int>();
