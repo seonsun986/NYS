@@ -6,6 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.TextCore.Text;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 public class YJ_PlazaManager1 : MonoBehaviourPunCallbacks
 {
@@ -49,7 +50,8 @@ public class YJ_PlazaManager1 : MonoBehaviourPunCallbacks
     public void OutPlaza()
     {
         // ±¤Àå¾À ¹æ ³ª°¡±â
-        PhotonNetwork.LeaveRoom();
+        //PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("MyRoomScene");
     }
 
 

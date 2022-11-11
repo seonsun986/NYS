@@ -44,6 +44,13 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         
     }
 
+    bool mushroomB;
+    bool eggB;
+    bool spinachB;
+    bool riceB;
+    bool onionB;
+    bool potatoB;
+
     void Update()
     {     
         if (bookWorldOpen == true)
@@ -108,7 +115,76 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             bgImage[10].SetActive(true);
         }
 
-       
+        // 싫어하는 음식 선택하고 나서
+        // 버섯
+        if(mushroomB == true && currentPage >= 12 && currentPage <=17)
+        {
+            for (int i = 0; i < bgImage.Count; i++)
+            {
+                bgImage[i].SetActive(false);
+            }
+
+            // 우주배경 켜주기
+            bgImage[5].SetActive(true);
+        }
+        // 달걀
+        else if(eggB== true && currentPage >= 12 && currentPage <= 17)
+        {
+            for (int i = 0; i < bgImage.Count; i++)
+            {
+                bgImage[i].SetActive(false);
+            }
+
+            // 우주배경 켜주기
+            bgImage[5].SetActive(true);
+        }
+        //시금치
+        else if (spinachB == true && currentPage >= 12 && currentPage <= 17)
+        {
+            for (int i = 0; i < bgImage.Count; i++)
+            {
+                bgImage[i].SetActive(false);
+            }
+
+            // 우주배경 켜주기
+            bgImage[6].SetActive(true);
+        }
+        //밥
+        else if (riceB == true && currentPage >= 12 && currentPage <= 17)
+        {
+            for (int i = 0; i < bgImage.Count; i++)
+            {
+                bgImage[i].SetActive(false);
+            }
+
+            // 눈배경 켜주기
+            bgImage[8].SetActive(true);
+        }
+
+        // 양파
+        else if (onionB == true && currentPage >= 12 && currentPage <= 17)
+        {
+            for (int i = 0; i < bgImage.Count; i++)
+            {
+                bgImage[i].SetActive(false);
+            }
+
+            // 바다배경 켜주기
+            bgImage[7].SetActive(true);
+        }
+        // 감자
+        else if (potatoB == true && currentPage >= 12 && currentPage <= 17)
+        {
+            for (int i = 0; i < bgImage.Count; i++)
+            {
+                bgImage[i].SetActive(false);
+            }
+
+            // 사막배경 켜주기
+            bgImage[9].SetActive(true);
+        }
+
+
     }
 
     public GameObject broBtn;
@@ -398,17 +474,11 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                 pages.Insert(i + 10, selectPages.transform.GetChild(i).gameObject);
             }
 
-            // 모든 뒷 배경 끄기
-            for (int i = 0; i < bgImage.Count; i++)
-            {
-                bgImage[i].SetActive(false);
-            }
+            
 
             // 선택한게 버섯일 때
             if (selectBtnName == "Mushroom")
-            {
-                // 우주배경만 키기
-                bgImage[5].SetActive(true);
+            {             
 
                 // 남동생일 때
                 if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
@@ -434,13 +504,15 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[20].GetComponent<AudioSource>().clip = audioClips[27];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[29];
                 }
+
+                mushroomB = true;
+
             }
+
             // 선택한게 계란일 때
             else if (selectBtnName == "Egg")
             {
 
-                // 우주배경만 키기
-                bgImage[5].SetActive(true);
 
                 // 남동생일 때
                 if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
@@ -469,14 +541,14 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[21].GetComponent<AudioSource>().clip = audioClips[29];
 
                 }
+
+                eggB = true;
+
             }
+
             // 선택한게 시금치일 때
             else if (selectBtnName == "Spinach")
             {
-
-
-                // 숲배경만 키기
-                bgImage[6].SetActive(true);
 
 
                 // 남동생일 때
@@ -505,14 +577,14 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[21].GetComponent<AudioSource>().clip = audioClips[29];
 
                 }
+
+                spinachB = true;
+
             }
 
             // 선택한게 양파일 때
             else if (selectBtnName == "Onion")
             {
-
-                // 바디배경만 키기
-                bgImage[7].SetActive(true);
 
 
                 // 남동생일 때
@@ -541,14 +613,15 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[20].GetComponent<AudioSource>().clip = audioClips[27];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[29];
                 }
+                onionB = true;
+
             }
 
             // 선택한게 밥일 때
+
             else if (selectBtnName == "Rice")
             {
 
-                // 눈 배경만 키기
-                bgImage[8].SetActive(true);
 
                 // 남동생일 때
                 if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
@@ -576,14 +649,13 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[20].GetComponent<AudioSource>().clip = audioClips[27];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[29];
                 }
+                riceB = true;
             }
 
             // 선택한게 감자일 때
+
             else
             {
-
-                // 사막배경만 키기
-                bgImage[9].SetActive(true);
 
 
                 // 남동생일 때
@@ -612,13 +684,16 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[20].GetComponent<AudioSource>().clip = audioClips[27];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[29];
                 }
+                potatoB = true;
             }
 
+            // NextPage 함수 그냥 여기서 실행함
+            pages[currentPage].SetActive(false);
+            pages[currentPage + 1].SetActive(true);
+            currentPage += 1;
+
         }
-        // NextPage 함수 그냥 여기서 실행함
-        pages[currentPage].SetActive(false);
-        pages[currentPage + 1].SetActive(true);
-        currentPage += 1;
+      
     }
 
     public void TryNo()
