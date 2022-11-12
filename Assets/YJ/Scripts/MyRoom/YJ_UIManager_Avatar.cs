@@ -7,7 +7,7 @@ public class YJ_UIManager_Avatar : MonoBehaviour
 {
     void Start()
     {
-        
+        animNum = int.Parse(YJ_DataManager.instance.myInfo.animal);
     }
 
     void Update()
