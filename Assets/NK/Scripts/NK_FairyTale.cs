@@ -17,6 +17,7 @@ public class NK_FairyTale : MonoBehaviour
     void OnEnable()
     {
         book.gameObject.SetActive(true);
+        NK_UIController.instance.ClickControl();
 
         if (GameManager.Instance.photonView.IsMine)
         {
