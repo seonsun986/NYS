@@ -46,4 +46,11 @@ public class YJ_UIManager_MyRoom : MonoBehaviour
         SceneManager.LoadScene("EditorChildren");
     }
     #endregion
+
+    #region 선생님 책 선택 버튼
+    public void TeacherBook()
+    {
+        SceneManager.LoadScene("BookShelfScene");
+    }
+    #endregion
 }

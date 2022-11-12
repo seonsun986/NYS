@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static NK_Emotion;
 
 public class NK_BookShelfManager : MonoBehaviour
 {
@@ -34,11 +33,17 @@ public class NK_BookShelfManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        TaleSet_API();
+
         path = Application.dataPath + "/BookCover/";
         // 동화책 제목 추가하면
-        titles.Add("난 콩 시러!!!");
-        titles.Add("난 버섯 시러!!!");
-        titles.Add("난 오이 시러!!!");
+        for (int j = 0; j < data.taleList.Count; j++)
+        {
+            titles.Add(data.taleList[j].title);
+        }
+        //titles.Add("난 콩 시러!!!");
+        //titles.Add("난 버섯 시러!!!");
+        //titles.Add("난 오이 시러!!!");
         for (int i = 0; i < titles.Count; i++)
         {
             // 제목 추가된 개수만큼 동화책 생성
@@ -49,8 +54,9 @@ public class NK_BookShelfManager : MonoBehaviour
         }
     }
 
+    Data data;
     // 동화책 목록가져오기
-    public void Login_2_API()
+    public void TaleSet_API()
     {
         YJ_HttpRequester requester = new YJ_HttpRequester();
         requester.url = "http://43.201.10.63:8080/tale/mylist";
@@ -59,21 +65,85 @@ public class NK_BookShelfManager : MonoBehaviour
         requester.headers["accesstoken"] = YJ_DataManager.instance.myInfo.accessToken;
         requester.onComplete = (handler) => {
 
-            JObject jsonData = JObject.Parse(handler.downloadHandler.text);
+            Debug.Log("자 동화목록 받아왔어! \n" + handler.downloadHandler.text);
 
-            UserInfo myInfo = YJ_DataManager.instance.myInfo;
-            myInfo.animal = jsonData["data"]["avatar"]["animal"].ToString();
-            myInfo.material = jsonData["data"]["avatar"]["material"].ToString();
-            myInfo.objectName = jsonData["data"]["avatar"]["objectName"].ToString();
-            myInfo.nickname = jsonData["data"]["member"]["nickname"].ToString();
-            myInfo.memberRole = jsonData["data"]["member"]["memberRole"].ToString();
-            myInfo.memberCode = jsonData["data"]["member"]["memberCode"].ToString();
+            Title title = JsonUtility.FromJson<Title>(handler.downloadHandler.text);
+            data = title.data;
+            TaleList taleList = new TaleList();
+            for (int i = 0; i < data.taleList.Count; i++)
+            {
+                taleList.id = data.taleList[i].id;
+                taleList.memberCode = data.taleList[i].memberCode;
+                taleList.title = data.taleList[i].title;
+                taleList.createAt = data.taleList[i].createAt;
 
-            GameObject.Find("ConnectionManager").GetComponent<YJ_ConnectionManager>().OnSubmit();
+                data.taleList.Add(taleList);
+            }
+
+            TaleInfo taleInfo = new TaleInfo();
+            for (int j = 0; j < data.taleInfo.Count; j++)
+            {
+                taleInfo.id = data.taleInfo[j].id;
+                taleInfo.fontStyle = data.taleInfo[j].fontStyle;
+                taleInfo.fontPosition_x = data.taleInfo[j].fontPosition_x;
+                taleInfo.fontPosition_y = data.taleInfo[j].fontPosition_y;
+                taleInfo.fontSize = data.taleInfo[j].fontSize;
+                taleInfo.fontColor = data.taleInfo[j].fontColor;
+                taleInfo.coverColor = data.taleInfo[j].coverColor;
+                taleInfo.sticker = data.taleInfo[j].sticker;
+                taleInfo.stickerPosition_x = data.taleInfo[j].stickerPosition_x;
+                taleInfo.stickerPosition_y = data.taleInfo[j].stickerPosition_y;
+                taleInfo.thumbNail = data.taleInfo[j].thumbNail;
+
+                data.taleInfo.Add(taleInfo);
+            }
+
+
+            //GameObject.Find("ConnectionManager").GetComponent<YJ_ConnectionManager>().OnSubmit();
         };
         YJ_HttpManager.instance.SendRequest(requester);
     }
 
+    //[SerializeField]
+    [Serializable]
+    public class Title
+    {
+        public string status;
+        public string massage;
+        public Data data;
+    }
+
+    [SerializeField]
+    public class Data
+    {
+        public List<TaleList> taleList;
+        public List<TaleInfo> taleInfo;
+    }
+
+    [SerializeField]
+    public class TaleList
+    {
+        public string id;
+        public string memberCode;
+        public string title;
+        public string createAt;
+    }
+
+    [SerializeField]
+    public class TaleInfo
+    {
+        public string id;
+        public string fontStyle;
+        public string fontPosition_x;
+        public string fontPosition_y;
+        public string fontSize;
+        public string fontColor;
+        public string coverColor;
+        public string sticker;
+        public string stickerPosition_x;
+        public string stickerPosition_y;
+        public string thumbNail;
+    }
 
     // Update is called once per frame
     void Update()
