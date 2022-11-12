@@ -30,11 +30,27 @@ public class NK_BookCover : MonoBehaviour
         instance = this;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         // 색, 폰트, 크기, 팔레트 켜짐 초기화
+        palette.SetActive(false);
+        bgPalette.SetActive(false);
+        SetInfo(0, 30, Color.black);
+        bgColorImage.color = Color.white;
+        bookCoverColor.color = Color.white;
+        Transform[] childList = bookCover.GetComponentsInChildren<Transform>();
 
+/*        if (childList != null && childList.Length > 3)
+        {
+            for (int i = 3; i < childList.Length; i++)
+            {
+                Destroy(childList[i].gameObject);
+            }
+        }*/
+    }
 
+    private void Start()
+    {
         SH_InputField inputText = inputField.GetComponent<SH_InputField>();
 
         SH_EditorManager.Instance.active_InputField = inputText;

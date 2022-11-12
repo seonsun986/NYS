@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class NK_UIController : MonoBehaviourPun
 {
+    public static NK_UIController instance;
     public List<GameObject> seats;
 
     #region IsMute
@@ -52,6 +53,11 @@ public class NK_UIController : MonoBehaviourPun
                 isHandUp = true;
             return isHandUp;
         }
+    }
+
+    private void Awake()
+    {
+        instance = this;
     }
 
     #region ClickMute // 음소거 버튼
