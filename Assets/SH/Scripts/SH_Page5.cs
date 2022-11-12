@@ -45,8 +45,8 @@ public class SH_Page5 : MonoBehaviour
 
                 // 책, 공 작게 해주기
                 book.enabled = false;
-                book.gameObject.transform.localScale = new Vector3(1, 1, 1);
-                ball.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                book.gameObject.transform.localScale = new Vector3(1.4773f, 1.4773f, 1.4773f);
+                ball.gameObject.transform.localScale = new Vector3(0.16541f, 0.16541f, 0.16541f);
                 bookB = false;
                 ballB = false;
                 bookText.SetActive(false);
@@ -73,8 +73,8 @@ public class SH_Page5 : MonoBehaviour
                     SH_ChildrenFairyManager.Instance.OnFailPopUp();
                 }
                 // 박스, 공 작게 해주기
-                ball.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-                box.gameObject.transform.localScale = new Vector3(0.0001034214f, 0.0001034214f, 0.0001034214f);
+                ball.gameObject.transform.localScale = new Vector3(0.16541f, 0.16541f, 0.16541f);
+                box.gameObject.transform.localScale = new Vector3(0.0001363301f, 0.0001363301f, 0.0001363301f);
                 ballB = false;
                 boxB = false;
                 ballText.SetActive(false);
@@ -98,9 +98,9 @@ public class SH_Page5 : MonoBehaviour
                 }
 
                 // 박스, 책 작게 해주기
-                box.gameObject.transform.localScale = new Vector3(0.0001034214f, 0.0001034214f, 0.0001034214f);
+                box.gameObject.transform.localScale = new Vector3(0.0001363301f, 0.0001363301f, 0.0001363301f);
                 book.enabled = false;
-                book.gameObject.transform.localScale = new Vector3(1, 1, 1);
+                book.gameObject.transform.localScale = new Vector3(1.4773f, 1.4773f, 1.4773f);
                 boxB = false;
                 bookB = false;
                 boxText.SetActive(false);
@@ -110,10 +110,10 @@ public class SH_Page5 : MonoBehaviour
             // 다른 거에 부딪혔을 때 다 작게 해준다
             else
             {
-                ball.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-                box.gameObject.transform.localScale = new Vector3(0.0001034214f, 0.0001034214f, 0.0001034214f);
+                ball.gameObject.transform.localScale = new Vector3(0.16541f, 0.16541f, 0.16541f);
+                box.gameObject.transform.localScale = new Vector3(0.0001363301f, 0.0001363301f, 0.0001363301f);
                 book.enabled = false;
-                book.gameObject.transform.localScale = new Vector3(1, 1, 1);
+                book.gameObject.transform.localScale = new Vector3(1.4773f, 1.4773f, 1.4773f);
                 ballB = false;
                 boxB = false;
                 bookB = false;
@@ -127,10 +127,10 @@ public class SH_Page5 : MonoBehaviour
         // 아무것도 부딪히지 않았을 때도 다 작게 해준다
         else
         {
-            ball.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-            box.gameObject.transform.localScale = new Vector3(0.0001034214f, 0.0001034214f, 0.0001034214f);
+            ball.gameObject.transform.localScale = new Vector3(0.16541f, 0.16541f, 0.16541f);
+            box.gameObject.transform.localScale = new Vector3(0.0001363301f, 0.0001363301f, 0.0001363301f);
+            book.transform.localScale = new Vector3(1.4773f, 1.4773f, 1.4773f);
             book.enabled = false;
-            book.transform.localScale = new Vector3(1, 1, 1);
             ballB = false;
             boxB = false;
             bookB = false;
