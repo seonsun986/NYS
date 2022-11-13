@@ -31,7 +31,7 @@ CGPROGRAM
 #pragma vertex vert
 #pragma fragment frag
 #include "UnityCG.cginc"
-#include "AutoLight.cginc"
+//#include "AutoLight.cginc"
 #include "CharaSkin.cginc"
 ENDCG
 		}
