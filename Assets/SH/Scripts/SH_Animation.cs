@@ -25,7 +25,9 @@ public class SH_Animation : MonoBehaviour
     {
         Rigidbody rb = gameObject.transform.GetChild(1).GetComponent<Rigidbody>();
         rb.useGravity = true;
-        rb.AddForce(transform.right * -1 * 18, ForceMode.Impulse);
+        //rb.AddForce(transform.right * -1 * 18, ForceMode.Impulse);
+        rb.AddForce(transform.forward * 10, ForceMode.Impulse);
+
     }
 
     public void SoccerBall()
