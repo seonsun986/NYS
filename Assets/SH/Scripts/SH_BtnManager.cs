@@ -769,7 +769,7 @@ public class SH_BtnManager : MonoBehaviour
             }
             else
             {
-                pagesInfo.ttsText = "안녕";
+                pagesInfo.ttsText = "";
             }
 
 
@@ -783,8 +783,7 @@ public class SH_BtnManager : MonoBehaviour
                 byte[] byteData = new byte[floatData.Length * 4];
                 Buffer.BlockCopy(floatData, 0, byteData, 0, byteData.Length);
 
-                print(byteData[i].ToString());
-                pagesInfo.voice = byteData[i].ToString();
+                pagesInfo.voice = ToReadByte(byteData);
             }
             else
             {
@@ -795,7 +794,7 @@ public class SH_BtnManager : MonoBehaviour
             // 로우이미지 세팅
             if (rawImageList.Count > i)
             {
-                pagesInfo.rawImg = rawImageList[i].ToString();
+                pagesInfo.rawImg = ToReadByte(rawImageList[i]);
             }
             else
             {
@@ -855,7 +854,15 @@ public class SH_BtnManager : MonoBehaviour
         bookinfo.pages = pages;
         string jsonData = JsonUtility.ToJson(bookinfo, true);
         print(jsonData);
+        //string path = Application.dataPath + "/" + fileName + ".Json";
+        string path = fileName + ".Json";
+        File.WriteAllText(path, jsonData);
         return jsonData;
+    }
+
+    public string ToReadByte(byte[] bytes)
+    {
+        return string.Join(", ", bytes);
     }
 
     // 제이슨 저장

@@ -33,19 +33,19 @@ public class NK_BookShelfManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //TaleSet_API();
+        TaleSet_API();
 
         path = Application.dataPath + "/BookCover/";
-        // 동화책 제목 추가하면
-        //for (int j = 0; j < data.taleList.Count; j++)
-        //{
-        //    titles.Add(data.taleList[j].title);
-        //}
+        //동화책 제목 추가하면
+        for (int j = 0; j < data.taleList.Count; j++)
+        {
+            titles.Add(data.taleList[j].title);
+        }
 
 
-        titles.Add("양치기소년");
-        titles.Add("신데렐라");
-        titles.Add("강아지 똥");
+        //titles.Add("양치기소년");
+        //titles.Add("신데렐라");
+        //titles.Add("강아지 똥");
         for (int i = 0; i < titles.Count; i++)
         {
             // 제목 추가된 개수만큼 동화책 생성

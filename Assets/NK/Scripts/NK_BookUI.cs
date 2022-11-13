@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using Photon.Pun;
 using System;
 using System.Collections;
@@ -24,6 +25,9 @@ public class NK_BookUI : MonoBehaviourPun
 
     Dictionary<int, List<PageInfo>> sceneObjects = new Dictionary<int, List<PageInfo>>();
 
+    //동화 조회할 아이디
+    public string id;
+
     private void Start()
     {
         // 동화책 제목 추가하면
@@ -49,6 +53,7 @@ public class NK_BookUI : MonoBehaviourPun
         //ClickBook(book.GetComponentInChildren<Text>().text);
         print(book.GetComponentInChildren<Text>().text);
     }
+
 /*
     public void ClickBook1()
     {
@@ -98,20 +103,69 @@ public class NK_BookUI : MonoBehaviourPun
             InstantiateObject();
             isOpen = true;
         }
+
     }
+
+    List<PagesInfo> pagesInfos;
 
     public void ClickBook(string jsonName)
     {
         // Json 파일 받아오기
-        string fileName = jsonName;
-        string path = Application.dataPath + "/" + fileName + ".Json";
-        string jsonData = File.ReadAllText(path);
-        print(jsonData);
+        //string fileName = jsonName;
+        //string path = Application.dataPath + "/" + fileName + ".Json";
+        //string jsonData = File.ReadAllText(path);
+        //print(jsonData);
 
         // 파싱
-        BookInfo bookInfo = JsonUtility.FromJson<BookInfo>(jsonData);
-        List<PagesInfo> pagesInfos = bookInfo.pages;
+        //BookInfo bookInfo = JsonUtility.FromJson<BookInfo>(jsonData);
+        //List<PagesInfo> pagesInfos = bookInfo.pages;
 
+        // 동화책 목록가져오기
+
+        YJ_HttpRequester requester1 = new YJ_HttpRequester();
+        requester1.url = "http://43.201.10.63:8080/tale/mylist";
+        requester1.requestType = RequestType.GET;
+        requester1.headers = new Dictionary<string, string>();
+        requester1.headers["accesstoken"] = YJ_DataManager.instance.myInfo.accessToken;
+        requester1.onComplete = (handler) =>
+        {
+
+            Debug.Log("자 동화목록 받아왔어! \n" + handler.downloadHandler.text);
+
+            JObject tokenJson = JObject.Parse(handler.downloadHandler.text);
+
+            // data 안에 accessToken으로 접근
+            id = tokenJson["data"][0]["taleList"]["id"].ToString();
+
+            //BookInfo bookInfo = JsonUtility.FromJson<BookInfo>(handler.downloadHandler.text);
+            //pagesInfos = bookInfo.pages;
+            Click_Book_2();
+
+        };
+        YJ_HttpManager.instance.SendRequest(requester1);
+    }
+
+    public void Click_Book_2()
+    {
+        YJ_HttpRequester requester2 = new YJ_HttpRequester();
+        requester2.url = "http://43.201.10.63:8080/tale/" + id;
+        requester2.requestType = RequestType.GET;
+        requester2.onComplete = (handler) =>
+        {
+
+            Debug.Log("이 동화 맞아? \n" + handler.downloadHandler.text);
+
+            BookInfo bookInfo = JsonUtility.FromJson<BookInfo>(handler.downloadHandler.text);
+            pagesInfos = bookInfo.pages;
+            Set_Book();
+
+        };
+        YJ_HttpManager.instance.SendRequest(requester2);
+
+    }
+
+    public void Set_Book()
+    {
         // pageinfo(단일) 내에서 text, obj로 구분지어 클래스 내 json 정렬 > pagesinfo.data(리스트)
         foreach (PagesInfo pagesInfo in pagesInfos)
         {
