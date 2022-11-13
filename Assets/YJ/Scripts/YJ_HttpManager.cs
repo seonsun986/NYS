@@ -46,7 +46,14 @@ public class YJ_HttpManager : MonoBehaviour
                 webRequest = UnityWebRequest.Post(requester.url, requester.postData);
                 byte[] data = Encoding.UTF8.GetBytes(requester.postData);
                 webRequest.uploadHandler = new UploadHandlerRaw(data);
-                webRequest.SetRequestHeader("Content-Type", "application/json");
+                if (requester.headers == null)
+                {
+                    webRequest.SetRequestHeader("Content-Type", "application/json");
+                }
+                else
+                {
+                    SetCustomHeader(webRequest, requester.headers);
+                }
                 break;
             case RequestType.GET:
                 webRequest = UnityWebRequest.Get(requester.url);
