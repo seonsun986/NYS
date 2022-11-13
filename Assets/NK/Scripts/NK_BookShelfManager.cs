@@ -35,31 +35,18 @@ public class NK_BookShelfManager : MonoBehaviour
     {
         TaleSet_API();
 
-        path = Application.dataPath + "/BookCover/";
-        //동화책 제목 추가하면
-        for (int j = 0; j < data.taleList.Count; j++)
-        {
-            titles.Add(data.taleList[j].title);
-        }
-
-
         //titles.Add("양치기소년");
         //titles.Add("신데렐라");
         //titles.Add("강아지 똥");
-        for (int i = 0; i < titles.Count; i++)
-        {
-            // 제목 추가된 개수만큼 동화책 생성
-            GameObject book = Instantiate(bookFactory, booksParent.transform);
-            // JSON에서 불러온 제목으로 텍스트 지정
-            book.GetComponentInChildren<Text>().text = titles[i];
-            book.GetComponent<Button>().onClick.AddListener(ClickBook);
-        }
+
+        path = Application.dataPath + "/BookCover/";
+
     }
 
-    Data data;
     // 동화책 목록가져오기
     public void TaleSet_API()
     {
+
         YJ_HttpRequester requester = new YJ_HttpRequester();
         requester.url = "http://43.201.10.63:8080/tale/mylist";
         requester.requestType = RequestType.GET;
@@ -70,36 +57,56 @@ public class NK_BookShelfManager : MonoBehaviour
             Debug.Log("자 동화목록 받아왔어! \n" + handler.downloadHandler.text);
 
             Title title = JsonUtility.FromJson<Title>(handler.downloadHandler.text);
-            data = title.data;
-            TaleList taleList = new TaleList();
-            for (int i = 0; i < data.taleList.Count; i++)
-            {
-                taleList.id = data.taleList[i].id;
-                taleList.memberCode = data.taleList[i].memberCode;
-                taleList.title = data.taleList[i].title;
-                taleList.createAt = data.taleList[i].createAt;
 
-                data.taleList.Add(taleList);
+            Data[] data = title.data;
+
+
+            TaleList taleList = new TaleList();
+            for (int i = 0; i < data.Length; i++)
+            {
+                if (data[i].taleList.id == null) continue;
+                taleList.id = data[i].taleList.id;
+                taleList.memberCode = data[i].taleList.memberCode;
+                taleList.title = data[i].taleList.title;
+                taleList.createAt = data[i].taleList.createAt;
+
+                data[i].taleList = taleList;
             }
 
             TaleInfo taleInfo = new TaleInfo();
-            for (int j = 0; j < data.taleInfo.Count; j++)
+            for (int j = 0; j < data.Length; j++)
             {
-                taleInfo.id = data.taleInfo[j].id;
-                taleInfo.fontStyle = data.taleInfo[j].fontStyle;
-                taleInfo.fontPosition_x = data.taleInfo[j].fontPosition_x;
-                taleInfo.fontPosition_y = data.taleInfo[j].fontPosition_y;
-                taleInfo.fontSize = data.taleInfo[j].fontSize;
-                taleInfo.fontColor = data.taleInfo[j].fontColor;
-                taleInfo.coverColor = data.taleInfo[j].coverColor;
-                taleInfo.sticker = data.taleInfo[j].sticker;
-                taleInfo.stickerPosition_x = data.taleInfo[j].stickerPosition_x;
-                taleInfo.stickerPosition_y = data.taleInfo[j].stickerPosition_y;
-                taleInfo.thumbNail = data.taleInfo[j].thumbNail;
+                if (data[j].taleInfo.id == null) continue;
+                taleInfo.id = data[j].taleInfo.id;
+                taleInfo.fontStyle = data[j].taleInfo.fontStyle;
+                taleInfo.fontPosition_x = data[j].taleInfo.fontPosition_x;
+                taleInfo.fontPosition_y = data[j].taleInfo.fontPosition_y;
+                taleInfo.fontSize = data[j].taleInfo.fontSize;
+                taleInfo.fontColor = data[j].taleInfo.fontColor;
+                taleInfo.coverColor = data[j].taleInfo.coverColor;
+                taleInfo.sticker = data[j].taleInfo.sticker;
+                taleInfo.stickerPosition_x = data[j].taleInfo.stickerPosition_x;
+                taleInfo.stickerPosition_y = data[j].taleInfo.stickerPosition_y;
+                taleInfo.thumbNail = data[j].taleInfo.thumbNail;
 
-                data.taleInfo.Add(taleInfo);
+                data[j].taleInfo = taleInfo;
             }
 
+            //동화책 제목 추가하면
+            for (int j = 0; j < data.Length; j++)
+            {
+                if (data[j].taleList.title == null) continue;
+                titles.Add(data[j].taleList.title);
+            }
+
+            for (int i = 0; i < titles.Count; i++)
+            {
+                // 제목 추가된 개수만큼 동화책 생성
+                GameObject book = Instantiate(bookFactory, booksParent.transform);
+                // JSON에서 불러온 제목으로 텍스트 지정
+                book.GetComponentInChildren<Text>().text = titles[i];
+                book.GetComponent<Button>().onClick.AddListener(ClickBook);
+            }
 
             //GameObject.Find("ConnectionManager").GetComponent<YJ_ConnectionManager>().OnSubmit();
         };
@@ -111,15 +118,15 @@ public class NK_BookShelfManager : MonoBehaviour
     public class Title
     {
         public string status;
-        public string massage;
-        public Data data;
+        public string message;
+        public Data[] data;
     }
 
     [SerializeField]
     public class Data
     {
-        public List<TaleList> taleList;
-        public List<TaleInfo> taleInfo;
+        public TaleList taleList;
+        public TaleInfo taleInfo;
     }
 
     [SerializeField]
