@@ -23,6 +23,8 @@ public class NK_BookShelfManager : MonoBehaviour
     public GameObject bookCoverUI;
     // 삭제될 스티커
     public GameObject delSticker;
+    // 선택된 책
+    public GameObject selectedBook;
     string path;
 
     private void Awake()
@@ -51,9 +53,9 @@ public class NK_BookShelfManager : MonoBehaviour
     byte[] nullbytedata = new byte[1];
     string s = " ";
 
-    public void TalePost_API()
+    public void TalePost_API(TaleInfo taleInfo)
     {
-        TaleInfo taleInfo = new TaleInfo();
+/*        TaleInfo taleInfo = new TaleInfo();
 
         taleInfo.id = "6370bc341a1b09093c81512d";
         taleInfo.fontStyle = s;
@@ -65,7 +67,7 @@ public class NK_BookShelfManager : MonoBehaviour
         taleInfo.sticker = s;
         taleInfo.stickerPositionX = s;
         taleInfo.stickerPositionY = s;
-        taleInfo.inputImg = nullbytedata;
+        taleInfo.inputImg = nullbytedata;*/
 
 
         // ArrayJson -> json
@@ -144,14 +146,6 @@ public class NK_BookShelfManager : MonoBehaviour
                 data[j].taleInfo = taleInfo;
             }
 
-            //동화책 제목 추가하면
-/*            for (int j = 0; j < data.Length; j++)
-            {
-                if (data[j].taleList.title == null) continue;
-                titles.Add(data[j].taleList.title);
-                print(data[j].taleList.title);
-            }*/
-
             for (int i = 0; i < titles.Count; i++)
             {
                 // 제목 추가된 개수만큼 동화책 생성
@@ -166,7 +160,6 @@ public class NK_BookShelfManager : MonoBehaviour
         YJ_HttpManager.instance.SendRequest(requester);
     }
 
-    //[SerializeField]
     [Serializable]
     public class Title
     {
@@ -273,8 +266,14 @@ public class NK_BookShelfManager : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(TakeScreenShotRoutine());
         // Json으로 책 표지 저장
-        // NK_BookCover.instance.bookCover.gameObject
-        //ExitPopup();
+        TaleInfo taleInfo = NK_BookCover.instance.taleInfo;
+
+        taleInfo.id = "6370bc341a1b09093c81512d";
+        taleInfo.fontPositionX = NK_BookCover.instance.inputField.GetComponent<RectTransform>().anchoredPosition.x.ToString();
+        taleInfo.fontPositionY = NK_BookCover.instance.inputField.GetComponent<RectTransform>().anchoredPosition.y.ToString();
+        taleInfo.inputImg = nullbytedata;
+
+        TalePost_API(NK_BookCover.instance.taleInfo);
     }
 
     private IEnumerator TakeScreenShotRoutine()

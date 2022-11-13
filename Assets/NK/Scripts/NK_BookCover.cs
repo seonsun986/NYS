@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static NK_BookShelfManager;
 
 public class NK_BookCover : MonoBehaviour
 {
     public static NK_BookCover instance;
-
+    public TaleInfo taleInfo;
     public Transform bookCover;
     public InputField inputField;       // inputField 프리팹
     public List<SH_InputField> inputFields = new List<SH_InputField>();
@@ -32,6 +33,7 @@ public class NK_BookCover : MonoBehaviour
 
     private void OnEnable()
     {
+        taleInfo = new TaleInfo();
         // 색, 폰트, 크기, 팔레트 켜짐 초기화
         palette.SetActive(false);
         bgPalette.SetActive(false);
@@ -39,7 +41,7 @@ public class NK_BookCover : MonoBehaviour
         bgColorImage.color = Color.white;
         bookCoverColor.color = Color.white;
         inputField.GetComponent<RectTransform>().anchoredPosition = new Vector2(51, 277);
-        // 글씨색...
+        // 글씨색
         inputField.textComponent.color = Color.black;
 
         // 스티커 초기화
@@ -85,12 +87,12 @@ public class NK_BookCover : MonoBehaviour
         int size = int.Parse(InputtxtSize.text);
         size--;
         InputtxtSize.text = size.ToString();
-
     }
 
     public void ChangeFontSize(string size)
     {
         SH_EditorManager.Instance.active_InputField.SetFontSize(int.Parse(size));
+        taleInfo.fontSize = size;
     }
 
     public void ChangeTextColor()
@@ -101,11 +103,13 @@ public class NK_BookCover : MonoBehaviour
         ColorUtility.TryParseHtmlString(hexColor[btnNum], out color);
         txtcolorImage.color = color;
         SH_EditorManager.Instance.active_InputField.SetFontColor(color);
+        taleInfo.fontColor = color.ToString();
     }
 
     void ChangeTextFont(int index)
     {
         SH_EditorManager.Instance.active_InputField.SetFontType(index);
+        taleInfo.fontStyle = index.ToString();
     }
 
     public GameObject palette;
@@ -145,6 +149,9 @@ public class NK_BookCover : MonoBehaviour
         createObj.GetComponent<RectTransform>().localPosition = Vector3.zero;
         //createObj.GetComponent <RectTransform>().localScale = new Vector3(1, 1, 1);
         createObj.GetComponent<RectTransform>().sizeDelta = new Vector2(120, 120);
+        taleInfo.sticker = createObj.ToString();
+        taleInfo.stickerPositionX = createObj.GetComponent<RectTransform>().localPosition.x.ToString();
+        taleInfo.stickerPositionY = createObj.GetComponent<RectTransform>().localPosition.y.ToString();
     }
 
     public void ChangeBookColor()
@@ -157,5 +164,6 @@ public class NK_BookCover : MonoBehaviour
         ColorUtility.TryParseHtmlString(hexColor[btnNum], out color);
         bgColorImage.color = color;
         bookCoverColor.color = color;
+        taleInfo.coverColor = color.ToString();
     }
 }
