@@ -33,7 +33,11 @@ public class NK_BookShelfManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TaleSet_API();
+        //동화표지 GET
+        TaleGet_API();
+
+        //동화표지 POST
+        //TalePost_API();
 
         //titles.Add("양치기소년");
         //titles.Add("신데렐라");
@@ -43,9 +47,57 @@ public class NK_BookShelfManager : MonoBehaviour
 
     }
 
-    // 동화책 목록가져오기
-    public void TaleSet_API()
+
+    byte[] nullbytedata = new byte[1];
+    string s = " ";
+
+    public void TalePost_API()
     {
+        TaleInfo taleInfo = new TaleInfo();
+
+        taleInfo.id = "6370bc341a1b09093c81512d";
+        taleInfo.fontStyle = s;
+        taleInfo.fontSize = s;
+        taleInfo.fontColor = s;
+        taleInfo.fontPositionX = s;
+        taleInfo.fontPositionY = s;
+        taleInfo.coverColor = s;
+        taleInfo.sticker = s;
+        taleInfo.stickerPositionX = s;
+        taleInfo.stickerPositionY = s;
+        taleInfo.inputImg = nullbytedata;
+
+
+        // ArrayJson -> json
+        string taleListJson = JsonUtility.ToJson(taleInfo, true);
+        print(taleListJson);
+
+        YJ_HttpRequester requester = new YJ_HttpRequester();
+        requester.url = "http://43.201.10.63:8080/tale/info";
+        requester.requestType = RequestType.POST;
+        requester.headers = new Dictionary<string, string>();
+        requester.headers["accesstoken"] = YJ_DataManager.instance.myInfo.accessToken;
+        requester.headers["Content-Type"] = "application/json";
+        requester.postData = taleListJson;
+        requester.onComplete = (handler) => {
+            print("토큰 받아오기 완료");
+
+            //JObject tokenJson = JObject.Parse(handler.downloadHandler.text);
+
+            // data 안에 accessToken으로 접근
+            Debug.Log(handler.downloadHandler.text);
+
+            // 제이슨자체로 받아서 data 전체를 받고 그 안에서 접근할 수도 있음
+            //JObject keyData = tokenJson["data"].ToObject<JObject>();
+
+        };
+        YJ_HttpManager.instance.SendRequest(requester);
+    }
+
+    // 동화책 목록가져오기
+    public void TaleGet_API()
+    {
+        Title title = new Title();
 
         YJ_HttpRequester requester = new YJ_HttpRequester();
         requester.url = "http://43.201.10.63:8080/tale/mylist";
@@ -56,10 +108,10 @@ public class NK_BookShelfManager : MonoBehaviour
 
             Debug.Log("자 동화목록 받아왔어! \n" + handler.downloadHandler.text);
 
-            Title title = JsonUtility.FromJson<Title>(handler.downloadHandler.text);
+            title = JsonUtility.FromJson<Title>(handler.downloadHandler.text);
 
             Data[] data = title.data;
-
+            print("데이터 몇개들어왔어? : " + data.Length);
 
             TaleList taleList = new TaleList();
             for (int i = 0; i < data.Length; i++)
@@ -69,7 +121,7 @@ public class NK_BookShelfManager : MonoBehaviour
                 taleList.memberCode = data[i].taleList.memberCode;
                 taleList.title = data[i].taleList.title;
                 taleList.createAt = data[i].taleList.createAt;
-
+                titles.Add(taleList.title);
                 data[i].taleList = taleList;
             }
 
@@ -79,25 +131,26 @@ public class NK_BookShelfManager : MonoBehaviour
                 if (data[j].taleInfo.id == null) continue;
                 taleInfo.id = data[j].taleInfo.id;
                 taleInfo.fontStyle = data[j].taleInfo.fontStyle;
-                taleInfo.fontPosition_x = data[j].taleInfo.fontPosition_x;
-                taleInfo.fontPosition_y = data[j].taleInfo.fontPosition_y;
                 taleInfo.fontSize = data[j].taleInfo.fontSize;
                 taleInfo.fontColor = data[j].taleInfo.fontColor;
+                taleInfo.fontPositionX = data[j].taleInfo.fontPositionX;
+                taleInfo.fontPositionY = data[j].taleInfo.fontPositionY;
                 taleInfo.coverColor = data[j].taleInfo.coverColor;
                 taleInfo.sticker = data[j].taleInfo.sticker;
-                taleInfo.stickerPosition_x = data[j].taleInfo.stickerPosition_x;
-                taleInfo.stickerPosition_y = data[j].taleInfo.stickerPosition_y;
-                taleInfo.thumbNail = data[j].taleInfo.thumbNail;
+                taleInfo.stickerPositionX = data[j].taleInfo.stickerPositionX;
+                taleInfo.stickerPositionY = data[j].taleInfo.stickerPositionY;
+                taleInfo.inputImg = data[j].taleInfo.inputImg;
 
                 data[j].taleInfo = taleInfo;
             }
 
             //동화책 제목 추가하면
-            for (int j = 0; j < data.Length; j++)
+/*            for (int j = 0; j < data.Length; j++)
             {
                 if (data[j].taleList.title == null) continue;
                 titles.Add(data[j].taleList.title);
-            }
+                print(data[j].taleList.title);
+            }*/
 
             for (int i = 0; i < titles.Count; i++)
             {
@@ -122,36 +175,37 @@ public class NK_BookShelfManager : MonoBehaviour
         public Data[] data;
     }
 
-    [SerializeField]
+    [Serializable]
     public class Data
     {
         public TaleList taleList;
         public TaleInfo taleInfo;
     }
 
-    [SerializeField]
+    [Serializable]
     public class TaleList
     {
         public string id;
         public string memberCode;
         public string title;
         public string createAt;
+        public string thumbnail;
     }
 
-    [SerializeField]
+    [Serializable]
     public class TaleInfo
     {
         public string id;
         public string fontStyle;
-        public string fontPosition_x;
-        public string fontPosition_y;
-        public string fontSize;
         public string fontColor;
+        public string fontSize;
+        public string fontPositionX;
+        public string fontPositionY;
         public string coverColor;
         public string sticker;
-        public string stickerPosition_x;
-        public string stickerPosition_y;
-        public string thumbNail;
+        public string stickerPositionX;
+        public string stickerPositionY;
+        public byte[] inputImg;
     }
 
     // Update is called once per frame
@@ -192,7 +246,7 @@ public class NK_BookShelfManager : MonoBehaviour
             rawImage.texture = images[index];
         }
     }
-
+    /// //////////////////////////////////////////////////////////////////////////
     public void UpdateBookCover()
     {
         // 책 표지 수정
@@ -212,7 +266,7 @@ public class NK_BookShelfManager : MonoBehaviour
         if (delSticker != null)
             Destroy(delSticker);
     }
-
+/// ///////////////////////////////////////////////////////////////////////////////////
     public void SaveBookCover()
     {
         // 책 표지 캡쳐
