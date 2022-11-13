@@ -9,6 +9,7 @@ using Photon.Pun;
 using UnityEditor;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using Newtonsoft.Json.Linq;
 
 
 
@@ -31,9 +32,9 @@ public class Json
 [System.Serializable]
 public class BookInfo
 {
-    public string id; //서버에 생성되는 차례 (고정)
+    //public string id; //서버에 생성되는 차례 (고정)
     public string title; //책 제목
-    public string createAt; //만든날짜
+    //public string createAt; //만든날짜
     public List<PagesInfo> pages; //페이지들 정보
 
 }
@@ -42,8 +43,10 @@ public class BookInfo
 public class PagesInfo
 {
     public int page; //페이지 번호
-    //public List<PageInfo> data;
     public List<string> data; //텍스트 정보, 오브젝트 정보
+    public string ttsText;
+    public string voice;
+    public string rawImage;
 
     public string SerializePageInfo(PageInfo info)
     {
@@ -390,6 +393,8 @@ public class SH_BtnManager : MonoBehaviour
     string fileName;            // 파일 저장 이름
     public int i = 0;
     public int currentScene;
+    List<byte[]> rawImageList = new List<byte[]>();
+
     public void AddScene()
     {
         #region 캡쳐하기
@@ -435,6 +440,7 @@ public class SH_BtnManager : MonoBehaviour
 
         // 캡쳐파일 RawImage에 넣기
         byte[] textureBytes = File.ReadAllBytes(fileName);
+        rawImageList.Add(textureBytes);
         if(textureBytes.Length>0)
         {
             Texture2D loadedTexture = new Texture2D(0, 0);
@@ -749,6 +755,7 @@ public class SH_BtnManager : MonoBehaviour
     // PageInfo -> PagesInfo -> BookInfo -> Json
     private string SaveInfo()
     {
+        SH_VoiceRecord voice = this.gameObject.GetComponent<SH_VoiceRecord>();
         BookInfo bookinfo = new BookInfo();
         // PageInfo 클래스에서 부터 오브젝트와 텍스트의 정보를 넣어보자
         for (int i = 0; i < Scenes.Count; i++)
@@ -756,6 +763,44 @@ public class SH_BtnManager : MonoBehaviour
             PagesInfo pagesInfo = new PagesInfo();
             objsInfo = new List<string>();
             pagesInfo.page = i;
+            if (Scenes_txt[i].transform.childCount > i)
+            {
+                pagesInfo.ttsText = Scenes_txt[i].transform.GetChild(i).GetComponent<InputField>().text;
+            }
+            else
+            {
+                pagesInfo.ttsText = "안녕";
+            }
+
+
+            // wav > byte로 변환하기
+            if (voice.voiceClip.Count > i)
+            {
+                float[] floatData = new float[voice.voiceClip[i].samples * voice.voiceClip[i].channels];
+                voice.voiceClip[i].GetData(floatData, 0);
+
+                // byte 배열 만들기
+                byte[] byteData = new byte[floatData.Length * 4];
+                Buffer.BlockCopy(floatData, 0, byteData, 0, byteData.Length);
+
+                print(byteData[i].ToString());
+                pagesInfo.voice = byteData[i].ToString();
+            }
+            else
+            {
+                pagesInfo.voice = "";
+            }
+
+
+            // 로우이미지 세팅
+            if (rawImageList.Count > i)
+            {
+                pagesInfo.rawImage = rawImageList[i].ToString();
+            }
+            else
+            {
+                pagesInfo.rawImage = "";
+            }
 
             // 씬 하나
             // 오브젝트 담기(type, prefab, position, rotation, scale 필요함)
@@ -804,9 +849,8 @@ public class SH_BtnManager : MonoBehaviour
             //objsInfo.Clear();
         }
         // 하나의 책에 페이지 당 오브젝트 정보들이 모두 담겼다
-        bookinfo.id = "심선혜 최고";
         bookinfo.title = title;
-        bookinfo.createAt = DateTime.Now.ToString("yyyy / MM / dd");
+        //bookinfo.createAt = DateTime.Now.ToString("yyyy / MM / dd");
         // 이제 BookInfo 중 Pages에 이 정보들을 담아보자
         bookinfo.pages = pages;
         string jsonData = JsonUtility.ToJson(bookinfo, true);
@@ -817,8 +861,29 @@ public class SH_BtnManager : MonoBehaviour
     // 제이슨 저장
     private void SaveJson(string fileName, string jsonData)
     {
-        string path = Application.dataPath + "/" + fileName + ".Json";
-        File.WriteAllText(path, jsonData);
+        //string path = Application.dataPath + "/" + fileName + ".Json";
+        //File.WriteAllText(path, jsonData);
+
+
+        // ArrayJson -> json
+        string pageJson = jsonData.ToString();// JsonUtility.ToJson(loginInfo, true);
+        print(pageJson);
+
+        YJ_HttpRequester requester = new YJ_HttpRequester();
+        requester.url = "http://43.201.10.63:8080/tale";
+        requester.headers = new Dictionary<string, string>();
+        requester.headers["accesstoken"] = YJ_DataManager.instance.myInfo.accessToken;
+        requester.headers["Content-Type"] = "application/json";
+        requester.requestType = RequestType.POST;
+        requester.postData = pageJson;
+        requester.onComplete = (handler) =>
+        {
+            print("동화책 내용 받아오기 결과 : " + handler.downloadHandler.text);
+
+        };
+        YJ_HttpManager.instance.SendRequest(requester);
+
+
     }
 
     #region PreviewScene // 동화 미리보기
@@ -928,18 +993,20 @@ public class SH_BtnManager : MonoBehaviour
         print("111111111");
     }
 
+    string ttstext;
+ 
     public void TTS()
     {
         string filePath = Application.dataPath + "/Resources" + "/" + "Audio_" + currentSceneNum;
-        string text = "";
+        ttstext = "";
         if (Scenes_txt[currentSceneNum].transform.childCount < 1) return;
         for(int i =0; i< Scenes_txt[currentSceneNum].transform.childCount;i++)
         {
-            text += Scenes_txt[currentSceneNum].transform.GetChild(i).GetComponent<InputField>().text;
-            text += "\n";
+            ttstext += Scenes_txt[currentSceneNum].transform.GetChild(i).GetComponent<InputField>().text;
+            ttstext += "\n";
         }
 
-        Mp3_Test(filePath, text);
+        Mp3_Test(filePath, ttstext);
 
     }
 
