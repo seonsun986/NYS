@@ -17,8 +17,16 @@ public class SH_FariyStart : MonoBehaviour
     }
 
     RaycastHit hitInfo;
+    float currentTime;
+    public AudioClip startClip;
     void Update()
     {
+        currentTime += Time.deltaTime;
+        if(currentTime> startClip.length)
+        {
+            iTween.ScaleTo(girl.gameObject, iTween.Hash("x", 0.4230038f, "y", 0.4230038f, "z", 0.4230038f, "time", 0.7f, "easeType", "easeInOutExpo"));
+            iTween.ScaleTo(brother.gameObject, iTween.Hash("x", 0.4230038f, "y", 0.4230038f, "z", 0.4230038f, "time", 0.7f, "easeType", "easeInOutExpo"));
+        }
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if(Physics.Raycast(ray, out hitInfo))
         {
