@@ -35,9 +35,6 @@ public class NK_Emotion : MonoBehaviourPun
     {
         if (photonView.IsMine && emotionUI != null)
         {
-            // 상호작용 UI 유저 머리 위에 띄우기
-            emotionUI.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position + new Vector3(0, 1, 0));
-
             // 마우스 클릭하면
             if (Input.GetMouseButtonDown(0))
             {

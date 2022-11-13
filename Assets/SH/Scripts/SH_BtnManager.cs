@@ -32,9 +32,10 @@ public class Json
 [System.Serializable]
 public class BookInfo
 {
-    //public string id; //서버에 생성되는 차례 (고정)
+    public string id; //서버에 생성되는 차례 (고정)
+    public string memberCode;
     public string title; //책 제목
-    //public string createAt; //만든날짜
+    public string createAt; //만든날짜
     public List<PagesInfo> pages; //페이지들 정보
 
 }

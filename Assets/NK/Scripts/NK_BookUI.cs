@@ -8,6 +8,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static NK_BookUI;
 
 public class NK_BookUI : MonoBehaviourPun
 {
@@ -23,6 +24,9 @@ public class NK_BookUI : MonoBehaviourPun
 
     public AudioSource audioSource;
 
+    // 조회된 동화 데이터
+    Data[] data;
+
     Dictionary<int, List<PageInfo>> sceneObjects = new Dictionary<int, List<PageInfo>>();
 
     //동화 조회할 아이디
@@ -33,12 +37,17 @@ public class NK_BookUI : MonoBehaviourPun
 
     }
 
+    public void ClickBookList()
+    {
+        GetBookList("Book2");
+    }
+
     public void ClickBook()
     {
         pageNum = 0;
         GameObject book = EventSystem.current.currentSelectedGameObject;
         photonView.RPC("RPCSetActive", RpcTarget.All);
-        ClickBook("Book1");
+        GetBookInfo();
         //ClickBook(book.GetComponentInChildren<Text>().text);
         print(book.GetComponentInChildren<Text>().text);
     }
@@ -97,7 +106,7 @@ public class NK_BookUI : MonoBehaviourPun
 
     List<PagesInfo> pagesInfos;
 
-    public void ClickBook(string jsonName)
+    public void GetBookList(string jsonName)
     {
         // Json 파일 받아오기
         //string fileName = jsonName;
@@ -123,7 +132,7 @@ public class NK_BookUI : MonoBehaviourPun
 
             Title title = JsonUtility.FromJson<Title>(handler.downloadHandler.text);
 
-            Data[] data = title.data;
+            data = title.data;
 
 
             TaleList taleList = new TaleList();
@@ -134,7 +143,7 @@ public class NK_BookUI : MonoBehaviourPun
                 taleList.memberCode = data[i].taleList.memberCode;
                 taleList.title = data[i].taleList.title;
                 taleList.createAt = data[i].taleList.createAt;
-
+                titles.Add(taleList.title);
                 data[i].taleList = taleList;
             }
 
@@ -157,13 +166,6 @@ public class NK_BookUI : MonoBehaviourPun
                 data[j].taleInfo = taleInfo;
             }
 
-            //동화책 제목 추가하면
-            for (int j = 0; j < data.Length; j++)
-            {
-                if (data[j].taleList.title == null) continue;
-                titles.Add(data[j].taleList.title);
-            }
-
             for (int i = 0; i < titles.Count; i++)
             {
                 // 제목 추가된 개수만큼 동화책 생성
@@ -173,30 +175,38 @@ public class NK_BookUI : MonoBehaviourPun
                 book.GetComponent<Button>().onClick.AddListener(ClickBook);
             }
 
-            Click_Book_2();
-
         };
         YJ_HttpManager.instance.SendRequest(requester1);
     }
 
-    public void Click_Book_2()
+    public void GetBookInfo()
     {
+        print("동화책 선택 완.");
+            Info title = new Info(); 
         YJ_HttpRequester requester2 = new YJ_HttpRequester();
-        requester2.url = "http://43.201.10.63:8080/tale/" + id;
+        requester2.url = "http://43.201.10.63:8080/tale/" + data[0].taleList.id; ;
         requester2.requestType = RequestType.GET;
         requester2.onComplete = (handler) =>
         {
-
             Debug.Log("이 동화 맞아? \n" + handler.downloadHandler.text);
-
-            BookInfo bookInfo = JsonUtility.FromJson<BookInfo>(handler.downloadHandler.text);
+            title = JsonUtility.FromJson<Info>(handler.downloadHandler.text);
+            BookInfo bookInfo = title.data;
             pagesInfos = bookInfo.pages;
-
-
+            SetBook();
         };
         YJ_HttpManager.instance.SendRequest(requester2);
 
     }
+
+    [Serializable]
+    public class Info
+    {
+        public string status;
+        public string message;
+        public BookInfo data;
+    }
+
+    ///
 
     [Serializable]
     public class Title
@@ -206,14 +216,14 @@ public class NK_BookUI : MonoBehaviourPun
         public Data[] data;
     }
 
-    [SerializeField]
+    [Serializable]
     public class Data
     {
         public TaleList taleList;
         public TaleInfo taleInfo;
     }
 
-    [SerializeField]
+    [Serializable]
     public class TaleList
     {
         public string id;
@@ -222,7 +232,7 @@ public class NK_BookUI : MonoBehaviourPun
         public string createAt;
     }
 
-    [SerializeField]
+    [Serializable]
     public class TaleInfo
     {
         public string id;
@@ -238,15 +248,8 @@ public class NK_BookUI : MonoBehaviourPun
         public string thumbNail;
     }
 
-    public void List_Book()
-    {
 
-
-        Set_Book();
-    }
-
-
-    public void Set_Book()
+    public void SetBook()
     {
         // pageinfo(단일) 내에서 text, obj로 구분지어 클래스 내 json 정렬 > pagesinfo.data(리스트)
         foreach (PagesInfo pagesInfo in pagesInfos)
@@ -424,6 +427,7 @@ public class NK_BookUI : MonoBehaviourPun
         photonView.RPC("RPCDestroyObject", RpcTarget.All);
         photonView.RPC("RPCSetInactive", RpcTarget.All);
         isOpen = false;
+        NK_UIController.instance.ClickControl();
     }
     #endregion
 }

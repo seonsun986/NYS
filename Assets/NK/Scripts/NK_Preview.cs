@@ -10,6 +10,6 @@ public class NK_Preview : NK_BookUI
     // Start is called before the first frame update
     void Start()
     {
-        ClickBook("PreviewBook");
+        //ClickBook("PreviewBook");
     }
 }
