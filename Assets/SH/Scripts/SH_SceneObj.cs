@@ -69,8 +69,11 @@ public class SH_SceneObj : MonoBehaviour
                 anim = transform.GetChild(0).GetComponent<Animator>();
             }
             // 시작할 때 기본 애니메이션을 하나 재생시켜준다
-            if(anim != null)
-            anim.Play(gameObject.name.Substring(0, gameObject.name.Length - 7) + "_" +anims[0].name);
+            if (anim != null)
+            {
+                anim.Play(gameObject.name.Substring(0, gameObject.name.Length - 7) + "_" + anims[0].name);
+                currentAnim = gameObject.name.Substring(0, gameObject.name.Length - 7) + "_" + anims[0].name;
+            }
             for (int i = 0; i < anims.Count; i++)
             {
                 // 빈 오브젝트가 없다면 만들어주고
@@ -124,7 +127,7 @@ public class SH_SceneObj : MonoBehaviour
                 delete.transform.GetChild(0).gameObject.SetActive(false);
                 buttons.Add(delete);
             }
-          
+
         }
     }
 
@@ -195,7 +198,7 @@ public class SH_SceneObj : MonoBehaviour
     public void PopUpYes()
     {
         // 관련 버튼들도 모두 삭제해야한다
-        for(int i =0;i<buttons.Count;i++)
+        for (int i = 0; i < buttons.Count; i++)
         {
             Destroy(buttons[i]);
         }
