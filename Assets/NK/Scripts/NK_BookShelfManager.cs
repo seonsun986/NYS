@@ -23,6 +23,8 @@ public class NK_BookShelfManager : MonoBehaviour
     public GameObject bookCoverUI;
     // 삭제될 스티커
     public GameObject delSticker;
+    // 선택된 책
+    public GameObject selectedBook;
     string path;
 
     private void Awake()
@@ -33,9 +35,9 @@ public class NK_BookShelfManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        path = Application.dataPath + "/BookCover/";
         TaleSet_API();
 
-        path = Application.dataPath + "/BookCover/";
         //동화책 제목 추가하면
         for (int j = 0; j < data.taleList.Count; j++)
         {
@@ -43,9 +45,9 @@ public class NK_BookShelfManager : MonoBehaviour
         }
 
 
-        //titles.Add("양치기소년");
-        //titles.Add("신데렐라");
-        //titles.Add("강아지 똥");
+        // titles.Add("양치기소년");
+        // titles.Add("신데렐라");
+        // titles.Add("강아지 똥");
         for (int i = 0; i < titles.Count; i++)
         {
             // 제목 추가된 개수만큼 동화책 생성
@@ -65,7 +67,8 @@ public class NK_BookShelfManager : MonoBehaviour
         requester.requestType = RequestType.GET;
         requester.headers = new Dictionary<string, string>();
         requester.headers["accesstoken"] = YJ_DataManager.instance.myInfo.accessToken;
-        requester.onComplete = (handler) => {
+        requester.onComplete = (handler) =>
+        {
 
             Debug.Log("자 동화목록 받아왔어! \n" + handler.downloadHandler.text);
 
@@ -156,6 +159,7 @@ public class NK_BookShelfManager : MonoBehaviour
     public void ClickBook()
     {
         // 책 선택하면 책 미리보기 보여짐
+        selectedBook = EventSystem.current.currentSelectedGameObject;
         detailTitle.text = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text;
         detailUI.SetActive(true);
         booksParent.SetActive(false);
@@ -226,7 +230,7 @@ public class NK_BookShelfManager : MonoBehaviour
         Rect area = new Rect(485f, 400f, 310f, 410f);
         // 텍스쳐 픽셀에 지정
         screenTex.ReadPixels(area, 0, 0);
-        
+
         // 폴더가 존재하지 않으면 새로 생성
         if (Directory.Exists(path) == false)
         {
