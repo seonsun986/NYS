@@ -40,6 +40,7 @@ public class NK_BookCover : MonoBehaviour
         bookCoverColor.color = Color.white;
         inputField.GetComponent<RectTransform>().anchoredPosition = new Vector2(51, 277);
         // 글씨색...
+        inputField.textComponent.color = Color.black;
 
         // 스티커 초기화
         Transform[] childList = bookCover.GetComponentsInChildren<Transform>();
