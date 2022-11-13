@@ -45,8 +45,8 @@ public class PagesInfo
     public int page; //페이지 번호
     public List<string> data; //텍스트 정보, 오브젝트 정보
     public string ttsText;
-    public string voice;
-    public string rawImg;
+    public byte[] voice;
+    public byte[] rawImg;
 
     public string SerializePageInfo(PageInfo info)
     {
@@ -153,6 +153,8 @@ public class SH_BtnManager : MonoBehaviour
     public List<string> objsInfo = new List<string>();
     // 멀티 책의 정보를 담을 클래스 리스트
     public List<PagesInfo> pages = new List<PagesInfo>();
+
+    public BookInfo bookinfo = new BookInfo();
 
     // 현재 내가 있는 씬 번호
     public int currentSceneNum;
@@ -746,22 +748,25 @@ public class SH_BtnManager : MonoBehaviour
     private AnimatorClipInfo[] clipInfo;
     public void Save()
     {
-        string jsonData = SaveInfo();
+        pages.Clear();
+        SaveInfo();
 
-        SaveJson("Book2", jsonData);
     }
+
+    byte[] nullbytedata = new byte[1];
 
     // 제이슨 저장
     // PageInfo -> PagesInfo -> BookInfo -> Json
-    private string SaveInfo()
+    private void SaveInfo()
     {
         SH_VoiceRecord voice = this.gameObject.GetComponent<SH_VoiceRecord>();
-        BookInfo bookinfo = new BookInfo();
+        //objsInfo = new List<string>();
+
         // PageInfo 클래스에서 부터 오브젝트와 텍스트의 정보를 넣어보자
         for (int i = 0; i < Scenes.Count; i++)
         {
             PagesInfo pagesInfo = new PagesInfo();
-            objsInfo = new List<string>();
+
             pagesInfo.page = i;
             if (Scenes_txt[i].transform.childCount > i)
             {
@@ -783,22 +788,22 @@ public class SH_BtnManager : MonoBehaviour
                 byte[] byteData = new byte[floatData.Length * 4];
                 Buffer.BlockCopy(floatData, 0, byteData, 0, byteData.Length);
 
-                pagesInfo.voice = ToReadByte(byteData);
+                pagesInfo.voice = byteData;
             }
             else
             {
-                pagesInfo.voice = "";
+                pagesInfo.voice = nullbytedata;
             }
 
 
             // 로우이미지 세팅
             if (rawImageList.Count > i)
             {
-                pagesInfo.rawImg = ToReadByte(rawImageList[i]);
+                pagesInfo.rawImg = rawImageList[i];
             }
             else
             {
-                pagesInfo.rawImg = "";
+                pagesInfo.rawImg = nullbytedata;
             }
 
             // 씬 하나
@@ -852,29 +857,27 @@ public class SH_BtnManager : MonoBehaviour
         //bookinfo.createAt = DateTime.Now.ToString("yyyy / MM / dd");
         // 이제 BookInfo 중 Pages에 이 정보들을 담아보자
         bookinfo.pages = pages;
-        string jsonData = JsonUtility.ToJson(bookinfo, true);
-        print(jsonData);
-        //string path = Application.dataPath + "/" + fileName + ".Json";
-        string path = fileName + ".Json";
-        File.WriteAllText(path, jsonData);
-        return jsonData;
+        string pageJson = JsonUtility.ToJson(bookinfo, true);
+        string path = Application.dataPath + "/" + "in" + ".txt";
+        File.WriteAllText(path, pageJson);
+
+        SaveJson();
     }
 
-    public string ToReadByte(byte[] bytes)
-    {
-        return string.Join(", ", bytes);
-    }
 
     // 제이슨 저장
-    private void SaveJson(string fileName, string jsonData)
+    private void SaveJson()
     {
         //string path = Application.dataPath + "/" + fileName + ".Json";
         //File.WriteAllText(path, jsonData);
 
 
         // ArrayJson -> json
-        string pageJson = jsonData.ToString();// JsonUtility.ToJson(loginInfo, true);
-        print(pageJson);
+        string pageJson = JsonUtility.ToJson(bookinfo, true);
+        //tring path = Application.dataPath + "/" + "실험" + ".txt";
+        string path = Application.dataPath + "/" + "out" + ".txt";
+        File.WriteAllText(path, pageJson);
+        //print(pageJson);
 
         YJ_HttpRequester requester = new YJ_HttpRequester();
         requester.url = "http://43.201.10.63:8080/tale";
@@ -896,9 +899,9 @@ public class SH_BtnManager : MonoBehaviour
     #region PreviewScene // 동화 미리보기
     public void PreviewScene()
     {
-        string jsonData = SaveInfo();
+        //string jsonData = SaveInfo();
 
-        SaveJson("PreviewBook", jsonData);
+        //SaveJson("PreviewBook", jsonData);
     }
     #endregion
 
@@ -948,6 +951,7 @@ public class SH_BtnManager : MonoBehaviour
         requester.onComplete = (handler) =>
         {
             AudioClip clip = DownloadHandlerAudioClip.GetContent(handler);
+            //DownloadHandlerTexture.GetContent(handler);
             ttsSound.clip = clip;
             ttsSound.Play();
 
