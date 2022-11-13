@@ -31,8 +31,6 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     public GameObject selectPopUp;
     public int currentPage;
 
-    public GameObject nextBtn;
-    public GameObject preBtn;
 
     bool pass;
     public GameObject bookWorld;            // 책 골랐을 때 나타나는 월드 오브젝트
@@ -242,6 +240,9 @@ public class SH_ChildrenFairyManager : MonoBehaviour
 
 
     }
+
+    public GameObject broBtn;
+    public GameObject sisBtn;
     public GameObject momBtn;
     public GameObject dadBtn;
     // 여동생을 선택했을 때
@@ -263,6 +264,9 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             sister[j].SetActive(true);
         }
 
+        // 버튼 끄기
+        broBtn.SetActive(false);
+        sisBtn.SetActive(false);
     }
 
 
@@ -284,6 +288,10 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         {
             sister[j].SetActive(false);
         }
+
+        // 버튼 끄기
+        broBtn.SetActive(false);
+        sisBtn.SetActive(false);
     }
 
     // 엄마를 선택했을 때
@@ -366,8 +374,6 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             if (PassPopUpj.name.Contains("Pass"))
             {
                 PassPopUpj.SetActive(false);
-                nextBtn.SetActive(true);
-                preBtn.SetActive(true);
             }
 
         }
@@ -403,11 +409,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     RaycastHit passHit;
     public void OnPassPopUp()
     {
-        
         PassPopUp.SetActive(true);
-        // 패스팝업 떴을때는 꺼주기
-        nextBtn.SetActive(false);
-        preBtn.SetActive(false);
         pass = true;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -468,11 +470,6 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     public void OnFailPopUp()
     {
         FailPopUp.SetActive(true);
-
-        // 패스팝업 떴을때는 꺼주기
-        nextBtn.SetActive(false);
-        preBtn.SetActive(false);
-
         // 해당 FailBtn과 관련된 애니메이션 재생하자!
         // 그러러면 일단 내가 선택한 버튼이 뭔지 알아야한다 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -565,10 +562,6 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     {
         GameObject closeBtn = EventSystem.current.currentSelectedGameObject;
         closeBtn.transform.parent.gameObject.SetActive(false);
-
-        nextBtn.SetActive(true);
-        preBtn.SetActive(true);
-
 
         // 다시 현재 페이지를 켜준다
         pages[currentPage].SetActive(true);
@@ -839,7 +832,6 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         for(int i =0; i<broText.Count;i++)
         {
             broText[i].text = "여동생";
-            broText[0].color = new Color(1, 0.4566038f, 1);
         }
     }
 
@@ -848,8 +840,6 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         for (int i = 0; i < broText.Count; i++)
         {
             broText[i].text = "남동생";
-            broText[0].color = new Color(0.25f,0.25f, 1);
-
         }
     }
 
@@ -866,31 +856,6 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         for (int i = 0; i < parentText.Count; i++)
         {
             parentText[i].text = "아빠";
-        }
-    }
-
-    bool play;
-    // 재생 할때
-    public Sprite Playing;
-    // 멈출 때
-    public Sprite Pause;
-    public Image playPauseBtn;
-
-    public void PauseOrPlay()
-    {
-        if(play == false)
-        {
-            Time.timeScale = 0;
-            play = true;
-            playPauseBtn.sprite = Pause;
-            AudioListener.pause = true;
-        }
-        else
-        {
-            Time.timeScale = 1;
-            play = false;
-            playPauseBtn.sprite = Playing;
-            AudioListener.pause = false;
         }
     }
 
