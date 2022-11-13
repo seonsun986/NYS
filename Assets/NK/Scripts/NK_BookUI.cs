@@ -30,18 +30,7 @@ public class NK_BookUI : MonoBehaviourPun
 
     private void Start()
     {
-        // 동화책 제목 추가하면
-        titles.Add("양치기 소년");
-        titles.Add("신데렐라");
-        titles.Add("오즈의 마법사");
-        for (int i = 0; i < titles.Count; i++)
-        {
-            // 제목 추가된 개수만큼 동화책 생성
-            GameObject book = Instantiate(bookFactory, booksParent.transform);
-            // JSON에서 불러온 제목으로 텍스트 지정
-            book.GetComponentInChildren<Text>().text = titles[i];
-            book.GetComponent<Button>().onClick.AddListener(ClickBook);
-        }
+
     }
 
     public void ClickBook()
@@ -132,13 +121,58 @@ public class NK_BookUI : MonoBehaviourPun
 
             Debug.Log("자 동화목록 받아왔어! \n" + handler.downloadHandler.text);
 
-            JObject tokenJson = JObject.Parse(handler.downloadHandler.text);
+            Title title = JsonUtility.FromJson<Title>(handler.downloadHandler.text);
 
-            // data 안에 accessToken으로 접근
-            id = tokenJson["data"][0]["taleList"]["id"].ToString();
+            Data[] data = title.data;
 
-            //BookInfo bookInfo = JsonUtility.FromJson<BookInfo>(handler.downloadHandler.text);
-            //pagesInfos = bookInfo.pages;
+
+            TaleList taleList = new TaleList();
+            for (int i = 0; i < data.Length; i++)
+            {
+                if (data[i].taleList.id == null) continue;
+                taleList.id = data[i].taleList.id;
+                taleList.memberCode = data[i].taleList.memberCode;
+                taleList.title = data[i].taleList.title;
+                taleList.createAt = data[i].taleList.createAt;
+
+                data[i].taleList = taleList;
+            }
+
+            TaleInfo taleInfo = new TaleInfo();
+            for (int j = 0; j < data.Length; j++)
+            {
+                if (data[j].taleInfo.id == null) continue;
+                taleInfo.id = data[j].taleInfo.id;
+                taleInfo.fontStyle = data[j].taleInfo.fontStyle;
+                taleInfo.fontPosition_x = data[j].taleInfo.fontPosition_x;
+                taleInfo.fontPosition_y = data[j].taleInfo.fontPosition_y;
+                taleInfo.fontSize = data[j].taleInfo.fontSize;
+                taleInfo.fontColor = data[j].taleInfo.fontColor;
+                taleInfo.coverColor = data[j].taleInfo.coverColor;
+                taleInfo.sticker = data[j].taleInfo.sticker;
+                taleInfo.stickerPosition_x = data[j].taleInfo.stickerPosition_x;
+                taleInfo.stickerPosition_y = data[j].taleInfo.stickerPosition_y;
+                taleInfo.thumbNail = data[j].taleInfo.thumbNail;
+
+                data[j].taleInfo = taleInfo;
+            }
+
+            //동화책 제목 추가하면
+            for (int j = 0; j < data.Length; j++)
+            {
+                if (data[j].taleList.title == null) continue;
+                titles.Add(data[j].taleList.title);
+            }
+
+            for (int i = 0; i < titles.Count; i++)
+            {
+                // 제목 추가된 개수만큼 동화책 생성
+                GameObject book = Instantiate(bookFactory, booksParent.transform);
+                // JSON에서 불러온 제목으로 텍스트 지정
+                book.GetComponentInChildren<Text>().text = titles[i];
+                book.GetComponent<Button>().onClick.AddListener(ClickBook);
+            }
+
             Click_Book_2();
 
         };
@@ -157,12 +191,60 @@ public class NK_BookUI : MonoBehaviourPun
 
             BookInfo bookInfo = JsonUtility.FromJson<BookInfo>(handler.downloadHandler.text);
             pagesInfos = bookInfo.pages;
-            Set_Book();
+
 
         };
         YJ_HttpManager.instance.SendRequest(requester2);
 
     }
+
+    [Serializable]
+    public class Title
+    {
+        public string status;
+        public string message;
+        public Data[] data;
+    }
+
+    [SerializeField]
+    public class Data
+    {
+        public TaleList taleList;
+        public TaleInfo taleInfo;
+    }
+
+    [SerializeField]
+    public class TaleList
+    {
+        public string id;
+        public string memberCode;
+        public string title;
+        public string createAt;
+    }
+
+    [SerializeField]
+    public class TaleInfo
+    {
+        public string id;
+        public string fontStyle;
+        public string fontPosition_x;
+        public string fontPosition_y;
+        public string fontSize;
+        public string fontColor;
+        public string coverColor;
+        public string sticker;
+        public string stickerPosition_x;
+        public string stickerPosition_y;
+        public string thumbNail;
+    }
+
+    public void List_Book()
+    {
+
+
+        Set_Book();
+    }
+
 
     public void Set_Book()
     {
