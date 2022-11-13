@@ -727,7 +727,7 @@ public class SH_BtnManager : MonoBehaviour
     public GameObject titlePanel;
     public void TitleOk()
     {
-        title = titlePanel.transform.GetChild(4).GetChild(2).GetComponent<Text>().text;
+        title = titlePanel.transform.GetChild(3).GetChild(2).GetComponent<Text>().text;
         titlePanel.SetActive(false);
     }
 
