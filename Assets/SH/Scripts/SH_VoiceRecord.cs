@@ -52,9 +52,8 @@ public class SH_VoiceRecord : MonoBehaviour
             Microphone.End(Microphone.devices[0]);
 
             float[] samples = new float[recordClip.samples];
-
+ 
             recordClip.GetData(samples, 0);
-
             float[] cutSamples = new float[lastTime];
 
             System.Array.Copy(samples, cutSamples, cutSamples.Length - 1);
