@@ -150,7 +150,7 @@ public class SH_BtnManager : MonoBehaviour
 
     // 멀티 페이지당 오브젝트 담을 클래스 리스트
     //public List<PageInfo> objsInfo = new List<PageInfo>();
-    public List<string> objsInfo = new List<string>();
+    //public List<string> objsInfo = new List<string>();
     // 멀티 책의 정보를 담을 클래스 리스트
     public List<PagesInfo> pages = new List<PagesInfo>();
 
@@ -766,6 +766,7 @@ public class SH_BtnManager : MonoBehaviour
         for (int i = 0; i < Scenes.Count; i++)
         {
             PagesInfo pagesInfo = new PagesInfo();
+            List<string> objsInfo = new List<string>();
 
             pagesInfo.page = i;
             if (Scenes_txt[i].transform.childCount > i)
@@ -824,6 +825,7 @@ public class SH_BtnManager : MonoBehaviour
                     objInfo.anim = obj.GetComponent<SH_SceneObj>().currentAnim;
                     // 멀티 오브젝트 클래스 리스트에 담아준다
                     objsInfo.Add(pagesInfo.SerializePageInfo(objInfo));
+                    
                 }
             }
 
@@ -857,6 +859,7 @@ public class SH_BtnManager : MonoBehaviour
         //bookinfo.createAt = DateTime.Now.ToString("yyyy / MM / dd");
         // 이제 BookInfo 중 Pages에 이 정보들을 담아보자
         bookinfo.pages = pages;
+        
         string pageJson = JsonUtility.ToJson(bookinfo, true);
         string path = Application.dataPath + "/" + "in" + ".txt";
         File.WriteAllText(path, pageJson);
