@@ -38,15 +38,19 @@ public class NK_BookCover : MonoBehaviour
         SetInfo(0, 30, Color.black);
         bgColorImage.color = Color.white;
         bookCoverColor.color = Color.white;
+        inputField.GetComponent<RectTransform>().anchoredPosition = new Vector2(51, 277);
+        // 글씨색...
+
+        // 스티커 초기화
         Transform[] childList = bookCover.GetComponentsInChildren<Transform>();
 
-/*        if (childList != null && childList.Length > 3)
+        if (childList != null && childList.Length > 6)
         {
-            for (int i = 3; i < childList.Length; i++)
+            for (int i = 6; i < childList.Length; i++)
             {
                 Destroy(childList[i].gameObject);
             }
-        }*/
+        }
     }
 
     private void Start()
