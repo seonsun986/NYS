@@ -46,7 +46,7 @@ public class PagesInfo
     public List<string> data; //텍스트 정보, 오브젝트 정보
     public string ttsText;
     public string voice;
-    public string rawImage;
+    public string rawImg;
 
     public string SerializePageInfo(PageInfo info)
     {
@@ -795,11 +795,11 @@ public class SH_BtnManager : MonoBehaviour
             // 로우이미지 세팅
             if (rawImageList.Count > i)
             {
-                pagesInfo.rawImage = rawImageList[i].ToString();
+                pagesInfo.rawImg = rawImageList[i].ToString();
             }
             else
             {
-                pagesInfo.rawImage = "";
+                pagesInfo.rawImg = "";
             }
 
             // 씬 하나
