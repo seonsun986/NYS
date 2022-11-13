@@ -797,8 +797,36 @@ public class SH_BtnManager : MonoBehaviour
                 pagesInfo.voice = nullbytedata;
             }
 
-
+            #region 마지막 페이지 캡쳐 및 로우 이미지 배열에 넣기(지금은 꼭 마지막 페이지에서 저장해야함)
             // 로우이미지 세팅
+            // 마지막 페이지 캡쳐한다
+            // 캡쳐하기 
+            // 마지막 페이지로 모든걸 올린다
+            RenderTexture rt = new RenderTexture(captureWidth, captureHeight, 24);
+            sceneCam.targetTexture = rt;
+            Texture2D screenShot = new Texture2D(captureWidth, captureHeight, TextureFormat.RGB24, false);
+            Rect rec = new Rect(0, 0, screenShot.width, screenShot.height);
+            sceneCam.Render();
+            RenderTexture.active = rt;
+            screenShot.ReadPixels(new Rect(0, 0, captureWidth, captureHeight), 0, 0);
+            screenShot.Apply();
+            byte[] bytes = screenShot.EncodeToPNG();
+            string fileName = Application.dataPath + "/Capture/" + "_" + i + ".png";
+            File.WriteAllBytes(fileName, bytes);
+
+            // rawImageList에 넣는다
+            // 캡쳐파일 RawImage에 넣기
+            byte[] textureBytes = File.ReadAllBytes(fileName);
+            rawImageList.Add(textureBytes);
+            if (textureBytes.Length > 0)
+            {
+                Texture2D loadedTexture = new Texture2D(0, 0);
+                loadedTexture.LoadImage(textureBytes);
+                // 현재는 꼭 마지막 씬에서만 저장해야함..
+                rawImages[currentScene].GetComponent<RawImage>().texture = loadedTexture;
+            }
+            #endregion
+
             if (rawImageList.Count > i)
             {
                 pagesInfo.rawImg = rawImageList[i];
