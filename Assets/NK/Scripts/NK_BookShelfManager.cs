@@ -233,9 +233,10 @@ public class NK_BookShelfManager : MonoBehaviour
         booksParent.SetActive(false);
 
         // rawImage 불러오고 초기화
-        //index = 0;
-        rawImage.rectTransform.sizeDelta = new Vector2(300, 400);
-        rawImage.texture = selectedBook.GetComponent<Image>().sprite.texture;
+        index = 0;
+        rawImage.texture = images[index];
+        //rawImage.rectTransform.sizeDelta = new Vector2(300, 400);
+        //rawImage.texture = selectedBook.GetComponent<Image>().sprite.texture;
     }
 
     int index = 1;
@@ -243,7 +244,7 @@ public class NK_BookShelfManager : MonoBehaviour
     {
         rawImage.rectTransform.sizeDelta = new Vector2(800, 500);
         // 책 미리보기에서 이전 버튼 클릭 시
-        if (1 < index)
+        if (0 < index)
         {
             index--;
             rawImage.texture = images[index];
