@@ -74,7 +74,8 @@ public class NK_BookShelfManager : MonoBehaviour
         requester.headers["accesstoken"] = YJ_DataManager.instance.myInfo.accessToken;
         requester.headers["Content-Type"] = "application/json";
         requester.postData = taleListJson;
-        requester.onComplete = (handler) => {
+        requester.onComplete = (handler) =>
+        {
             print("토큰 받아오기 완료");
 
             //JObject tokenJson = JObject.Parse(handler.downloadHandler.text);
@@ -94,13 +95,15 @@ public class NK_BookShelfManager : MonoBehaviour
     public void TaleGet_API()
     {
         Title title = new Title();
-
+        taleInfos = new List<TaleInfo>();
+        bookObjs = new List<GameObject>();
         YJ_HttpRequester requester = new YJ_HttpRequester();
         requester.url = "http://43.201.10.63:8080/tale/mylist";
         requester.requestType = RequestType.GET;
         requester.headers = new Dictionary<string, string>();
         requester.headers["accesstoken"] = YJ_DataManager.instance.myInfo.accessToken;
-        requester.onComplete = (handler) => {
+        requester.onComplete = (handler) =>
+        {
 
             Debug.Log("자 동화목록 받아왔어! \n" + handler.downloadHandler.text);
 
@@ -123,7 +126,7 @@ public class NK_BookShelfManager : MonoBehaviour
 
             for (int j = 0; j < data.Length; j++)
             {
-            TaleInfo taleInfo = new TaleInfo();
+                TaleInfo taleInfo = new TaleInfo();
                 if (data[j].taleInfo.id == null) continue;
                 taleInfo.id = data[j].taleInfo.id;
                 taleInfo.fontStyle = data[j].taleInfo.fontStyle;
@@ -230,9 +233,10 @@ public class NK_BookShelfManager : MonoBehaviour
         booksParent.SetActive(false);
 
         // rawImage 불러오고 초기화
-        //index = 0;
-        rawImage.rectTransform.sizeDelta = new Vector2(300, 400);
-        rawImage.texture = selectedBook.GetComponent<Image>().sprite.texture;
+        index = 0;
+        rawImage.texture = images[index];
+        //rawImage.rectTransform.sizeDelta = new Vector2(300, 400);
+        //rawImage.texture = selectedBook.GetComponent<Image>().sprite.texture;
     }
 
     int index = 1;
@@ -240,7 +244,7 @@ public class NK_BookShelfManager : MonoBehaviour
     {
         rawImage.rectTransform.sizeDelta = new Vector2(800, 500);
         // 책 미리보기에서 이전 버튼 클릭 시
-        if (1 < index)
+        if (0 < index)
         {
             index--;
             rawImage.texture = images[index];
@@ -281,7 +285,7 @@ public class NK_BookShelfManager : MonoBehaviour
         if (delSticker != null)
             Destroy(delSticker);
     }
-/// ///////////////////////////////////////////////////////////////////////////////////
+    /// ///////////////////////////////////////////////////////////////////////////////////
     public void SaveBookCover()
     {
         // Json으로 책 표지 저장
@@ -308,7 +312,7 @@ public class NK_BookShelfManager : MonoBehaviour
         // 텍스쳐 픽셀에 지정
         screenTex.ReadPixels(area, 0, 0);
         screenTex.Apply();
-        
+
         // 폴더가 존재하지 않으면 새로 생성
         if (Directory.Exists(path) == false)
         {
@@ -335,8 +339,18 @@ public class NK_BookShelfManager : MonoBehaviour
     {
         detailUI.SetActive(false);
         booksParent.SetActive(true);
+
+        NK_BookTrigger[] childList = booksParent.GetComponentsInChildren<NK_BookTrigger>();
+        if (childList != null)
+        {
+            for (int i = 0; i < childList.Length; i++)
+            {
+                Destroy(childList[i].gameObject);
+            }
+        }
+
         // 책 업데이트
-        //TaleGet_API();
+        TaleGet_API();
     }
 
     public void ExitPopup()
