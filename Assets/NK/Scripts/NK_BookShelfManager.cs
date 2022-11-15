@@ -261,7 +261,21 @@ public class NK_BookShelfManager : MonoBehaviour
             rawImage.texture = images[index];
         }
     }
-    /// //////////////////////////////////////////////////////////////////////////
+    
+    public void ClickBeforeBook()
+    {
+        Vector2 pos = booksParent.GetComponent<RectTransform>().anchoredPosition; 
+        booksParent.GetComponent<RectTransform>().anchoredPosition += new Vector2(400, 0);
+        //booksParent.GetComponent<RectTransform>().anchoredPosition = Vector3.Lerp(pos, pos + new Vector2(400, 0), 0.05f);
+    }
+
+    public void ClickNextBook()
+    {
+        Vector2 pos = booksParent.GetComponent<RectTransform>().anchoredPosition;
+        booksParent.GetComponent<RectTransform>().anchoredPosition += new Vector2(-400, 0);
+        //booksParent.GetComponent<RectTransform>().anchoredPosition = Vector3.Lerp(pos, pos - new Vector2(400, 0), 0.05f);
+    }
+
     public void UpdateBookCover()
     {
         // 책 표지 수정

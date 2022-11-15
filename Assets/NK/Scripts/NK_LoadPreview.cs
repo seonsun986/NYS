@@ -38,6 +38,11 @@ public class NK_LoadPreview : MonoBehaviour
         SceneManager.LoadScene("EditorScene");
     }
 
+    public void LoadObjects()
+    {
+        LoadObjects("Book1");
+    }
+
     public void LoadObjects(string fileName)
     {
         // Json 파일 받아오기

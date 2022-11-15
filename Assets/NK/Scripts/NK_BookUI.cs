@@ -39,6 +39,14 @@ public class NK_BookUI : MonoBehaviourPun
 
     public void ClickBookList()
     {
+        // 기존에 자식 리스트가 있으면 모두 삭제
+        Transform[] childList = booksParent.GetComponentsInChildren<Transform>();
+
+        if (childList.Length > 1)
+        {
+            return;
+        }
+
         GetBookList("Book2");
     }
 
