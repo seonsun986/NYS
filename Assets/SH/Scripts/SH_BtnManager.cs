@@ -728,7 +728,8 @@ public class SH_BtnManager : MonoBehaviour
     public GameObject titlePanel;
     public void TitleOk()
     {
-        title = titlePanel.transform.GetChild(3).GetChild(2).GetComponent<Text>().text;
+        title = titlePanel.transform.GetChild(0).GetChild(2).GetChild(2).GetComponent<Text>().text;
+        //iTween.ScaleTo(titlePanel.transform.GetChild(0).gameObject, iTween.Hash("x", 0, "y",0, "z", 0, "easeType", "easeOutExpo", "time", 0.5f));
         titlePanel.SetActive(false);
     }
 

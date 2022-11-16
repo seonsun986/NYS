@@ -22,6 +22,8 @@ public class SH_EditorManager : MonoBehaviour
     // 현재 클릭되어있는 오브젝트
     public GameObject activeObj;
     public string activeObj_anim;
+    // 처음 책제목 오브젝트 처음에 ITween위함
+    public GameObject titleObj;
     private void Awake()
     {
         if(Instance == null)
@@ -64,15 +66,22 @@ public class SH_EditorManager : MonoBehaviour
             {"Laugh", "웃기" },
         };
     }
+
     int i = 0;
     public GameObject gizmo1;
     public GameObject gizmo2;
     public GameObject gizmo3;
     public GameObject gizmo4;
-    
+
+    float currentTime;
+    public float openTime = 1;
     void Update()
     {
-     
+        currentTime += Time.deltaTime;
+        if(currentTime>openTime)
+        {
+            iTween.ScaleTo(titleObj, iTween.Hash("x", 1, "y", 1, "z", 1, "easeType", "easeOutExpo", "time", 0.5f));
+        }
 
         // 클릭되어있는 오브젝트 구하기
         // 1.

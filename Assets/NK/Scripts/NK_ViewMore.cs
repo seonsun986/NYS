@@ -36,7 +36,8 @@ public class NK_ViewMore : MonoBehaviour
         // 텍스트 가져오기
         moreText = moreSection.transform.GetChild(0).gameObject;
         RectTransform textTreansform = moreText.GetComponent<RectTransform> ();
-        textTreansform.SetPosX(70);
+        //textTreansform.SetPosX(85);
+        textTreansform.anchoredPosition = new Vector2(85, 0);
 
         // 두번째 줄부터의 오브젝트 나타내기
         GameObject.Find(moreSection.name).transform.Find("More").gameObject.SetActive(true);
@@ -61,7 +62,7 @@ public class NK_ViewMore : MonoBehaviour
         sectionTransform.SetHeight(100);
 
         RectTransform textTreansform = moreText.GetComponent<RectTransform>();
-        textTreansform.SetPosX(30);
+        textTreansform.SetPosX(45);
 
         // 두번째 줄부터의 오브젝트 숨기기
         GameObject.Find(moreSection.name).transform.Find("More").gameObject.SetActive(false);
