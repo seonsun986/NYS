@@ -3716,7 +3716,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1186346393}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -12587,6 +12587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0433dccde3292045a3b2f22b7eaa3c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emotionTime: 0.1
 --- !u!1 &1042230020
 GameObject:
   m_ObjectHideFlags: 0
@@ -14166,6 +14167,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2036060571}
   - {fileID: 1580913100}
   - {fileID: 260113856}
   m_Father: {fileID: 1040144018}
@@ -16704,7 +16706,6 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1360708717}
-  - {fileID: 2036060571}
   - {fileID: 2087658442}
   m_Father: {fileID: 1040144018}
   m_RootOrder: 8
@@ -19049,7 +19050,7 @@ RectTransform:
   m_Children:
   - {fileID: 381186744}
   m_Father: {fileID: 1186346393}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -23317,16 +23318,16 @@ RectTransform:
   m_GameObject: {fileID: 2036060570}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.175, y: 0.175, z: 0.175}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 558787760}
-  m_Father: {fileID: 1390171540}
-  m_RootOrder: 1
+  m_Father: {fileID: 1186346393}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -92.3, y: 1933}
+  m_AnchoredPosition: {x: 684.42505, y: 552.94995}
   m_SizeDelta: {x: 574, y: 585}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2036060572
@@ -24227,7 +24228,7 @@ RectTransform:
   m_Children:
   - {fileID: 221372051}
   m_Father: {fileID: 1390171540}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}

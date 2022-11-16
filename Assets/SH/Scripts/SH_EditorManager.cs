@@ -26,7 +26,7 @@ public class SH_EditorManager : MonoBehaviour
     public GameObject titleObj;
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -77,10 +77,14 @@ public class SH_EditorManager : MonoBehaviour
     public float openTime = 1;
     void Update()
     {
-        currentTime += Time.deltaTime;
-        if(currentTime>openTime)
+        if (titleObj != null)
         {
-            iTween.ScaleTo(titleObj, iTween.Hash("x", 1, "y", 1, "z", 1, "easeType", "easeOutExpo", "time", 0.5f));
+            currentTime += Time.deltaTime;
+            if (currentTime > openTime)
+            {
+                iTween.ScaleTo(titleObj, iTween.Hash("x", 1, "y", 1, "z", 1, "easeType", "easeOutExpo", "time", 0.5f));
+            }
+
         }
 
         // 클릭되어있는 오브젝트 구하기
@@ -98,7 +102,7 @@ public class SH_EditorManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hitInfo))
             {
-                if(hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Object"))
+                if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Object"))
                 {
                     print("클릭한 오브젝트 : " + hitInfo.transform.gameObject.name);
                     activeObj = hitInfo.transform.gameObject;
@@ -108,7 +112,7 @@ public class SH_EditorManager : MonoBehaviour
                         activeObj.GetComponent<SH_SceneObj>().buttons[i].SetActive(true);
                     }
                 }
-                
+
                 // 오브젝트가 아닐때
                 else
                 {
@@ -121,22 +125,22 @@ public class SH_EditorManager : MonoBehaviour
                         }
                         else
                         {
-                            for(int j =0;j<activeObj.GetComponent<SH_SceneObj>().buttons.Count;j++)
+                            for (int j = 0; j < activeObj.GetComponent<SH_SceneObj>().buttons.Count; j++)
                             {
                                 activeObj.GetComponent<SH_SceneObj>().buttons[j].SetActive(false);
-                                if(j == activeObj.GetComponent<SH_SceneObj>().buttons.Count-1)
+                                if (j == activeObj.GetComponent<SH_SceneObj>().buttons.Count - 1)
                                 {
                                     // 정말 삭제하시겠습니까 팝업도 미리 꺼놔야한다
                                     activeObj.GetComponent<SH_SceneObj>().buttons[j].transform.GetChild(0).gameObject.SetActive(false);
                                 }
-                                
+
                             }
                         }
                     }
                 }
-                
+
             }
-            
+
         }
     }
 }

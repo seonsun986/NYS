@@ -22,11 +22,8 @@ public class NK_BookShelfManager : MonoBehaviour
     public RawImage rawImage;
     // 책 표지 수정에 필요한 속성
     public GameObject bookCoverUI;
-    // 삭제될 스티커
-    public GameObject delSticker;
     // 선택된 책
     public GameObject selectedBook;
-
     public GameObject nextBtn;
     public GameObject prevBtn;
     string path;
@@ -182,13 +179,16 @@ public class NK_BookShelfManager : MonoBehaviour
 
     public void ReadImage(int index)
     {
+        // 책 표지 이미지 받아오기
         YJ_HttpRequester requester = new YJ_HttpRequester();
         requester.url = taleInfos[index].thumbNail;
         print(requester.url);
         requester.requestType = RequestType.IMAGE;
         requester.onComplete = (handler) =>
         {
+            // 책 표지 이미지 텍스쳐로 받아오기
             Texture2D texture = DownloadHandlerTexture.GetContent(handler);
+            // 책 표지 이미지 스프라이트로 만들어서 수정된 책에 적용 및 제목 텍스트 비활성화
             Sprite tempSprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
             booksParent.transform.GetChild(index).GetComponent<Image>().sprite = tempSprite;
             booksParent.transform.GetChild(index).GetComponentInChildren<Text>().enabled = false;
@@ -316,21 +316,15 @@ public class NK_BookShelfManager : MonoBehaviour
         SceneManager.LoadScene("EditorScene");
     }
 
-    public void DeleteObj()
-    {
-        // 삭제 버튼 눌러서 마지막에 클릭된 스티커 삭제
-        if (delSticker != null)
-            Destroy(delSticker);
-    }
-    /// ///////////////////////////////////////////////////////////////////////////////////
     public void SaveBookCover()
     {
         // Json으로 책 표지 저장
         TaleInfo taleInfo = NK_BookCover.instance.taleInfo;
-
+        // 선택된 책의 TaleInfo의 id를 받아옴
         taleInfo.id = taleInfos[bookObjs.IndexOf(selectedBook)].id;
         //print(taleInfo.id);
         print(data.Length);
+        // 선택된 책의 Json을 만들 TaleInfo에 정보 저장
         NK_BookCover.instance.SaveTaleInfo();
 
         // 책 표지 캡쳐 및 서버에 보내기 작업
@@ -363,7 +357,7 @@ public class NK_BookShelfManager : MonoBehaviour
         // 텍스쳐 메모리 해제
         Destroy(screenTex);
 
-        // 표지 정보 보내기
+        // 선택된 책의 표지 정보 보내기
         TalePost_API(NK_BookCover.instance.taleInfo);
     }
 

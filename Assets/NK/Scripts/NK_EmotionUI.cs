@@ -5,7 +5,7 @@ using UnityEngine;
 public class NK_EmotionUI : MonoBehaviour
 {
     public static NK_Emotion.Emotion emotion = NK_Emotion.Emotion.NoSelection;
-    public float emotionTime = 0.5f;
+    public float emotionTime = 0.1f;
     float currentTime = 0f;
     int i = 0;
 
@@ -48,5 +48,10 @@ public class NK_EmotionUI : MonoBehaviour
     {
         emotion = NK_Emotion.Emotion.Excite;
         gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        i = 0;
     }
 }
