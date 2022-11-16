@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SH_ChildrenFairyManager : MonoBehaviour
 {
@@ -892,6 +893,11 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             playPauseBtn.sprite = Playing;
             AudioListener.pause = false;
         }
+    }
+
+    public void BackBtn()
+    {
+        
     }
 
 }

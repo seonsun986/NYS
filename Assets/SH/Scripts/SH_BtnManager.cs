@@ -614,12 +614,15 @@ public class SH_BtnManager : MonoBehaviour
 
     }
 
+
+    [Header("소리 관련 변수")]
     public Sprite playing;
     public Sprite notPlaying;
     public AudioClip preClip;
     public AudioClip curClip;
     GameObject currentBtn;
     GameObject preBtn;
+    public Image nonePlaying;
 
     // 선택한 버튼에 대한 소리를 바꾼다
     // 선택한 버튼에 대한 이미지를 Playing으로 바꾼다.
@@ -654,7 +657,7 @@ public class SH_BtnManager : MonoBehaviour
                 exSoundSource.clip = effectClips[i];
 
                 // 처음 소리 설정 할 때 아무것도 들어가있지 않으므로 설정해줌
-                if (preClip == null)
+                if (preClip == null && nonePlaying.sprite != playing)
                 {
                     // 처음 소리 및 게임 오브젝트 설정
                     preClip = exSoundSource.clip;
