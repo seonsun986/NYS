@@ -58,6 +58,23 @@ public class NK_BookShelfManager : MonoBehaviour
 
         path = Application.dataPath + "/BookCover/";
 
+
+        string s = "a,b,c,d,e";
+
+        string [] ss = s.Split(",");
+
+
+
+        string sss = "";
+        for(int i = 0; i < ss.Length; i++)
+        {
+            sss += ss[i];
+            //if(i < )
+            sss += ",";
+            
+        }
+
+
     }
 
 
@@ -220,6 +237,7 @@ public class NK_BookShelfManager : MonoBehaviour
         public byte[] inputImg;
         public string thumbNail;
     }
+
 
     // Update is called once per frame
     void Update()
