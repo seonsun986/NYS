@@ -12,6 +12,7 @@ public class NK_FairyTale : MonoBehaviour
     public Transform book;
     public List<Transform> objs;
     public GameObject stage;
+    public AudioSource bgSound;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -36,22 +37,24 @@ public class NK_FairyTale : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 책이 거의 다 펼쳐지면 활성화
+        // 책이 거의 다 펼쳐지면 UI, 무대, 오브젝트들, 배경음 활성화
         if (book.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f)
         {
             stage.SetActive(true);
             fairyTaleUI.SetActive(true);
             fairyTaleObject.SetActive(true);
+            bgSound.Pause();
         }
     }
 
     private void OnDisable()
     {
-        // 페어리테일 매니저가 꺼지면 UI, 무대, 오브젝트들 모두 꺼지도록
+        // 페어리테일 매니저가 꺼지면 UI, 무대, 오브젝트들, 배경음 모두 꺼지도록
         fairyTaleUI.SetActive(false);
         fairyTaleObject.SetActive(false);
         book.gameObject.SetActive(false);
         stage.SetActive(false);
+        bgSound.Play();
 
         if (GameManager.Instance.photonView.IsMine)
         {

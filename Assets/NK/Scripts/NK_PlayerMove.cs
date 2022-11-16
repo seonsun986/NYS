@@ -187,6 +187,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                     {
                         photonView.RPC("RpcSetBool", RpcTarget.All, "Sit", false);
                         photonView.RPC("RpcSetBool", RpcTarget.All, "HandUp", false);
+                        movePoint = Vector3.zero;
                         sit = false;
                     }
 

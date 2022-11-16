@@ -35,11 +35,12 @@ public class NK_Mute : MonoBehaviour
         if (muteImage.sprite == voiceSprite)
         {
             muteImage.sprite = muteSprite;
-            NK_UIController.instance.ClickMute(transform.GetComponentInChildren<Text>().text);
+            NK_UIController.instance.ClickMute(true, transform.GetComponentInChildren<Text>().text);
         }
         else
         {
             muteImage.sprite = voiceSprite;
+            NK_UIController.instance.ClickMute(false, transform.GetComponentInChildren<Text>().text);
         }
     }
 }
