@@ -311,7 +311,6 @@ MonoBehaviour:
   detailTitle: {fileID: 1777540538}
   rawImage: {fileID: 279212130}
   bookCoverUI: {fileID: 2111456172}
-  delSticker: {fileID: 0}
   selectedBook: {fileID: 0}
   nextBtn: {fileID: 1484448499}
   prevBtn: {fileID: 945973306}
@@ -7875,8 +7874,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 17487085}
-        m_TargetAssemblyTypeName: NK_BookShelfManager, Assembly-CSharp
+      - m_Target: {fileID: 2111456176}
+        m_TargetAssemblyTypeName: NK_BookCover, Assembly-CSharp
         m_MethodName: DeleteObj
         m_Mode: 1
         m_Arguments:
@@ -20360,6 +20359,7 @@ MonoBehaviour:
   - '#741B47'
   obj: []
   bookCoverColor: {fileID: 371830950}
+  delSticker: {fileID: 0}
   palette: {fileID: 2119067525}
   bgPalette: {fileID: 2140670572}
 --- !u!1 &2115711338
