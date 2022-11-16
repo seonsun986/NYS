@@ -2290,7 +2290,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 660414075}
         m_TargetAssemblyTypeName: SH_BtnManager, Assembly-CSharp
-        m_MethodName: SelectSound
+        m_MethodName: SelectSound2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2976,7 +2976,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 660414075}
         m_TargetAssemblyTypeName: SH_BtnManager, Assembly-CSharp
-        m_MethodName: SelectSound
+        m_MethodName: SelectSound2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9764,7 +9764,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 660414075}
         m_TargetAssemblyTypeName: SH_BtnManager, Assembly-CSharp
-        m_MethodName: SelectSound
+        m_MethodName: SelectSound2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11012,22 +11012,8 @@ MonoBehaviour:
   - '#351C75'
   - '#741B47'
   txtcolorImage: {fileID: 463204983}
-  effectClips:
-  - {fileID: 0}
-  - {fileID: 8300000, guid: bee24aef1e6fe114cadbec9a335ff3a8, type: 3}
-  - {fileID: 8300000, guid: f73a8411f6d161149aca816e3a917fd7, type: 3}
-  - {fileID: 8300000, guid: 35021bc322be42f4a8e12cac1c15922d, type: 3}
-  - {fileID: 8300000, guid: bda572a1060378040b1ee0fff4712497, type: 3}
-  - {fileID: 8300000, guid: 4083168e939d31c44ab789fbe3dde441, type: 3}
-  - {fileID: 8300000, guid: 4df167e37bb01174ea3b72b8bcf61e3d, type: 3}
-  - {fileID: 8300000, guid: b51565a8f4a15af4a9142a816e19ef2a, type: 3}
-  effectSoundSource: {fileID: 0}
-  bgSoundSource: {fileID: 0}
-  exSoundSource: {fileID: 1990088488}
   Scenebuttonon: {fileID: 243198772}
   Scenebuttonoff: {fileID: 0}
-  soundBG: {fileID: 0}
-  soundBtn: {fileID: 0}
   palette: {fileID: 2119067525}
   i: 0
   currentScene: 0
@@ -11035,6 +11021,16 @@ MonoBehaviour:
   notPlaying: {fileID: 21300000, guid: 22f6ec079e6abdc4abff1a125997b4b8, type: 3}
   preClip: {fileID: 0}
   curClip: {fileID: 0}
+  nonePlaying: {fileID: 1375482677}
+  BGClips:
+  - {fileID: 8300000, guid: bee24aef1e6fe114cadbec9a335ff3a8, type: 3}
+  - {fileID: 8300000, guid: f73a8411f6d161149aca816e3a917fd7, type: 3}
+  - {fileID: 8300000, guid: 35021bc322be42f4a8e12cac1c15922d, type: 3}
+  - {fileID: 8300000, guid: bda572a1060378040b1ee0fff4712497, type: 3}
+  - {fileID: 8300000, guid: 4083168e939d31c44ab789fbe3dde441, type: 3}
+  - {fileID: 8300000, guid: 4df167e37bb01174ea3b72b8bcf61e3d, type: 3}
+  - {fileID: 8300000, guid: b51565a8f4a15af4a9142a816e19ef2a, type: 3}
+  bgSoundSource: {fileID: 1990088488}
   title: 
   titlePanel: {fileID: 1625669147}
   ttsSound: {fileID: 1774728070}
@@ -11126,6 +11122,7 @@ MonoBehaviour:
   - {fileID: 243198772}
   - {fileID: 824499042}
   - {fileID: 492866524}
+  - {fileID: 1609768551}
 --- !u!1 &675271653
 GameObject:
   m_ObjectHideFlags: 0
@@ -13314,7 +13311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 824498968}
   m_Layer: 5
-  m_Name: BGTab
+  m_Name: BGSoundTab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16741,8 +16738,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1746314619}
   m_HandleRect: {fileID: 1746314618}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.9996646
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -16871,7 +16868,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 660414075}
         m_TargetAssemblyTypeName: SH_BtnManager, Assembly-CSharp
-        m_MethodName: SelectSound
+        m_MethodName: SelectSound2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17178,7 +17175,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 660414075}
         m_TargetAssemblyTypeName: SH_BtnManager, Assembly-CSharp
-        m_MethodName: SelectSound
+        m_MethodName: SelectSound2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19500,7 +19497,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 660414075}
         m_TargetAssemblyTypeName: SH_BtnManager, Assembly-CSharp
-        m_MethodName: SelectSound
+        m_MethodName: SelectSound2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21599,7 +21596,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 660414075}
         m_TargetAssemblyTypeName: SH_BtnManager, Assembly-CSharp
-        m_MethodName: SelectSound
+        m_MethodName: SelectSound2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22733,7 +22730,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 660414075}
         m_TargetAssemblyTypeName: SH_BtnManager, Assembly-CSharp
-        m_MethodName: SelectSound
+        m_MethodName: SoundNone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -31597,7 +31594,7 @@ GameObject:
   - component: {fileID: 1990088487}
   - component: {fileID: 1990088488}
   m_Layer: 0
-  m_Name: ExSound
+  m_Name: BGExampleSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33379,7 +33376,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -141.49966, y: 474.99994}
+  m_AnchoredPosition: {x: -141.49966, y: 474.9999}
   m_SizeDelta: {x: 256, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2069426964
