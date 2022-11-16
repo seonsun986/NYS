@@ -50,8 +50,8 @@ public class YJ_PlazaManager1 : MonoBehaviourPunCallbacks
     public void OutPlaza()
     {
         // 광장씬 방 나가기
-        //PhotonNetwork.LeaveRoom();
-        SceneManager.LoadScene("MyRoomScene");
+        PhotonNetwork.LeaveRoom();
+        //SceneManager.LoadScene("MyRoomScene");
     }
 
 
@@ -60,9 +60,6 @@ public class YJ_PlazaManager1 : MonoBehaviourPunCallbacks
     {
         base.OnConnectedToMaster();
         print(System.Reflection.MethodBase.GetCurrentMethod().Name);
-
-        // 닉네임 설정 네트워크 필요
-        //PhotonNetwork.NickName = inputNickName.text; //"익명의_" + Random.Range(1,10000);
 
         // 기본 로비 진입
         PhotonNetwork.JoinLobby();
@@ -78,32 +75,6 @@ public class YJ_PlazaManager1 : MonoBehaviourPunCallbacks
         //else
             JoinRoom();
     }
-
-    //public void CreateRoom()
-    //{
-    //    // 방정보 셋팅
-    //    RoomOptions roomOptions = new RoomOptions();
-
-    //    // 방을 만든다
-    //    PhotonNetwork.CreateRoom(YJ_DataManager.CreateRoomInfo.roomName, roomOptions);
-    //    print(YJ_DataManager.CreateRoomInfo.roomName);
-
-    //}
-
-    // 방 생성 완료 확인
-    //public override void OnCreatedRoom()
-    //{
-    //    base.OnCreatedRoom();
-    //    print(System.Reflection.MethodBase.GetCurrentMethod().Name);
-    //}
-
-    // 방 생성 실패했을때
-    //public override void OnCreateRoomFailed(short returnCode, string message)
-    //{
-    //    base.OnCreateRoomFailed(returnCode, message);
-    //    print("OnCreateRoomFailed, " + returnCode + ", " + message);
-    //}
-
 
     // 방입장 ( 방생성자는 자동으로 입장이 됨 )
     public virtual void JoinRoom()

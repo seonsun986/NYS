@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4457721, g: 0.4954893, b: 0.57429004, a: 1}
+  m_IndirectSpecularColor: {r: 0.40970612, g: 0.43362164, b: 0.44157472, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: edb1b84f3d2c23f4782db9eab2dc10b9, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 86922076f24001b4b97a72ec31ea4f5f, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -4406,6 +4406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   T_BookBtn: {fileID: 1993271465113952483}
+  T_BookBtn2: {fileID: 1712742291}
   C_BookBtn: {fileID: 1902849041}
 --- !u!1 &1448389428
 GameObject:
@@ -5524,7 +5525,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -363, y: -386}
+  m_AnchoredPosition: {x: -161, y: -386}
   m_SizeDelta: {x: 658, y: 659}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1902849043
@@ -5887,8 +5888,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 117.25, y: -80}
-  m_SizeDelta: {x: 542, y: 505}
+  m_AnchoredPosition: {x: 117.25, y: -86.658264}
+  m_SizeDelta: {x: 542, y: 558.2661}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1948062760
 MonoBehaviour:
@@ -6404,14 +6405,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2093533514}
-  m_LocalRotation: {x: 0.4404249, y: 0.008310446, z: -0.016936788, w: 0.89759123}
+  m_LocalRotation: {x: 0.033659764, y: 0.0006351365, z: -0.018855108, w: 0.99925536}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 52.272, y: 0, z: -2.162}
+  m_LocalEulerAnglesHint: {x: 3.859, y: 0, z: -2.162}
 --- !u!33 &1392733619969817811
 MeshFilter:
   m_ObjectHideFlags: 0

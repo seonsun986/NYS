@@ -15,10 +15,12 @@ public class YJ_RoomRay : MonoBehaviour
 
     void OnDrawGizmos()
     {
+        int layerMask = 1 << LayerMask.NameToLayer("Room");
+
         Gizmos.color = _rayColor;
 
         // 함수 파라미터 : 현재 위치, Box의 절반 사이즈, Ray의 방향, RaycastHit 결과, Box의 회전값, BoxCast를 진행할 거리
-        if (true == Physics.BoxCast(transform.position, transform.lossyScale / 2.0f, Vector3.down, out RaycastHit hit, transform.rotation, _maxDistance))
+        if (true == Physics.BoxCast(transform.position, transform.lossyScale / 2.0f, Vector3.down, out RaycastHit hit, transform.rotation, _maxDistance, layerMask))
         {
             // Hit된 지점까지 ray를 그려준다.
             Gizmos.DrawRay(transform.position, Vector3.down * hit.distance);

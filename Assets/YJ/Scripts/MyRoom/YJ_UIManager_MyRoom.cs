@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class YJ_UIManager_MyRoom : MonoBehaviour
 {
     public GameObject T_BookBtn;
+    public GameObject T_BookBtn2;
     public GameObject C_BookBtn;
 
     void Start()
@@ -17,6 +18,7 @@ public class YJ_UIManager_MyRoom : MonoBehaviour
         else
         {
             T_BookBtn.SetActive(false);
+            T_BookBtn2.SetActive(false);
         }
     }
 

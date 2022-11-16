@@ -80,7 +80,6 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
     public GameObject auIn;
     public void AUIn()
     {
-
         auIn.SetActive(!auIn.activeSelf);
     }
 
