@@ -10,19 +10,19 @@ using UnityEngine.UI;
 public class NK_UIController : MonoBehaviourPun
 {
     public static NK_UIController instance;
-    public List<GameObject> seats;
+    List<GameObject> seats;
 
     #region IsMute
     bool isMute = false;
-    bool IsMute
+    public bool IsMute
     {
         get
         {
-            if (isMute)
-                isMute = false;
-            else
-                isMute = true;
             return isMute;
+        }
+        set
+        {
+            isMute = value;
         }
     }
     #endregion
@@ -63,13 +63,17 @@ public class NK_UIController : MonoBehaviourPun
     #region ClickMute // 음소거 버튼
     public void ClickMute()
     {
+        if (IsMute)
+            IsMute = false;
+        else
+            IsMute = true;
         photonView.RPC("RPCMute", RpcTarget.All, IsMute);
     }
 
     [PunRPC]
     private void RPCMute(bool mute)
     {
-        // 모든 아이들의 볼륨을 0으로 하거나 Mute 시킴
+        // 모든 아이들을 Mute 시킴
         for (int i = 0; i < GameManager.Instance.children.Count; i++)
         {
             AudioSource audio = GameManager.Instance.children[i].transform.Find("Speaker").GetComponent<AudioSource>();
@@ -79,11 +83,38 @@ public class NK_UIController : MonoBehaviourPun
             }
         }
     }
+
+    public void ClickMute(string nickname)
+    {
+        // 수정 필요
+        if (IsMute)
+            IsMute = false;
+        else
+            IsMute = true;
+        photonView.RPC("RPCSingleMute", RpcTarget.All, IsMute, nickname);
+    }
+
+    [PunRPC]
+    private void RPCSingleMute(bool mute, string nickname)
+    {
+        // 멤버 관리에서 특정 아이를 Mute 시킴
+        for (int i = 0; i < GameManager.Instance.children.Count; i++)
+        {
+            if (GameManager.Instance.children[i].Owner.NickName == nickname)
+            {
+                AudioSource audio = GameManager.Instance.children[i].transform.Find("Speaker").GetComponent<AudioSource>();
+                if (audio != null)
+                {
+                    audio.mute = mute;
+                }
+            }
+        }
+    }
     #endregion
 
     #region ClickControl // 행동제어 버튼
     float shortDistance = float.MaxValue;
-    public GameObject nearSeat = null;
+    GameObject nearSeat = null;
     public void ClickControl()
     {
         // 모든 아이들을 가장 가까운 빈 좌석에 앉힘

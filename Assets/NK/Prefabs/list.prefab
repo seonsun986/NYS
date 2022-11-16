@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1870902351238096083}
   - component: {fileID: 1870902351238096080}
   - component: {fileID: 1870902351238096081}
-  - component: {fileID: 8381516347548681067}
   m_Layer: 5
   m_Name: MuteBtn
   m_TagString: Untagged
@@ -122,9 +121,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8381516347548681067}
+      - m_Target: {fileID: 6706111387030632928}
         m_TargetAssemblyTypeName: NK_Mute, Assembly-CSharp
-        m_MethodName: ChangeImage
+        m_MethodName: ChangeSingleImage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -134,21 +133,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8381516347548681067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1870902351238096095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81950f0e019446643b4d5a6983e3bbb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  muteImage: {fileID: 1870902351238096080}
-  muteSprite: {fileID: 21300000, guid: aac2d7f02cb4d914bada6a9587c49120, type: 3}
-  voiceSprite: {fileID: 21300000, guid: 56ec8e2e8ceb81543b22fe72499bea75, type: 3}
 --- !u!1 &1870902351392363210
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,6 +220,7 @@ GameObject:
   - component: {fileID: 1870902351673131149}
   - component: {fileID: 1870902351673131151}
   - component: {fileID: 5471477948593150428}
+  - component: {fileID: 6706111387030632928}
   m_Layer: 5
   m_Name: list
   m_TagString: Untagged
@@ -304,6 +289,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6706111387030632928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870902351673131146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81950f0e019446643b4d5a6983e3bbb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  muteImage: {fileID: 1870902351238096080}
+  muteSprite: {fileID: 21300000, guid: aac2d7f02cb4d914bada6a9587c49120, type: 3}
+  voiceSprite: {fileID: 21300000, guid: 56ec8e2e8ceb81543b22fe72499bea75, type: 3}
 --- !u!1 &1870902352235361600
 GameObject:
   m_ObjectHideFlags: 0
