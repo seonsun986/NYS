@@ -166,12 +166,7 @@ public class SH_BtnManager : MonoBehaviour
     // 텍스트 컬러 반영된 이미지
     public Image txtcolorImage;
 
-    // 효과음 리스트
-    public List<AudioClip> effectClips;
-    // 효과음 오디오소스
-    public AudioSource effectSoundSource;
-    public AudioSource bgSoundSource;
-    public AudioSource exSoundSource;
+
     void Start()
     {
         path = Application.dataPath + "/Capture/";
@@ -237,7 +232,7 @@ public class SH_BtnManager : MonoBehaviour
             // 이때 objDir이 나타나있는 상태라면(objDir = 1)
             // objDir을 돌려준다
             ObjectBtn.rotation = new Quaternion(0, 0, 180, 0);
-            soundBtn.rotation = Quaternion.Euler(0, 0, 90);
+            //soundBtn.rotation = Quaternion.Euler(0, 0, 90);
         }
         else
         {
@@ -246,7 +241,7 @@ public class SH_BtnManager : MonoBehaviour
         bgDir *= -1;
 
         MoveObj(objectBG.gameObject, /*Screen.width*/1865, "OnCompleteScene", "x");
-        MoveObj(soundBG.gameObject, -210, "OnCompleteObject", "y");
+        //MoveObj(soundBG.gameObject, -210, "OnCompleteObject", "y");
         objDir = -1;
         soundDir = 1;
     }
@@ -260,7 +255,7 @@ public class SH_BtnManager : MonoBehaviour
         {
             ObjectBtn.rotation = new Quaternion(0, 0, 0, 0);
             SceneBtn.rotation = new Quaternion(0, 0, 0, 0);
-            soundBtn.rotation = Quaternion.Euler(0, 0, 90);
+            //soundBtn.rotation = Quaternion.Euler(0, 0, 90);
 
         }
         else
@@ -271,36 +266,36 @@ public class SH_BtnManager : MonoBehaviour
        
 
         MoveObj(sceneBG.gameObject, 50, "OnCompleteScene","x");
-        MoveObj(soundBG.gameObject, -210, "OnCompleteObject", "y");
+        //MoveObj(soundBG.gameObject, -210, "OnCompleteObject", "y");
         bgDir = 1;
         soundDir = 1;
     }
 
     int soundDir = 1;
-    public GameObject soundBG;
-    public RectTransform soundBtn;
-    public void SoundBG()
-    {
-        float y = soundBG.transform.position.y + 300 * soundDir;
-        MoveObj(soundBG.gameObject, y, "OnCompleteObject", "y");
-        if(soundDir == 1)
-        {
-            soundBtn.rotation = Quaternion.Euler(0, 0, -90);
-            ObjectBtn.rotation = new Quaternion(0, 0, 180, 0);
-            SceneBtn.rotation = new Quaternion(0, 0, 0, 0);
+    //public GameObject soundBG;
+    //public RectTransform soundBtn;
+    //public void SoundBG()
+    //{
+    //    float y = soundBG.transform.position.y + 300 * soundDir;
+    //    MoveObj(soundBG.gameObject, y, "OnCompleteObject", "y");
+    //    if(soundDir == 1)
+    //    {
+    //        soundBtn.rotation = Quaternion.Euler(0, 0, -90);
+    //        ObjectBtn.rotation = new Quaternion(0, 0, 180, 0);
+    //        SceneBtn.rotation = new Quaternion(0, 0, 0, 0);
 
-        }
-        else
-        {
-            soundBtn.rotation = Quaternion.Euler(0, 0, 90);
-        }
-        soundDir *= -1;
+    //    }
+    //    else
+    //    {
+    //        soundBtn.rotation = Quaternion.Euler(0, 0, 90);
+    //    }
+    //    soundDir *= -1;
 
-        MoveObj(sceneBG.gameObject, 50, "OnCompleteScene", "x");
-        MoveObj(objectBG.gameObject, /*Screen.width*/1865, "OnCompleteScene", "x");
-        bgDir = 1;
-        objDir = -1;
-    }
+    //    MoveObj(sceneBG.gameObject, 50, "OnCompleteScene", "x");
+    //    MoveObj(objectBG.gameObject, /*Screen.width*/1865, "OnCompleteScene", "x");
+    //    bgDir = 1;
+    //    objDir = -1;
+    //}
     #endregion
 
 
@@ -623,6 +618,11 @@ public class SH_BtnManager : MonoBehaviour
     GameObject currentBtn;
     GameObject preBtn;
     public Image nonePlaying;
+    string BGClipName;
+    // 효과음 리스트
+    public List<AudioClip> BGClips;
+    // 효과음 오디오소스
+    public AudioSource bgSoundSource;
 
     // 선택한 버튼에 대한 소리를 바꾼다
     // 선택한 버튼에 대한 이미지를 Playing으로 바꾼다.
@@ -634,98 +634,213 @@ public class SH_BtnManager : MonoBehaviour
 
     // 1. 재생 중인 소리의 버튼을 멈춘다
 
-    public void SelectSound()
+    public void SelectSound2()
     {
+        // 클릭한 버튼 이름
         GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
+        // 클릭한 버튼의 이미지
         Image clickBtnImage = clickBtn.GetComponent<Image>();
+        // 클릭한버튼에서 Btn 뺀 이름
         string clickText = clickBtn.name.Substring(0, clickBtn.name.Length - 3);
-        string effectClipName;
-        for (int i = 0; i < effectClips.Count; i++)
+
+        for(int i =0; i< BGClips.Count;i++)
         {
-            if (effectClips[i] != null)
+            // 배경음악 클립이 있다면
+            if (BGClips[i] != null)
             {
-                effectClipName = effectClips[i].name;
-            }
-            else
-            {
-                effectClipName = "None";
+                // i번째 BG클립의 이름
+                BGClipName = BGClips[i].name;
             }
 
-            if (clickText == effectClipName)
+            // 만약 클릭한 버튼이름과 리스트의 이름이 동일하다면
+            if (clickText == BGClipName)
             {
-                // 현재 오디오 클립 및 현재 선택한 버튼으로 바꿈
-                exSoundSource.clip = effectClips[i];
-
-                // 처음 소리 설정 할 때 아무것도 들어가있지 않으므로 설정해줌
-                if (preClip == null && nonePlaying.sprite != playing)
+                // 그 때 PreClip이 비어있다면(처음 선택했을 때라면)
+                if(preClip == null && curClip == null)
                 {
-                    // 처음 소리 및 게임 오브젝트 설정
-                    preClip = exSoundSource.clip;
+                    preClip = BGClips[i];
                     preBtn = clickBtn;
 
                     curClip = preClip;
                     currentBtn = preBtn;
 
-                    exSoundSource.clip = curClip;
-                    exSoundSource.Play();
-
-                    // 현재 오브젝트 사진을 Playing으로 바꾼다
+                    // 다 채웠으니 이미지를 바꿔볼까
                     currentBtn.GetComponent<Image>().sprite = playing;
+                    // 다 채웠으니 재생을 해볼까?
+                    bgSoundSource.clip = BGClips[i];
+                    bgSoundSource.Play();
                 }
-
-                // 그 전 오디오 클립이 들어가있다면
+                // 비어있지 않다면(그 전에 선택한 전적이 있다.)
                 else
                 {
-                    // 현재 있던 버튼을 옛날 버튼으로 바꾸고
-                    preClip = curClip;
-                    preBtn = currentBtn;
-
-                    // 현재 버튼과 클립을 다시 업데이트 해준다
-                    curClip = exSoundSource.clip;
-                    currentBtn = clickBtn;
-
-                    // 만약 사용자가 소리를 바꾼다면
-                    if (preClip != exSoundSource.clip)
+                    // 만약 이때 그전 클립과 현재 선택한 클립이 같다면
+                    if(curClip == BGClips[i])
                     {
-                        // 그 전 소리가 멈춰야 한다
-                        exSoundSource.Stop();
-                        // 전 오브젝트의 사진을 notPlaying으로 바꾼다
-                        preBtn.GetComponent<Image>().sprite = notPlaying;
-                        // 현재 오브젝트 사진을 Playing으로 바꾼다
-                        currentBtn.GetComponent<Image>().sprite = playing;
-
-                        exSoundSource.clip = curClip;
-                        exSoundSource.Play();
-                    }
-
-                    // 사용자가 또 똑같은 소리 버튼을 눌렀을 때
-                    // 재생 중이었다면 재생을 멈추고
-                    // 재생 중이 아니라면 재생을 시킨다
-                    else
-                    {
-                        // 재생 중이라면
-                        if (preBtn.GetComponent<Image>().sprite == playing)
+                        // 재생을 멈춘다
+                        if(bgSoundSource.isPlaying)
                         {
-                            preBtn.GetComponent<Image>().sprite = notPlaying;
-                            exSoundSource.Stop();
+                            bgSoundSource.Stop();
+                            currentBtn.GetComponent<Image>().sprite = notPlaying;
                         }
-
-                        // 재생 중이 아니라면
                         else
                         {
-                            preBtn.GetComponent<Image>().sprite = playing;
-                            exSoundSource.clip = preClip;
-                            exSoundSource.Play();
+                            bgSoundSource.Play();
+                            currentBtn.GetComponent<Image>().sprite = playing;
                         }
+                    }
+
+                    // 아니라면 현재클립을 바꿔준다
+                    else
+                    {
+                        //그 전 소리가 멈춰야 한다
+                        bgSoundSource.Stop();
+                        // 현재 있던 버튼을 옛날 버튼으로 바꾸고
+                        preClip = curClip;
+                        preBtn = currentBtn;
+
+                        // 현재 버튼과 클립을 다시 업데이트 해준다
+                        curClip = BGClips[i];
+                        currentBtn = clickBtn;
+
+                        // 현재 버튼과 과거버튼의 이미지를 바꿔볼까?
+                        preBtn.GetComponent<Image>().sprite = notPlaying;
+                        currentBtn.GetComponent<Image>().sprite = playing;
+                        // 다 채웠으니 재생을 해볼까?
+                        bgSoundSource.clip = BGClips[i];
+                        bgSoundSource.Play();
                     }
                 }
 
-                return;
-
             }
-        }     
-       
+        }
+
+
     }
+
+    public void SoundNone()
+    {
+        bgSoundSource.Stop();
+
+        if (preBtn != null)
+        {
+            preBtn.GetComponent<Image>().sprite = notPlaying;
+            preClip = null;
+            preBtn = null;
+        }
+
+        if (currentBtn != null)
+        {
+            currentBtn.GetComponent<Image>().sprite = notPlaying;
+            curClip = null;
+            currentBtn = null;
+        }
+
+    }
+    //public void SelectSound()
+    //{
+    //    GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
+    //    Image clickBtnImage = clickBtn.GetComponent<Image>();
+    //    string clickText = clickBtn.name.Substring(0, clickBtn.name.Length - 3);
+    //    string effectClipName;
+    //    for (int i = 0; i < effectClips.Count; i++)
+    //    {
+    //        if (effectClips[i] != null)
+    //        {
+    //            effectClipName = effectClips[i].name;
+    //        }
+    //        else
+    //        {
+    //            effectClipName = "None";
+    //        }
+
+    //        // for문을 돌리는 도중 클릭한 오브젝트와 클립 이름이 똑같다면
+    //        if (clickText == effectClipName)
+    //        {
+    //            // 현재 오디오 클립 및 현재 선택한 버튼으로 바꿈
+    //            exSoundSource.clip = effectClips[i];
+
+    //            // 처음 소리 설정 할 때 아무것도 들어가있지 않으므로 설정해줌
+    //            if (preClip == null && nonePlaying.sprite != playing)
+    //            {
+    //                // 처음 소리 및 게임 오브젝트 설정
+    //                preClip = exSoundSource.clip;
+    //                preBtn = clickBtn;
+
+    //                curClip = preClip;
+    //                currentBtn = preBtn;
+
+    //                exSoundSource.clip = curClip;
+    //                exSoundSource.Play();
+
+    //                // 현재 오브젝트 사진을 Playing으로 바꾼다
+    //                currentBtn.GetComponent<Image>().sprite = playing;
+    //            }
+
+    //            // 그 전 오디오 클립이 들어가있다면
+    //            else
+    //            {
+    //                if(effectClipName == "None")
+    //                {
+    //                    preBtn.GetComponent<Image>().sprite = notPlaying;
+    //                    // 현재 오브젝트 사진을 Playing으로 바꾼다
+    //                    currentBtn.GetComponent<Image>().sprite = notPlaying;
+    //                    preClip = null;
+    //                    curClip = null;
+    //                }
+    //                else
+    //                {
+    //                    // 현재 있던 버튼을 옛날 버튼으로 바꾸고
+    //                    preClip = curClip;
+    //                    preBtn = currentBtn;
+
+    //                    // 현재 버튼과 클립을 다시 업데이트 해준다
+    //                    curClip = exSoundSource.clip;
+    //                    currentBtn = clickBtn;
+    //                }
+
+
+    //                // 만약 사용자가 소리를 바꾼다면
+    //                if (preClip != exSoundSource.clip)
+    //                {
+    //                    // 그 전 소리가 멈춰야 한다
+    //                    exSoundSource.Stop();
+    //                    // 전 오브젝트의 사진을 notPlaying으로 바꾼다
+    //                    preBtn.GetComponent<Image>().sprite = notPlaying;
+    //                    // 현재 오브젝트 사진을 Playing으로 바꾼다
+    //                    currentBtn.GetComponent<Image>().sprite = playing;
+
+    //                    exSoundSource.clip = curClip;
+    //                    exSoundSource.Play();
+    //                }
+
+    //                // 사용자가 또 똑같은 소리 버튼을 눌렀을 때
+    //                // 재생 중이었다면 재생을 멈추고
+    //                // 재생 중이 아니라면 재생을 시킨다
+    //                else
+    //                {
+    //                    // 재생 중이라면
+    //                    if (preBtn.GetComponent<Image>().sprite == playing)
+    //                    {
+    //                        preBtn.GetComponent<Image>().sprite = notPlaying;
+    //                        exSoundSource.Stop();
+    //                    }
+
+    //                    // 재생 중이 아니라면
+    //                    else
+    //                    {
+    //                        preBtn.GetComponent<Image>().sprite = playing;
+    //                        exSoundSource.clip = preClip;
+    //                        exSoundSource.Play();
+    //                    }
+    //                }
+    //            }
+
+    //            return;
+
+    //        }
+    //    }     
+       
+    //}
 
     public string title;
     public GameObject titlePanel;
@@ -736,7 +851,7 @@ public class SH_BtnManager : MonoBehaviour
         titlePanel.SetActive(false);
     }
 
-    // 효과음 적용하기 버튼 클릭 시
+    // 배경음 적용하기 버튼 클릭 시
     public void ClickApplySound()
     {
         // 현재 씬 빈 오브젝트의 오디오 소스에 접근
@@ -744,10 +859,10 @@ public class SH_BtnManager : MonoBehaviour
         if(audioSource != null)
         {
             // 현재 적용한 오디오 파일 저장
-            audioSource.clip = exSoundSource.clip;
+            audioSource.clip = bgSoundSource.clip;
         }
         // UI 밑으로 내리기
-        SoundBG();
+        //SoundBG();
     }
 
     private AnimatorClipInfo[] clipInfo;
