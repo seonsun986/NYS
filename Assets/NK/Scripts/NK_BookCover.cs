@@ -27,6 +27,8 @@ public class NK_BookCover : MonoBehaviour
     public GameObject[] obj;
     public Image bookCoverColor;
     int text;
+    // 삭제될 스티커
+    public GameObject delSticker;
 
     private void Awake()
     {
@@ -91,6 +93,7 @@ public class NK_BookCover : MonoBehaviour
 
     private void Start()
     {
+        // 폰트 드롭 박스, 폰트 사이즈 관련 리스너 등록
         txtDropdown.onValueChanged.AddListener(ChangeTextFont);
         InputtxtSize.onValueChanged.AddListener(ChangeFontSize);
 
@@ -141,6 +144,7 @@ public class NK_BookCover : MonoBehaviour
         SH_EditorManager.Instance.active_InputField.SetFontType(index);
     }
 
+    #region PaletteOnOff // 표지 텍스트 팔레트 ON/OFF
     public GameObject palette;
     public void PaletteOnOff()
     {
@@ -153,7 +157,9 @@ public class NK_BookCover : MonoBehaviour
             palette.SetActive(true);
         }
     }
+    #endregion
 
+    #region BGPaletteOnOff // 표지 배경 팔레트 ON/OFF
     public GameObject bgPalette;
     public void BGPaletteOnOff()
     {
@@ -166,11 +172,14 @@ public class NK_BookCover : MonoBehaviour
             bgPalette.SetActive(true);
         }
     }
+    #endregion
 
     GameObject createObj;
     List<string> stickerList = new List<string>();
     List<string> stickerListPosX = new List<string>();
     List<string> stickerListPosY = new List<string>();
+
+    #region InstantiateObj // 표지 수정하기에서 스티커 생성
     public void InstantiateObj()
     {
         // 스티커 선택하면
@@ -184,20 +193,35 @@ public class NK_BookCover : MonoBehaviour
         //createObj.GetComponent <RectTransform>().localScale = new Vector3(1, 1, 1);
         createObj.GetComponent<RectTransform>().sizeDelta = new Vector2(120, 120);
     }
+    #endregion
 
+    #region InstantiateObj // JSON에서 기존에 저장된 스티커 불러와서 표지 수정할 때 다시 보여주기
     public void InstantiateObj(string btnName, string x, string y)
     {
+        // Json에서 저장된 스티커 이름
         btnName = btnName.Replace("(Clone) (UnityEngine.GameObject)", "");
         print(btnName);
-        // 스티커 선택하면
+        // 스티커 이름으로 오브젝트 찾기
         GameObject clickBtn = GameObject.Find(btnName);
         // 스티커에서 버튼 기능을 뺀 같은 객체가 책 위에 생성됨
         createObj = Instantiate(clickBtn);
         createObj.transform.SetParent(bookCover);
         createObj.GetComponent<Button>().enabled = false;
+        // JSON에서 받아온 스티커의 위치대로 배치
         createObj.GetComponent<RectTransform>().localPosition = new Vector2(float.Parse(x), float.Parse(y));
         createObj.GetComponent<RectTransform>().sizeDelta = new Vector2(120, 120);
     }
+    #endregion
+
+    #region DeleteObj // 클릭한 스티커 오브젝트 삭제
+    public void DeleteObj()
+    {
+        // NK_DragAndDrop에서 OnPointerDown일 때 delSticker 저장해줌
+        // 삭제 버튼 눌러서 마지막에 클릭된 스티커 삭제
+        if (delSticker != null)
+            Destroy(delSticker);
+    }
+    #endregion
 
     Color bgColor;
     public void ChangeBookColor()

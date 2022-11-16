@@ -45,7 +45,7 @@ public class NK_DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHand
         // 积己等 胶萍目老锭
         if (gameObject.name.Contains("Clone"))
         {
-            NK_BookShelfManager.instance.delSticker = gameObject;
+            NK_BookCover.instance.delSticker = gameObject;
         }
     }
 
