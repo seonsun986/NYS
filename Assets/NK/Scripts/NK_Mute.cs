@@ -29,6 +29,7 @@ public class NK_Mute : MonoBehaviour
         }
     }
 
+    // 이미지에 따른 버튼 버튼 이미지 변경 - 아이들 관리 탭 누르면 실행
     public void ChangeSingleImage()
     {
         if (muteImage.sprite == voiceSprite)

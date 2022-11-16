@@ -73,7 +73,7 @@ public class NK_UIController : MonoBehaviourPun
     [PunRPC]
     private void RPCMute(bool mute)
     {
-        // 모든 아이들의 볼륨을 0으로 하거나 Mute 시킴
+        // 모든 아이들을 Mute 시킴
         for (int i = 0; i < GameManager.Instance.children.Count; i++)
         {
             AudioSource audio = GameManager.Instance.children[i].transform.Find("Speaker").GetComponent<AudioSource>();
@@ -86,6 +86,7 @@ public class NK_UIController : MonoBehaviourPun
 
     public void ClickMute(string nickname)
     {
+        // 수정 필요
         if (IsMute)
             IsMute = false;
         else
@@ -96,7 +97,7 @@ public class NK_UIController : MonoBehaviourPun
     [PunRPC]
     private void RPCSingleMute(bool mute, string nickname)
     {
-        // 모든 아이들의 볼륨을 0으로 하거나 Mute 시킴
+        // 멤버 관리에서 특정 아이를 Mute 시킴
         for (int i = 0; i < GameManager.Instance.children.Count; i++)
         {
             if (GameManager.Instance.children[i].Owner.NickName == nickname)
