@@ -26,6 +26,9 @@ public class NK_BookShelfManager : MonoBehaviour
     public GameObject delSticker;
     // 선택된 책
     public GameObject selectedBook;
+
+    public GameObject nextBtn;
+    public GameObject prevBtn;
     string path;
 
     // 조회된 TaleInfo 모두 저장
@@ -231,6 +234,8 @@ public class NK_BookShelfManager : MonoBehaviour
         detailTitle.text = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text;
         detailUI.SetActive(true);
         booksParent.SetActive(false);
+        nextBtn.SetActive(false);
+        prevBtn.SetActive(false);
 
         // rawImage 불러오고 초기화
         index = 0;
@@ -353,6 +358,8 @@ public class NK_BookShelfManager : MonoBehaviour
     {
         detailUI.SetActive(false);
         booksParent.SetActive(true);
+        nextBtn.SetActive(true);
+        prevBtn.SetActive(true);
 
         NK_BookTrigger[] childList = booksParent.GetComponentsInChildren<NK_BookTrigger>();
         if (childList != null)

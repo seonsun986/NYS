@@ -313,6 +313,8 @@ MonoBehaviour:
   bookCoverUI: {fileID: 2111456172}
   delSticker: {fileID: 0}
   selectedBook: {fileID: 0}
+  nextBtn: {fileID: 1484448499}
+  prevBtn: {fileID: 945973306}
 --- !u!4 &17487086
 Transform:
   m_ObjectHideFlags: 0
@@ -5670,10 +5672,12 @@ MonoBehaviour:
   - {fileID: 0}
   activeObj: {fileID: 0}
   activeObj_anim: 
+  titleObj: {fileID: 0}
   gizmo1: {fileID: 0}
   gizmo2: {fileID: 0}
   gizmo3: {fileID: 0}
   gizmo4: {fileID: 0}
+  openTime: 1
 --- !u!4 &453878563
 Transform:
   m_ObjectHideFlags: 0
