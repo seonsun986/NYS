@@ -39,6 +39,14 @@ public class NK_BookUI : MonoBehaviourPun
 
     public void ClickBookList()
     {
+        // 기존에 자식 리스트가 있으면 모두 삭제
+        Transform[] childList = booksParent.GetComponentsInChildren<Transform>();
+
+        if (childList.Length > 1)
+        {
+            return;
+        }
+
         GetBookList("Book2");
     }
 
@@ -291,7 +299,7 @@ public class NK_BookUI : MonoBehaviourPun
         }
 
         // 페이지마다 음성파일 재생
-        if (Resources.Load<AudioClip>("Page" + pageNum) != null)
+        if (Resources.Load<AudioClip>("fairyTale1/Page" + pageNum) != null)
         {
             print("Page" + pageNum);
             photonView.RPC("RPCCreateAudio", RpcTarget.All, pageNum);
@@ -391,7 +399,7 @@ public class NK_BookUI : MonoBehaviourPun
     [PunRPC]
     private void RPCCreateAudio(int index)
     {
-        audioSource.clip = Resources.Load<AudioClip>("Page" + index);
+        audioSource.clip = Resources.Load<AudioClip>("fairyTale1/Page" + index);
         audioSource.Play();
     }
 
