@@ -8913,13 +8913,14 @@ GameObject:
   - component: {fileID: 440584785}
   - component: {fileID: 440584784}
   - component: {fileID: 440584783}
+  - component: {fileID: 440584786}
   m_Layer: 5
   m_Name: Defeat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &440584782
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8938,7 +8939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 350, y: -50}
+  m_AnchoredPosition: {x: 350, y: -60}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &440584783
@@ -8985,7 +8986,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1905652760}
+      - m_Target: {fileID: 1363382600}
         m_TargetAssemblyTypeName: NK_EmotionUI, Assembly-CSharp
         m_MethodName: ClickDefeat
         m_Mode: 1
@@ -9035,6 +9036,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 440584781}
   m_CullTransparentMesh: 1
+--- !u!114 &440584786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440584781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049d73fc3da86a04f97e86737616c61a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &441265371
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9903,13 +9916,14 @@ GameObject:
   - component: {fileID: 487716297}
   - component: {fileID: 487716296}
   - component: {fileID: 487716295}
+  - component: {fileID: 487716298}
   m_Layer: 5
   m_Name: Sad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &487716294
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9975,7 +9989,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1905652760}
+      - m_Target: {fileID: 1363382600}
         m_TargetAssemblyTypeName: NK_EmotionUI, Assembly-CSharp
         m_MethodName: ClickSad
         m_Mode: 1
@@ -10025,6 +10039,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487716293}
   m_CullTransparentMesh: 1
+--- !u!114 &487716298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487716293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049d73fc3da86a04f97e86737616c61a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &492060977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14225,13 +14251,14 @@ GameObject:
   - component: {fileID: 775531511}
   - component: {fileID: 775531510}
   - component: {fileID: 775531509}
+  - component: {fileID: 775531512}
   m_Layer: 5
   m_Name: Excite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &775531508
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14250,7 +14277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 450, y: -50}
+  m_AnchoredPosition: {x: 450, y: -90}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &775531509
@@ -14297,7 +14324,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1905652760}
+      - m_Target: {fileID: 1363382600}
         m_TargetAssemblyTypeName: NK_EmotionUI, Assembly-CSharp
         m_MethodName: ClickExcite
         m_Mode: 1
@@ -14347,6 +14374,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775531507}
   m_CullTransparentMesh: 1
+--- !u!114 &775531512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775531507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049d73fc3da86a04f97e86737616c61a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &776147804
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18477,13 +18516,14 @@ GameObject:
   - component: {fileID: 1047406618}
   - component: {fileID: 1047406617}
   - component: {fileID: 1047406616}
+  - component: {fileID: 1047406619}
   m_Layer: 5
   m_Name: Happy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1047406615
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18502,7 +18542,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -50}
+  m_AnchoredPosition: {x: 150, y: -60}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1047406616
@@ -18549,7 +18589,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1905652760}
+      - m_Target: {fileID: 1363382600}
         m_TargetAssemblyTypeName: NK_EmotionUI, Assembly-CSharp
         m_MethodName: ClickHappy
         m_Mode: 1
@@ -18599,6 +18639,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047406614}
   m_CullTransparentMesh: 1
+--- !u!114 &1047406619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047406614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049d73fc3da86a04f97e86737616c61a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1048076629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24733,6 +24785,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1363382598}
   - component: {fileID: 1363382599}
+  - component: {fileID: 1363382600}
   m_Layer: 5
   m_Name: EmotionUI
   m_TagString: Untagged
@@ -24772,7 +24825,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1363382597}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
   m_Name: 
@@ -24784,13 +24837,26 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 0
   m_Spacing: 0
-  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1363382600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363382597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0433dccde3292045a3b2f22b7eaa3c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emotionTime: 0.5
 --- !u!1001 &1366622563
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33522,7 +33588,6 @@ GameObject:
   - component: {fileID: 1905652757}
   - component: {fileID: 1905652756}
   - component: {fileID: 1905652755}
-  - component: {fileID: 1905652760}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -33666,18 +33731,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1905652760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1905652754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0433dccde3292045a3b2f22b7eaa3c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1912488604
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35376,13 +35429,14 @@ GameObject:
   - component: {fileID: 2012392620}
   - component: {fileID: 2012392619}
   - component: {fileID: 2012392618}
+  - component: {fileID: 2012392621}
   m_Layer: 5
   m_Name: Hi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2012392617
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35401,7 +35455,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -50}
+  m_AnchoredPosition: {x: 50, y: -90}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2012392618
@@ -35448,7 +35502,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1905652760}
+      - m_Target: {fileID: 1363382600}
         m_TargetAssemblyTypeName: NK_EmotionUI, Assembly-CSharp
         m_MethodName: ClickHi
         m_Mode: 1
@@ -35498,6 +35552,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012392616}
   m_CullTransparentMesh: 1
+--- !u!114 &2012392621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012392616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049d73fc3da86a04f97e86737616c61a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2020953147
 PrefabInstance:
   m_ObjectHideFlags: 0
