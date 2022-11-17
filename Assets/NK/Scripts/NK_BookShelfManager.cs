@@ -358,7 +358,7 @@ public class NK_BookShelfManager : MonoBehaviour
 
         // 책 표지 캡쳐 및 서버에 보내기 작업
         StopAllCoroutines();
-        //StartCoroutine(TakeScreenShotRoutine());
+        StartCoroutine(TakeScreenShotRoutine());
     }
 
     private IEnumerator TakeScreenShotRoutine()

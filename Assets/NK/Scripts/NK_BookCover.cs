@@ -76,7 +76,7 @@ public class NK_BookCover : MonoBehaviour
         Int32.TryParse(fontStyle, out int dropboxNum);
         // 색, 폰트, 크기 초기화
         SetInfo(dropboxNum, size, colorInfo);
-        inputField.GetComponent<RectTransform>().anchoredPosition = new Vector2(float.Parse(fontPositionX), float.Parse(fontPositionY));
+        inputField.GetComponent<RectTransform>().localPosition = new Vector2(float.Parse(fontPositionX), float.Parse(fontPositionY));
         // 글씨색
         inputField.textComponent.color = colorInfo;
     }
@@ -88,10 +88,24 @@ public class NK_BookCover : MonoBehaviour
         ColorUtility.TryParseHtmlString("#" + coverColor, out colorInfo);
         bgColorImage.color = colorInfo;
         bookCoverColor.color = colorInfo;
-        print(sticker);
+
+        // string값 잘라서 배열로 받기
+        string[] stickerList;
+        string[] stickerListPosX;
+        string[] stickerListPosY;
+
+        stickerList = sticker.Split(",");
+        stickerListPosX = stickerPositionX.Split(",");
+        stickerListPosY = stickerPositionY.Split(",");
+
+        print("스티커목록 : " + sticker);
+        print(stickerList.Length);
 
         // 스티커 생성
-        InstantiateObj(sticker, stickerPositionX, stickerPositionY);
+        for (int i = 0; i < stickerList.Length; i++)
+        {
+            InstantiateObj(stickerList[i], stickerListPosX[i], stickerListPosY[i]);
+        }
     }
 
     private void Start()
@@ -204,7 +218,7 @@ public class NK_BookCover : MonoBehaviour
     public void InstantiateObj(string btnName, string x, string y)
     {
         // Json에서 저장된 스티커 이름
-        btnName = btnName.Replace("(Clone) (UnityEngine.GameObject)", "");
+        btnName = btnName.Replace("(Clone)", "");
         print(btnName);
         // 스티커 이름으로 오브젝트 찾기
         GameObject clickBtn = GameObject.Find(btnName);
@@ -264,8 +278,8 @@ public class NK_BookCover : MonoBehaviour
         TxtInfo txtInfo = new TxtInfo();
         SH_SceneObj txt = transform.GetComponentInChildren<SH_SceneObj>();
         SH_InputField txt2 = transform.GetComponentInChildren<SH_InputField>();
-        taleInfo.fontPositionX = txt.gameObject.GetComponent<RectTransform>().anchoredPosition.x.ToString();
-        taleInfo.fontPositionY = txt.gameObject.GetComponent<RectTransform>().anchoredPosition.y.ToString();
+        taleInfo.fontPositionX = txt.gameObject.GetComponent<RectTransform>().localPosition.x.ToString();
+        taleInfo.fontPositionY = txt.gameObject.GetComponent<RectTransform>().localPosition.y.ToString();
         taleInfo.fontStyle = txt2.info.txtDropdown.ToString();
         taleInfo.fontSize = txt2.info.txtSize.ToString();
         taleInfo.fontColor = ColorUtility.ToHtmlStringRGBA(txt2.transform.GetChild(3).GetComponent<Text>().color);
@@ -300,11 +314,11 @@ public class NK_BookCover : MonoBehaviour
         {
             if (i == stickerList.Count - 1)
             {
-                stickerListPosX += stickerList[i].GetComponent<RectTransform>().anchoredPosition.x.ToString();
+                stickerListPosX += stickerList[i].GetComponent<RectTransform>().localPosition.x.ToString();
                 break;
             }
 
-            stickerListPosX += stickerList[i].GetComponent<RectTransform>().anchoredPosition.x.ToString() + ",";
+            stickerListPosX += stickerList[i].GetComponent<RectTransform>().localPosition.x.ToString() + ",";
         }
 
         // 포지션 y값 string으로 넣어주기
@@ -312,11 +326,11 @@ public class NK_BookCover : MonoBehaviour
         {
             if (i == stickerList.Count - 1)
             {
-                stickerListPosY += stickerList[i].GetComponent<RectTransform>().anchoredPosition.y.ToString();
+                stickerListPosY += stickerList[i].GetComponent<RectTransform>().localPosition.y.ToString();
                 break;
             }
 
-            stickerListPosY += stickerList[i].GetComponent<RectTransform>().anchoredPosition.y.ToString() + ",";
+            stickerListPosY += stickerList[i].GetComponent<RectTransform>().localPosition.y.ToString() + ",";
         }
 
         print("이름 : " + stickerListSet + " x값 : " + stickerListPosX + " y값 : " + stickerListPosY);
