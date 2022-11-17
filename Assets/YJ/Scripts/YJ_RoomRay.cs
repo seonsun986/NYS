@@ -34,6 +34,8 @@ public class YJ_RoomRay : MonoBehaviour
             }
 
             transform.position = hit.point + new Vector3(Random.Range(-5,5),2);
+            //iTween.ScaleTo(gameObject, iTween.Hash("x", 1.2, "y", 1.2, "z", 1.2, "easeType", "easeOutExpo", "time", 0.5f));
+            iTween.ScaleTo(gameObject, iTween.Hash("x", 1.2, "y", 1.2, "z", 1.2, "easeType", "easeInOutBack", "time", 0.5f));
         }
         else
         {
