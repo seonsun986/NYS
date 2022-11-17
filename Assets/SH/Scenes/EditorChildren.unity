@@ -1975,8 +1975,7 @@ GameObject:
   - component: {fileID: 849373654}
   - component: {fileID: 849373653}
   - component: {fileID: 849373652}
-  - component: {fileID: 849373655}
-  m_Layer: 5
+  m_Layer: 26
   m_Name: Heyson_Eat
   m_TagString: Book
   m_Icon: {fileID: 0}
@@ -2089,51 +2088,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849373650}
   m_CullTransparentMesh: 1
---- !u!114 &849373655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 849373650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 154292261}
-          m_TargetAssemblyTypeName: SH_EditorChildren, Assembly-CSharp
-          m_MethodName: Book2True
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 154292261}
-          m_TargetAssemblyTypeName: SH_EditorChildren, Assembly-CSharp
-          m_MethodName: Book2False
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &849741426
 GameObject:
   m_ObjectHideFlags: 0
@@ -2458,8 +2412,7 @@ GameObject:
   - component: {fileID: 1038835917}
   - component: {fileID: 1038835916}
   - component: {fileID: 1038835915}
-  - component: {fileID: 1038835918}
-  m_Layer: 5
+  m_Layer: 26
   m_Name: MissingBlanket
   m_TagString: Book
   m_Icon: {fileID: 0}
@@ -2571,51 +2524,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038835913}
   m_CullTransparentMesh: 1
---- !u!114 &1038835918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1038835913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 154292261}
-          m_TargetAssemblyTypeName: SH_EditorChildren, Assembly-CSharp
-          m_MethodName: Book3True
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 154292261}
-          m_TargetAssemblyTypeName: SH_EditorChildren, Assembly-CSharp
-          m_MethodName: Book3False
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1105805326
 GameObject:
   m_ObjectHideFlags: 0
@@ -3451,7 +3359,7 @@ GameObject:
   - component: {fileID: 1517282387}
   - component: {fileID: 1517282386}
   - component: {fileID: 1517282389}
-  m_Layer: 5
+  m_Layer: 26
   m_Name: IdontEatBean
   m_TagString: Book
   m_Icon: {fileID: 0}
@@ -3575,51 +3483,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517282384}
   m_CullTransparentMesh: 1
---- !u!114 &1517282389
-MonoBehaviour:
+--- !u!65 &1517282389
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517282384}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 154292261}
-          m_TargetAssemblyTypeName: SH_EditorChildren, Assembly-CSharp
-          m_MethodName: Book1True
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 154292261}
-          m_TargetAssemblyTypeName: SH_EditorChildren, Assembly-CSharp
-          m_MethodName: Book1False
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  serializedVersion: 2
+  m_Size: {x: 304.99802, y: 370.87683, z: 74.95071}
+  m_Center: {x: -1.89489, y: 15.758099, z: -59.787037}
 --- !u!1 &1518755778
 GameObject:
   m_ObjectHideFlags: 0

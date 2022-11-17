@@ -17,7 +17,76 @@ public class SH_EditorChildren : MonoBehaviour
 
     void Start()
     {
-        
+        layerMask = 1 << LayerMask.NameToLayer("Book");
+    }
+
+    RaycastHit hitInfo;
+    int layerMask;
+    private void Update()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hitInfo, layerMask))
+        {
+            if(hitInfo.transform.name.Contains("Book"))
+            {
+                if (outline1.activeSelf == false)
+                {
+                    outline1.SetActive(true);
+                }
+            }
+
+            else if(hitInfo.transform.name.Contains("Hey"))
+            {
+                if (outline2.activeSelf == false)
+                {
+                    outline2.SetActive(true);
+                }
+            }
+
+            else if(hitInfo.transform.name.Contains("Missing"))
+            {
+                if (outline3.activeSelf == false)
+                {
+                    outline3.SetActive(true);
+                }
+            }
+
+            else
+            {
+                if (outline1.activeSelf == true)
+                {
+                    outline1.SetActive(false);
+                }
+
+                if (outline2.activeSelf == true)
+                {
+                    outline2.SetActive(false);
+                }
+
+                if (outline3.activeSelf == true)
+                {
+                    outline3.SetActive(false);
+                }
+            }
+        }
+
+        else
+        {
+            if (outline1.activeSelf == true)
+            {
+                outline1.SetActive(false);
+            }
+
+            if (outline2.activeSelf == true)
+            {
+                outline2.SetActive(false);
+            }
+
+            if (outline3.activeSelf == true)
+            {
+                outline3.SetActive(false);
+            }
+        }
     }
 
     public void Book1True()
