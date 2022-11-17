@@ -32,6 +32,24 @@ public class YJ_HttpRequester
     public Action<UnityWebRequest> onComplete;
 
     // 반환자료형이 void, 매개변수가 없는 함수를 넣을 수 있다.
+
+    public virtual void OnComplete(UnityWebRequest webRequest)
+    {
+        onComplete(webRequest);
+    }
+}
+
+
+public class NK_HttpDetailImage : YJ_HttpRequester
+{
+    public int index;
+
+    public Action<UnityWebRequest,int> onComplete2;
+
+    public override void OnComplete(UnityWebRequest webRequest)
+    {
+        onComplete2(webRequest, index);
+    }
 }
 
 

@@ -95,7 +95,7 @@ public class YJ_HttpManager : MonoBehaviour
                 // 오디오 타입일 때
             }
             // 완료되었다고 requester.onComplete를 실행
-            requester.onComplete(webRequest);
+            requester.OnComplete(webRequest);
         }
         else
         { 
@@ -117,4 +117,7 @@ public class YJ_HttpManager : MonoBehaviour
             r.SetRequestHeader(kvp.Key, kvp.Value);
         }
     }
+
+
+
 }
