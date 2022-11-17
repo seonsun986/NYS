@@ -13,6 +13,18 @@ public class YJ_RoomRay : MonoBehaviour
     [SerializeField]
     private Color _rayColor = Color.red;
 
+    float time = 0;
+
+    private void Update()
+    {
+        time += Time.deltaTime;
+
+        if (time > 1)
+        {
+            iTween.ScaleTo(transform.GetChild(1).gameObject, iTween.Hash("x", 0.025, "y", 0.025, "z", 0.025, "easeType", "easeInOutBack", "time", 1f));
+        }
+    }
+
     void OnDrawGizmos()
     {
         int layerMask = 1 << LayerMask.NameToLayer("Room");
@@ -34,8 +46,6 @@ public class YJ_RoomRay : MonoBehaviour
             }
 
             transform.position = hit.point + new Vector3(Random.Range(-5,5),2);
-            //iTween.ScaleTo(gameObject, iTween.Hash("x", 1.2, "y", 1.2, "z", 1.2, "easeType", "easeOutExpo", "time", 0.5f));
-            iTween.ScaleTo(gameObject, iTween.Hash("x", 1.2, "y", 1.2, "z", 1.2, "easeType", "easeInOutBack", "time", 0.5f));
         }
         else
         {
