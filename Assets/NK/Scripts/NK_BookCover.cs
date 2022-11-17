@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static NK_BookShelfManager;
 
+
+// 폰트변경, 책표지 꾸미기 (생성, 삭제)
 public class NK_BookCover : MonoBehaviour
 {
     public static NK_BookCover instance;
@@ -219,7 +221,18 @@ public class NK_BookCover : MonoBehaviour
         // NK_DragAndDrop에서 OnPointerDown일 때 delSticker 저장해줌
         // 삭제 버튼 눌러서 마지막에 클릭된 스티커 삭제
         if (delSticker != null)
+        {
+            // 스티커 목록에서 해당 스티커 삭제
+            for (int i = 0; i < stickerList.Count; i++)
+            {
+                if (stickerList[i] == delSticker.name)
+                {
+                    stickerList.RemoveAt(i);
+                }
+                
+            }
             Destroy(delSticker);
+        }
     }
     #endregion
 
@@ -250,16 +263,29 @@ public class NK_BookCover : MonoBehaviour
         taleInfo.fontStyle = txt2.info.txtDropdown.ToString();
         taleInfo.fontSize = txt2.info.txtSize.ToString();
         taleInfo.fontColor = ColorUtility.ToHtmlStringRGBA(txt2.transform.GetChild(3).GetComponent<Text>().color);
-        //for (int i = 0; i < stickerList.Count; i++)
-        //{
-        //    stickerListSet = stickerListSet + stickerList[i];
-        //
-        //    if(i < stickerList.Count - 1)
-        //        stickerListSet = stickerListSet + ",";
-        //}
+
+        // 스티커 목록 넣기
         taleInfo.sticker = createObj.ToString();
+        // 스티커 위치값 넣기
         taleInfo.stickerPositionX = createObj.GetComponent<RectTransform>().localPosition.x.ToString();
         taleInfo.stickerPositionY = createObj.GetComponent<RectTransform>().localPosition.y.ToString();
         taleInfo.coverColor = ColorUtility.ToHtmlStringRGBA(bgColor);
+    }
+
+    public void SaveListSet()
+    {
+        // 리스트에있는 항목 전체 한개의 string으로 만들기
+        for (int i = 0; i < stickerList.Count; i++)
+        {
+            if (i == stickerList.Count - 1)
+            {
+                stickerListSet += stickerList[i];
+                break;
+            }
+
+            stickerListSet += stickerList[i] + ",";
+        }
+
+
     }
 }

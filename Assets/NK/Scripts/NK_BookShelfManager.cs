@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static System.Net.WebRequestMethods;
 
+// 책 UI 위주, Json받고 보내기
 public class NK_BookShelfManager : MonoBehaviour
 {
     public static NK_BookShelfManager instance;
@@ -315,7 +316,8 @@ public class NK_BookShelfManager : MonoBehaviour
         // 책 내용 수정
         SceneManager.LoadScene("EditorScene");
     }
-
+    
+    // taleInfo > 동화책 표지정보를 가져옴
     public void SaveBookCover()
     {
         // Json으로 책 표지 저장
