@@ -40,6 +40,7 @@ public class NK_LoadPreview : MonoBehaviour
 
     public void LoadObjects()
     {
+        // 불러오기
         LoadObjects("Book1");
     }
 
