@@ -623,6 +623,7 @@ public class SH_BtnManager : MonoBehaviour
     public List<AudioClip> BGClips;
     // 효과음 오디오소스
     public AudioSource bgSoundSource;
+    public AudioSource bgDefaultSource;
 
     // 선택한 버튼에 대한 소리를 바꾼다
     // 선택한 버튼에 대한 이미지를 Playing으로 바꾼다.
@@ -852,17 +853,13 @@ public class SH_BtnManager : MonoBehaviour
     }
 
     // 배경음 적용하기 버튼 클릭 시
+    public AudioSource bgSelectSound;
     public void ClickApplySound()
     {
-        // 현재 씬 빈 오브젝트의 오디오 소스에 접근
-        AudioSource audioSource = Scenes[currentSceneNum].GetComponent<AudioSource>();
-        if(audioSource != null)
-        {
-            // 현재 적용한 오디오 파일 저장
-            audioSource.clip = bgSoundSource.clip;
-        }
+        // 현재 프로젝트의 오디오 소스에 접근
+        bgSelectSound.clip = bgSoundSource.clip;
         // UI 밑으로 내리기
-        //SoundBG();
+        MoveSceneBG();
     }
 
     private AnimatorClipInfo[] clipInfo;

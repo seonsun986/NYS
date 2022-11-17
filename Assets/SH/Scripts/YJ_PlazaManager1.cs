@@ -50,8 +50,8 @@ public class YJ_PlazaManager1 : MonoBehaviourPunCallbacks
     public void OutPlaza()
     {
         // ±¤Àå¾À ¹æ ³ª°¡±â
-        PhotonNetwork.LeaveRoom();
-        //SceneManager.LoadScene("MyRoomScene");
+        //PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("MyRoomScene");
     }
 
 
