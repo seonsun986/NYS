@@ -57,24 +57,6 @@ public class NK_BookShelfManager : MonoBehaviour
         //titles.Add("강아지 똥");
 
         path = Application.dataPath + "/BookCover/";
-
-
-        string s = "a,b,c,d,e";
-
-        string[] ss = s.Split(",");
-
-
-
-        string sss = "";
-        for (int i = 0; i < ss.Length; i++)
-        {
-            sss += ss[i];
-            //if(i < )
-            sss += ",";
-
-        }
-
-
     }
 
 
@@ -376,7 +358,7 @@ public class NK_BookShelfManager : MonoBehaviour
 
         // 책 표지 캡쳐 및 서버에 보내기 작업
         StopAllCoroutines();
-        StartCoroutine(TakeScreenShotRoutine());
+        //StartCoroutine(TakeScreenShotRoutine());
     }
 
     private IEnumerator TakeScreenShotRoutine()

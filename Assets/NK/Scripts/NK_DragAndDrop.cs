@@ -38,6 +38,18 @@ public class NK_DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHand
     {
         //canvasGroup.alpha = 1f;
         //canvasGroup.blocksRaycasts = true;
+        /*        for (int i = 0; i < NK_BookCover.instance.stickerList.Count; i++)
+                {
+                    if (NK_BookCover.instance.stickerList[i] != this.gameObject)
+                    {
+                        NK_BookCover.instance.stickerList.Add(this.gameObject);
+                    }
+
+                }*/
+        //if (!NK_BookCover.instance.stickerList.Contains(this.gameObject))
+        //{
+        //    NK_BookCover.instance.stickerList.Add(this.gameObject);
+        //}
     }
 
     public void OnPointerDown(PointerEventData eventData)
