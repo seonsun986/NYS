@@ -1,9 +1,12 @@
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static NK_BookUI;
 
 public class NK_LoadPreview : MonoBehaviour
 {
@@ -20,9 +23,17 @@ public class NK_LoadPreview : MonoBehaviour
 
     private void Start()
     {
+        // 이전 씬이 프리뷰씬이라면
         if (YJ_DataManager.instance.preScene == "PreviewScene")
         {
-            LoadObjects("PreviewBook");
+            LoadObjects();
+            YJ_DataManager.instance.preScene = null;
+        }
+
+        // 이전 씬이 책장씬이라면
+        if (YJ_DataManager.instance.preScene == "BookShelfScene")
+        {
+            LoadObjects(YJ_DataManager.instance.updateBookId);
             YJ_DataManager.instance.preScene = null;
         }
     }
@@ -34,20 +45,16 @@ public class NK_LoadPreview : MonoBehaviour
 
     public void LoadEditor()
     {
+        // 이전 씬 이름을 프리뷰씬이라고 저장
         YJ_DataManager.instance.preScene = "PreviewScene";
         SceneManager.LoadScene("EditorScene");
     }
 
+    #region LoadObjects // 프리뷰씬
     public void LoadObjects()
     {
-        // 불러오기
-        LoadObjects("Book1");
-    }
-
-    public void LoadObjects(string fileName)
-    {
         // Json 파일 받아오기
-        string path = Application.dataPath + "/" + fileName + ".Json";
+        string path = Application.dataPath + "/" + "in" + ".Json";
         string jsonData = File.ReadAllText(path);
         print(jsonData);
 
@@ -71,6 +78,47 @@ public class NK_LoadPreview : MonoBehaviour
         for (int i = 0; i < sceneObjects.Count; i++)
             InstantiateObject();
     }
+    #endregion
+
+    #region LoadObjects // 책장씬에서 책 수정 불러오기
+    public void LoadObjects(string id)
+    {
+        // 불러오기
+        print("수정할 동화책 선택 완.");
+        Info title = new Info();
+        YJ_HttpRequester requester2 = new YJ_HttpRequester();
+        requester2.url = "http://43.201.10.63:8080/tale/" + id;
+        requester2.requestType = RequestType.GET;
+        requester2.onComplete = (handler) =>
+        {
+            Debug.Log("이 동화 맞아? \n" + handler.downloadHandler.text);
+            JObject taleJObj = JObject.Parse(handler.downloadHandler.text);
+            title = JsonUtility.FromJson<Info>(handler.downloadHandler.text);
+            BookInfo bookInfo = title.data;
+            List<PagesInfo> pagesInfos = bookInfo.pages;
+
+            // pageinfo(단일) 내에서 text, obj로 구분지어 클래스 내 json 정렬 > pagesinfo.data(리스트)
+            for(int i = 0; i < pagesInfos.Count; i++)
+            {
+                objs = new List<PageInfo>();
+                images.Add(null);
+                GetRawImage(taleJObj["data"]["pages"][i]["rawImgUrl"].ToString(), i);
+
+                PagesInfo pagesInfo = pagesInfos[i];
+                foreach (string pageInfo in pagesInfo.data)
+                {
+                    print(pageInfo);
+                    objs.Add(pagesInfo.DeserializePageInfo(pageInfo));
+                    sceneObjects[pagesInfo.page] = objs;
+                }
+            }
+            print("씬 : " + sceneObjects.Count);
+            for (int i = 0; i < sceneObjects.Count; i++)
+                InstantiateObject();
+        };
+        YJ_HttpManager.instance.SendRequest(requester2);
+    }
+    #endregion
 
     public int pageNum;
 
@@ -182,18 +230,36 @@ public class NK_LoadPreview : MonoBehaviour
         pageNum++;
     }
 
+
+    List<Texture2D> images = new List<Texture2D>();
+    public void GetRawImage(string url, int index)
+    {
+        // 책 내용 이미지 받아오기
+        NK_HttpDetailImage requester = new NK_HttpDetailImage();
+        requester.url = url;
+        requester.requestType = RequestType.IMAGE;
+        requester.index = index;
+        requester.onCompleteDownloadImage = (handler, idx) =>
+        {
+            // 책 내용 이미지 텍스쳐로 받아오기
+            Texture2D texture = DownloadHandlerTexture.GetContent(handler);
+            images[idx] = texture;
+        };
+        YJ_HttpManager.instance.SendRequest(requester);
+    }
+
     private void AddImage(int i)
     {
         // RawImage 불러오기
         // 지금은 로컬에 저장된 파일을 불러온다
         // 서버 구축되면 서버에 저장된 RawImage 불러올 것
-        string path = Application.dataPath + "/Capture/_CurrentScene_" + pageNum + ".png";
-        byte[] byteTexture = System.IO.File.ReadAllBytes(path);
+        //string path = Application.dataPath + "/Capture/_CurrentScene_" + pageNum + ".png";
+        //byte[] byteTexture = System.IO.File.ReadAllBytes(path);
         Texture2D texture2D = new Texture2D(0, 0);
         // RawImage0 오브젝트는 이미 있으므로
         if (i == 0)
         {
-            texture2D.LoadImage(byteTexture);
+            texture2D = images[0];
             SH_BtnManager.Instance.firstRawImage.gameObject.GetComponent<RawImage>().texture = texture2D;
             return;
         }
@@ -203,7 +269,7 @@ public class NK_LoadPreview : MonoBehaviour
         raw.transform.SetParent(GameObject.Find("ContentRaw").transform);
         raw.transform.position = SH_BtnManager.Instance.firstRawImage.position + transform.up * (-180 * (i + 1));
         raw.name = "RawImage_" + i;
-        texture2D.LoadImage(byteTexture);
+        texture2D = images[i];
         raw.GetComponent<RawImage>().texture = texture2D;
         SH_BtnManager.Instance.rawImages.Add(raw.GetComponent<RawImage>());
         // 마지막 페이지의 RawImage만 RenderTexture로

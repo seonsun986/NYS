@@ -206,14 +206,14 @@ public class NK_BookShelfManager : MonoBehaviour
 
     public void ReadDetailImage(string url, int index)
     {
-        // 책 표지 이미지 받아오기
+        // 책 내용 이미지 받아오기
         NK_HttpDetailImage requester = new NK_HttpDetailImage();
         requester.url = url;
         requester.requestType = RequestType.IMAGE;
         requester.index = index;
-        requester.onComplete2 = (handler, idx) =>
+        requester.onCompleteDownloadImage = (handler, idx) =>
         {
-            // 책 표지 이미지 텍스쳐로 받아오기
+            // 책 내용 이미지 텍스쳐로 받아오기
             Texture2D texture = DownloadHandlerTexture.GetContent(handler);
             images[idx] = texture;
         };
@@ -338,6 +338,8 @@ public class NK_BookShelfManager : MonoBehaviour
 
     public void UpdateBookContent()
     {
+        YJ_DataManager.instance.preScene = "BookShelfScene";
+        YJ_DataManager.instance.updateBookId = taleInfos[bookObjs.IndexOf(selectedBook)].id;
         // 책 내용 수정
         SceneManager.LoadScene("EditorScene");
     }

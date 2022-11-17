@@ -30,7 +30,10 @@ public class MyBookList
 public class YJ_DataManager : MonoBehaviour
 {
     public static YJ_DataManager instance;
+    // 이전 씬
     public string preScene;
+    // 책장씬 -> 책 내용 수정 시 넘겨줄 동화책 id
+    public string updateBookId;
 
     // 내정보
     public UserInfo myInfo = new UserInfo();

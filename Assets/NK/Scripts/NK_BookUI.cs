@@ -192,7 +192,7 @@ public class NK_BookUI : MonoBehaviourPun
         print("동화책 선택 완.");
             Info title = new Info(); 
         YJ_HttpRequester requester2 = new YJ_HttpRequester();
-        requester2.url = "http://43.201.10.63:8080/tale/" + data[0].taleList.id; ;
+        requester2.url = "http://43.201.10.63:8080/tale/" + data[0].taleList.id;
         requester2.requestType = RequestType.GET;
         requester2.onComplete = (handler) =>
         {

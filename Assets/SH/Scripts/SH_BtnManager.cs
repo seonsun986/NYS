@@ -866,7 +866,7 @@ public class SH_BtnManager : MonoBehaviour
     public void Save()
     {
         pages.Clear();
-        SaveInfo();
+        SaveInfo(true);
 
     }
 
@@ -874,7 +874,7 @@ public class SH_BtnManager : MonoBehaviour
 
     // 제이슨 저장
     // PageInfo -> PagesInfo -> BookInfo -> Json
-    private void SaveInfo()
+    private void SaveInfo(bool send)
     {
         SH_VoiceRecord voice = this.gameObject.GetComponent<SH_VoiceRecord>();
         //objsInfo = new List<string>();
@@ -1006,10 +1006,12 @@ public class SH_BtnManager : MonoBehaviour
         bookinfo.pages = pages;
         
         string pageJson = JsonUtility.ToJson(bookinfo, true);
-        string path = Application.dataPath + "/" + "in" + ".txt";
+        string path = Application.dataPath + "/" + "in" + ".Json";
         File.WriteAllText(path, pageJson);
 
-        SaveJson();
+        // 미리보기인지 서버로 보내는 json인지 확인
+        if(send)
+            SaveJson();
     }
 
 
@@ -1023,7 +1025,7 @@ public class SH_BtnManager : MonoBehaviour
         // ArrayJson -> json
         string pageJson = JsonUtility.ToJson(bookinfo, true);
         //tring path = Application.dataPath + "/" + "실험" + ".txt";
-        string path = Application.dataPath + "/" + "out" + ".txt";
+        string path = Application.dataPath + "/" + "out" + ".Json";
         File.WriteAllText(path, pageJson);
         //print(pageJson);
 
@@ -1051,9 +1053,7 @@ public class SH_BtnManager : MonoBehaviour
     #region PreviewScene // 동화 미리보기
     public void PreviewScene()
     {
-        string jsonData = ""/* = SaveInfo()*/;
-
-        SaveJson("PreviewBook", jsonData);
+        SaveInfo(false);
     }
     #endregion
 
