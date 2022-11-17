@@ -44,11 +44,11 @@ public class NK_HttpDetailImage : YJ_HttpRequester
 {
     public int index;
 
-    public Action<UnityWebRequest,int> onComplete2;
+    public Action<UnityWebRequest,int> onCompleteDownloadImage;
 
     public override void OnComplete(UnityWebRequest webRequest)
     {
-        onComplete2(webRequest, index);
+        onCompleteDownloadImage(webRequest, index);
     }
 }
 

@@ -67,6 +67,7 @@ public class NK_BookCover : MonoBehaviour
         }
     }
 
+    #region SetBookCover // 서버에서 표지 정보 불러와 저장
     public void SetBookCoverFont(string fontStyle, string fontColor, string fontSize, string fontPositionX, string fontPositionY)
     {
         // 색깔 적용
@@ -79,6 +80,11 @@ public class NK_BookCover : MonoBehaviour
         inputField.GetComponent<RectTransform>().localPosition = new Vector2(float.Parse(fontPositionX), float.Parse(fontPositionY));
         // 글씨색
         inputField.textComponent.color = colorInfo;
+        // 글씨크기
+        inputField.textComponent.fontSize = size;
+        // 폰트 적용
+        Font fontInfo = SH_EditorManager.Instance.fonts[txtDropdown.value];
+        inputField.textComponent.font = fontInfo;
     }
 
     public void SetBookCover(string coverColor, string sticker, string stickerPositionX, string stickerPositionY)
@@ -88,6 +94,7 @@ public class NK_BookCover : MonoBehaviour
         ColorUtility.TryParseHtmlString("#" + coverColor, out colorInfo);
         bgColorImage.color = colorInfo;
         bookCoverColor.color = colorInfo;
+        bgColor = colorInfo;
 
         // string값 잘라서 배열로 받기
         string[] stickerList;
@@ -107,6 +114,7 @@ public class NK_BookCover : MonoBehaviour
             InstantiateObj(stickerList[i], stickerListPosX[i], stickerListPosY[i]);
         }
     }
+    #endregion
 
     private void Start()
     {
@@ -269,7 +277,6 @@ public class NK_BookCover : MonoBehaviour
     string stickerListSet = "";
     public void SaveTaleInfo()
     {
-
         SaveListSet();
         // 팔레트 끄기
         palette.SetActive(false);
