@@ -76,7 +76,7 @@ public class NK_BookCover : MonoBehaviour
         Int32.TryParse(fontStyle, out int dropboxNum);
         // 색, 폰트, 크기 초기화
         SetInfo(dropboxNum, size, colorInfo);
-        inputField.GetComponent<RectTransform>().anchoredPosition = new Vector2(float.Parse(fontPositionX), float.Parse(fontPositionY));
+        inputField.GetComponent<RectTransform>().localPosition = new Vector2(float.Parse(fontPositionX), float.Parse(fontPositionY));
         // 글씨색
         inputField.textComponent.color = colorInfo;
     }
@@ -89,8 +89,23 @@ public class NK_BookCover : MonoBehaviour
         bgColorImage.color = colorInfo;
         bookCoverColor.color = colorInfo;
 
+        // string값 잘라서 배열로 받기
+        string[] stickerList;
+        string[] stickerListPosX;
+        string[] stickerListPosY;
+
+        stickerList = sticker.Split(",");
+        stickerListPosX = stickerPositionX.Split(",");
+        stickerListPosY = stickerPositionY.Split(",");
+
+        print("스티커목록 : " + sticker);
+        print(stickerList.Length);
+
         // 스티커 생성
-        InstantiateObj(sticker, stickerPositionX, stickerPositionY);
+        for (int i = 0; i < stickerList.Length; i++)
+        {
+            InstantiateObj(stickerList[i], stickerListPosX[i], stickerListPosY[i]);
+        }
     }
 
     private void Start()
@@ -176,10 +191,11 @@ public class NK_BookCover : MonoBehaviour
     }
     #endregion
 
-    GameObject createObj;
-    List<string> stickerList = new List<string>();
-    List<string> stickerListPosX = new List<string>();
-    List<string> stickerListPosY = new List<string>();
+    //GameObject createObj;
+    public List<GameObject> stickerList = new List<GameObject>();
+    List<string> stickerListStr = new List<string>();
+    string stickerListPosX;
+    string stickerListPosY;
 
     #region InstantiateObj // 표지 수정하기에서 스티커 생성
     public void InstantiateObj()
@@ -187,13 +203,14 @@ public class NK_BookCover : MonoBehaviour
         // 스티커 선택하면
         GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
         // 스티커에서 버튼 기능을 뺀 같은 객체가 책 위에 생성됨
-        createObj = Instantiate(clickBtn);
-        stickerList.Add(clickBtn.name);
+        GameObject createObj = Instantiate(clickBtn);
+        //stickerList.Add(clickBtn.name);
         createObj.transform.SetParent(bookCover);
         createObj.GetComponent<Button>().enabled = false;
         createObj.GetComponent<RectTransform>().localPosition = Vector3.zero;
         //createObj.GetComponent <RectTransform>().localScale = new Vector3(1, 1, 1);
         createObj.GetComponent<RectTransform>().sizeDelta = new Vector2(120, 120);
+        stickerList.Add(createObj);
     }
     #endregion
 
@@ -201,17 +218,18 @@ public class NK_BookCover : MonoBehaviour
     public void InstantiateObj(string btnName, string x, string y)
     {
         // Json에서 저장된 스티커 이름
-        btnName = btnName.Replace("(Clone) (UnityEngine.GameObject)", "");
+        btnName = btnName.Replace("(Clone)", "");
         print(btnName);
         // 스티커 이름으로 오브젝트 찾기
         GameObject clickBtn = GameObject.Find(btnName);
         // 스티커에서 버튼 기능을 뺀 같은 객체가 책 위에 생성됨
-        createObj = Instantiate(clickBtn);
+        GameObject createObj = Instantiate(clickBtn);
         createObj.transform.SetParent(bookCover);
         createObj.GetComponent<Button>().enabled = false;
         // JSON에서 받아온 스티커의 위치대로 배치
         createObj.GetComponent<RectTransform>().localPosition = new Vector2(float.Parse(x), float.Parse(y));
         createObj.GetComponent<RectTransform>().sizeDelta = new Vector2(120, 120);
+        stickerList.Add(createObj);
     }
     #endregion
 
@@ -225,7 +243,7 @@ public class NK_BookCover : MonoBehaviour
             // 스티커 목록에서 해당 스티커 삭제
             for (int i = 0; i < stickerList.Count; i++)
             {
-                if (stickerList[i] == delSticker.name)
+                if (stickerList[i] == delSticker)
                 {
                     stickerList.RemoveAt(i);
                 }
@@ -251,6 +269,8 @@ public class NK_BookCover : MonoBehaviour
     string stickerListSet = "";
     public void SaveTaleInfo()
     {
+
+        SaveListSet();
         // 팔레트 끄기
         palette.SetActive(false);
         bgPalette.SetActive(false);
@@ -258,18 +278,21 @@ public class NK_BookCover : MonoBehaviour
         TxtInfo txtInfo = new TxtInfo();
         SH_SceneObj txt = transform.GetComponentInChildren<SH_SceneObj>();
         SH_InputField txt2 = transform.GetComponentInChildren<SH_InputField>();
-        taleInfo.fontPositionX = txt.gameObject.GetComponent<RectTransform>().anchoredPosition.x.ToString();
-        taleInfo.fontPositionY = txt.gameObject.GetComponent<RectTransform>().anchoredPosition.y.ToString();
+        taleInfo.fontPositionX = txt.gameObject.GetComponent<RectTransform>().localPosition.x.ToString();
+        taleInfo.fontPositionY = txt.gameObject.GetComponent<RectTransform>().localPosition.y.ToString();
         taleInfo.fontStyle = txt2.info.txtDropdown.ToString();
         taleInfo.fontSize = txt2.info.txtSize.ToString();
         taleInfo.fontColor = ColorUtility.ToHtmlStringRGBA(txt2.transform.GetChild(3).GetComponent<Text>().color);
 
         // 스티커 목록 넣기
-        taleInfo.sticker = createObj.ToString();
+        //taleInfo.sticker = createObj.ToString();
+        taleInfo.sticker = stickerListSet;
         // 스티커 위치값 넣기
-        taleInfo.stickerPositionX = createObj.GetComponent<RectTransform>().localPosition.x.ToString();
-        taleInfo.stickerPositionY = createObj.GetComponent<RectTransform>().localPosition.y.ToString();
+        taleInfo.stickerPositionX = stickerListPosX;
+        taleInfo.stickerPositionY = stickerListPosY;
         taleInfo.coverColor = ColorUtility.ToHtmlStringRGBA(bgColor);
+
+        stickerList.Clear();
     }
 
     public void SaveListSet()
@@ -279,13 +302,37 @@ public class NK_BookCover : MonoBehaviour
         {
             if (i == stickerList.Count - 1)
             {
-                stickerListSet += stickerList[i];
+                stickerListSet += stickerList[i].name;
                 break;
             }
 
-            stickerListSet += stickerList[i] + ",";
+            stickerListSet += stickerList[i].name + ",";
         }
 
+        // 포지션 x값 string으로 넣어주기
+        for (int i = 0; i < stickerList.Count; i++)
+        {
+            if (i == stickerList.Count - 1)
+            {
+                stickerListPosX += stickerList[i].GetComponent<RectTransform>().localPosition.x.ToString();
+                break;
+            }
 
+            stickerListPosX += stickerList[i].GetComponent<RectTransform>().localPosition.x.ToString() + ",";
+        }
+
+        // 포지션 y값 string으로 넣어주기
+        for (int i = 0; i < stickerList.Count; i++)
+        {
+            if (i == stickerList.Count - 1)
+            {
+                stickerListPosY += stickerList[i].GetComponent<RectTransform>().localPosition.y.ToString();
+                break;
+            }
+
+            stickerListPosY += stickerList[i].GetComponent<RectTransform>().localPosition.y.ToString() + ",";
+        }
+
+        print("이름 : " + stickerListSet + " x값 : " + stickerListPosX + " y값 : " + stickerListPosY);
     }
 }
