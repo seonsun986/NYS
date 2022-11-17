@@ -6270,13 +6270,14 @@ GameObject:
   - component: {fileID: 486221433}
   - component: {fileID: 486221432}
   - component: {fileID: 486221431}
+  - component: {fileID: 486221434}
   m_Layer: 5
   m_Name: Happy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &486221430
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6342,7 +6343,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1040144024}
+      - m_Target: {fileID: 931567500}
         m_TargetAssemblyTypeName: NK_EmotionUI, Assembly-CSharp
         m_MethodName: ClickHappy
         m_Mode: 1
@@ -6392,6 +6393,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486221429}
   m_CullTransparentMesh: 1
+--- !u!114 &486221434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486221429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049d73fc3da86a04f97e86737616c61a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &495001294
 GameObject:
   m_ObjectHideFlags: 0
@@ -6774,13 +6787,14 @@ GameObject:
   - component: {fileID: 558740491}
   - component: {fileID: 558740490}
   - component: {fileID: 558740489}
+  - component: {fileID: 558740492}
   m_Layer: 5
   m_Name: Defeat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &558740488
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6846,7 +6860,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1040144024}
+      - m_Target: {fileID: 931567500}
         m_TargetAssemblyTypeName: NK_EmotionUI, Assembly-CSharp
         m_MethodName: ClickDefeat
         m_Mode: 1
@@ -6896,6 +6910,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 558740487}
   m_CullTransparentMesh: 1
+--- !u!114 &558740492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558740487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049d73fc3da86a04f97e86737616c61a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &558787759
 GameObject:
   m_ObjectHideFlags: 0
@@ -7885,13 +7911,14 @@ GameObject:
   - component: {fileID: 623589810}
   - component: {fileID: 623589809}
   - component: {fileID: 623589808}
+  - component: {fileID: 623589811}
   m_Layer: 5
   m_Name: Excite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &623589807
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7957,7 +7984,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1040144024}
+      - m_Target: {fileID: 931567500}
         m_TargetAssemblyTypeName: NK_EmotionUI, Assembly-CSharp
         m_MethodName: ClickExcite
         m_Mode: 1
@@ -8007,6 +8034,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 623589806}
   m_CullTransparentMesh: 1
+--- !u!114 &623589811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623589806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049d73fc3da86a04f97e86737616c61a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &631026268
 GameObject:
   m_ObjectHideFlags: 0
@@ -10393,13 +10432,14 @@ GameObject:
   - component: {fileID: 900813251}
   - component: {fileID: 900813250}
   - component: {fileID: 900813249}
+  - component: {fileID: 900813252}
   m_Layer: 5
   m_Name: Hi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &900813248
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10465,7 +10505,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1040144024}
+      - m_Target: {fileID: 931567500}
         m_TargetAssemblyTypeName: NK_EmotionUI, Assembly-CSharp
         m_MethodName: ClickHi
         m_Mode: 1
@@ -10515,6 +10555,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 900813247}
   m_CullTransparentMesh: 1
+--- !u!114 &900813252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900813247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049d73fc3da86a04f97e86737616c61a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &920967869
 GameObject:
   m_ObjectHideFlags: 0
@@ -10703,6 +10755,7 @@ GameObject:
   m_Component:
   - component: {fileID: 931567498}
   - component: {fileID: 931567499}
+  - component: {fileID: 931567500}
   m_Layer: 5
   m_Name: EmotionUI
   m_TagString: Untagged
@@ -10761,6 +10814,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &931567500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931567497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0433dccde3292045a3b2f22b7eaa3c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emotionTime: 0.1
 --- !u!1 &932949014
 GameObject:
   m_ObjectHideFlags: 0
@@ -12389,7 +12455,6 @@ GameObject:
   - component: {fileID: 1040144021}
   - component: {fileID: 1040144022}
   - component: {fileID: 1040144023}
-  - component: {fileID: 1040144024}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -12575,19 +12640,6 @@ MonoBehaviour:
   likeFactory: {fileID: 1202522996400206, guid: 0ca66ebdd4410a247a75d98f6dabe49b, type: 3}
   likeCount: {fileID: 260113857}
   teacherLikeCount: {fileID: 1229738486}
---- !u!114 &1040144024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040144014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0433dccde3292045a3b2f22b7eaa3c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  emotionTime: 0.1
 --- !u!1 &1042230020
 GameObject:
   m_ObjectHideFlags: 0
@@ -23722,13 +23774,14 @@ GameObject:
   - component: {fileID: 2056361708}
   - component: {fileID: 2056361707}
   - component: {fileID: 2056361706}
+  - component: {fileID: 2056361709}
   m_Layer: 5
   m_Name: Sad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2056361705
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23794,7 +23847,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1040144024}
+      - m_Target: {fileID: 931567500}
         m_TargetAssemblyTypeName: NK_EmotionUI, Assembly-CSharp
         m_MethodName: ClickSad
         m_Mode: 1
@@ -23844,6 +23897,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056361704}
   m_CullTransparentMesh: 1
+--- !u!114 &2056361709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056361704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049d73fc3da86a04f97e86737616c61a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2059343458
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,12 +8,14 @@ using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static NK_BookUI;
 using static System.Net.WebRequestMethods;
 
 public class NK_BookShelfManager : MonoBehaviour
 {
     public static NK_BookShelfManager instance;
     public List<Texture2D> images = new List<Texture2D>();
+    public List<string> textContent = new List<string>();
     public GameObject booksParent;
     public GameObject bookFactory;
     // 책 세부 내용 보기에 필요한 속성
@@ -58,17 +60,17 @@ public class NK_BookShelfManager : MonoBehaviour
 
         string s = "a,b,c,d,e";
 
-        string [] ss = s.Split(",");
+        string[] ss = s.Split(",");
 
 
 
         string sss = "";
-        for(int i = 0; i < ss.Length; i++)
+        for (int i = 0; i < ss.Length; i++)
         {
             sss += ss[i];
             //if(i < )
             sss += ",";
-            
+
         }
 
 
@@ -196,6 +198,47 @@ public class NK_BookShelfManager : MonoBehaviour
         YJ_HttpManager.instance.SendRequest(requester);
     }
 
+    public void GetDetailImage()
+    {
+        print("동화책 선택 완.");
+        Info title = new Info();
+        YJ_HttpRequester requester2 = new YJ_HttpRequester();
+        requester2.url = "http://43.201.10.63:8080/tale/" + taleInfos[bookObjs.IndexOf(selectedBook)].id; ;
+        requester2.requestType = RequestType.GET;
+        requester2.onComplete = (handler) =>
+        {
+            JObject taleJObj = JObject.Parse(handler.downloadHandler.text);
+            Debug.Log("이 동화 맞아? \n" + handler.downloadHandler.text);
+            title = JsonUtility.FromJson<Info>(handler.downloadHandler.text);
+
+            for (int i = 0; i < title.data.pages.Count; i++)
+            {
+                // textContent 추가..?
+                images.Add(null);
+                ReadDetailImage(taleJObj["data"]["pages"][i]["rawImgUrl"].ToString(), i + 1);
+            }
+        };
+        YJ_HttpManager.instance.SendRequest(requester2);
+
+    }
+
+    public void ReadDetailImage(string url, int index)
+    {
+        // 책 표지 이미지 받아오기
+        NK_HttpDetailImage requester = new NK_HttpDetailImage();
+        requester.url = url;
+        print(requester.url);
+        requester.requestType = RequestType.IMAGE;
+        requester.index = index;
+        requester.onComplete2 = (handler, idx) =>
+        {
+            // 책 표지 이미지 텍스쳐로 받아오기
+            Texture2D texture = DownloadHandlerTexture.GetContent(handler);
+            images[idx] = texture;
+        };
+        YJ_HttpManager.instance.SendRequest(requester);
+    }
+
     [Serializable]
     public class Title
     {
@@ -245,6 +288,7 @@ public class NK_BookShelfManager : MonoBehaviour
 
     }
 
+    int index = 0;
     public void ClickBook()
     {
         // 책 선택하면 책 미리보기 보여짐
@@ -256,13 +300,14 @@ public class NK_BookShelfManager : MonoBehaviour
         prevBtn.SetActive(false);
 
         // rawImage 불러오고 초기화
+        images.Clear();
         index = 0;
-        rawImage.texture = images[index];
-        //rawImage.rectTransform.sizeDelta = new Vector2(300, 400);
-        //rawImage.texture = selectedBook.GetComponent<Image>().sprite.texture;
-    }
+        rawImage.rectTransform.sizeDelta = new Vector2(300, 400);
+        images.Add(selectedBook.GetComponent<Image>().sprite.texture);
+        rawImage.texture = images[0];
 
-    int index = 1;
+        GetDetailImage();
+    }
     public void ClickBefore()
     {
         rawImage.rectTransform.sizeDelta = new Vector2(800, 500);
@@ -284,10 +329,10 @@ public class NK_BookShelfManager : MonoBehaviour
             rawImage.texture = images[index];
         }
     }
-    
+
     public void ClickBeforeBook()
     {
-        Vector2 pos = booksParent.GetComponent<RectTransform>().anchoredPosition; 
+        Vector2 pos = booksParent.GetComponent<RectTransform>().anchoredPosition;
         booksParent.GetComponent<RectTransform>().anchoredPosition += new Vector2(400, 0);
         //booksParent.GetComponent<RectTransform>().anchoredPosition = Vector3.Lerp(pos, pos + new Vector2(400, 0), 0.05f);
     }
