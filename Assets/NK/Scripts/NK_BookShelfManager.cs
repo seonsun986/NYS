@@ -167,7 +167,6 @@ public class NK_BookShelfManager : MonoBehaviour
         // 책 표지 이미지 받아오기
         YJ_HttpRequester requester = new YJ_HttpRequester();
         requester.url = taleInfos[index].thumbNail;
-        print(requester.url);
         requester.requestType = RequestType.IMAGE;
         requester.onComplete = (handler) =>
         {
@@ -183,12 +182,13 @@ public class NK_BookShelfManager : MonoBehaviour
 
     public void GetDetailImage()
     {
+        // 책 미리보기 RawImage 가져오기
         print("동화책 선택 완.");
         Info title = new Info();
-        YJ_HttpRequester requester2 = new YJ_HttpRequester();
-        requester2.url = "http://43.201.10.63:8080/tale/" + taleInfos[bookObjs.IndexOf(selectedBook)].id; ;
-        requester2.requestType = RequestType.GET;
-        requester2.onComplete = (handler) =>
+        YJ_HttpRequester requester = new YJ_HttpRequester();
+        requester.url = "http://43.201.10.63:8080/tale/" + taleInfos[bookObjs.IndexOf(selectedBook)].id; ;
+        requester.requestType = RequestType.GET;
+        requester.onComplete = (handler) =>
         {
             JObject taleJObj = JObject.Parse(handler.downloadHandler.text);
             Debug.Log("이 동화 맞아? \n" + handler.downloadHandler.text);
@@ -196,26 +196,24 @@ public class NK_BookShelfManager : MonoBehaviour
 
             for (int i = 0; i < title.data.pages.Count; i++)
             {
-                // textContent 추가..?
                 images.Add(null);
                 ReadDetailImage(taleJObj["data"]["pages"][i]["rawImgUrl"].ToString(), i + 1);
             }
         };
-        YJ_HttpManager.instance.SendRequest(requester2);
+        YJ_HttpManager.instance.SendRequest(requester);
 
     }
 
     public void ReadDetailImage(string url, int index)
     {
-        // 책 표지 이미지 받아오기
+        // 책 내용 이미지 받아오기
         NK_HttpDetailImage requester = new NK_HttpDetailImage();
         requester.url = url;
-        print(requester.url);
         requester.requestType = RequestType.IMAGE;
         requester.index = index;
-        requester.onComplete2 = (handler, idx) =>
+        requester.onCompleteDownloadImage = (handler, idx) =>
         {
-            // 책 표지 이미지 텍스쳐로 받아오기
+            // 책 내용 이미지 텍스쳐로 받아오기
             Texture2D texture = DownloadHandlerTexture.GetContent(handler);
             images[idx] = texture;
         };
@@ -340,8 +338,16 @@ public class NK_BookShelfManager : MonoBehaviour
 
     public void UpdateBookContent()
     {
+        YJ_DataManager.instance.preScene = "BookShelfScene";
+        YJ_DataManager.instance.updateBookId = taleInfos[bookObjs.IndexOf(selectedBook)].id;
         // 책 내용 수정
         SceneManager.LoadScene("EditorScene");
+    }
+
+    public GameObject savePopup;
+    public void ClickSave()
+    {
+        savePopup.SetActive(true);
     }
     
     // taleInfo > 동화책 표지정보를 가져옴
@@ -388,7 +394,21 @@ public class NK_BookShelfManager : MonoBehaviour
 
         // 선택된 책의 표지 정보 보내기
         TalePost_API(NK_BookCover.instance.taleInfo);
+        // 표지 수정 팝업 닫기
+        ExitPopup();
     }
+
+    public void ClickYes()
+    {
+        savePopup.SetActive(false);
+        SaveBookCover();
+    }
+
+    public void ClickNo()
+    {
+        savePopup.SetActive(false);
+    }
+
 
     public void ExitBookShelf()
     {
