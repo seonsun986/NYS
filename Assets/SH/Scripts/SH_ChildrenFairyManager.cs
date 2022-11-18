@@ -44,7 +44,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     }
     void Start()
     {
-        
+
     }
 
     bool mushroomB;
@@ -60,11 +60,11 @@ public class SH_ChildrenFairyManager : MonoBehaviour
 
 
     void Update()
-    {     
+    {
         if (bookWorldOpen == true)
         {
             currentTime += Time.deltaTime;
-            if(currentTime > bookOpenTime)
+            if (currentTime > bookOpenTime)
             {
                 // 남동생 선택했을 때
                 if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
@@ -84,12 +84,12 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                 currentTime = 0;
                 bookWorldOpen = false;
             }
-        }     
+        }
 
         // 주방
-        if(currentPage == 1 || currentPage == 4 || currentPage == 5 || currentPage == 8 || currentPage == 9 || currentPage == 10 || currentPage == 11 || currentPage == 22)
+        if (currentPage == 1 || currentPage == 4 || currentPage == 5 || currentPage == 8 || currentPage == 9 || currentPage == 10 || currentPage == 11 || currentPage == 22)
         {
-            for(int i =0;i<bgImage.Count;i++)
+            for (int i = 0; i < bgImage.Count; i++)
             {
                 bgImage[i].SetActive(false);
             }
@@ -97,7 +97,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             bgImage[1].SetActive(true);
         }
 
-        else if(currentPage == 2 || currentPage == 3)
+        else if (currentPage == 2 || currentPage == 3)
         {
             for (int i = 0; i < bgImage.Count; i++)
             {
@@ -107,7 +107,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             bgImage[2].SetActive(true);
         }
 
-        else if(currentPage == 6)
+        else if (currentPage == 6)
         {
             for (int i = 0; i < bgImage.Count; i++)
             {
@@ -117,7 +117,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             bgImage[3].SetActive(true);
         }
 
-        else if(currentPage == 7 || currentPage == 18)
+        else if (currentPage == 7 || currentPage == 18)
         {
             for (int i = 0; i < bgImage.Count; i++)
             {
@@ -126,7 +126,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             // 전구배경만 키기
             bgImage[4].SetActive(true);
         }
-        else if(currentPage >= 19 && currentPage <=21)
+        else if (currentPage >= 19 && currentPage <= 21)
         {
             for (int i = 0; i < bgImage.Count; i++)
             {
@@ -138,22 +138,22 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         }
 
         // 먹어볼까요? 때 여동생? 남동생?
-        if(currentPage == 14)
+        if (currentPage == 14)
         {
             // 남동생 선택했을 때
             if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
             {
-                if(boyNo.activeSelf== false)
+                if (boyNo.activeSelf == false)
                 {
                     boyNo.SetActive(true);
                     boyYes.SetActive(true);
                 }
-                
+
             }
             // 여동생 선택했을 때
             else
             {
-                if(girlNo.activeSelf == false)
+                if (girlNo.activeSelf == false)
                 {
                     girlNo.SetActive(true);
                     girlYes.SetActive(true);
@@ -162,7 +162,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         }
         else
         {
-            if(girlNo.activeSelf == true || boyNo.activeSelf == true)
+            if (girlNo.activeSelf == true || boyNo.activeSelf == true)
             {
                 boyNo.SetActive(false);
                 boyYes.SetActive(false);
@@ -174,7 +174,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
 
         // 싫어하는 음식 선택하고 나서
         // 버섯
-        if(mushroomB == true && currentPage >= 12 && currentPage <=17)
+        if (mushroomB == true && currentPage >= 12 && currentPage <= 17)
         {
             for (int i = 0; i < bgImage.Count; i++)
             {
@@ -185,7 +185,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             bgImage[5].SetActive(true);
         }
         // 달걀
-        else if(eggB== true && currentPage >= 12 && currentPage <= 17)
+        else if (eggB == true && currentPage >= 12 && currentPage <= 17)
         {
             for (int i = 0; i < bgImage.Count; i++)
             {
@@ -254,12 +254,12 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         pages[6].GetComponent<AudioSource>().clip = audioClips[11];
         pages[0].GetComponent<AudioSource>().enabled = true;
         // 남동생 끄기
-        for(int i =0;i<brother.Count;i++)
+        for (int i = 0; i < brother.Count; i++)
         {
             brother[i].SetActive(false);
         }
         // 여동생 키기
-        for(int j =0; j<sister.Count;j++)
+        for (int j = 0; j < sister.Count; j++)
         {
             sister[j].SetActive(true);
         }
@@ -291,7 +291,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     public void SelectMom()
     {
         // 남동생일 때
-        if(pages[0].GetComponent<AudioSource>().clip == audioClips[1])
+        if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
         {
             pages[1].GetComponent<AudioSource>().clip = audioClips[4];
         }
@@ -335,23 +335,23 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     public void NextPage()
     {
         // 현재 페이지가 마지막 페이지일때는 리턴시킨다
-        if (currentPage == pages.Count -1) return;
+        if (currentPage == pages.Count - 1) return;
 
         // 퀴즈 페이지나 선택 페이지면 반드시 선택을 해야지 넘어가게 한다
-        for(int i =0; i<SelectPage.Count;i++)
+        for (int i = 0; i < SelectPage.Count; i++)
         {
             // 선택 페이지일 때 
-            if(currentPage == SelectPage[i])
+            if (currentPage == SelectPage[i])
             {
-                if(pass != true)
+                if (pass != true)
                 {
                     // 아직 선택을 하지 않았다면
                     selectPopUp.SetActive(true);
                     return;
-                }   
+                }
                 else
                 {
-                    if(PassPopUp.activeSelf == true)
+                    if (PassPopUp.activeSelf == true)
                     {
                         PassPopUp.SetActive(false);
                     }
@@ -361,7 +361,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         }
 
         // 만약 패스 버튼이었다면 팝업을 꺼준다
-        if(EventSystem.current.currentSelectedGameObject != null)
+        if (EventSystem.current.currentSelectedGameObject != null)
         {
             GameObject PassPopUpj = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
             if (PassPopUpj.name.Contains("Pass"))
@@ -375,7 +375,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
 
         pages[currentPage].SetActive(false);
         // 먹어볼까요? 페이지(이때는 3페이지를 뛰어넘어야 한다)
-        if(currentPage == 15)
+        if (currentPage == 15)
         {
             pages[currentPage + 3].SetActive(true);
             currentPage += 3;
@@ -389,7 +389,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         // 나온 오브젝트를 꺼준다
         if (selectObj != null) selectObj.SetActive(false);
 
-        
+
         pass = false;
     }
 
@@ -404,7 +404,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     RaycastHit passHit;
     public void OnPassPopUp()
     {
-        
+
         PassPopUp.SetActive(true);
         // 패스팝업 떴을때는 꺼주기
         nextBtn.SetActive(false);
@@ -412,7 +412,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         pass = true;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out passHit))
+        if (Physics.Raycast(ray, out passHit))
         {
             GameObject selectBtn = passHit.transform.gameObject;
             string selectBtnName = selectBtn.name.Substring(0, selectBtn.name.Length - 3);
@@ -437,7 +437,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                             selectObj.GetComponent<AudioSource>().clip = audioClips[73];
                         }
                     }
-                    else if(selectBtnName == "Ball")
+                    else if (selectBtnName == "Ball")
                     {
                         // 남동생 선택했을 때
                         if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
@@ -456,7 +456,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
 
         }
 
-      
+
 
     }
 
@@ -477,7 +477,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         // 해당 FailBtn과 관련된 애니메이션 재생하자!
         // 그러러면 일단 내가 선택한 버튼이 뭔지 알아야한다 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out failHit))
+        if (Physics.Raycast(ray, out failHit))
         {
             GameObject selectBtn = failHit.transform.gameObject;
             string selectBtnName = selectBtn.name.Substring(0, selectBtn.name.Length - 3);
@@ -522,7 +522,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     {
                         bookWorldOpen = true;
                     }
-                    else if(selectBtnName == "Box")
+                    else if (selectBtnName == "Box")
                     {
                         // 남동생 선택했을 때
                         if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
@@ -548,7 +548,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             }
         }
 
-        
+
     }
 
     public void PassTrue()
@@ -581,11 +581,11 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             {
                 selectObj.transform.GetChild(1).GetComponent<Rigidbody>().useGravity = false;       // 당근 중력 꺼주기..
             }
-        }       
+        }
 
-        if(bookWorld.activeSelf == true)
+        if (bookWorld.activeSelf == true)
         {
-            bookWorld.SetActive(false);            
+            bookWorld.SetActive(false);
         }
     }
 
@@ -606,11 +606,11 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                 pages.Insert(i + 10, selectPages.transform.GetChild(i).gameObject);
             }
 
-            
+
 
             // 선택한게 버섯일 때
             if (selectBtnName == "Mushroom")
-            {             
+            {
 
                 // 남동생일 때
                 if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
@@ -825,7 +825,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             currentPage += 1;
 
         }
-      
+
     }
 
     public void TryNo()
@@ -837,7 +837,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
 
     public void Girl()
     {
-        for(int i =0; i<broText.Count;i++)
+        for (int i = 0; i < broText.Count; i++)
         {
             broText[i].text = "여동생";
             broText[0].color = new Color(1, 0.4566038f, 1);
@@ -849,7 +849,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         for (int i = 0; i < broText.Count; i++)
         {
             broText[i].text = "남동생";
-            broText[0].color = new Color(0.25f,0.25f, 1);
+            broText[0].color = new Color(0.25f, 0.25f, 1);
 
         }
     }
@@ -879,7 +879,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
 
     public void PauseOrPlay()
     {
-        if(play == false)
+        if (play == false)
         {
             Time.timeScale = 0;
             play = true;
@@ -893,6 +893,13 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             playPauseBtn.sprite = Playing;
             AudioListener.pause = false;
         }
+    }
+
+
+    public GameObject questionBox;
+    public void QuestionBox()
+    {
+        questionBox.SetActive(false);
     }
 
     public void BackBtn()
