@@ -128,9 +128,17 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     bool moveBool = false;
     Vector3 movePoint;
     public GameObject footPrintFactory;
+    public GameObject playerCanvas;
 
     void Update()
     {
+        if (state == State.Sit)
+        {
+            playerCanvas.SetActive(false);
+        }
+        else
+            playerCanvas.SetActive(true);
+
         if (photonView.IsMine && this.gameObject.layer != 5 )
         {
             if (SceneManager.GetActiveScene().name != "MyRoomScene")
