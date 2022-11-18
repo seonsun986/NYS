@@ -1044,12 +1044,6 @@ public class SH_BtnManager : MonoBehaviour
         YJ_HttpManager.instance.SendRequest(requester);
     }
 
-    private void SaveJson(string jsonName, string jsonData)
-    {
-        string path = Application.dataPath + "/" + fileName + ".Json";
-        File.WriteAllText(path, jsonData);
-    }
-
     #region PreviewScene // 동화 미리보기
     public void PreviewScene()
     {
