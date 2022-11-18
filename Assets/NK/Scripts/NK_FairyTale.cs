@@ -9,6 +9,7 @@ public class NK_FairyTale : MonoBehaviour
     public GameObject fairyTaleObject;
     public GameObject teacherUI;
     public GameObject childUI;
+    public GameObject handupBtn;
     public Transform book;
     public List<Transform> objs;
     public GameObject stage;
@@ -18,7 +19,7 @@ public class NK_FairyTale : MonoBehaviour
     void OnEnable()
     {
         book.gameObject.SetActive(true);
-        NK_UIController.instance.ClickControl();
+        NK_UIController.instance.ClickControl(true);
 
         if (GameManager.Instance.photonView.IsMine)
         {
@@ -26,6 +27,7 @@ public class NK_FairyTale : MonoBehaviour
             if (GameManager.Instance.photonView.gameObject.CompareTag("Child"))
             {
                 childUI.SetActive(true);
+                handupBtn.SetActive(true);
             }
             if (GameManager.Instance.photonView.gameObject.CompareTag("Teacher"))
             {
@@ -61,6 +63,7 @@ public class NK_FairyTale : MonoBehaviour
             if (GameManager.Instance.photonView.gameObject.CompareTag("Child"))
             {
                 childUI.SetActive(false);
+                handupBtn.SetActive(false);
             }
             if (GameManager.Instance.photonView.gameObject.CompareTag("Teacher"))
             {
