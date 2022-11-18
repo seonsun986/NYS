@@ -127,6 +127,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     // 애니메이션 조절할 bool값
     bool moveBool = false;
     Vector3 movePoint;
+    public GameObject footPrintFactory;
 
     void Update()
     {
@@ -156,6 +157,11 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                             else
                             {
                                 movePoint = raycastHit.point;
+                                GameObject footPrint = Instantiate(footPrintFactory);
+                                footPrint.transform.position = raycastHit.point;
+                                Vector3 dir = this.gameObject.transform.position -footPrint.transform.position;
+                                dir.y = 0;
+                                footPrint.transform.forward = -dir;
                             }
                         }
                     }
