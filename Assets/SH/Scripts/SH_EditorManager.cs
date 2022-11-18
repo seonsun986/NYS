@@ -75,14 +75,17 @@ public class SH_EditorManager : MonoBehaviour
 
     float currentTime;
     public float openTime = 1;
+    int open;
     void Update()
     {
         if (titleObj != null)
         {
             currentTime += Time.deltaTime;
-            if (currentTime > openTime)
+            if (currentTime > openTime && open< 1)
             {
                 iTween.ScaleTo(titleObj, iTween.Hash("x", 1, "y", 1, "z", 1, "easeType", "easeOutExpo", "time", 0.5f));
+                currentTime = 0;
+                open++;
             }
 
         }

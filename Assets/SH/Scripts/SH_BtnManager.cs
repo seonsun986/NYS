@@ -392,6 +392,8 @@ public class SH_BtnManager : MonoBehaviour
     public int i = 0;
     public int currentScene;
     List<byte[]> rawImageList = new List<byte[]>();
+    public Button ttsBtn;
+    public Button recordBtn;
 
     public void AddScene()
     {
@@ -484,6 +486,9 @@ public class SH_BtnManager : MonoBehaviour
         Scenes.Add(n_Scene);
         Scenes_txt.Add(n_Scene_Canvas);
 
+        SH_VoiceRecord.Instance.voiceClip.Add(null);
+        // TTS 버튼과 녹음 버튼도 초기화 시켜볼까?
+        SH_VoiceRecord.Instance.Reset();
         i++;
         currentSceneNum = i;   // 씬 추가했으므로 새 씬으로 가고 따라서 현재씬을 i값으로 해준다
 
@@ -526,15 +531,15 @@ public class SH_BtnManager : MonoBehaviour
 
         for (int j = 0; j < raycastResults.Count; j++)
         {
-            
+
             // 씬을 클릭했다는 뜻이므로
             // 해당 씬으로 돌아가야한다
-            if (raycastResults[j].gameObject.name.Contains("RawImage") && Scenes[0]!=null)
+            if (raycastResults[j].gameObject.name.Contains("RawImage") && Scenes[0] != null)
             {
                 // 현재 선택되어 있는 오브젝트의 버튼을 꺼준다
                 if (SH_EditorManager.Instance.activeObj == null) return;
                 List<GameObject> buttons = SH_EditorManager.Instance.activeObj.GetComponent<SH_SceneObj>().buttons;
-                for(int k=0;k<buttons.Count;k++)
+                for (int k = 0; k < buttons.Count; k++)
                 {
                     buttons[k].SetActive(false);
                 }
@@ -582,7 +587,7 @@ public class SH_BtnManager : MonoBehaviour
                 // txt는 (전체 씬 개수 - 클릭한 씬 넘버) * screen.Height를 빼준다
                 //(i - sceneNum) * 10
                 // 현재 있는 씬이 클릭씬보다 나중에 만들어졌을 경우(번호가 더 크다)
-                if(currentScene > sceneNum)
+                if (currentScene > sceneNum)
                 {
 
                     for (int k = 0; k < Scenes.Count; k++)
@@ -602,12 +607,31 @@ public class SH_BtnManager : MonoBehaviour
                         Scenes_txt[k].transform.position += new Vector3(0, (sceneNum - currentScene) * Screen.height, 0);
                     }
                 }
+
+
+                SH_VoiceRecord.Instance.Change();
+                // 클릭한 씬 넘버의 보이스 상태를 불러온다
+                // 해당 페이지에 적용시켜준다
+                // 만약 녹음 버튼을 활성화 시킨 페이지라면
+                if (SH_VoiceRecord.Instance.voiceInfos[sceneNum].ttsBtn == SH_VoiceRecord.Instance.ttsUnCheked)
+                {
+                    SH_VoiceRecord.Instance.ttsBtn.GetComponent<Image>().sprite = SH_VoiceRecord.Instance.ttsUnCheked;
+                    SH_VoiceRecord.Instance.ttsBtn.interactable = false;
+                    SH_VoiceRecord.Instance.recordBtn.interactable = true;
+                }
+                else
+                {
+                    SH_VoiceRecord.Instance.ttsBtn.interactable = true;
+                    SH_VoiceRecord.Instance.ttsBtn.GetComponent<Image>().sprite = SH_VoiceRecord.Instance.ttsChecked;
+                    SH_VoiceRecord.Instance.recordBtn.interactable = false;
+                }
+                SH_VoiceRecord.Instance.num = SH_VoiceRecord.Instance.voiceInfos[sceneNum].recordNum;
                 currentSceneNum = sceneNum;            // 현재 씬 넘버를 선택한 씬 넘버로 저장해준다
                 break;
             }
         }
-
     }
+
 
 
     [Header("소리 관련 변수")]
@@ -737,120 +761,18 @@ public class SH_BtnManager : MonoBehaviour
         }
 
     }
-    //public void SelectSound()
-    //{
-    //    GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
-    //    Image clickBtnImage = clickBtn.GetComponent<Image>();
-    //    string clickText = clickBtn.name.Substring(0, clickBtn.name.Length - 3);
-    //    string effectClipName;
-    //    for (int i = 0; i < effectClips.Count; i++)
-    //    {
-    //        if (effectClips[i] != null)
-    //        {
-    //            effectClipName = effectClips[i].name;
-    //        }
-    //        else
-    //        {
-    //            effectClipName = "None";
-    //        }
-
-    //        // for문을 돌리는 도중 클릭한 오브젝트와 클립 이름이 똑같다면
-    //        if (clickText == effectClipName)
-    //        {
-    //            // 현재 오디오 클립 및 현재 선택한 버튼으로 바꿈
-    //            exSoundSource.clip = effectClips[i];
-
-    //            // 처음 소리 설정 할 때 아무것도 들어가있지 않으므로 설정해줌
-    //            if (preClip == null && nonePlaying.sprite != playing)
-    //            {
-    //                // 처음 소리 및 게임 오브젝트 설정
-    //                preClip = exSoundSource.clip;
-    //                preBtn = clickBtn;
-
-    //                curClip = preClip;
-    //                currentBtn = preBtn;
-
-    //                exSoundSource.clip = curClip;
-    //                exSoundSource.Play();
-
-    //                // 현재 오브젝트 사진을 Playing으로 바꾼다
-    //                currentBtn.GetComponent<Image>().sprite = playing;
-    //            }
-
-    //            // 그 전 오디오 클립이 들어가있다면
-    //            else
-    //            {
-    //                if(effectClipName == "None")
-    //                {
-    //                    preBtn.GetComponent<Image>().sprite = notPlaying;
-    //                    // 현재 오브젝트 사진을 Playing으로 바꾼다
-    //                    currentBtn.GetComponent<Image>().sprite = notPlaying;
-    //                    preClip = null;
-    //                    curClip = null;
-    //                }
-    //                else
-    //                {
-    //                    // 현재 있던 버튼을 옛날 버튼으로 바꾸고
-    //                    preClip = curClip;
-    //                    preBtn = currentBtn;
-
-    //                    // 현재 버튼과 클립을 다시 업데이트 해준다
-    //                    curClip = exSoundSource.clip;
-    //                    currentBtn = clickBtn;
-    //                }
-
-
-    //                // 만약 사용자가 소리를 바꾼다면
-    //                if (preClip != exSoundSource.clip)
-    //                {
-    //                    // 그 전 소리가 멈춰야 한다
-    //                    exSoundSource.Stop();
-    //                    // 전 오브젝트의 사진을 notPlaying으로 바꾼다
-    //                    preBtn.GetComponent<Image>().sprite = notPlaying;
-    //                    // 현재 오브젝트 사진을 Playing으로 바꾼다
-    //                    currentBtn.GetComponent<Image>().sprite = playing;
-
-    //                    exSoundSource.clip = curClip;
-    //                    exSoundSource.Play();
-    //                }
-
-    //                // 사용자가 또 똑같은 소리 버튼을 눌렀을 때
-    //                // 재생 중이었다면 재생을 멈추고
-    //                // 재생 중이 아니라면 재생을 시킨다
-    //                else
-    //                {
-    //                    // 재생 중이라면
-    //                    if (preBtn.GetComponent<Image>().sprite == playing)
-    //                    {
-    //                        preBtn.GetComponent<Image>().sprite = notPlaying;
-    //                        exSoundSource.Stop();
-    //                    }
-
-    //                    // 재생 중이 아니라면
-    //                    else
-    //                    {
-    //                        preBtn.GetComponent<Image>().sprite = playing;
-    //                        exSoundSource.clip = preClip;
-    //                        exSoundSource.Play();
-    //                    }
-    //                }
-    //            }
-
-    //            return;
-
-    //        }
-    //    }     
-       
-    //}
-
+ 
     public string title;
     public GameObject titlePanel;
+    public GameObject titlePopUp;
     public void TitleOk()
     {
-        title = titlePanel.transform.GetChild(0).GetChild(2).GetChild(2).GetComponent<Text>().text;
-        //iTween.ScaleTo(titlePanel.transform.GetChild(0).gameObject, iTween.Hash("x", 0, "y",0, "z", 0, "easeType", "easeOutExpo", "time", 0.5f));
+        title = titlePopUp.transform.GetChild(2).GetChild(2).GetComponent<Text>().text;
+        iTween.ScaleTo(titlePopUp, iTween.Hash("x", 0, "y",0, "z", 0, "time", 0.5f));
+        
         titlePanel.SetActive(false);
     }
+
 
     // 배경음 적용하기 버튼 클릭 시
     public AudioSource bgSelectSound;
@@ -858,6 +780,7 @@ public class SH_BtnManager : MonoBehaviour
     {
         // 현재 프로젝트의 오디오 소스에 접근
         bgSelectSound.clip = bgSoundSource.clip;
+        YJ_DataManager.instance.bgClip = bgSelectSound.clip;
         // UI 밑으로 내리기
         MoveSceneBG();
     }
@@ -1153,7 +1076,6 @@ public class SH_BtnManager : MonoBehaviour
         isTTS = false;       
         ttsSound.Stop();
         ttsBtnImg.sprite = ttsPlayImage;
-        print("111111111");
     }
 
     string ttstext;
