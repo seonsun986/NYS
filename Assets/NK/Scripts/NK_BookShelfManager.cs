@@ -197,7 +197,7 @@ public class NK_BookShelfManager : MonoBehaviour
             for (int i = 0; i < title.data.pages.Count; i++)
             {
                 images.Add(null);
-                ReadDetailImage(taleJObj["data"]["pages"][i]["rawImgUrl"].ToString(), i + 1);
+                ReadDetailImage(taleJObj["data"]["pages"][i]["rawImgUrl"].ToString(), i);
             }
         };
         YJ_HttpManager.instance.SendRequest(requester);
@@ -216,6 +216,8 @@ public class NK_BookShelfManager : MonoBehaviour
             // 책 내용 이미지 텍스쳐로 받아오기
             Texture2D texture = DownloadHandlerTexture.GetContent(handler);
             images[idx] = texture;
+            if(idx == 0)
+                rawImage.texture = images[idx];
         };
         YJ_HttpManager.instance.SendRequest(requester);
     }
@@ -283,15 +285,11 @@ public class NK_BookShelfManager : MonoBehaviour
         // rawImage 불러오고 초기화
         images.Clear();
         index = 0;
-        rawImage.rectTransform.sizeDelta = new Vector2(300, 400);
-        images.Add(selectedBook.GetComponent<Image>().sprite.texture);
-        rawImage.texture = images[0];
-
+        rawImage.rectTransform.sizeDelta = new Vector2(800, 500);
         GetDetailImage();
     }
     public void ClickBefore()
     {
-        rawImage.rectTransform.sizeDelta = new Vector2(800, 500);
         // 책 미리보기에서 이전 버튼 클릭 시
         if (0 < index)
         {
@@ -302,7 +300,6 @@ public class NK_BookShelfManager : MonoBehaviour
 
     public void ClickNext()
     {
-        rawImage.rectTransform.sizeDelta = new Vector2(800, 500);
         // 책 미리보기에서 다음 버튼 클릭 시
         if (index < images.Count - 1)
         {
