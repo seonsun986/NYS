@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class SH_VoiceRecord : MonoBehaviour
 {
 
+    public static SH_VoiceRecord Instance;
 
     AudioClip recordClip;
     bool record;
@@ -14,10 +15,15 @@ public class SH_VoiceRecord : MonoBehaviour
     public Image recordingBtn;
     public Sprite recordImg;
     public Sprite stopRecordImg;
-
+    public List<VoiceInfo> voiceInfos = new List<VoiceInfo>();
+    public int num;
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
-        voiceClip = new List<AudioClip>();
+        //voiceClip = new List<AudioClip>();
 
     }
     public void Record()
@@ -75,16 +81,29 @@ public class SH_VoiceRecord : MonoBehaviour
 
             SH_SavWav.Save("Page" + SH_BtnManager.Instance.currentScene, recordClip);
 
-            // 보이스 클립을 넣은 리스트 생성 (제이슨변환용)
-            if (voiceClip.Count > SH_BtnManager.Instance.currentScene)
-            {
-                voiceClip.RemoveAt(SH_BtnManager.Instance.currentScene);
-                voiceClip.Insert(SH_BtnManager.Instance.currentScene, recordClip);
-            }
-            else
-            {
-                voiceClip.Insert(SH_BtnManager.Instance.currentScene, recordClip);
-            }
+            recordClip = Resources.Load<AudioClip>("Page" + SH_BtnManager.Instance.currentScene);
+
+
+            voiceClip[SH_BtnManager.Instance.currentScene] = recordClip;
+            //if (voiceClip.Count == 0)
+            //{
+            //    voiceClip.Add(recordClip);
+
+            //}
+            //else
+            //{
+            //    // 보이스 클립을 넣은 리스트 생성 (제이슨변환용)
+            //    if (voiceClip.Count > SH_BtnManager.Instance.currentScene)
+            //    {
+            //        voiceClip.RemoveAt(SH_BtnManager.Instance.currentScene);
+            //        voiceClip.Insert(SH_BtnManager.Instance.currentScene, recordClip);
+            //    }
+            //    else
+            //    {
+            //        voiceClip.Insert(SH_BtnManager.Instance.currentScene, recordClip);
+            //    }
+            //}
+
         }
         print("녹음멈춤");
 
@@ -104,10 +123,9 @@ public class SH_VoiceRecord : MonoBehaviour
     public Sprite ttsChecked;
     public Sprite ttsUnCheked;
 
-    int recordNum;
     public void RecordPopUp()
     {
-        if(recordNum < 1)
+        if(num < 1)
         {
             // 녹음 중이 아닐 때 -> 녹음 시작
             if (recordingBtn.sprite == recordImg)
@@ -131,7 +149,7 @@ public class SH_VoiceRecord : MonoBehaviour
             {
                 Record();
                 ttsBtn.interactable = false;
-                recordNum++;
+                num++;
             }
         }
 
@@ -160,7 +178,7 @@ public class SH_VoiceRecord : MonoBehaviour
             {
                 Record();
                 ttsBtn.interactable = false;
-                recordNum++;
+                num++;
             }
         }     
     }
@@ -230,6 +248,44 @@ public class SH_VoiceRecord : MonoBehaviour
     {
         popUp1Panel.SetActive(false);
         iTween.ScaleTo(popUp2, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.5f));
+    }
+
+
+    // 페이지를 넘길때마다의 레코드 넘버를 저장해야할거같은데..
+    public void Reset()
+    {
+        // 해당 페이지에 있는 보이스 정보 담기
+        VoiceInfo voiceInfo = new VoiceInfo();
+        voiceInfo.ttsBtn = ttsBtn.GetComponent<Image>().sprite;
+        voiceInfo.recordNum = num;
+
+        // 리스트에 담아주기
+        voiceInfos.Add(voiceInfo);
+        // 초기화 시켜주기
+        ttsBtn.interactable = true;
+        recordBtn.interactable = true;
+        ttsBtn.GetComponent<Image>().sprite = ttsUnCheked;
+        recordingBtn.sprite = recordImg;
+    }
+
+    public void Change()
+    {
+        if(voiceInfos.Count < SH_BtnManager.Instance.currentSceneNum + 1)
+        {
+            // 해당 페이지에 있는 보이스 정보 담기
+            VoiceInfo voiceInfo = new VoiceInfo();
+            voiceInfo.ttsBtn = ttsBtn.GetComponent<Image>().sprite;
+            voiceInfo.recordNum = num;
+            // 리스트에 담아주기
+            voiceInfos.Add(voiceInfo);
+        }
+    }
+
+    public class VoiceInfo
+    {
+        // 이게 어떻게 체크되어있는지에 따라서 달라진다
+        public Sprite ttsBtn;
+        public int recordNum;
     }
 
 }
