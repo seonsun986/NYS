@@ -74,20 +74,24 @@ public class SH_SceneObj : MonoBehaviour
                 anim.Play(gameObject.name.Substring(0, gameObject.name.Length - 7) + "_" + anims[0].name);
                 currentAnim = gameObject.name.Substring(0, gameObject.name.Length - 7) + "_" + anims[0].name;
             }
+            // 애니메이션 버튼이 들어갈 빈 오브젝트 하나를 무조건 만들어준다
+            animBtnParent = new GameObject(gameObject.name + "AnimBtn" + "_" + SH_BtnManager.Instance.currentSceneNum);
+            animBtnParent.transform.SetParent(GameObject.Find("AnimalAnimBtn").transform);
+            animBtnParent.transform.localPosition = new Vector3(0, 0, 0);
             for (int i = 0; i < anims.Count; i++)
             {
-                // 빈 오브젝트가 없다면 만들어주고
-                if (GameObject.Find(gameObject.name + "AnimBtn") == null)
-                {
-                    animBtnParent = new GameObject(gameObject.name + "AnimBtn");
-                    // 만들었거나 이미 있다면 부모를 설정해준다
-                    animBtnParent.transform.SetParent(GameObject.Find("AnimalAnimBtn").transform);
-                    animBtnParent.transform.localPosition = new Vector3(0, 0, 0);
-                }
-                else
-                {
-                    animBtnParent = GameObject.Find(gameObject.name + "AnimBtn");
-                }
+                //// 빈 오브젝트가 없다면 만들어주고
+                //if (GameObject.Find(gameObject.name + "AnimBtn") == null)
+                //{
+                //    animBtnParent = new GameObject(gameObject.name + "AnimBtn" + "_" + SH_BtnManager.Instance.currentSceneNum);
+                //    // 만들었거나 이미 있다면 부모를 설정해준다
+                //    animBtnParent.transform.SetParent(GameObject.Find("AnimalAnimBtn").transform);
+                //    animBtnParent.transform.localPosition = new Vector3(0, 0, 0);
+                //}
+                //else
+                //{
+                //    animBtnParent = GameObject.Find(gameObject.name + "AnimBtn");
+                //}
 
 
                 // 빈 오브젝트를 만들 버튼의 부모로 설정해준다
@@ -155,6 +159,7 @@ public class SH_SceneObj : MonoBehaviour
         {
             if (SH_EditorManager.Instance.activeObj != gameObject && buttons.Count > 0)
             {
+                if (buttons[0] != null) return;
                 // 막아주기
                 if (buttons[0].gameObject.activeSelf == false) return;
 
