@@ -40,7 +40,7 @@ public class YJ_HttpRequester
 }
 
 
-public class NK_HttpDetailImage : YJ_HttpRequester
+public class NK_HttpMediaRequester : YJ_HttpRequester
 {
     public int index;
 

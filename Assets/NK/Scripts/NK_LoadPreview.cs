@@ -36,7 +36,6 @@ public class NK_LoadPreview : MonoBehaviour
         if (YJ_DataManager.instance.preScene == "BookShelfScene")
         {
             LoadObjects(YJ_DataManager.instance.updateBookId);
-            YJ_DataManager.instance.preScene = null;
         }
     }
 
@@ -235,7 +234,7 @@ public class NK_LoadPreview : MonoBehaviour
     public void GetRawImage(string url, int index)
     {
         // 책 내용 이미지 받아오기
-        NK_HttpDetailImage requester = new NK_HttpDetailImage();
+        NK_HttpMediaRequester requester = new NK_HttpMediaRequester();
         requester.url = url;
         requester.requestType = RequestType.IMAGE;
         requester.index = index;
