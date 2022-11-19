@@ -207,7 +207,7 @@ public class NK_BookShelfManager : MonoBehaviour
     public void ReadDetailImage(string url, int index)
     {
         // 책 내용 이미지 받아오기
-        NK_HttpDetailImage requester = new NK_HttpDetailImage();
+        NK_HttpMediaRequester requester = new NK_HttpMediaRequester();
         requester.url = url;
         requester.requestType = RequestType.IMAGE;
         requester.index = index;
