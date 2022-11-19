@@ -48,6 +48,8 @@ public class YJ_DataManager : MonoBehaviour
     public string goingRoomName;
     public int goingRoomType;
 
+    // 에디터 씬에서 선택한 배경음악 오디오 클립
+    public AudioClip bgClip;
     private void Awake()
     {
         // 만약에 instance가 null이라면

@@ -15,5 +15,6 @@ public class NK_EmotionButton : MonoBehaviour
     void OnDisable()
     {
         gameObject.SetActive(false);
+        gameObject.transform.localScale = Vector3.one;
     }
 }

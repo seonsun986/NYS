@@ -7,6 +7,7 @@ using System.IO;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 using static NK_BookUI;
 
@@ -28,6 +29,7 @@ public class NK_BookUI : MonoBehaviourPun
     Data[] data;
 
     Dictionary<int, List<PageInfo>> sceneObjects = new Dictionary<int, List<PageInfo>>();
+    List<TaleInfo> taleInfos;
 
     //동화 조회할 아이디
     public string id;
@@ -47,7 +49,7 @@ public class NK_BookUI : MonoBehaviourPun
             return;
         }
 
-        GetBookList("Book2");
+        GetBookList();
     }
 
     public void ClickBook()
@@ -60,31 +62,31 @@ public class NK_BookUI : MonoBehaviourPun
         print(book.GetComponentInChildren<Text>().text);
     }
 
-/*
-    public void ClickBook1()
-    {
-        SelectBook(Book.양치기소년);
-        photonView.RPC("RPCSetActive", RpcTarget.All);
-        ClickBook("Book1");
-    }
+    /*
+        public void ClickBook1()
+        {
+            SelectBook(Book.양치기소년);
+            photonView.RPC("RPCSetActive", RpcTarget.All);
+            ClickBook("Book1");
+        }
 
-    public void ClickBook2()
-    {
-        SelectBook(Book.신데렐라);
-        photonView.RPC("RPCSetActive", RpcTarget.All);
-        ClickBook("Book2");
-    }
+        public void ClickBook2()
+        {
+            SelectBook(Book.신데렐라);
+            photonView.RPC("RPCSetActive", RpcTarget.All);
+            ClickBook("Book2");
+        }
 
-    public void ClickBook3()
-    {
-        SelectBook(Book.오즈의마법사);
-    }
-    public void ClickBook4()
-    {
-        SelectBook(Book.용이야기);
-        bookUI.SetActive(false);
-        fairyTaleManager.SetActive(true);
-    }*/
+        public void ClickBook3()
+        {
+            SelectBook(Book.오즈의마법사);
+        }
+        public void ClickBook4()
+        {
+            SelectBook(Book.용이야기);
+            bookUI.SetActive(false);
+            fairyTaleManager.SetActive(true);
+        }*/
 
     [PunRPC]
     private void RPCSetActive()
@@ -114,7 +116,7 @@ public class NK_BookUI : MonoBehaviourPun
 
     List<PagesInfo> pagesInfos;
 
-    public void GetBookList(string jsonName)
+    public void GetBookList()
     {
         // Json 파일 받아오기
         //string fileName = jsonName;
@@ -127,7 +129,7 @@ public class NK_BookUI : MonoBehaviourPun
         //List<PagesInfo> pagesInfos = bookInfo.pages;
 
         // 동화책 목록가져오기
-
+        taleInfos = new List<TaleInfo>();
         YJ_HttpRequester requester1 = new YJ_HttpRequester();
         requester1.url = "http://43.201.10.63:8080/tale/mylist";
         requester1.requestType = RequestType.GET;
@@ -139,9 +141,7 @@ public class NK_BookUI : MonoBehaviourPun
             Debug.Log("자 동화목록 받아왔어! \n" + handler.downloadHandler.text);
 
             Title title = JsonUtility.FromJson<Title>(handler.downloadHandler.text);
-
             data = title.data;
-
 
             TaleList taleList = new TaleList();
             for (int i = 0; i < data.Length; i++)
@@ -155,9 +155,9 @@ public class NK_BookUI : MonoBehaviourPun
                 data[i].taleList = taleList;
             }
 
-            TaleInfo taleInfo = new TaleInfo();
             for (int j = 0; j < data.Length; j++)
             {
+                TaleInfo taleInfo = new TaleInfo();
                 if (data[j].taleInfo.id == null) continue;
                 taleInfo.id = data[j].taleInfo.id;
                 taleInfo.fontStyle = data[j].taleInfo.fontStyle;
@@ -170,7 +170,7 @@ public class NK_BookUI : MonoBehaviourPun
                 taleInfo.stickerPosition_x = data[j].taleInfo.stickerPosition_x;
                 taleInfo.stickerPosition_y = data[j].taleInfo.stickerPosition_y;
                 taleInfo.thumbNail = data[j].taleInfo.thumbNail;
-
+                taleInfos.Add(taleInfo);
                 data[j].taleInfo = taleInfo;
             }
 
@@ -181,8 +181,8 @@ public class NK_BookUI : MonoBehaviourPun
                 // JSON에서 불러온 제목으로 텍스트 지정
                 book.GetComponentInChildren<Text>().text = titles[i];
                 book.GetComponent<Button>().onClick.AddListener(ClickBook);
+                GetBookImage(i);
             }
-
         };
         YJ_HttpManager.instance.SendRequest(requester1);
     }
@@ -190,7 +190,7 @@ public class NK_BookUI : MonoBehaviourPun
     public void GetBookInfo()
     {
         print("동화책 선택 완.");
-            Info title = new Info(); 
+        Info title = new Info();
         YJ_HttpRequester requester2 = new YJ_HttpRequester();
         requester2.url = "http://43.201.10.63:8080/tale/" + data[0].taleList.id;
         requester2.requestType = RequestType.GET;
@@ -204,6 +204,24 @@ public class NK_BookUI : MonoBehaviourPun
         };
         YJ_HttpManager.instance.SendRequest(requester2);
 
+    }
+
+    public void GetBookImage(int index)
+    {
+        // 책 표지 이미지 받아오기
+        YJ_HttpRequester requester = new YJ_HttpRequester();
+        requester.url = taleInfos[index].thumbNail;
+        requester.requestType = RequestType.IMAGE;
+        requester.onComplete = (handler) =>
+        {
+            // 책 표지 이미지 텍스쳐로 받아오기
+            Texture2D texture = DownloadHandlerTexture.GetContent(handler);
+            // 책 표지 이미지 스프라이트로 만들어서 수정된 책에 적용 및 제목 텍스트 비활성화
+            Sprite tempSprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+            booksParent.transform.GetChild(index).GetComponent<Image>().sprite = tempSprite;
+            booksParent.transform.GetChild(index).GetComponentInChildren<Text>().enabled = false;
+        };
+        YJ_HttpManager.instance.SendRequest(requester);
     }
 
     [Serializable]
@@ -435,7 +453,7 @@ public class NK_BookUI : MonoBehaviourPun
         photonView.RPC("RPCDestroyObject", RpcTarget.All);
         photonView.RPC("RPCSetInactive", RpcTarget.All);
         isOpen = false;
-        NK_UIController.instance.ClickControl();
+        NK_UIController.instance.ClickControl(false);
     }
     #endregion
 }
