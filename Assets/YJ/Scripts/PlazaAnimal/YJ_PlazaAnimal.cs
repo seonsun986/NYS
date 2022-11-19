@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class YJ_PlazaAnimal : MonoBehaviour
 {
-    // 알파카
     public enum State
     {
         Idle, // 가만히 있는시간 3초
@@ -16,11 +15,20 @@ public class YJ_PlazaAnimal : MonoBehaviour
 
     public State state;
     Animator anim;
+    public GameObject text;
+
+    AudioSource audioSource;
+
+    [Header("Audio Clips")]
+    [SerializeField]
+    private AudioClip clickSound;
 
     void Start()
     {
+        text.SetActive(false);
         anim = GetComponent<Animator>();
         state = State.Idle;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -106,6 +114,7 @@ public class YJ_PlazaAnimal : MonoBehaviour
             center += transform.position;
 
             dir = center - transform.position;
+            dir.Normalize();
 
             move = true;
         }
@@ -183,12 +192,28 @@ public class YJ_PlazaAnimal : MonoBehaviour
         }
     }
 
+    public Vector3 player;
+    bool soundOn = false;
     void Interaction()
     {
+        // 플레이어 쳐다보기
+        Vector3 dir = player - transform.position;
+        dir.y = 0;
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 20);
+        //transform.rotation = Quaternion.Euler(0, -player.y, 0);
+
+        if (!soundOn)
+        {
+            audioSource.PlayOneShot(clickSound);
+            soundOn = true;
+        }
+
         // 점프 애니메이션 재생
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Jump1"))
         {
             changeTime = 0;
+            text.SetActive(true);
+            text.transform.LookAt(Camera.main.transform.position);
             anim.SetBool("Interaction", true);
         }
 
@@ -200,8 +225,10 @@ public class YJ_PlazaAnimal : MonoBehaviour
             anim.SetBool("Eat", false);
             anim.SetBool("Rest", false);
             anim.SetBool("Interaction", false);
-            state = State.Idle;
+            text.SetActive(false);
             changeTime = 0;
+            soundOn = false;
+            state = State.Idle;
         }
     }
 }

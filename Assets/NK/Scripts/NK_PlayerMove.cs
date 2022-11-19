@@ -157,6 +157,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                         if (raycastHit.transform.gameObject.tag == "Animal")
                         {
                             raycastHit.transform.gameObject.GetComponent<YJ_PlazaAnimal>().state = YJ_PlazaAnimal.State.Interaction;
+                            raycastHit.transform.gameObject.GetComponent<YJ_PlazaAnimal>().player = transform.position;
                         }
                         else if (EventSystem.current.IsPointerOverGameObject() == false && raycastHit.transform.gameObject.layer != 6)
                         {
