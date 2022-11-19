@@ -77,7 +77,7 @@ public class SH_EditorManager : MonoBehaviour
     public float openTime = 1;
     void Update()
     {
-        if (titleObj != null)
+        if (titleObj != null && YJ_DataManager.instance.preScene != "BookShelfScene")
         {
             currentTime += Time.deltaTime;
             if (currentTime > openTime)

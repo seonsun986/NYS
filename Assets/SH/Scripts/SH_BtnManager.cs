@@ -179,6 +179,10 @@ public class SH_BtnManager : MonoBehaviour
 
     void Update()
     {
+        if (YJ_DataManager.instance.preScene == "BookShelfScene")
+        {
+            titlePanel.SetActive(false);
+        }
         if (SceneManager.GetActiveScene().name != "EditorScene")
             return;
         if (Input.GetMouseButtonDown(0))
@@ -1018,9 +1022,6 @@ public class SH_BtnManager : MonoBehaviour
     // Á¦ÀÌ½¼ ÀúÀå
     private void SaveJson()
     {
-        //string path = Application.dataPath + "/" + fileName + ".Json";
-        //File.WriteAllText(path, jsonData);
-
 
         // ArrayJson -> json
         string pageJson = JsonUtility.ToJson(bookinfo, true);
@@ -1034,7 +1035,15 @@ public class SH_BtnManager : MonoBehaviour
         requester.headers = new Dictionary<string, string>();
         requester.headers["accesstoken"] = YJ_DataManager.instance.myInfo.accessToken;
         requester.headers["Content-Type"] = "application/json";
-        requester.requestType = RequestType.POST;
+        if (YJ_DataManager.instance.preScene == "BookShelfScene")
+        {
+            requester.requestType = RequestType.PUT;
+            print("PUTTT");
+        }
+        else
+        {
+            requester.requestType = RequestType.POST;
+        }
         requester.postData = pageJson;
         requester.onComplete = (handler) =>
         {

@@ -36,7 +36,6 @@ public class NK_LoadPreview : MonoBehaviour
         if (YJ_DataManager.instance.preScene == "BookShelfScene")
         {
             LoadObjects(YJ_DataManager.instance.updateBookId);
-            YJ_DataManager.instance.preScene = null;
         }
     }
 
