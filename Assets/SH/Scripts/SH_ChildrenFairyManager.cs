@@ -241,10 +241,37 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             bgImage[9].SetActive(true);
         }
 
+        // 1페이지가 켜졌을 때 && 엄마나 아빠 둘 중에 하나를 선택했을 때
+        // 시간에 따라 텍스트가 대치된다
+        if (parentText[0].text != "" && page1Count < 1)
+        {
+            page1CurrentTime += Time.deltaTime;
+            if (page1CurrentTime > page1TextChangeTime)
+            {
+                for (int i = 0; i < page1_pre.Count; i++)
+                {
+                    page1_pre[i].SetActive(false);
+                }
+
+                for (int j = 0; j < page1_change.Count; j++)
+                {
+                    page1_change[j].SetActive(true);
+                }
+                page1Count++;
+                page1CurrentTime = 0;
+            }
+
+        }
 
     }
     public GameObject momBtn;
     public GameObject dadBtn;
+    public float page1TextChangeTime;
+    public float page1CurrentTime;
+    public List<GameObject> page1_pre = new List<GameObject>();
+    public List<GameObject> page1_change = new List<GameObject>();
+    int page1Count;
+
     // 여동생을 선택했을 때
     public void SelectSis()
     {
@@ -264,8 +291,9 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             sister[j].SetActive(true);
         }
 
-    }
 
+    }
+    
 
     // 남동생을 선택했을 때
     public void SelectBro()
@@ -854,12 +882,14 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         }
     }
 
+    bool parentSelect;
     public void Mom()
     {
         for (int i = 0; i < parentText.Count; i++)
         {
             parentText[i].text = "엄마";
         }
+        parentSelect = true;
     }
 
     public void Dad()
@@ -868,6 +898,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         {
             parentText[i].text = "아빠";
         }
+        parentSelect = true;
     }
 
     bool play;
@@ -907,4 +938,24 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         
     }
 
+    public void MomBtnOn()
+    {
+        iTween.ScaleTo(momBtn, iTween.Hash("x", 1.2f, "y", 1.2f, "time", 0.3f));
+        momBtn.transform.GetChild(0).gameObject.SetActive(true);
+    }
+    public void MomBtnOff()
+    {
+        iTween.ScaleTo(momBtn, iTween.Hash("x", 1.0f, "y", 1.0f, "time", 0.3f));
+        momBtn.transform.GetChild(0).gameObject.SetActive(false);
+    }
+    public void DadBtnOn()
+    {
+        iTween.ScaleTo(dadBtn, iTween.Hash("x", 1.2f, "y", 1.2f, "time", 0.3f));
+        dadBtn.transform.GetChild(0).gameObject.SetActive(true);
+    }
+    public void DadBtnOff()
+    {
+        iTween.ScaleTo(dadBtn, iTween.Hash("x", 1.0f, "y", 1.0f, "time", 0.3f));
+        dadBtn.transform.GetChild(0).gameObject.SetActive(false);
+    }
 }
