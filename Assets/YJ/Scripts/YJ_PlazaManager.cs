@@ -58,7 +58,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         // 리스트에 랜덤으로 위치생성하고
         for(int i = 0; i < 10; i++)
         {
-            spawnPos[i] = Vector3.zero + new Vector3(Random.Range(-5, 0), 3, Random.Range(-5, 0));
+            spawnPos[i] = Vector3.zero + new Vector3(Random.Range(-8, 8), 3, Random.Range(-10, -15));
         }
 
         // 서버에 접속한 인원
