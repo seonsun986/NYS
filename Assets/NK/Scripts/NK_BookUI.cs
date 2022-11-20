@@ -313,6 +313,10 @@ public class NK_BookUI : MonoBehaviourPun
             print("Page" + pageNum);
             photonView.RPC("RPCCreateAudio", RpcTarget.All, pageNum);
         }
+        else
+        {
+            photonView.RPC("RPCCreateTTS", RpcTarget.All, pageNum);
+        }
     }
 
     IEnumerator PlayAnim(Animator animator, string anim)
@@ -409,7 +413,13 @@ public class NK_BookUI : MonoBehaviourPun
     private void RPCCreateAudio(int index)
     {
         // 로컬로 오디오 소스 불러오기
-        //audioSource.clip = Resources.Load<AudioClip>("fairyTale1/Page" + index);
+        audioSource.clip = Resources.Load<AudioClip>("fairyTale1/Page" + index);
+        audioSource.Play();
+    }
+    
+    [PunRPC]
+    private void RPCCreateTTS(int index)
+    {
         // 서버에서 오디오 소스 불러오기
         audioSource.clip = audioClips[index];
         audioSource.Play();
