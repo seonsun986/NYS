@@ -127,6 +127,8 @@ public class NK_LoadPreview : MonoBehaviour
         // pageNum에 따른 씬 오브젝트 리스트에 저장
         List<PageInfo> objs = sceneObjects[pageNum];
         SH_BtnManager.Instance.currentSceneNum = pageNum;
+        SH_BtnManager.Instance.currentScene = pageNum;
+        SH_BtnManager.Instance.i = pageNum;
         AddImage(pageNum);
         AddScene(pageNum);
         for (int i = 0; i < objs.Count; i++)

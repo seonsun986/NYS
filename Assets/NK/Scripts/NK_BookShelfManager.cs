@@ -146,7 +146,7 @@ public class NK_BookShelfManager : MonoBehaviour
                 data[j].taleInfo = taleInfo;
             }
 
-            for (int i = 0; i < titles.Count; i++)
+            for (int i = 0; i < data.Length; i++)
             {
                 // 제목 추가된 개수만큼 동화책 생성
                 GameObject book = Instantiate(bookFactory, booksParent.transform);
@@ -186,7 +186,7 @@ public class NK_BookShelfManager : MonoBehaviour
         print("동화책 선택 완.");
         Info title = new Info();
         YJ_HttpRequester requester = new YJ_HttpRequester();
-        requester.url = "http://43.201.10.63:8080/tale/" + taleInfos[bookObjs.IndexOf(selectedBook)].id; ;
+        requester.url = "http://43.201.10.63:8080/tale/" + taleInfos[bookObjs.IndexOf(selectedBook)].id;
         requester.requestType = RequestType.GET;
         requester.onComplete = (handler) =>
         {
@@ -201,7 +201,6 @@ public class NK_BookShelfManager : MonoBehaviour
             }
         };
         YJ_HttpManager.instance.SendRequest(requester);
-
     }
 
     public void ReadDetailImage(string url, int index)
@@ -218,6 +217,23 @@ public class NK_BookShelfManager : MonoBehaviour
             images[idx] = texture;
             if(idx == 0)
                 rawImage.texture = images[idx];
+        };
+        YJ_HttpManager.instance.SendRequest(requester);
+    }
+
+    public void DeleteBook()
+    {
+        // 동화책 삭제
+        print("동화책 삭제하기");
+        Info title = new Info();
+        YJ_HttpRequester requester = new YJ_HttpRequester();
+        requester.url = "http://43.201.10.63:8080/tale/" + taleInfos[bookObjs.IndexOf(selectedBook)].id;
+        requester.requestType = RequestType.DELETE;
+        requester.onComplete = (handler) =>
+        {
+            print("동화 삭제됨! \n" + handler.downloadHandler.text);
+            deletePopup.SetActive(false);
+            ExitDetail();
         };
         YJ_HttpManager.instance.SendRequest(requester);
     }
@@ -342,9 +358,15 @@ public class NK_BookShelfManager : MonoBehaviour
     }
 
     public GameObject savePopup;
+    public GameObject deletePopup;
     public void ClickSave()
     {
         savePopup.SetActive(true);
+    }
+
+    public void ClickDeleteBook()
+    {
+        deletePopup.SetActive(true);
     }
     
     // taleInfo > 동화책 표지정보를 가져옴
@@ -404,6 +426,7 @@ public class NK_BookShelfManager : MonoBehaviour
     public void ClickNo()
     {
         savePopup.SetActive(false);
+        deletePopup.SetActive(false);
     }
 
 

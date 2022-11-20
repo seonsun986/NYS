@@ -1101,6 +1101,14 @@ public class SH_BtnManager : MonoBehaviour
 
     public void BackBtn()
     {
-        SceneManager.LoadScene("MyRoomScene");
+        if (YJ_DataManager.instance.preScene == "BookShelfScene")
+        {
+            YJ_DataManager.instance.preScene = null;
+            SceneManager.LoadScene("BookShelfScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("MyRoomScene");
+        }
     }
 }

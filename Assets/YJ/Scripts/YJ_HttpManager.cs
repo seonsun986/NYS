@@ -69,6 +69,11 @@ public class YJ_HttpManager : MonoBehaviour
                 break;
             case RequestType.DELETE:
                 webRequest = UnityWebRequest.Delete(requester.url);
+                webRequest.downloadHandler = new DownloadHandlerBuffer();
+                if (requester.headers != null)
+                {
+                    SetCustomHeader(webRequest, requester.headers);
+                }
                 break;
             case RequestType.IMAGE:
                 webRequest = UnityWebRequestTexture.GetTexture(requester.url);
@@ -86,7 +91,7 @@ public class YJ_HttpManager : MonoBehaviour
 
         if (webRequest.result == UnityWebRequest.Result.Success)
         {
-            if (requester.requestType != RequestType.AUDIO)
+            if (requester.requestType != RequestType.AUDIO && requester.requestType != RequestType.DELETE)
             {
                 print(webRequest.downloadHandler.text);
             }
