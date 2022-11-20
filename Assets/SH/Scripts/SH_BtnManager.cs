@@ -824,7 +824,7 @@ public class SH_BtnManager : MonoBehaviour
 
 
             // wav > byte로 변환하기
-            if (voice.voiceClip.Count > i)
+            if (voice.voiceClip.Count > i && voice.voiceClip[i] != null)
             {
                 float[] floatData = new float[voice.voiceClip[i].samples * voice.voiceClip[i].channels];
                 voice.voiceClip[i].GetData(floatData, 0);
@@ -946,20 +946,15 @@ public class SH_BtnManager : MonoBehaviour
     private void SaveJson()
     {
 
-        // ArrayJson -> json
-        string pageJson = JsonUtility.ToJson(bookinfo, true);
-        //tring path = Application.dataPath + "/" + "실험" + ".txt";
-        string path = Application.dataPath + "/" + "out" + ".Json";
-        File.WriteAllText(path, pageJson);
-        //print(pageJson);
-
         YJ_HttpRequester requester = new YJ_HttpRequester();
         requester.url = "http://43.201.10.63:8080/tale";
         requester.headers = new Dictionary<string, string>();
         requester.headers["accesstoken"] = YJ_DataManager.instance.myInfo.accessToken;
         requester.headers["Content-Type"] = "application/json";
+        // 책장씬에서 책 수정 버튼 클릭한 후 다시 저장시킬 때
         if (YJ_DataManager.instance.preScene == "BookShelfScene")
         {
+            bookinfo.id = YJ_DataManager.instance.updateBookId;
             requester.requestType = RequestType.PUT;
             print("PUTTT");
         }
@@ -967,6 +962,12 @@ public class SH_BtnManager : MonoBehaviour
         {
             requester.requestType = RequestType.POST;
         }
+        // ArrayJson -> json
+        string pageJson = JsonUtility.ToJson(bookinfo, true);
+        //tring path = Application.dataPath + "/" + "실험" + ".txt";
+        string path = Application.dataPath + "/" + "out" + ".Json";
+        File.WriteAllText(path, pageJson);
+        //print(pageJson);
         requester.postData = pageJson;
         requester.onComplete = (handler) =>
         {
