@@ -267,6 +267,28 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             }
         }
 
+        if (pages[8].activeSelf == true)
+        {
+            page8CurrentTime += Time.deltaTime;
+            if (page8CurrentTime > page8TextChangeTime && page8Count < 1)
+            {
+                for (int i = 0; i < page8_pre.Count; i++)
+                {
+                    page8_pre[i].SetActive(false);
+                }
+
+                for (int j = 0; j < page8_change.Count; j++)
+                {
+                    page8_change[j].SetActive(true);
+                }
+
+                page8CurrentTime = 0;
+                page8Count++;
+            }
+        }
+
+
+
     }
     public GameObject momBtn;
     public GameObject dadBtn;
@@ -281,7 +303,11 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     public List<GameObject> page1_change = new List<GameObject>();
     int page1Count;
     int page0Count;
-
+    public List<GameObject> page8_pre = new List<GameObject>();
+    public List<GameObject> page8_change = new List<GameObject>();
+    int page8Count;
+    public float page8TextChangeTime;
+    public float page8CurrentTime;
 
     // 여동생을 선택했을 때
     public void SelectSis()
@@ -369,7 +395,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     }
 
 
-
+    public GameObject foodBubble;
 
     public void NextPage()
     {
@@ -378,6 +404,8 @@ public class SH_ChildrenFairyManager : MonoBehaviour
 
         if(currentPage == 1 && page1Count <1)
         {
+            foodBubble.SetActive(true);
+            iTween.ScaleTo(foodBubble, iTween.Hash("x", 1, "y", 1, "z", 1, "time", 0.3f, "easeType", "easeOutQuad"));
             for (int i = 0; i < page1_pre.Count; i++)
             {
                 page1_pre[i].SetActive(false);
@@ -905,7 +933,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         for (int i = 0; i < broText.Count; i++)
         {
             broText[i].text = "여동생";
-            broText[0].color = new Color(1, 0.4566038f, 1);
+            broText[0].color = new Color(1, 0.646303f, 0.3433962f);
         }
     }
 
@@ -914,7 +942,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         for (int i = 0; i < broText.Count; i++)
         {
             broText[i].text = "남동생";
-            broText[0].color = new Color(0.25f, 0.25f, 1);
+            broText[0].color = new Color(0.6626405f, 0.183f, 1);
 
         }
     }
