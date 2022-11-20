@@ -617,13 +617,22 @@ public class SH_BtnManager : MonoBehaviour
                 // 클릭한 씬 넘버의 보이스 상태를 불러온다
                 // 해당 페이지에 적용시켜준다
                 // 만약 녹음 버튼을 활성화 시킨 페이지라면
-                if (SH_VoiceRecord.Instance.voiceInfos[sceneNum].ttsBtn == SH_VoiceRecord.Instance.ttsUnCheked)
+                
+                // 아무것도 선택하지 않은 상태
+                if(SH_VoiceRecord.Instance.voiceClip[sceneNum] == null && SH_VoiceRecord.Instance.voiceInfos[sceneNum].ttsBtn == SH_VoiceRecord.Instance.ttsUnCheked)
                 {
                     SH_VoiceRecord.Instance.ttsBtn.GetComponent<Image>().sprite = SH_VoiceRecord.Instance.ttsUnCheked;
-                    SH_VoiceRecord.Instance.ttsBtn.interactable = false;
+                    SH_VoiceRecord.Instance.ttsBtn.interactable = true;
                     SH_VoiceRecord.Instance.recordBtn.interactable = true;
                 }
-                else
+
+                else  if (SH_VoiceRecord.Instance.voiceInfos[sceneNum].ttsBtn == SH_VoiceRecord.Instance.ttsUnCheked)
+                {
+                        SH_VoiceRecord.Instance.ttsBtn.GetComponent<Image>().sprite = SH_VoiceRecord.Instance.ttsUnCheked;
+                        SH_VoiceRecord.Instance.ttsBtn.interactable = false;
+                        SH_VoiceRecord.Instance.recordBtn.interactable = true;
+                }
+                    else
                 {
                     SH_VoiceRecord.Instance.ttsBtn.interactable = true;
                     SH_VoiceRecord.Instance.ttsBtn.GetComponent<Image>().sprite = SH_VoiceRecord.Instance.ttsChecked;
