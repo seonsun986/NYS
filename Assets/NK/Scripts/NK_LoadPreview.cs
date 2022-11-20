@@ -97,6 +97,7 @@ public class NK_LoadPreview : MonoBehaviour
             title = JsonUtility.FromJson<Info>(handler.downloadHandler.text);
             BookInfo bookInfo = title.data;
             List<PagesInfo> pagesInfos = bookInfo.pages;
+            SH_BtnManager.Instance.title = bookInfo.title;
 
             // pageinfo(단일) 내에서 text, obj로 구분지어 클래스 내 json 정렬 > pagesinfo.data(리스트)
             for (int i = 0; i < pagesInfos.Count; i++)
