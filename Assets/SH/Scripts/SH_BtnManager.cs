@@ -813,9 +813,13 @@ public class SH_BtnManager : MonoBehaviour
             List<string> objsInfo = new List<string>();
 
             pagesInfo.page = i;
-            if (Scenes_txt[i].transform.childCount > i)
+            if (Scenes_txt[i].transform.childCount > 0)
             {
-                pagesInfo.ttsText = Scenes_txt[i].transform.GetChild(i).GetComponent<InputField>().text;
+                for(int j =0;j< Scenes_txt[i].transform.childCount;j++)
+                {
+                    pagesInfo.ttsText += Scenes_txt[i].transform.GetChild(j).GetComponent<InputField>().text;
+                    pagesInfo.ttsText += "\n";
+                }
             }
             else
             {

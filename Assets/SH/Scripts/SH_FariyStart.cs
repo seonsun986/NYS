@@ -39,6 +39,9 @@ public class SH_FariyStart : MonoBehaviour
                     brother.Play("Idle");
                     girlText.SetActive(true);
                     broText.SetActive(false);
+                    // 아웃라인 켜기
+                    girl.gameObject.GetComponent<Outline>().enabled = true;
+                    brother.gameObject.GetComponent<Outline>().enabled = false;
                 }
 
                 if(Input.GetMouseButtonDown(0))
@@ -62,6 +65,8 @@ public class SH_FariyStart : MonoBehaviour
                     brother.Play("Yes");
                     broText.SetActive(true);
                     girlText.SetActive(false);
+                    girl.gameObject.GetComponent<Outline>().enabled = false;
+                    brother.gameObject.GetComponent<Outline>().enabled = true;
                 }
 
                 if(Input.GetMouseButtonDown(0))
@@ -84,6 +89,8 @@ public class SH_FariyStart : MonoBehaviour
                 brother.Play("Idle");
                 girlText.SetActive(false);
                 broText.SetActive(false);
+                girl.gameObject.GetComponent<Outline>().enabled = false;
+                brother.gameObject.GetComponent<Outline>().enabled = false;
             }
         }
 
@@ -95,6 +102,8 @@ public class SH_FariyStart : MonoBehaviour
             brother.Play("Idle");
             girlText.SetActive(false);
             broText.SetActive(false);
+            girl.gameObject.GetComponent<Outline>().enabled = false;
+            brother.gameObject.GetComponent<Outline>().enabled = false;
         }
     }
 }
