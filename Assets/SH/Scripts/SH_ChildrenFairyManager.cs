@@ -242,35 +242,46 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         }
 
         // 1페이지가 켜졌을 때 && 엄마나 아빠 둘 중에 하나를 선택했을 때
-        // 시간에 따라 텍스트가 대치된다
-        if (parentText[0].text != "" && page1Count < 1)
+        startCurrentTime += Time.deltaTime;
+        if(startCurrentTime > startTextChangeTime)
         {
-            page1CurrentTime += Time.deltaTime;
-            if (page1CurrentTime > page1TextChangeTime)
+            startText.text = "내 동생의 성별을 정해줄래요?";
+        }
+        if(pages[0].activeSelf == true)
+        {
+            page0CurrentTime += Time.deltaTime;
+            if(page0CurrentTime>page0TextChangeTime && page0Count<1)
             {
-                for (int i = 0; i < page1_pre.Count; i++)
+                for(int i =0;i<page0_pre.Count;i++)
                 {
-                    page1_pre[i].SetActive(false);
+                    page0_pre[i].SetActive(false);
                 }
 
-                for (int j = 0; j < page1_change.Count; j++)
+                for(int j=0;j<page0_change.Count;j++)
                 {
-                    page1_change[j].SetActive(true);
+                    page0_change[j].SetActive(true);
                 }
-                page1Count++;
-                page1CurrentTime = 0;
+
+                page0CurrentTime = 0;
+                page0Count++;
             }
-
         }
 
     }
     public GameObject momBtn;
     public GameObject dadBtn;
-    public float page1TextChangeTime;
-    public float page1CurrentTime;
+    public float startTextChangeTime;
+    public float startCurrentTime;
+    public float page0TextChangeTime;
+    public float page0CurrentTime;
+    public List<GameObject> page0_pre = new List<GameObject>();
+    public List<GameObject> page0_change = new List<GameObject>();
+    public Text startText;
     public List<GameObject> page1_pre = new List<GameObject>();
     public List<GameObject> page1_change = new List<GameObject>();
     int page1Count;
+    int page0Count;
+
 
     // 여동생을 선택했을 때
     public void SelectSis()
@@ -365,6 +376,31 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         // 현재 페이지가 마지막 페이지일때는 리턴시킨다
         if (currentPage == pages.Count - 1) return;
 
+        if(currentPage == 1 && page1Count <1)
+        {
+            for (int i = 0; i < page1_pre.Count; i++)
+            {
+                page1_pre[i].SetActive(false);
+            }
+            for (int j = 0; j < page1_change.Count; j++)
+            {
+                page1_change[j].SetActive(true);
+            }
+            // 남동생일 때
+            if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
+            {
+                pages[1].GetComponent<AudioSource>().clip = audioClips[74];
+            }
+            // 여동생일 때
+            else
+            {
+                pages[1].GetComponent<AudioSource>().clip = audioClips[75];
+            }
+
+            pages[1].GetComponent<AudioSource>().Play();
+            page1Count++;
+            return;
+        }
         // 퀴즈 페이지나 선택 페이지면 반드시 선택을 해야지 넘어가게 한다
         for (int i = 0; i < SelectPage.Count; i++)
         {
@@ -402,6 +438,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         }
 
         pages[currentPage].SetActive(false);
+
         // 먹어볼까요? 페이지(이때는 3페이지를 뛰어넘어야 한다)
         if (currentPage == 15)
         {
@@ -888,6 +925,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         for (int i = 0; i < parentText.Count; i++)
         {
             parentText[i].text = "엄마";
+            parentText[i].color = new Color(1, 0.9625695f, 0.3607843f, 1);
         }
         parentSelect = true;
     }
@@ -897,6 +935,8 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         for (int i = 0; i < parentText.Count; i++)
         {
             parentText[i].text = "아빠";
+            parentText[i].color = new Color(0.4745098f, 0.7215f, 0.8196079f, 1);
+
         }
         parentSelect = true;
     }

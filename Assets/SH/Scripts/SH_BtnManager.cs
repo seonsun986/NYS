@@ -1099,5 +1099,8 @@ public class SH_BtnManager : MonoBehaviour
 
     }
 
-    
+    public void BackBtn()
+    {
+        SceneManager.LoadScene("MyRoomScene");
+    }
 }
