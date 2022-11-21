@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class YJ_UIManager_MyRoom : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class YJ_UIManager_MyRoom : MonoBehaviour
 
     void Start()
     {
+        loading.SetActive(false);
         if (YJ_DataManager.instance.myInfo.memberRole == "TEACHER")
         {
             C_BookBtn.SetActive(false);
@@ -38,7 +40,24 @@ public class YJ_UIManager_MyRoom : MonoBehaviour
     #region 책만들기 버튼
     public void OnClickCreateBook()
     {
-        SceneManager.LoadScene("EditorScene");
+        loading.SetActive(true);
+        StartCoroutine("Loading");
+    }
+    #endregion
+
+    #region 로딩 코루틴
+    public GameObject loading;
+    IEnumerator Loading()
+    {
+        yield return null;
+
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("EditorScene");
+
+        while (!asyncOperation.isDone)
+        {
+            yield return null;
+            loading.transform.GetChild(1).GetComponent<Image>().fillAmount += asyncOperation.progress;
+        }
     }
     #endregion
 

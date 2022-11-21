@@ -354,29 +354,24 @@ public class NK_BookShelfManager : MonoBehaviour
     public void UpdateBookContent()
     {
         loadingBookContent.SetActive(true);
-        Loading(10);
-        loadingBookContent.transform.GetChild(1).GetComponent<Image>().fillAmount += 0.05f;
         YJ_DataManager.instance.preScene = "BookShelfScene";
         YJ_DataManager.instance.updateBookId = taleInfos[bookObjs.IndexOf(selectedBook)].id;
         // 책 내용 수정
-        SceneManager.LoadScene("EditorScene");
+        StopAllCoroutines();
+        StartCoroutine("Loading");
     }
 
-    async void Loading(int count)
+    IEnumerator Loading()
     {
-        int result = 0;
+        yield return null;
 
-        await Task.Run(() =>
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("EditorScene");
+
+        while (!asyncOperation.isDone)
         {
-            for (int i = 0; i < count; ++i)
-            {
-                result += i;
-                loadingBookContent.transform.GetChild(1).GetComponent<Image>().fillAmount += 0.1f;
-                Thread.Sleep(100);
-            }
-        });
-
-        print("Result : " + result);
+            yield return null;
+            loadingBookContent.transform.GetChild(1).GetComponent<Image>().fillAmount += asyncOperation.progress;
+        }
     }
 
     public GameObject savePopup;

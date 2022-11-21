@@ -153,6 +153,7 @@ public class NK_LoadPreview : MonoBehaviour
     {
         GameObject textObj = Instantiate(inputField);
         InputField textInfo = textObj.GetComponent<InputField>();
+        SH_InputField sh_textInfo = textObj.GetComponent <SH_InputField>();
         textInfo.text = txt.content;
         // 폰트 적용
         Font fontInfo;
@@ -161,11 +162,17 @@ public class NK_LoadPreview : MonoBehaviour
         else
             fontInfo = (Font)Resources.Load(txt.font);
         textInfo.textComponent.font = fontInfo;
+        for (int i = 0; i < SH_EditorManager.Instance.fonts.Length; i++)
+        {
+            if (SH_EditorManager.Instance.fonts[i].name == txt.font)
+                sh_textInfo.info.txtDropdown = i;
+        }
         // 색깔 적용
-        UnityEngine.Color colorInfo;
+        Color colorInfo;
         ColorUtility.TryParseHtmlString("#" + txt.color, out colorInfo);
         textInfo.textComponent.color = colorInfo;
         // 폰트 사이즈 변경
+        sh_textInfo.info.txtSize = txt.size;
         textInfo.textComponent.fontSize = txt.size;
         textObj.GetComponent<RectTransform>().sizeDelta = new Vector2(textInfo.preferredWidth, textInfo.preferredHeight);
         textObj.transform.SetParent(n_Scene_Canvas.transform);
