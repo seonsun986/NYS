@@ -5626,6 +5626,7 @@ GameObject:
   - component: {fileID: 477788727}
   - component: {fileID: 477788726}
   - component: {fileID: 477788730}
+  - component: {fileID: 477788731}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5774,6 +5775,102 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fairyTaleManager: {fileID: 1160228226}
   fairyTalePosition: {x: 0, y: 0.5, z: -10}
+--- !u!82 &477788731
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477788725}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!64 &481532726
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8947,6 +9044,8 @@ MonoBehaviour:
   faceCam: {fileID: 0}
   crown: {fileID: 0}
   speaker: {fileID: 0}
+  footPrintFactory: {fileID: 0}
+  playerCanvas: {fileID: 0}
 --- !u!143 &730639280
 CharacterController:
   m_ObjectHideFlags: 0
@@ -13115,8 +13214,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca6239e8cb5b8d478b1d08043be3a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seats: []
-  nearSeat: {fileID: 0}
 --- !u!114 &1040144020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13173,6 +13270,7 @@ MonoBehaviour:
   booksParent: {fileID: 2072064836}
   bookFactory: {fileID: 8017175340311930264, guid: 562b32cb5444f364790035f8d485a4eb, type: 3}
   audioSource: {fileID: 1539510955}
+  id: 
   pageNum: 0
 --- !u!114 &1040144023
 MonoBehaviour:
@@ -13201,6 +13299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0433dccde3292045a3b2f22b7eaa3c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emotionTime: 0.1
 --- !u!64 &1040713554
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15256,9 +15355,11 @@ MonoBehaviour:
   fairyTaleObject: {fileID: 1708743687}
   teacherUI: {fileID: 1672325476}
   childUI: {fileID: 1186346392}
+  handupBtn: {fileID: 0}
   book: {fileID: 361151836}
   objs: []
   stage: {fileID: 1327003342}
+  bgSound: {fileID: 0}
 --- !u!4 &1160228228
 Transform:
   m_ObjectHideFlags: 0
