@@ -22,7 +22,7 @@ public class SH_FariyStart : MonoBehaviour
     void Update()
     {
         currentTime += Time.deltaTime;
-        if(currentTime> startClip.length)
+        if(currentTime> startClip.length -0.3f)
         {
             iTween.ScaleTo(girl.gameObject, iTween.Hash("x", 0.4230038f, "y", 0.4230038f, "z", 0.4230038f, "time", 0.7f, "easeType", "easeInOutExpo"));
             iTween.ScaleTo(brother.gameObject, iTween.Hash("x", 0.4230038f, "y", 0.4230038f, "z", 0.4230038f, "time", 0.7f, "easeType", "easeInOutExpo"));
