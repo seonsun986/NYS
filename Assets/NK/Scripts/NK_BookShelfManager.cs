@@ -3,6 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
@@ -49,12 +51,9 @@ public class NK_BookShelfManager : MonoBehaviour
         //동화표지 GET
         TaleGet_API();
 
-        //동화표지 POST
-        //TalePost_API();
-
-        //titles.Add("양치기소년");
-        //titles.Add("신데렐라");
-        //titles.Add("강아지 똥");
+        // 로딩 UI 초기화
+        loadingBookContent.SetActive(false);
+        loadingBookContent.transform.GetChild(1).GetComponent<Image>().fillAmount = 0f;
 
         path = Application.dataPath + "/BookCover/";
     }
@@ -349,12 +348,35 @@ public class NK_BookShelfManager : MonoBehaviour
         NK_BookCover.instance.SetBookCover(selectedBookInfo.coverColor, selectedBookInfo.sticker, selectedBookInfo.stickerPositionX, selectedBookInfo.stickerPositionY);
     }
 
+    // 로딩 중 UI
+    public GameObject loadingBookContent;
+
     public void UpdateBookContent()
     {
+        loadingBookContent.SetActive(true);
+        Loading(10);
+        loadingBookContent.transform.GetChild(1).GetComponent<Image>().fillAmount += 0.05f;
         YJ_DataManager.instance.preScene = "BookShelfScene";
         YJ_DataManager.instance.updateBookId = taleInfos[bookObjs.IndexOf(selectedBook)].id;
         // 책 내용 수정
         SceneManager.LoadScene("EditorScene");
+    }
+
+    async void Loading(int count)
+    {
+        int result = 0;
+
+        await Task.Run(() =>
+        {
+            for (int i = 0; i < count; ++i)
+            {
+                result += i;
+                loadingBookContent.transform.GetChild(1).GetComponent<Image>().fillAmount += 0.1f;
+                Thread.Sleep(100);
+            }
+        });
+
+        print("Result : " + result);
     }
 
     public GameObject savePopup;

@@ -395,7 +395,7 @@ public class SH_BtnManager : MonoBehaviour
     string fileName;            // 파일 저장 이름
     public int i = 0;
     public int currentScene;
-    List<byte[]> rawImageList = new List<byte[]>();
+    public List<byte[]> rawImageList = new List<byte[]>();
     public Button ttsBtn;
     public Button recordBtn;
 
@@ -410,7 +410,7 @@ public class SH_BtnManager : MonoBehaviour
         }
         
         // 캡쳐파일 이름 정하기(동화이름으로 바꾸기)
-        fileName = path + "_" + i + ".png";
+        fileName = path + "_" + currentScene + ".jpg";
         
         // 캡쳐하기 
         RenderTexture rt = new RenderTexture(captureWidth, captureHeight, 24);
@@ -422,7 +422,7 @@ public class SH_BtnManager : MonoBehaviour
         screenShot.ReadPixels(new Rect(0, 0, captureWidth, captureHeight), 0, 0);
         screenShot.Apply();
 
-        byte[] bytes = screenShot.EncodeToPNG();
+        byte[] bytes = screenShot.EncodeToJPG();
         File.WriteAllBytes(fileName, bytes);
         #endregion
 
@@ -444,8 +444,11 @@ public class SH_BtnManager : MonoBehaviour
 
         // 캡쳐파일 RawImage에 넣기
         byte[] textureBytes = File.ReadAllBytes(fileName);
-        rawImageList.Add(textureBytes);
-        if(textureBytes.Length>0)
+
+        if (rawImageList.Count == currentSceneNum) rawImageList.Add(bytes);
+        else rawImageList[currentSceneNum] = bytes;
+
+        if (textureBytes.Length>0)
         {
             Texture2D loadedTexture = new Texture2D(0, 0);
             loadedTexture.LoadImage(textureBytes);
@@ -554,7 +557,7 @@ public class SH_BtnManager : MonoBehaviour
                 // 원래 있었던 씬을 캡쳐해서 바꿔준다
                 // 캡쳐하기 
                 // 캡쳐파일 이름 정하기
-                fileName = path + "_CurrentScene_" + currentScene + ".png";
+                fileName = path + "_CurrentScene_" + currentScene + ".jpg";
 
                 // 캡쳐하기 
                 RenderTexture rt = new RenderTexture(captureWidth, captureHeight, 24);
@@ -567,8 +570,11 @@ public class SH_BtnManager : MonoBehaviour
                 screenShot.Apply();
 
                 // 이미지 바이트를 PNG로 변환
-                byte[] bytes = screenShot.EncodeToPNG();
+                byte[] bytes = screenShot.EncodeToJPG();
                 File.WriteAllBytes(fileName, bytes);
+
+                if (rawImageList.Count == currentSceneNum) rawImageList.Add(bytes);
+                else rawImageList[currentSceneNum] = bytes;
 
                 // 캡쳐파일 RawImage에 넣기
                 // 경로를 통해서 바이트 받아오기
@@ -858,29 +864,36 @@ public class SH_BtnManager : MonoBehaviour
             // 마지막 페이지 캡쳐한다
             // 캡쳐하기 
             // 마지막 페이지로 모든걸 올린다
-            RenderTexture rt = new RenderTexture(captureWidth, captureHeight, 24);
-            sceneCam.targetTexture = rt;
-            Texture2D screenShot = new Texture2D(captureWidth, captureHeight, TextureFormat.RGB24, false);
-            Rect rec = new Rect(0, 0, screenShot.width, screenShot.height);
-            sceneCam.Render();
-            RenderTexture.active = rt;
-            screenShot.ReadPixels(new Rect(0, 0, captureWidth, captureHeight), 0, 0);
-            screenShot.Apply();
-            byte[] bytes = screenShot.EncodeToPNG();
-            string fileName = Application.dataPath + "/Capture/" + "_" + i + ".png";
-            File.WriteAllBytes(fileName, bytes);
-
-            // rawImageList에 넣는다
-            // 캡쳐파일 RawImage에 넣기
-            byte[] textureBytes = File.ReadAllBytes(fileName);
-            rawImageList.Add(textureBytes);
-            if (textureBytes.Length > 0)
+            if(i == currentSceneNum)
             {
-                Texture2D loadedTexture = new Texture2D(0, 0);
-                loadedTexture.LoadImage(textureBytes);
-                // 현재는 꼭 마지막 씬에서만 저장해야함..
-                rawImages[currentScene].GetComponent<RawImage>().texture = loadedTexture;
+                RenderTexture rt = new RenderTexture(captureWidth, captureHeight, 24);
+                sceneCam.targetTexture = rt;
+                Texture2D screenShot = new Texture2D(captureWidth, captureHeight, TextureFormat.RGB24, false);
+                Rect rec = new Rect(0, 0, screenShot.width, screenShot.height);
+                sceneCam.Render();
+                RenderTexture.active = rt;
+                screenShot.ReadPixels(new Rect(0, 0, captureWidth, captureHeight), 0, 0);
+                screenShot.Apply();
+                byte[] bytes = screenShot.EncodeToJPG();
+                string fileName = Application.dataPath + "/Capture/" + "_" + i + ".jpg";
+                File.WriteAllBytes(fileName, bytes);
+
+                // rawImageList에 넣는다
+                // 캡쳐파일 RawImage에 넣기
+                byte[] textureBytes = File.ReadAllBytes(fileName);
+
+                if (rawImageList.Count == i) rawImageList.Add(bytes);
+                else rawImageList[i] = bytes;
+
+                if (textureBytes.Length > 0)
+                {
+                    Texture2D loadedTexture = new Texture2D(0, 0);
+                    loadedTexture.LoadImage(textureBytes);
+                    // 현재는 꼭 마지막 씬에서만 저장해야함..
+                    rawImages[currentScene].GetComponent<RawImage>().texture = loadedTexture;
+                }
             }
+           
             #endregion
 
             if (rawImageList.Count > i)
@@ -958,7 +971,6 @@ public class SH_BtnManager : MonoBehaviour
     // 제이슨 저장
     private void SaveJson()
     {
-
         YJ_HttpRequester requester = new YJ_HttpRequester();
         requester.url = "http://43.201.10.63:8080/tale";
         requester.headers = new Dictionary<string, string>();

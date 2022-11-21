@@ -270,7 +270,7 @@ public class SH_VoiceRecord : MonoBehaviour
 
     public void Change()
     {
-        if(voiceInfos.Count < SH_BtnManager.Instance.currentSceneNum + 1)
+        if(voiceInfos.Count < SH_BtnManager.Instance.Scenes.Count)//  SH_BtnManager.Instance.currentSceneNum + 1)
         {
             // 해당 페이지에 있는 보이스 정보 담기
             VoiceInfo voiceInfo = new VoiceInfo();

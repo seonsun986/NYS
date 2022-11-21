@@ -229,6 +229,11 @@ public class NK_LoadPreview : MonoBehaviour
         // 이 오브젝트들을 List에 추가해볼까?
         SH_BtnManager.Instance.Scenes.Add(n_Scene);
         SH_BtnManager.Instance.Scenes_txt.Add(n_Scene_Canvas);
+
+        SH_VoiceRecord.Instance.voiceClip.Add(null);
+        // TTS 버튼과 녹음 버튼도 초기화 시켜볼까?
+        SH_VoiceRecord.Instance.Reset();
+
         pageNum++;
     }
 
@@ -287,8 +292,9 @@ public class NK_LoadPreview : MonoBehaviour
 
     IEnumerator ApplyTexture(RawImage raw, int i)
     {
-        yield return null;
+        yield return new WaitUntil(() => images[i] != null);
         raw.texture = images[i];
+        SH_BtnManager.Instance.rawImageList.Add(images[i].EncodeToJPG());
     }
 
 }

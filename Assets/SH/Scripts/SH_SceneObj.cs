@@ -132,10 +132,17 @@ public class SH_SceneObj : MonoBehaviour
                 buttons.Add(delete);
             }
 
+            if(YJ_DataManager.instance.preScene == "BookShelfScene")
+            {
+                for(int j =0;j<buttons.Count;j++)
+                {
+                    buttons[j].SetActive(false);
+                }
+            }
         }
     }
 
-    int active;
+    int active = 0;
     void Update()
     {
         if (SH_EditorManager.Instance == null) return;
