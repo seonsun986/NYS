@@ -308,15 +308,15 @@ public class NK_BookUI : MonoBehaviourPun
         }
 
         // 페이지마다 음성파일 재생
-        if (Resources.Load<AudioClip>("fairyTale1/Page" + pageNum) != null)
+/*        if (Resources.Load<AudioClip>("fairyTale1/Page" + pageNum) != null)
         {
             print("Page" + pageNum);
             photonView.RPC("RPCCreateAudio", RpcTarget.All, pageNum);
         }
         else
-        {
+        {*/
             photonView.RPC("RPCCreateTTS", RpcTarget.All, pageNum);
-        }
+        //}
     }
 
     IEnumerator PlayAnim(Animator animator, string anim)
