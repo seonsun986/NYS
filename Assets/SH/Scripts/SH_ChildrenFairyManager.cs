@@ -49,7 +49,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
 
     bool mushroomB;
     bool eggB;
-    bool spinachB;
+    public bool spinachB;
     bool riceB;
     bool onionB;
     bool potatoB;
