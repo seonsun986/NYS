@@ -62,7 +62,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     {
         if (this.gameObject.layer != 5)
         {
-            if(SceneManager.GetActiveScene().name != "MyRoomScene")
+            if (SceneManager.GetActiveScene().name != "MyRoomScene")
                 playerIndex = PhotonNetwork.CurrentRoom.Players.Count;
 
             // 선생님방에 있을 때
@@ -108,7 +108,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 
         controller = GetComponent<CharacterController>();
 
-        
+
     }
 
     public void SetAnim(int animalId)
@@ -132,14 +132,18 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 
     void Update()
     {
-        if (state == State.Sit)
+        if (playerCanvas != null)
         {
-            playerCanvas.SetActive(false);
-        }
-        else
-            playerCanvas.SetActive(true);
+            if (state == State.Sit)
+            {
+                playerCanvas.SetActive(false);
+            }
+            else
+                playerCanvas.SetActive(true);
 
-        if (photonView.IsMine && this.gameObject.layer != 5 )
+        }
+
+        if (photonView.IsMine && this.gameObject.layer != 5)
         {
             if (SceneManager.GetActiveScene().name != "MyRoomScene")
             {
@@ -173,7 +177,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                                 movePoint = raycastHit.point;
                                 GameObject footPrint = Instantiate(footPrintFactory);
                                 footPrint.transform.position = raycastHit.point;
-                                Vector3 dir = this.gameObject.transform.position -footPrint.transform.position;
+                                Vector3 dir = this.gameObject.transform.position - footPrint.transform.position;
                                 dir.y = 0;
                                 footPrint.transform.forward = -dir;
                             }
