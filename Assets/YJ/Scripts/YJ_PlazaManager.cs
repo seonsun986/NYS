@@ -137,7 +137,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     public virtual void CreatRoom()
     {
         // 방오브젝트 생성
-        myRoom = PhotonNetwork.Instantiate("YJ/Type" + YJ_DataManager.CreateRoomInfo.roomType, new Vector3(Random.Range(1,5),3f,Random.Range(1,5)), Quaternion.identity);
+        myRoom = PhotonNetwork.Instantiate("YJ/Type" + YJ_DataManager.CreateRoomInfo.roomType, new Vector3(-6,5,7), Quaternion.identity);
 
         
         //photonView.RPC("RpcCreatRoom", RpcTarget.All);

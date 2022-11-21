@@ -16,6 +16,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         Sit,
         HandUp,
         List,
+        MatSit,
     }
 
     public State state;
@@ -159,6 +160,12 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                             raycastHit.transform.gameObject.GetComponent<YJ_PlazaAnimal>().state = YJ_PlazaAnimal.State.Interaction;
                             raycastHit.transform.gameObject.GetComponent<YJ_PlazaAnimal>().player = transform.position;
                         }
+                        //else if(raycastHit.transform.gameObject.tag == "Sit")
+                        //{
+
+                        //    raycastHit.transform.GetChild(0).transform.GetChild(0);
+                        //    state = State.MatSit;
+                        //}
                         else if (EventSystem.current.IsPointerOverGameObject() == false && raycastHit.transform.gameObject.layer != 6)
                         {
                             if (raycastHit.transform.gameObject.tag == "Room")
@@ -231,7 +238,9 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                 case State.List:
                     photonView.RPC("RpcSetBool", RpcTarget.All, "ListHi", true);
                     break;
-
+                case State.MatSit:
+                    MatSit();
+                    break;
             }
         }
     }
@@ -324,6 +333,17 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         controller.Move(dir * moveSpeed * Time.deltaTime);
     }
 
+    void MatSit()
+    {
+        // ´Ù¸®¸¸ ¾É±â
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("MatSit"))
+        {
+            photonView.RPC("RpcSetBool", RpcTarget.All, "MatSit", true);
+        }
+
+
+
+    }
 
     [PunRPC]
     public void RpcSetBool(string s, bool b)
