@@ -353,6 +353,8 @@ public class NK_LoadPreview : MonoBehaviour
     List<AudioClip> voices;
     public void GetVoice(string url, int index)
     {
+        if (url == "")
+            return;
         // 책 녹음 받아오기
         NK_HttpMediaRequester requester = new NK_HttpMediaRequester();
         requester.url = url;
