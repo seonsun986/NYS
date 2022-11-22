@@ -86,20 +86,20 @@ public class SH_EditorChildren : MonoBehaviour
         {
             books[i].SetActive(false);
             //bookBG[i].SetActive(false);
-            // 남자애 나오기
-            iTween.MoveTo(boy, iTween.Hash("x", 0, "y", -8, "z", -1.6f, "easeType", "easeOutQuad", "time", 0.5f));
-            StartCoroutine(boySound());
-            // O, X 버튼 키기
-            OBtn.SetActive(true);
-            XBtn.SetActive(true);
         }
+        // 남자애 나오기
+        iTween.MoveTo(boy, iTween.Hash("x", 0, "y", -8, "z", -1.6f, "easeType", "easeOutQuad", "time", 0.5f));
+        StartCoroutine(boySound());
+        // O, X 버튼 키기
+        //OBtn.SetActive(true);
+        //XBtn.SetActive(true);
     }
 
 
     IEnumerator boySound()
     {
         yield return new WaitForSeconds(0.6f);
-        boy.GetComponent<AudioSource>().Play();
+        boy.GetComponent<AudioSource>().enabled = true;
         StartCoroutine(OXShow());
     }
 
@@ -127,8 +127,11 @@ public class SH_EditorChildren : MonoBehaviour
         // 남자애 사라지기
         iTween.MoveTo(boy, iTween.Hash("x", 0, "y", -17.21f, "z", -1.6f, "easeType", "easeOutQuad", "time", 0.5f));
         // O, X 버튼 끄기
-        OBtn.SetActive(false);
-        XBtn.SetActive(false);
+        iTween.ScaleTo(OBtn, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.3f));
+        iTween.ScaleTo(XBtn, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.3f));
+        boy.GetComponent<AudioSource>().enabled = false;
+        //OBtn.SetActive(false);
+        //XBtn.SetActive(false);
         backBtn.SetActive(true);
         preBtn.SetActive(true);
         nextBtn.SetActive(true);
@@ -296,6 +299,11 @@ public class SH_EditorChildren : MonoBehaviour
     {
         iTween.MoveTo(contentPos, iTween.Hash("x", contentPos.GetComponent<RectTransform>().anchoredPosition.x + change, "time", 0.3f));
 
+    }
+
+    public void GoMyRoom()
+    {
+        SceneManager.LoadScene("MyRoomScene");
     }
 
 }

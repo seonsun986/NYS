@@ -318,9 +318,9 @@ public class SH_BtnManager : MonoBehaviour
         SH_EditorManager.Instance.active_InputField = inputText;
         inputFields.Add(inputText);
         // 초기값 세팅
-        SetInfo(0, 20, Color.black);
+        SetInfo(0, 40, Color.black);
 
-        inputText.Initialize(Scenes_txt[currentSceneNum].transform, text, new Vector3(-100, -350, 0));
+        inputText.Initialize(Scenes_txt[currentSceneNum].transform, text, new Vector3(-170, -350, 0));
         inputText.SetInfo(txtDropdown.value, int.Parse(InputtxtSize.text), txtcolorImage.color);
         
         text++;
