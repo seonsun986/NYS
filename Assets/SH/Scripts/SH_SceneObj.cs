@@ -137,8 +137,11 @@ public class SH_SceneObj : MonoBehaviour
                 delete.transform.SetParent(animBtnParent.transform);
                 delete.transform.localPosition = new Vector3(0, 170, 0);
                 delete.GetComponent<Button>().onClick.AddListener(DeletePopUp);
+                delete.GetComponent<Button>().onClick.AddListener(buttonSound.OnClickSound); // 클릭소리
                 delete.transform.GetChild(0).GetChild(1).GetComponent<Button>().onClick.AddListener(PopUpYes);
+                delete.transform.GetChild(0).GetChild(1).GetComponent<Button>().onClick.AddListener(buttonSound.OnClickSound); // 클릭소리
                 delete.transform.GetChild(0).GetChild(2).GetComponent<Button>().onClick.AddListener(PopUpNo);
+                delete.transform.GetChild(0).GetChild(2).GetComponent<Button>().onClick.AddListener(buttonSound.OnClickSound); // 클릭소리
                 // 정말로 끄겠습니까 팝업은 꺼둔다
                 delete.transform.GetChild(0).gameObject.SetActive(false);
                 buttons.Add(delete);
