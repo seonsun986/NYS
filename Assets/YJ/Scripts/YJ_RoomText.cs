@@ -13,6 +13,10 @@ public class YJ_RoomText : MonoBehaviourPun
 
     public string createRoomerCode;
 
+    // 사운드 재생을 위한 캔버스 찾기
+    GameObject canvas;
+    YJ_ButtonClickSound buttonSound;
+
     void Start()
     {
 
@@ -31,6 +35,12 @@ public class YJ_RoomText : MonoBehaviourPun
             roomType = YJ_DataManager.CreateRoomInfo.roomType;
             createRoomerCode = YJ_DataManager.instance.myInfo.memberCode;
         }
+
+        canvas = GameObject.Find("Canvas");
+        buttonSound = canvas.GetComponent<YJ_ButtonClickSound>();
+
+        gameObject.GetComponent<Button>().onClick.AddListener(buttonSound.OnClickSound);
+
     }
 
     // RPC 전송
