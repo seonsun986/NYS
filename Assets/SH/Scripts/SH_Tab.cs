@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SH_Tab : MonoBehaviour
 {
@@ -24,8 +25,12 @@ public class SH_Tab : MonoBehaviour
         {
             scene_Tab[i].SetActive(false);
         }
+        BGImage.sprite = soundBG;
     }
 
+    public Sprite pageBG;
+    public Sprite soundBG;
+    public Image BGImage;
     public void ShowSceneTab()
     {
         BG_Tab.SetActive(false);
@@ -34,5 +39,6 @@ public class SH_Tab : MonoBehaviour
         {
             scene_Tab[i].SetActive(true);
         }
+        BGImage.sprite = pageBG;
     }
 }

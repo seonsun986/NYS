@@ -228,7 +228,7 @@ public class SH_BtnManager : MonoBehaviour
     int bgDir = 1;      // 씬 BG가 나타나 있지 않을때(나타나 있을 때는 -1이다)
     public void MoveSceneBG()
     {
-        float x = sceneBG.transform.position.x + (sceneBG.GetComponent<RectTransform>().sizeDelta.x - 55) * bgDir;
+        float x = sceneBG.transform.position.x + (sceneBG.GetComponent<RectTransform>().sizeDelta.x - 70) * bgDir;
         MoveObj(sceneBG.gameObject, x, "OnCompleteScene", "x");
         if(bgDir== 1)       // 나타나 있지 않는 상태 -> 나타나는 상태
         {
@@ -244,7 +244,7 @@ public class SH_BtnManager : MonoBehaviour
         }
         bgDir *= -1;
 
-        MoveObj(objectBG.gameObject, /*Screen.width*/1865, "OnCompleteScene", "x");
+        MoveObj(objectBG.gameObject, /*Screen.width*/1851, "OnCompleteScene", "x");
         //MoveObj(soundBG.gameObject, -210, "OnCompleteObject", "y");
         objDir = -1;
         soundDir = 1;
@@ -253,7 +253,7 @@ public class SH_BtnManager : MonoBehaviour
     int objDir = -1;
     public void MoveObjectBG()
     {
-        float x = objectBG.transform.position.x + (objectBG.GetComponent<RectTransform>().sizeDelta.x - 65) * objDir;
+        float x = objectBG.transform.position.x + (objectBG.GetComponent<RectTransform>().sizeDelta.x - 70) * objDir;
         MoveObj(objectBG.gameObject, x, "OnCompleteObject", "x");
         if(objDir == -1)
         {
@@ -269,7 +269,7 @@ public class SH_BtnManager : MonoBehaviour
         objDir *= -1;
        
 
-        MoveObj(sceneBG.gameObject, 50, "OnCompleteScene","x");
+        MoveObj(sceneBG.gameObject, 64, "OnCompleteScene","x");
         //MoveObj(soundBG.gameObject, -210, "OnCompleteObject", "y");
         bgDir = 1;
         soundDir = 1;

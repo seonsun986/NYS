@@ -134,16 +134,17 @@ public class SH_SceneObj : MonoBehaviour
                     animBtnParent.transform.SetParent(GameObject.Find("AnimalAnimBtn").transform);
                     animBtnParent.transform.localPosition = new Vector3(0, 0, 0);
                 }
+                // 정말로 끄겠습니까 팝업은 꺼둔다
+                delete.transform.GetChild(0).gameObject.SetActive(false);
                 delete.transform.SetParent(animBtnParent.transform);
                 delete.transform.localPosition = new Vector3(0, 170, 0);
                 delete.GetComponent<Button>().onClick.AddListener(DeletePopUp);
                 delete.GetComponent<Button>().onClick.AddListener(buttonSound.OnClickSound); // 클릭소리
-                delete.transform.GetChild(0).GetChild(1).GetComponent<Button>().onClick.AddListener(PopUpYes);
+                delete.transform.GetChild(0).GetChild(0).GetComponent<Button>().onClick.AddListener(PopUpYes);
+                delete.transform.GetChild(0).GetChild(0).GetComponent<Button>().onClick.AddListener(buttonSound.OnClickSound); // 클릭소리
+                delete.transform.GetChild(0).GetChild(1).GetComponent<Button>().onClick.AddListener(PopUpNo);
                 delete.transform.GetChild(0).GetChild(1).GetComponent<Button>().onClick.AddListener(buttonSound.OnClickSound); // 클릭소리
-                delete.transform.GetChild(0).GetChild(2).GetComponent<Button>().onClick.AddListener(PopUpNo);
-                delete.transform.GetChild(0).GetChild(2).GetComponent<Button>().onClick.AddListener(buttonSound.OnClickSound); // 클릭소리
-                // 정말로 끄겠습니까 팝업은 꺼둔다
-                delete.transform.GetChild(0).gameObject.SetActive(false);
+
                 buttons.Add(delete);
             }
 
@@ -217,7 +218,11 @@ public class SH_SceneObj : MonoBehaviour
     {
         GameObject popUp = delete.transform.GetChild(0).gameObject;
         if (popUp.activeSelf == true) popUp.SetActive(false);
-        else popUp.SetActive(true);
+        else
+        {
+            popUp.SetActive(true);
+            iTween.ScaleFrom(popUp, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.3f));
+        }
     }
 
     // Delete 팝업 안에서 삭제하기 예를 누르면 게임오브젝트 파괴하고 
