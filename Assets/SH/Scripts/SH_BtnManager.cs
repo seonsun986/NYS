@@ -442,16 +442,13 @@ public class SH_BtnManager : MonoBehaviour
         // 20으로 나눈 몫이 1이면 내가 지금 Scene1에 있다는 소리다
         currentScene = (int)Scenes[0].transform.position.y / 20;
 
-        // 캡쳐파일 RawImage에 넣기
-        byte[] textureBytes = File.ReadAllBytes(fileName);
-
         if (rawImageList.Count == currentSceneNum) rawImageList.Add(bytes);
         else rawImageList[currentSceneNum] = bytes;
 
-        if (textureBytes.Length>0)
+        if (bytes.Length>0)
         {
             Texture2D loadedTexture = new Texture2D(0, 0);
-            loadedTexture.LoadImage(textureBytes);
+            loadedTexture.LoadImage(bytes);
             rawImages[currentScene].GetComponent<RawImage>().texture = loadedTexture;
         }
         
@@ -812,7 +809,7 @@ public class SH_BtnManager : MonoBehaviour
 
     }
 
-    byte[] nullbytedata = new byte[1];
+    byte[] nullbytedata = new byte[0];
 
     // 제이슨 저장
     // PageInfo -> PagesInfo -> BookInfo -> Json
@@ -833,7 +830,7 @@ public class SH_BtnManager : MonoBehaviour
                 for(int j =0;j< Scenes_txt[i].transform.childCount;j++)
                 {
                     pagesInfo.ttsText += Scenes_txt[i].transform.GetChild(j).GetComponent<InputField>().text;
-                    pagesInfo.ttsText += "\n";
+                    pagesInfo.ttsText += " ";
                 }
             }
             else

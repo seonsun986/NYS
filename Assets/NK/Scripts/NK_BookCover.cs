@@ -55,6 +55,11 @@ public class NK_BookCover : MonoBehaviour
         // 글씨색
         inputField.textComponent.color = Color.black;
 
+        // 서버 저장 문자열 초기화
+        stickerListSet = "";
+        stickerListPosX = "";
+        stickerListPosY = "";
+
         // 스티커 초기화
         Transform[] childList = bookCover.GetComponentsInChildren<Transform>();
 

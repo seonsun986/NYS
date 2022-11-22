@@ -69,7 +69,7 @@ public class SH_SceneObj : MonoBehaviour
                 anim = transform.GetChild(0).GetComponent<Animator>();
             }
             // 시작할 때 기본 애니메이션을 하나 재생시켜준다
-            if (anim != null)
+            if (anim != null && currentAnim == "")
             {
                 anim.Play(gameObject.name.Substring(0, gameObject.name.Length - 7) + "_" + anims[0].name);
                 currentAnim = gameObject.name.Substring(0, gameObject.name.Length - 7) + "_" + anims[0].name;
