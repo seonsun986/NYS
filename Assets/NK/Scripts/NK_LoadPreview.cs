@@ -25,6 +25,7 @@ public class NK_LoadPreview : MonoBehaviour
     private void Start()
     {
         pageNum = 0;
+        images = new List<Texture2D>();
         // 이전 씬이 프리뷰씬이라면
         if (YJ_DataManager.instance.preScene == "PreviewScene")
         {
@@ -125,6 +126,7 @@ public class NK_LoadPreview : MonoBehaviour
     public void InstantiateObject()
     {
         // pageNum에 따른 씬 오브젝트 리스트에 저장
+        print(pageNum);
         List<PageInfo> objs = sceneObjects[pageNum];
         SH_BtnManager.Instance.currentSceneNum = pageNum;
         SH_BtnManager.Instance.currentScene = pageNum;
@@ -245,7 +247,7 @@ public class NK_LoadPreview : MonoBehaviour
     }
 
 
-    List<Texture2D> images = new List<Texture2D>();
+    List<Texture2D> images;
     public void GetRawImage(string url, int index)
     {
         // 책 내용 이미지 받아오기
