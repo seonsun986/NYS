@@ -26,6 +26,7 @@ public class NK_LoadPreview : MonoBehaviour
     {
         pageNum = 0;
         images = new List<Texture2D>();
+        voices = new List<AudioClip>();
         // 이전 씬이 프리뷰씬이라면
         if (YJ_DataManager.instance.preScene == "PreviewScene")
         {
@@ -106,6 +107,8 @@ public class NK_LoadPreview : MonoBehaviour
                 objs = new List<PageInfo>();
                 images.Add(null);
                 GetRawImage(taleJObj["data"]["pages"][i]["rawImgUrl"].ToString(), i);
+                voices.Add(null);
+                GetVoice(taleJObj["data"]["pages"][i]["audioUrl"].ToString(), i);
 
                 PagesInfo pagesInfo = pagesInfos[i];
                 foreach (string pageInfo in pagesInfo.data)
@@ -131,7 +134,15 @@ public class NK_LoadPreview : MonoBehaviour
         SH_BtnManager.Instance.currentSceneNum = pageNum;
         SH_BtnManager.Instance.currentScene = pageNum;
         SH_BtnManager.Instance.i = pageNum;
-        AddImage(pageNum);
+        if (YJ_DataManager.instance.preScene == "PreviewScene")
+        {
+            AddPreviewImage(pageNum);
+        }
+        else
+        {
+            AddImage(pageNum);
+            AddVoice(pageNum);
+        }
         AddScene(pageNum);
         for (int i = 0; i < objs.Count; i++)
         {
@@ -155,7 +166,7 @@ public class NK_LoadPreview : MonoBehaviour
     {
         GameObject textObj = Instantiate(inputField);
         InputField textInfo = textObj.GetComponent<InputField>();
-        SH_InputField sh_textInfo = textObj.GetComponent <SH_InputField>();
+        SH_InputField sh_textInfo = textObj.GetComponent<SH_InputField>();
         textInfo.text = txt.content;
         // 폰트 적용
         Font fontInfo;
@@ -184,6 +195,7 @@ public class NK_LoadPreview : MonoBehaviour
     private void CreateObject(ObjInfo obj)
     {
         GameObject objPrefab = (GameObject)Instantiate(Resources.Load(obj.prefab));
+        //SH_SceneObj sceneObj = objPrefab.GetComponent<SH_SceneObj>();
         SH_EditorManager.Instance.activeObj = objPrefab;
         objPrefab.transform.SetParent(n_Scene.transform);
         objPrefab.transform.position = obj.position;
@@ -192,6 +204,7 @@ public class NK_LoadPreview : MonoBehaviour
         // 애니메이션이 있다면
         if (obj.anim != "")
         {
+            objPrefab.GetComponent<SH_SceneObj>().currentAnim = obj.anim;
             // 애니메이터를 가져옴
             if (objPrefab.GetComponent<Animator>() == null)
             {
@@ -290,13 +303,13 @@ public class NK_LoadPreview : MonoBehaviour
         raw.transform.position = SH_BtnManager.Instance.firstRawImage.position + transform.up * (-180 * (i + 1));
         raw.name = "RawImage_" + i;
         SH_BtnManager.Instance.rawImages.Add(raw.GetComponent<RawImage>());
+        StartCoroutine(ApplyTexture(raw.GetComponent<RawImage>(), i));
         // 마지막 페이지의 RawImage만 RenderTexture로
         if (i == sceneObjects.Count - 1)
         {
             raw.GetComponent<RawImage>().texture = SH_BtnManager.Instance.sceneCamRenderTexture;
             SH_BtnManager.Instance.sceneCam.targetTexture = raw.GetComponent<RawImage>().texture as RenderTexture;
         }
-        StartCoroutine(ApplyTexture(raw.GetComponent<RawImage>(), i));
     }
 
     IEnumerator ApplyTexture(RawImage raw, int i)
@@ -306,4 +319,63 @@ public class NK_LoadPreview : MonoBehaviour
         SH_BtnManager.Instance.rawImageList.Add(images[i].EncodeToJPG());
     }
 
+    private void AddPreviewImage(int i)
+    {
+        // 프리뷰씬일 때는 서버에 저장이 안되므로 로컬에서 불러와야함
+        string path = Application.dataPath + "/Capture/_" + pageNum + ".jpg";
+        byte[] byteTexture = System.IO.File.ReadAllBytes(path);
+        Texture2D texture2D = new Texture2D(0, 0);
+        // RawImage0 오브젝트는 이미 있으므로
+        if (i == 0)
+        {
+            texture2D.LoadImage(byteTexture);
+            SH_BtnManager.Instance.firstRawImage.gameObject.GetComponent<RawImage>().texture = texture2D;
+            return;
+        }
+        // 새로운 Rawimage 추가
+        // 맨 밑에 추가해야한다
+        GameObject raw = Instantiate(SH_BtnManager.Instance.rawImage);
+        raw.transform.SetParent(GameObject.Find("ContentRaw").transform);
+        raw.transform.position = SH_BtnManager.Instance.firstRawImage.position + transform.up * (-180 * (i + 1));
+        raw.name = "RawImage_" + i;
+        texture2D.LoadImage(byteTexture);
+        raw.GetComponent<RawImage>().texture = texture2D;
+        SH_BtnManager.Instance.rawImages.Add(raw.GetComponent<RawImage>());
+        SH_BtnManager.Instance.rawImageList.Add(byteTexture);
+        // 마지막 페이지의 RawImage만 RenderTexture로
+        if (i == sceneObjects.Count - 1)
+        {
+            raw.GetComponent<RawImage>().texture = SH_BtnManager.Instance.sceneCamRenderTexture;
+            SH_BtnManager.Instance.sceneCam.targetTexture = raw.GetComponent<RawImage>().texture as RenderTexture;
+        }
+    }
+
+    List<AudioClip> voices;
+    public void GetVoice(string url, int index)
+    {
+        // 책 녹음 받아오기
+        NK_HttpMediaRequester requester = new NK_HttpMediaRequester();
+        requester.url = url;
+        requester.requestType = RequestType.AUDIO;
+        requester.index = index;
+        requester.onCompleteDownloadImage = (handler, idx) =>
+        {
+            // 책 녹음 오디오 클립으로 받아오기
+            AudioClip audio = DownloadHandlerAudioClip.GetContent(handler);
+            voices[idx] = audio;
+        };
+        YJ_HttpManager.instance.SendRequest(requester);
+    }
+
+    private void AddVoice(int i)
+    {
+        StartCoroutine(ApplyVoice(i));
+    }
+
+    IEnumerator ApplyVoice(int i)
+    {
+        yield return new WaitUntil(() => voices[i] != null);
+        SH_VoiceRecord.Instance.voiceClip[i] = voices[i];
+        SH_VoiceRecord.Instance.num = i;
+    }
 }

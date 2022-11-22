@@ -208,6 +208,8 @@ public class NK_BookUI : MonoBehaviourPun
         requester.index = index;
         requester.onCompleteDownloadImage = (handler, idx) =>
         {
+            if (handler.downloadHandler.data.Length < 10)
+                return;
             // 책 오디오 클립 받아오기
             AudioClip clip = DownloadHandlerAudioClip.GetContent(handler);
             audioClips[idx] = clip;
@@ -310,6 +312,7 @@ public class NK_BookUI : MonoBehaviourPun
         // 페이지마다 음성파일 재생
 /*        if (Resources.Load<AudioClip>("fairyTale1/Page" + pageNum) != null)
         {
+            // 양치기 소년을 위한 스크립트!!!
             print("Page" + pageNum);
             photonView.RPC("RPCCreateAudio", RpcTarget.All, pageNum);
         }
