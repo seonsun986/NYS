@@ -8,8 +8,6 @@ public class YJ_AudioManager : MonoBehaviour
     Camera main;
 
     AudioSource audioSet;
-
-
     
     [SerializeField]
     [Header("BGM")]
