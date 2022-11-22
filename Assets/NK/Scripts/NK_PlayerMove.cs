@@ -157,12 +157,18 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                     if (Physics.Raycast(ray, out RaycastHit raycastHit))
                     {
                         Debug.Log(raycastHit.collider.gameObject.name);
-                        // UI를 선택한 경우와 플레이어를 선택한 경우가 아니라면
+                        // 동물을 눌렀을때
                         if (raycastHit.transform.gameObject.tag == "Animal")
                         {
                             raycastHit.transform.gameObject.GetComponent<YJ_PlazaAnimal>().state = YJ_PlazaAnimal.State.Interaction;
                             raycastHit.transform.gameObject.GetComponent<YJ_PlazaAnimal>().player = transform.position;
                         }
+                        // 가지 못하는 곳을 눌렀을 때
+                        else if(raycastHit.transform.gameObject.tag == "Dont")
+                        {
+                            return;
+                        }
+                        // UI를 선택한 경우와 플레이어를 선택한 경우가 아니라면
                         else if (EventSystem.current.IsPointerOverGameObject() == false && raycastHit.transform.gameObject.layer != 6)
                         {
                             if (raycastHit.transform.gameObject.tag == "Room")
