@@ -21,12 +21,13 @@ public class SH_Page5 : MonoBehaviour
     public GameObject ballText;
     public GameObject boxText;
     public GameObject bookText;
-
+    public GameObject selectPopUp;
     void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hitInfo))
         {
+            if (selectPopUp.activeSelf == true) return;
             // 박스에 마우스 올려뒀을 때
             if(hitInfo.transform.name == "BoxBtn")
             {

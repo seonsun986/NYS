@@ -20,10 +20,19 @@ public class SH_Page12 : MonoBehaviour
     public Animator girl;
     public GameObject pineTree;
     public GameObject spinach;
+    public Animation pearl;
+    public GameObject cactus;
+    public GameObject potato;
+    public Transform egg;
     void Update()
     {
         if(gameObject.activeSelf== true)
         {
+            if (SH_ChildrenFairyManager.Instance.pages[12].activeSelf == true && SH_ChildrenFairyManager.Instance.eggB == true)
+            {
+                egg.Rotate(0, 0.5f, 0);
+            }
+
             currentTime += Time.deltaTime;
             if(currentTime>changeTime1)
             {
@@ -58,6 +67,23 @@ public class SH_Page12 : MonoBehaviour
                         spinach.SetActive(true);
                     }
                 }
+
+                if (SH_ChildrenFairyManager.Instance.pages[12].activeSelf == true && SH_ChildrenFairyManager.Instance.onionB == true)
+                {
+                    pearl.Play();
+                }
+
+                if (SH_ChildrenFairyManager.Instance.pages[12].activeSelf == true && SH_ChildrenFairyManager.Instance.potatoB == true)
+                {
+                    iTween.ScaleTo(cactus, iTween.Hash("x", 1.6718f, "y", 1.6718f, "z", 1.6718f, "time", 0.3f));
+                    if(currentTime>7.5f)
+                    {
+                        iTween.ScaleTo(potato, iTween.Hash("x", 0.524f, "y", 0.524f, "z", 0.524f, "time", 0.3f));
+
+                    }
+                }
+
+               
             }
         }
     }
