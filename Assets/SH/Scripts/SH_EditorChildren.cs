@@ -27,56 +27,6 @@ public class SH_EditorChildren : MonoBehaviour
       
     }
 
-    //public void Book1True()
-    //{
-    //    if (outline1.activeSelf == false)
-    //    {
-    //        outline1.SetActive(true);
-    //    }
-
-
-    //}
-
-    //public void Book1False()
-    //{
-    //    if (outline1.activeSelf == true)
-    //    {
-    //        outline1.SetActive(false);
-    //    }
-
-    //}
-
-    //public void Book2True()
-    //{
-    //    if (outline2.activeSelf == false)
-    //    {
-    //        outline2.SetActive(true);
-    //    }
-    //}
-
-    //public void Book2False()
-    //{
-    //    if (outline2.activeSelf == true)
-    //    {
-    //        outline2.SetActive(false);
-    //    }
-
-    //}
-
-    //public void Book3True()
-    //{
-    //    if (outline3.activeSelf == false)
-    //    {
-    //        outline3.SetActive(true);
-    //    }
-    //}
-    //public void Book3False()
-    //{
-    //    if (outline3.activeSelf == true)
-    //    {
-    //        outline3.SetActive(false);
-    //    }
-    //}
 
     // 난 콩은 안먹어 책 선택 시
     public void SelectBook1()
@@ -280,10 +230,21 @@ public class SH_EditorChildren : MonoBehaviour
         //print(contentPos.GetComponent<RectTransform>().sizeDelta.x);
         //print(contentPos.GetComponent<RectTransform>().anchoredPosition.x + change);
         //iTween.MoveTo(contentPos, iTween.Hash("x", contentPos.GetComponent<RectTransform>().anchoredPosition.x + change, "time", 0.5f));
+
         float x = contentPos.GetComponent<RectTransform>().anchoredPosition.x;
-        iTween.ValueTo(gameObject, iTween.Hash(
-            "from", x, "to", x + change, "time", 0.3f, 
+        if (x + change < -1030)
+        {
+            iTween.ValueTo(gameObject, iTween.Hash(
+          "from", x, "to", -960, "time", 0.3f,
+          "onupdatetarget", gameObject, "onupdate", "그냥러프써"));
+        }
+        else
+        {
+            iTween.ValueTo(gameObject, iTween.Hash(
+            "from", x, "to", x + change, "time", 0.3f,
             "onupdatetarget", gameObject, "onupdate", "그냥러프써"));
+        }
+
     }
 
     void 그냥러프써(float v)

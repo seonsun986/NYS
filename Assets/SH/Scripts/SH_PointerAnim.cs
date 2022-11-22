@@ -15,6 +15,8 @@ public class SH_PointerAnim : MonoBehaviour
     public GameObject bearText;
     public GameObject tigerText;
     public GameObject rabbitText;
+    public GameObject selectPopUp;
+    
     void Update()
     {
         // ¸¶¿ì½º Ray
@@ -22,6 +24,7 @@ public class SH_PointerAnim : MonoBehaviour
         Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue);
         if(Physics.Raycast(ray, out hitInfo))
         {
+            if (selectPopUp.activeSelf == true) return;
             if(hitInfo.transform.name == "BearBtn")
             {
                 if(bear.enabled == false)
