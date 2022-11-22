@@ -29,7 +29,6 @@ public class YJ_RoomText : MonoBehaviourPun
 
         if (photonView.IsMine)
         {
-            //roomNameSet = YJ_DataManager.CreateRoomInfo.roomName + " (" + PhotonNetwork.NickName + "¼±»ý´Ô )";
             roomNameSet = " (" + PhotonNetwork.NickName + "¼±»ý´Ô )";
             roomName = YJ_DataManager.CreateRoomInfo.roomName;
             roomType = YJ_DataManager.CreateRoomInfo.roomType;
@@ -47,11 +46,22 @@ public class YJ_RoomText : MonoBehaviourPun
     float currentTime;
     void Update()
     {
+        Debug.Log(transform.position.x);
+
         currentTime += Time.deltaTime;
         if (currentTime > 0.5 && currentTime < 1)
         {
             if (photonView.IsMine)
                 photonView.RPC("RpcRoomSet", RpcTarget.All, roomNameSet, roomName, roomType);
+        }
+
+        if (transform.position.x > 37 || transform.position.x < 30)
+        {
+            transform.GetChild(3).gameObject.SetActive(false);
+        }
+        else
+        {
+            transform.GetChild(3).gameObject.SetActive(true);
         }
     }
 

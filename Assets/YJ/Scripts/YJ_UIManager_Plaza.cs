@@ -268,4 +268,23 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
     }
 
     #endregion
+
+
+    public GameObject contentPos;
+    public void NextBtn(float change)
+    {
+        float x = contentPos.GetComponent<RectTransform>().anchoredPosition.x;
+        iTween.ValueTo(gameObject, iTween.Hash(
+            "from", x, "to", x + change, "time", 0.3f,
+            "onupdatetarget", gameObject, "onupdate", "GoMove"));
+    }
+
+    void GoMove(float v)
+    {
+        RectTransform rt = contentPos.GetComponent<RectTransform>();
+        Vector2 v2 = rt.anchoredPosition;
+        v2.x = v;
+        rt.anchoredPosition = v2;
+
+    }
 }

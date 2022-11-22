@@ -2433,7 +2433,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000010011657, y: 0}
+  m_AnchoredPosition: {x: -0.00004839897, y: 0}
   m_SizeDelta: {x: 0, y: 393.4246}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &261234708
@@ -11525,7 +11525,7 @@ MonoBehaviour:
   roomType:
   - {fileID: 3488923024735988868, guid: e6cbf5d60edf4bf4a96645105e8f5437, type: 3}
   - {fileID: 4916256311642431114, guid: 99f6197d4702ae0469e7972c65218f7b, type: 3}
-  - {fileID: 165765343699065523, guid: e819108759851ca4f814b39c3928df5f, type: 3}
+  - {fileID: 3488923024735988868, guid: e6240e019f1bab64b8f562c6395a899d, type: 3}
   roomViewId: 0
   roomListViewId: 0
   roomList: {fileID: 6182030396495751339}
@@ -15510,7 +15510,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 527, y: -72}
+  m_AnchoredPosition: {x: 527, y: -50}
   m_SizeDelta: {x: 60, y: 191}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1709286221
@@ -15556,7 +15556,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1709286222}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1905652755}
+        m_TargetAssemblyTypeName: YJ_UIManager_Plaza, Assembly-CSharp
+        m_MethodName: NextBtn
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: -270
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1709286222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16608,8 +16620,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.51, y: -44.25}
-  m_SizeDelta: {x: 956.11, y: 415.44}
+  m_AnchoredPosition: {x: 6.52, y: -51}
+  m_SizeDelta: {x: 830, y: 401.94}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1766733054
 MonoBehaviour:
@@ -17501,6 +17513,7 @@ MonoBehaviour:
   invitOnOff: {fileID: 443660899}
   invitOn: {fileID: 69527606}
   invitOff: {fileID: 391770972}
+  contentPos: {fileID: 261234706}
 --- !u!114 &1905652756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18125,7 +18138,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1977420288}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1905652755}
+        m_TargetAssemblyTypeName: YJ_UIManager_Plaza, Assembly-CSharp
+        m_MethodName: NextBtn
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 270
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1977420288
 MonoBehaviour:
   m_ObjectHideFlags: 0
