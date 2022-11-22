@@ -747,7 +747,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[10].GetComponent<AudioSource>().clip = audioClips[30];
                     pages[11].GetComponent<AudioSource>().clip = audioClips[32];
                     pages[13].GetComponent<AudioSource>().clip = audioClips[34];
-                    pages[15].GetComponent<AudioSource>().clip = audioClips[36];
+                    pages[15].GetComponent<AudioSource>().clip = audioClips[44];
                     pages[17].GetComponent<AudioSource>().clip = audioClips[22];        // Page17 재활용
                     pages[18].GetComponent<AudioSource>().clip = audioClips[24];
                     pages[20].GetComponent<AudioSource>().clip = audioClips[26];
@@ -761,7 +761,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[10].GetComponent<AudioSource>().clip = audioClips[31];
                     pages[11].GetComponent<AudioSource>().clip = audioClips[33];
                     pages[13].GetComponent<AudioSource>().clip = audioClips[35];
-                    pages[15].GetComponent<AudioSource>().clip = audioClips[37];
+                    pages[15].GetComponent<AudioSource>().clip = audioClips[45];
                     pages[17].GetComponent<AudioSource>().clip = audioClips[23];        // Page17 재활용
                     pages[18].GetComponent<AudioSource>().clip = audioClips[25];
                     pages[20].GetComponent<AudioSource>().clip = audioClips[27];
@@ -1027,5 +1027,10 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     {
         iTween.ScaleTo(dadBtn, iTween.Hash("x", 1.0f, "y", 1.0f, "time", 0.3f));
         dadBtn.transform.GetChild(0).gameObject.SetActive(false);
+    }
+
+    public void BackEditonScene()
+    {
+        SceneManager.LoadScene("EditorChildren");
     }
 }
