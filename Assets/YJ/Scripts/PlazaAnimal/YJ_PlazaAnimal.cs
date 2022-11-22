@@ -28,7 +28,7 @@ public class YJ_PlazaAnimal : MonoBehaviour
         text.SetActive(false);
         anim = GetComponent<Animator>();
         state = State.Idle;
-        audioSource = GetComponent<AudioSource>();
+        audioSource = GameObject.Find("Canvas").GetComponent<AudioSource>();
     }
 
     void Update()
@@ -70,9 +70,6 @@ public class YJ_PlazaAnimal : MonoBehaviour
         {
             // 랜덤 숫자받기
             changeState = Random.Range(0, 3);
-            Debug.Log(changeState);
-
-            //changeState = 1; Move TEST
 
             // 숫자에 따라 상태 전환하기
             if (changeState == 0)
