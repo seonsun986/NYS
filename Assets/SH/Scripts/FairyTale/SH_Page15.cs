@@ -8,6 +8,7 @@ public class SH_Page15 : MonoBehaviour
     float currentTime;
     public GameObject text1;
     public GameObject text2;
+    public Transform egg;
     private void Update()
     {
         if(gameObject.activeSelf == true)
@@ -18,6 +19,11 @@ public class SH_Page15 : MonoBehaviour
                 text1.SetActive(false);
                 text2.SetActive(true);
             }
+        }
+
+        if(egg!=null)
+        {
+            egg.Rotate(0, 0.5f, 0);
         }
     }
 }

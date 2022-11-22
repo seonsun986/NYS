@@ -48,11 +48,11 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     }
 
     bool mushroomB;
-    bool eggB;
+    public bool eggB;
     public bool spinachB;
     bool riceB;
-    bool onionB;
-    bool potatoB;
+    public bool onionB;
+    public bool potatoB;
     public GameObject girlNo;
     public GameObject girlYes;
     public GameObject boyYes;
@@ -572,6 +572,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out failHit))
         {
+            if (selectPopUp.activeSelf == true) return;
             GameObject selectBtn = failHit.transform.gameObject;
             string selectBtnName = selectBtn.name.Substring(0, selectBtn.name.Length - 3);
 
@@ -689,6 +690,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out fillHit))
         {
+            if (selectPopUp.activeSelf == true) return;
             string GoName = fillHit.transform.name;
             string selectBtnName = GoName.Substring(0, GoName.Length - 3);
             selectPages = GameObject.Find(selectBtnName + "Pages");

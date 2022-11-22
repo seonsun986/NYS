@@ -5,6 +5,7 @@ using UnityEngine;
 public class SH_Page9 : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject selectPopUp;
     public Animator mushroom;
     public Animator egg;
     public Animator spinach;
@@ -29,6 +30,7 @@ public class SH_Page9 : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if(Physics.Raycast(ray ,out hitInfo))
         {
+            if (selectPopUp.activeSelf == true) return;
             if(hitInfo.transform.name == "MushroomBtn")
             {
                 if(mushroom.enabled == false)
