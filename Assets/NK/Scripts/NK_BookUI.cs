@@ -201,6 +201,8 @@ public class NK_BookUI : MonoBehaviourPun
 
     public void GetBookAudio(string url, int index)
     {
+        if (url == "")
+            return;
         // 책 오디오 받아오기
         NK_HttpMediaRequester requester = new NK_HttpMediaRequester();
         requester.url = url;
