@@ -1072,6 +1072,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1430957333}
+        m_TargetAssemblyTypeName: YJ_ButtonClickSound, Assembly-CSharp
+        m_MethodName: OnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1430957332}
         m_TargetAssemblyTypeName: YJ_UIManager_MyRoom, Assembly-CSharp
         m_MethodName: OnClickAvatar
@@ -3985,7 +3997,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1353259523}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1430957333}
+        m_TargetAssemblyTypeName: YJ_ButtonClickSound, Assembly-CSharp
+        m_MethodName: OnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1353259523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4396,6 +4420,7 @@ GameObject:
   - component: {fileID: 1430957330}
   - component: {fileID: 1430957329}
   - component: {fileID: 1430957328}
+  - component: {fileID: 1430957333}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4507,6 +4532,20 @@ MonoBehaviour:
   T_BookBtn2: {fileID: 1712742291}
   C_BookBtn: {fileID: 1902849041}
   loading: {fileID: 4917020987051063281}
+--- !u!114 &1430957333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430957327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfee43c267e53f149910c111917ca6a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startButtonSound: {fileID: 8300000, guid: 3913111caf1b26646af7a500ecda76a0, type: 3}
+  buttonSound: {fileID: 8300000, guid: 24e366a47a3018f4882a904d7850c333, type: 3}
 --- !u!1 &1448389428
 GameObject:
   m_ObjectHideFlags: 0
@@ -4936,6 +4975,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1430957333}
+        m_TargetAssemblyTypeName: YJ_ButtonClickSound, Assembly-CSharp
+        m_MethodName: OnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1430957332}
         m_TargetAssemblyTypeName: YJ_UIManager_MyRoom, Assembly-CSharp
         m_MethodName: TeacherBook
@@ -5671,6 +5722,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1430957333}
+        m_TargetAssemblyTypeName: YJ_ButtonClickSound, Assembly-CSharp
+        m_MethodName: OnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1430957332}
         m_TargetAssemblyTypeName: YJ_UIManager_MyRoom, Assembly-CSharp
         m_MethodName: StudentBook
@@ -6034,6 +6097,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1430957333}
+        m_TargetAssemblyTypeName: YJ_ButtonClickSound, Assembly-CSharp
+        m_MethodName: OnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1481618576}
         m_TargetAssemblyTypeName: YJ_PlazaManager1, Assembly-CSharp
         m_MethodName: OutPlaza
@@ -6644,6 +6719,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1430957333}
+        m_TargetAssemblyTypeName: YJ_ButtonClickSound, Assembly-CSharp
+        m_MethodName: OnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1430957332}
         m_TargetAssemblyTypeName: YJ_UIManager_MyRoom, Assembly-CSharp
         m_MethodName: OnClickCreateBook
