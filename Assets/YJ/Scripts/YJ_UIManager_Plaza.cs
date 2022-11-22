@@ -43,6 +43,8 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
     public void Setting()
     {
         settingSet.SetActive(!settingSet.activeSelf);
+        bgmOnOff.isOn = YJ_AudioManager.instance.bgmOnOff;
+        effectOnOff.isOn = YJ_AudioManager.instance.effectOnOff;
     }
     #endregion
 
