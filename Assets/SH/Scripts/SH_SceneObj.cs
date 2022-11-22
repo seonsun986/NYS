@@ -34,9 +34,16 @@ public class SH_SceneObj : MonoBehaviour
     public List<GameObject> buttons = new List<GameObject>();
     public List<AnimationClip> anims = new List<AnimationClip>();
 
+    // 사운드 재생을 위한 캔버스 찾기
+    GameObject canvas;
+    YJ_ButtonClickSound buttonSound;
+
     void Start()
     {
         if (SceneManager.GetActiveScene().name != "EditorScene") return;
+
+        canvas = GameObject.Find("Canvas");
+        buttonSound = canvas.GetComponent<YJ_ButtonClickSound>();
 
         if (GetComponent<SH_InputField>())
         {
@@ -51,7 +58,6 @@ public class SH_SceneObj : MonoBehaviour
         {
             mySceneNum = int.Parse(gameObject.transform.parent.name.Substring(gameObject.transform.parent.name.Length - 1, 1));
         }
-
 
         // 타입이 오브젝트라면 애니메이션 가져온다
         // 애니메이션 개수만큼 버튼을 생성한다
@@ -106,7 +112,13 @@ public class SH_SceneObj : MonoBehaviour
                     animButton.name = anims[i].name + "Btn";
                 }
 
+
+                animButton.GetComponent<Button>().onClick.AddListener(buttonSound.OnClickSound); // 클릭소리
                 animButton.GetComponent<Button>().onClick.AddListener(PlayAnim);
+
+                
+
+                //animButton.GetComponent<Button>().onClick.AddListener(PlayAnim); // 여기에 추가하기
                 // 만든 버튼을 버튼 리스트에 추가한다
                 buttons.Add(animButton);
             }
