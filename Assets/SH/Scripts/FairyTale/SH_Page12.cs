@@ -30,7 +30,7 @@ public class SH_Page12 : MonoBehaviour
         {
             if (SH_ChildrenFairyManager.Instance.pages[12].activeSelf == true && SH_ChildrenFairyManager.Instance.eggB == true)
             {
-                egg.Rotate(0, 0.5f, 0);
+                egg.Rotate(0, 0.1f, 0);
             }
 
             currentTime += Time.deltaTime;

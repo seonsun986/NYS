@@ -23,7 +23,7 @@ public class SH_Page15 : MonoBehaviour
 
         if(egg!=null)
         {
-            egg.Rotate(0, 0.5f, 0);
+            egg.Rotate(0, 0.1f, 0);
         }
     }
 }

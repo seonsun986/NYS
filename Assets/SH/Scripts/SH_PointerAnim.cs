@@ -27,6 +27,9 @@ public class SH_PointerAnim : MonoBehaviour
                 if(bear.enabled == false)
                 {
                     bear.enabled = true;
+                    bear.transform.GetComponent<Outline>().enabled = true;
+                    tiger.transform.GetComponent<Outline>().enabled = false;
+                    rabbit.transform.GetComponent<Outline>().enabled = false;
                     bearText.SetActive(true);
                     rabbit.Rebind();
                     tiger.Rebind();
@@ -51,6 +54,10 @@ public class SH_PointerAnim : MonoBehaviour
                     rabbit.enabled = false;
                     bearText.SetActive(false);
                     rabbitText.SetActive(false);
+
+                    bear.transform.GetComponent<Outline>().enabled = false;
+                    tiger.transform.GetComponent<Outline>().enabled = true;
+                    rabbit.transform.GetComponent<Outline>().enabled = false;
                 }
 
                 if (Input.GetMouseButtonDown(0))
@@ -70,6 +77,10 @@ public class SH_PointerAnim : MonoBehaviour
                     tiger.enabled = false;
                     bearText.SetActive(false);
                     tigerText.SetActive(false);
+
+                    bear.transform.GetComponent<Outline>().enabled = false;
+                    tiger.transform.GetComponent<Outline>().enabled = false;
+                    rabbit.transform.GetComponent<Outline>().enabled = true;
                 }
 
                 if (Input.GetMouseButtonDown(0))
@@ -88,6 +99,9 @@ public class SH_PointerAnim : MonoBehaviour
                 bearText.SetActive(false);
                 tigerText.SetActive(false);
                 rabbitText.SetActive(false);
+                bear.transform.GetComponent<Outline>().enabled = false;
+                tiger.transform.GetComponent<Outline>().enabled = false;
+                rabbit.transform.GetComponent<Outline>().enabled = false;
             }
         }
         else
@@ -101,6 +115,9 @@ public class SH_PointerAnim : MonoBehaviour
             bearText.SetActive(false);
             tigerText.SetActive(false);
             rabbitText.SetActive(false);
+            bear.transform.GetComponent<Outline>().enabled = false;
+            tiger.transform.GetComponent<Outline>().enabled = false;
+            rabbit.transform.GetComponent<Outline>().enabled = false;
         }
 
     }
