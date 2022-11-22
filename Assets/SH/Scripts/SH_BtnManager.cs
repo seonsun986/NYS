@@ -320,7 +320,7 @@ public class SH_BtnManager : MonoBehaviour
         // 초기값 세팅
         SetInfo(0, 20, Color.black);
 
-        inputText.Initialize(Scenes_txt[currentSceneNum].transform, text, new Vector3(0, -350, 0));
+        inputText.Initialize(Scenes_txt[currentSceneNum].transform, text, new Vector3(-100, -350, 0));
         inputText.SetInfo(txtDropdown.value, int.Parse(InputtxtSize.text), txtcolorImage.color);
         
         text++;
