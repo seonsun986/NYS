@@ -50,8 +50,8 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
         CreateAllUser();
     }
 
-    GameObject me;
-    void CreateAllUser()
+    public GameObject me;
+    public virtual void CreateAllUser()
     {
         spawnPos = new Vector3[10];
 
@@ -156,7 +156,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     }
 
     // 동화만들기 버튼
-    bool createBook = false;
+    public bool createBook = false;
     public void OnClickCreateBook()
     {
         if (!createBook)// && photonView.IsMine)

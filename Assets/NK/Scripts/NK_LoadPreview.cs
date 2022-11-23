@@ -306,12 +306,12 @@ public class NK_LoadPreview : MonoBehaviour
         raw.name = "RawImage_" + i;
         SH_BtnManager.Instance.rawImages.Add(raw.GetComponent<RawImage>());
         StartCoroutine(ApplyTexture(raw.GetComponent<RawImage>(), i));
-        // 마지막 페이지의 RawImage만 RenderTexture로
+/*        // 마지막 페이지의 RawImage만 RenderTexture로
         if (i == sceneObjects.Count - 1)
         {
             raw.GetComponent<RawImage>().texture = SH_BtnManager.Instance.sceneCamRenderTexture;
             SH_BtnManager.Instance.sceneCam.targetTexture = raw.GetComponent<RawImage>().texture as RenderTexture;
-        }
+        }*/
     }
 
     IEnumerator ApplyTexture(RawImage raw, int i)
@@ -319,6 +319,12 @@ public class NK_LoadPreview : MonoBehaviour
         yield return new WaitUntil(() => images[i] != null);
         raw.texture = images[i];
         SH_BtnManager.Instance.rawImageList.Add(images[i].EncodeToJPG());
+        // 마지막 페이지의 RawImage만 RenderTexture로
+        if (i == sceneObjects.Count - 1)
+        {
+            raw.GetComponent<RawImage>().texture = SH_BtnManager.Instance.sceneCamRenderTexture;
+            SH_BtnManager.Instance.sceneCam.targetTexture = raw.GetComponent<RawImage>().texture as RenderTexture;
+        }
     }
 
     private void AddPreviewImage(int i)
