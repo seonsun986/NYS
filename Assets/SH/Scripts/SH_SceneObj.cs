@@ -148,7 +148,7 @@ public class SH_SceneObj : MonoBehaviour
                 buttons.Add(delete);
             }
 
-            if(YJ_DataManager.instance.preScene == "BookShelfScene")
+            if(YJ_DataManager.instance.preScene == "BookShelfScene" || YJ_DataManager.instance.preScene == "PreviewScene")
             {
                 for(int j =0;j<buttons.Count;j++)
                 {

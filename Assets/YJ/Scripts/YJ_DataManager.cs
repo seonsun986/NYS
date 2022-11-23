@@ -34,6 +34,8 @@ public class YJ_DataManager : MonoBehaviour
     public string preScene;
     // 책장씬 -> 책 내용 수정 시 넘겨줄 동화책 id
     public string updateBookId;
+    // 프리뷰씬 -> 에디터씬으로 임시 타이틀 저장
+    public string bookTitle;
 
     // 내정보
     public UserInfo myInfo = new UserInfo();

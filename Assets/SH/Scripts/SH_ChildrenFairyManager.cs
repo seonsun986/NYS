@@ -718,6 +718,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[18].GetComponent<AudioSource>().clip = audioClips[24];
                     pages[20].GetComponent<AudioSource>().clip = audioClips[26];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[28];
+                    pages[22].GetComponent<AudioSource>().clip = audioClips[76];
                 }
                 // 여동생일 때
                 else
@@ -730,6 +731,8 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[18].GetComponent<AudioSource>().clip = audioClips[25];
                     pages[20].GetComponent<AudioSource>().clip = audioClips[27];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[29];
+                    pages[22].GetComponent<AudioSource>().clip = audioClips[77];
+
                 }
 
                 mushroomB = true;
@@ -752,6 +755,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[18].GetComponent<AudioSource>().clip = audioClips[24];
                     pages[20].GetComponent<AudioSource>().clip = audioClips[26];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[28];
+                    pages[22].GetComponent<AudioSource>().clip = audioClips[76];
 
 
                 }
@@ -766,6 +770,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[18].GetComponent<AudioSource>().clip = audioClips[25];
                     pages[20].GetComponent<AudioSource>().clip = audioClips[27];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[29];
+                    pages[22].GetComponent<AudioSource>().clip = audioClips[77];
 
                 }
 
@@ -789,6 +794,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[18].GetComponent<AudioSource>().clip = audioClips[24];
                     pages[20].GetComponent<AudioSource>().clip = audioClips[26];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[28];
+                    pages[22].GetComponent<AudioSource>().clip = audioClips[76];
 
                 }
                 // 여동생일 때
@@ -802,6 +808,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[18].GetComponent<AudioSource>().clip = audioClips[25];
                     pages[20].GetComponent<AudioSource>().clip = audioClips[27];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[29];
+                    pages[22].GetComponent<AudioSource>().clip = audioClips[77];
 
                 }
 
@@ -821,11 +828,12 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[11].GetComponent<AudioSource>().clip = audioClips[48];
                     pages[13].GetComponent<AudioSource>().clip = audioClips[50];
                     pages[15].GetComponent<AudioSource>().clip = audioClips[44];
-
                     pages[17].GetComponent<AudioSource>().clip = audioClips[22];
                     pages[18].GetComponent<AudioSource>().clip = audioClips[24];
                     pages[20].GetComponent<AudioSource>().clip = audioClips[26];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[28];
+                    pages[22].GetComponent<AudioSource>().clip = audioClips[76];
+
                 }
                 // 여동생일 때
                 else
@@ -834,11 +842,12 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[11].GetComponent<AudioSource>().clip = audioClips[49];
                     pages[13].GetComponent<AudioSource>().clip = audioClips[51];
                     pages[15].GetComponent<AudioSource>().clip = audioClips[45];
-
                     pages[17].GetComponent<AudioSource>().clip = audioClips[22];
                     pages[18].GetComponent<AudioSource>().clip = audioClips[25];
                     pages[20].GetComponent<AudioSource>().clip = audioClips[27];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[29];
+                    pages[22].GetComponent<AudioSource>().clip = audioClips[77];
+
                 }
                 onionB = true;
 
@@ -857,11 +866,12 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[11].GetComponent<AudioSource>().clip = audioClips[54];
                     pages[13].GetComponent<AudioSource>().clip = audioClips[56];
                     pages[15].GetComponent<AudioSource>().clip = audioClips[44];
-
                     pages[17].GetComponent<AudioSource>().clip = audioClips[22];
                     pages[18].GetComponent<AudioSource>().clip = audioClips[24];
                     pages[20].GetComponent<AudioSource>().clip = audioClips[26];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[28];
+                    pages[22].GetComponent<AudioSource>().clip = audioClips[76];
+
                 }
                 // 여동생일 때
                 else
@@ -875,6 +885,8 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[18].GetComponent<AudioSource>().clip = audioClips[25];
                     pages[20].GetComponent<AudioSource>().clip = audioClips[27];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[29];
+                    pages[22].GetComponent<AudioSource>().clip = audioClips[77];
+
                 }
                 riceB = true;
             }
@@ -892,11 +904,12 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[11].GetComponent<AudioSource>().clip = audioClips[60];
                     pages[13].GetComponent<AudioSource>().clip = audioClips[62];
                     pages[15].GetComponent<AudioSource>().clip = audioClips[44];
-
                     pages[17].GetComponent<AudioSource>().clip = audioClips[22];
                     pages[18].GetComponent<AudioSource>().clip = audioClips[24];
                     pages[20].GetComponent<AudioSource>().clip = audioClips[26];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[28];
+                    pages[22].GetComponent<AudioSource>().clip = audioClips[76];
+
                 }
                 // 여동생일 때
                 else
@@ -905,11 +918,12 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[11].GetComponent<AudioSource>().clip = audioClips[61];
                     pages[13].GetComponent<AudioSource>().clip = audioClips[63];
                     pages[15].GetComponent<AudioSource>().clip = audioClips[45];
-
                     pages[17].GetComponent<AudioSource>().clip = audioClips[22];
                     pages[18].GetComponent<AudioSource>().clip = audioClips[25];
                     pages[20].GetComponent<AudioSource>().clip = audioClips[27];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[29];
+                    pages[22].GetComponent<AudioSource>().clip = audioClips[77];
+
                 }
                 potatoB = true;
             }
