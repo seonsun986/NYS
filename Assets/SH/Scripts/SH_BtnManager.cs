@@ -61,11 +61,11 @@ public class PagesInfo
     {
         // Json -> Class
         PageInfo pageInfo = JsonUtility.FromJson<PageInfo>(s);
-        if(pageInfo.type == "text")
+        if (pageInfo.type == "text")
         {
             pageInfo = JsonUtility.FromJson<TxtInfo>(s);
         }
-        if(pageInfo.type == "obj")
+        if (pageInfo.type == "obj")
         {
             pageInfo = JsonUtility.FromJson<ObjInfo>(s);
         }
@@ -134,7 +134,7 @@ public class SH_BtnManager : MonoBehaviour
     string path;                    // 캡쳐 정보 저장 경로
     private int captureWidth;
     private int captureHeight;
-        
+
     // Object Instantiate를 위한 List
     public GameObject[] obj;
     // 첫 RawImage위치
@@ -179,7 +179,7 @@ public class SH_BtnManager : MonoBehaviour
 
     void Update()
     {
-        if (YJ_DataManager.instance.preScene == "BookShelfScene")
+        if (YJ_DataManager.instance.preScene == "BookShelfScene" || YJ_DataManager.instance.preScene == "PreviewScene")
         {
             titlePanel.SetActive(false);
         }
@@ -193,9 +193,9 @@ public class SH_BtnManager : MonoBehaviour
         currentScene = (int)Scenes[0].transform.position.y / 20;
 
 
-        if(isTTS == true && ttsSound.clip != null)
+        if (isTTS == true && ttsSound.clip != null)
         {
-            
+
         }
     }
 
@@ -209,12 +209,12 @@ public class SH_BtnManager : MonoBehaviour
     {
         print("Scene");
     }
-    void MoveObj(GameObject go, float destination, string completeFun = "", string axis= "")
+    void MoveObj(GameObject go, float destination, string completeFun = "", string axis = "")
     {
         Hashtable hash = iTween.Hash(axis, destination,
             "time", 0.5f);
-            
-        if(completeFun.Length > 0)
+
+        if (completeFun.Length > 0)
         {
             hash.Add("oncompletetarget", gameObject);
             hash.Add("oncomplete", completeFun);
@@ -230,7 +230,7 @@ public class SH_BtnManager : MonoBehaviour
     {
         float x = sceneBG.transform.position.x + (sceneBG.GetComponent<RectTransform>().sizeDelta.x - 70) * bgDir;
         MoveObj(sceneBG.gameObject, x, "OnCompleteScene", "x");
-        if(bgDir== 1)       // 나타나 있지 않는 상태 -> 나타나는 상태
+        if (bgDir == 1)       // 나타나 있지 않는 상태 -> 나타나는 상태
         {
             SceneBtn.rotation = new Quaternion(0, 0, 180 * -(bgDir), 0);
             // 이때 objDir이 나타나있는 상태라면(objDir = 1)
@@ -255,7 +255,7 @@ public class SH_BtnManager : MonoBehaviour
     {
         float x = objectBG.transform.position.x + (objectBG.GetComponent<RectTransform>().sizeDelta.x - 70) * objDir;
         MoveObj(objectBG.gameObject, x, "OnCompleteObject", "x");
-        if(objDir == -1)
+        if (objDir == -1)
         {
             ObjectBtn.rotation = new Quaternion(0, 0, 0, 0);
             SceneBtn.rotation = new Quaternion(0, 0, 0, 0);
@@ -267,9 +267,9 @@ public class SH_BtnManager : MonoBehaviour
             ObjectBtn.rotation = new Quaternion(0, 0, 180 * -objDir, 0);
         }
         objDir *= -1;
-       
 
-        MoveObj(sceneBG.gameObject, 64, "OnCompleteScene","x");
+
+        MoveObj(sceneBG.gameObject, 64, "OnCompleteScene", "x");
         //MoveObj(soundBG.gameObject, -210, "OnCompleteObject", "y");
         bgDir = 1;
         soundDir = 1;
@@ -314,7 +314,7 @@ public class SH_BtnManager : MonoBehaviour
     public void AddText()
     {
         SH_InputField inputText = Instantiate(inputField).GetComponent<SH_InputField>();
-       
+
         SH_EditorManager.Instance.active_InputField = inputText;
         inputFields.Add(inputText);
         // 초기값 세팅
@@ -322,11 +322,11 @@ public class SH_BtnManager : MonoBehaviour
 
         inputText.Initialize(Scenes_txt[currentSceneNum].transform, text, new Vector3(-170, -350, 0));
         inputText.SetInfo(txtDropdown.value, int.Parse(InputtxtSize.text), txtcolorImage.color);
-        
+
         text++;
     }
 
-    public void SetInfo(int dropdown, int inputTextSize , Color txtColor)
+    public void SetInfo(int dropdown, int inputTextSize, Color txtColor)
     {
         txtDropdown.value = dropdown;
         InputtxtSize.text = inputTextSize.ToString();
@@ -354,13 +354,13 @@ public class SH_BtnManager : MonoBehaviour
         SH_EditorManager.Instance.active_InputField.SetFontSize(int.Parse(size));
     }
 
-    
+
     #endregion
 
     public void ChangeTextColor()
     {
         string name = EventSystem.current.currentSelectedGameObject.name;
-        int btnNum = int.Parse(name.Substring(3));               
+        int btnNum = int.Parse(name.Substring(3));
         Color color;
         ColorUtility.TryParseHtmlString(hexColor[btnNum], out color);
         txtcolorImage.color = color;
@@ -375,7 +375,7 @@ public class SH_BtnManager : MonoBehaviour
     public GameObject palette;
     public void PaletteOnOff()
     {
-        if(palette.activeSelf == true)
+        if (palette.activeSelf == true)
         {
             palette.SetActive(false);
         }
@@ -408,10 +408,10 @@ public class SH_BtnManager : MonoBehaviour
         {
             Directory.CreateDirectory(path);
         }
-        
+
         // 캡쳐파일 이름 정하기(동화이름으로 바꾸기)
         fileName = path + "_" + currentScene + ".jpg";
-        
+
         // 캡쳐하기 
         RenderTexture rt = new RenderTexture(captureWidth, captureHeight, 24);
         sceneCam.targetTexture = rt;
@@ -427,7 +427,7 @@ public class SH_BtnManager : MonoBehaviour
         #endregion
 
         // 현재 선택되어 있는 오브젝트의 버튼을 꺼준다
-        if(SH_EditorManager.Instance.activeObj != null)
+        if (SH_EditorManager.Instance.activeObj != null)
         {
             List<GameObject> buttons = SH_EditorManager.Instance.activeObj.GetComponent<SH_SceneObj>().buttons;
             for (int k = 0; k < buttons.Count; k++)
@@ -435,7 +435,7 @@ public class SH_BtnManager : MonoBehaviour
                 buttons[k].SetActive(false);
             }
         }
-        
+
 
 
         // 해당 y값이 0이면 내가 지금 scene0에 있다는 소리고 
@@ -445,19 +445,19 @@ public class SH_BtnManager : MonoBehaviour
         if (rawImageList.Count == currentSceneNum) rawImageList.Add(bytes);
         else rawImageList[currentSceneNum] = bytes;
 
-        if (bytes.Length>0)
+        if (bytes.Length > 0)
         {
             Texture2D loadedTexture = new Texture2D(0, 0);
             loadedTexture.LoadImage(bytes);
             rawImages[currentScene].GetComponent<RawImage>().texture = loadedTexture;
         }
-        
+
 
         // 새로운 Rawimage 추가
         // 맨 밑에 추가해야한다
         GameObject raw = Instantiate(rawImage);
         raw.transform.SetParent(GameObject.Find("ContentRaw").transform);
-        raw.transform.position = firstRawImage.position + transform.up * (-180* (i+1));
+        raw.transform.position = firstRawImage.position + transform.up * (-180 * (i + 1));
         raw.name = "RawImage_" + (i + 1);
         rawImages.Add(raw.GetComponent<RawImage>());
         sceneCam.targetTexture = raw.GetComponent<RawImage>().texture as RenderTexture;
@@ -466,11 +466,11 @@ public class SH_BtnManager : MonoBehaviour
         // 된다 : 빈오브젝트 List를 다 올려야한다
         // 현재 Scene에 들어있는 
         // 카메라 내리지 않기로 결정(Scenecam, MainCamera 모두!)
-        for(int j =0;j<Scenes.Count;j++)
+        for (int j = 0; j < Scenes.Count; j++)
         {
-            Scenes[j].transform.position += new Vector3(0, 20 * ((i+1) - currentScene), 0);
+            Scenes[j].transform.position += new Vector3(0, 20 * ((i + 1) - currentScene), 0);
         }
-        for(int k =0;k<Scenes_txt.Count;k++)
+        for (int k = 0; k < Scenes_txt.Count; k++)
         {
             Scenes_txt[k].transform.position += new Vector3(0, Screen.height * ((i + 1) - currentScene), 0);
         }
@@ -481,7 +481,7 @@ public class SH_BtnManager : MonoBehaviour
         // 빈 오브젝트들의 이름도 바꿔야한다!
         n_Scene.name = "Scene" + (i + 1);       // 씬 이름 : Scene0, Scene1, Scene2....
         GameObject n_Scene_Canvas = Instantiate(newScene_Canvas);
-        n_Scene_Canvas.name = "Scene_txt" + (i + 1) ;      // 씬 이름 : Scene0_txt, Scene1_txt....
+        n_Scene_Canvas.name = "Scene_txt" + (i + 1);      // 씬 이름 : Scene0_txt, Scene1_txt....
         n_Scene_Canvas.transform.SetParent(GameObject.Find("Canvas").transform);
         // 빈 오브젝트들의 위치도 설정하자
         n_Scene.transform.position = new Vector3(0, 0, 0);
@@ -504,11 +504,11 @@ public class SH_BtnManager : MonoBehaviour
     public void InstantiateObj()
     {
         GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
-        string clickText = clickBtn.name.Substring(0,clickBtn.name.Length - 3);
+        string clickText = clickBtn.name.Substring(0, clickBtn.name.Length - 3);
         // 이름에 해당하는 Object를 Instantiate 한다
-        for(int j =0;j<obj.Length;j++)
+        for (int j = 0; j < obj.Length; j++)
         {
-            if(obj[j].name.Contains(clickText))
+            if (obj[j].name.Contains(clickText))
             {
                 GameObject createObj = Instantiate(obj[j]);
                 SH_EditorManager.Instance.activeObj = createObj;
@@ -517,7 +517,7 @@ public class SH_BtnManager : MonoBehaviour
                 break;
             }
         }
-      
+
     }
 
 
@@ -620,22 +620,22 @@ public class SH_BtnManager : MonoBehaviour
                 // 클릭한 씬 넘버의 보이스 상태를 불러온다
                 // 해당 페이지에 적용시켜준다
                 // 만약 녹음 버튼을 활성화 시킨 페이지라면
-                
+
                 // 아무것도 선택하지 않은 상태
-                if(SH_VoiceRecord.Instance.voiceClip[sceneNum] == null && SH_VoiceRecord.Instance.voiceInfos[sceneNum].ttsBtn == SH_VoiceRecord.Instance.ttsUnCheked)
+                if (SH_VoiceRecord.Instance.voiceClip[sceneNum] == null && SH_VoiceRecord.Instance.voiceInfos[sceneNum].ttsBtn == SH_VoiceRecord.Instance.ttsUnCheked)
                 {
                     SH_VoiceRecord.Instance.ttsBtn.GetComponent<Image>().sprite = SH_VoiceRecord.Instance.ttsUnCheked;
                     SH_VoiceRecord.Instance.ttsBtn.interactable = true;
                     SH_VoiceRecord.Instance.recordBtn.interactable = true;
                 }
 
-                else  if (SH_VoiceRecord.Instance.voiceInfos[sceneNum].ttsBtn == SH_VoiceRecord.Instance.ttsUnCheked)
+                else if (SH_VoiceRecord.Instance.voiceInfos[sceneNum].ttsBtn == SH_VoiceRecord.Instance.ttsUnCheked)
                 {
-                        SH_VoiceRecord.Instance.ttsBtn.GetComponent<Image>().sprite = SH_VoiceRecord.Instance.ttsUnCheked;
-                        SH_VoiceRecord.Instance.ttsBtn.interactable = false;
-                        SH_VoiceRecord.Instance.recordBtn.interactable = true;
+                    SH_VoiceRecord.Instance.ttsBtn.GetComponent<Image>().sprite = SH_VoiceRecord.Instance.ttsUnCheked;
+                    SH_VoiceRecord.Instance.ttsBtn.interactable = false;
+                    SH_VoiceRecord.Instance.recordBtn.interactable = true;
                 }
-                    else
+                else
                 {
                     SH_VoiceRecord.Instance.ttsBtn.interactable = true;
                     SH_VoiceRecord.Instance.ttsBtn.GetComponent<Image>().sprite = SH_VoiceRecord.Instance.ttsChecked;
@@ -684,7 +684,7 @@ public class SH_BtnManager : MonoBehaviour
         // 클릭한버튼에서 Btn 뺀 이름
         string clickText = clickBtn.name.Substring(0, clickBtn.name.Length - 3);
 
-        for(int i =0; i< BGClips.Count;i++)
+        for (int i = 0; i < BGClips.Count; i++)
         {
             // 배경음악 클립이 있다면
             if (BGClips[i] != null)
@@ -697,7 +697,7 @@ public class SH_BtnManager : MonoBehaviour
             if (clickText == BGClipName)
             {
                 // 그 때 PreClip이 비어있다면(처음 선택했을 때라면)
-                if(preClip == null && curClip == null)
+                if (preClip == null && curClip == null)
                 {
                     preClip = BGClips[i];
                     preBtn = clickBtn;
@@ -715,10 +715,10 @@ public class SH_BtnManager : MonoBehaviour
                 else
                 {
                     // 만약 이때 그전 클립과 현재 선택한 클립이 같다면
-                    if(curClip == BGClips[i])
+                    if (curClip == BGClips[i])
                     {
                         // 재생을 멈춘다
-                        if(bgSoundSource.isPlaying)
+                        if (bgSoundSource.isPlaying)
                         {
                             bgSoundSource.Stop();
                             currentBtn.GetComponent<Image>().sprite = notPlaying;
@@ -777,15 +777,15 @@ public class SH_BtnManager : MonoBehaviour
         }
 
     }
- 
+
     public string title;
     public GameObject titlePanel;
     public GameObject titlePopUp;
     public void TitleOk()
     {
         title = titlePopUp.transform.GetChild(2).GetChild(2).GetComponent<Text>().text;
-        iTween.ScaleTo(titlePopUp, iTween.Hash("x", 0, "y",0, "z", 0, "time", 0.5f));
-        
+        iTween.ScaleTo(titlePopUp, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.5f));
+
         titlePanel.SetActive(false);
     }
 
@@ -827,7 +827,7 @@ public class SH_BtnManager : MonoBehaviour
             pagesInfo.page = i;
             if (Scenes_txt[i].transform.childCount > 0)
             {
-                for(int j =0;j< Scenes_txt[i].transform.childCount;j++)
+                for (int j = 0; j < Scenes_txt[i].transform.childCount; j++)
                 {
                     pagesInfo.ttsText += Scenes_txt[i].transform.GetChild(j).GetComponent<InputField>().text;
                     pagesInfo.ttsText += " ";
@@ -861,7 +861,7 @@ public class SH_BtnManager : MonoBehaviour
             // 마지막 페이지 캡쳐한다
             // 캡쳐하기 
             // 마지막 페이지로 모든걸 올린다
-            if(i == currentSceneNum)
+            if (i == currentSceneNum)
             {
                 RenderTexture rt = new RenderTexture(captureWidth, captureHeight, 24);
                 sceneCam.targetTexture = rt;
@@ -890,7 +890,7 @@ public class SH_BtnManager : MonoBehaviour
                     rawImages[currentScene].GetComponent<RawImage>().texture = loadedTexture;
                 }
             }
-           
+
             #endregion
 
             if (rawImageList.Count > i)
@@ -920,7 +920,7 @@ public class SH_BtnManager : MonoBehaviour
                     objInfo.anim = obj.GetComponent<SH_SceneObj>().currentAnim;
                     // 멀티 오브젝트 클래스 리스트에 담아준다
                     objsInfo.Add(pagesInfo.SerializePageInfo(objInfo));
-                    
+
                 }
             }
 
@@ -954,13 +954,13 @@ public class SH_BtnManager : MonoBehaviour
         //bookinfo.createAt = DateTime.Now.ToString("yyyy / MM / dd");
         // 이제 BookInfo 중 Pages에 이 정보들을 담아보자
         bookinfo.pages = pages;
-        
+
         string pageJson = JsonUtility.ToJson(bookinfo, true);
         string path = Application.dataPath + "/" + "in" + ".Json";
         File.WriteAllText(path, pageJson);
 
         // 미리보기인지 서버로 보내는 json인지 확인
-        if(send)
+        if (send)
             SaveJson();
     }
 
@@ -1036,10 +1036,10 @@ public class SH_BtnManager : MonoBehaviour
             byte[] byteData = handler.downloadHandler.data;
 
             File.WriteAllBytes(/*Application.streamingAssetsPath + "/" + "ex"*/path + ".mp3", byteData);
-// 빌드파일에서만 오디오 파일 재생
-//#if !UNITY_EDITOR
+            // 빌드파일에서만 오디오 파일 재생
+            //#if !UNITY_EDITOR
             ReadAudio();
-//#endif
+            //#endif
         };
         YJ_HttpManager.instance.SendRequest(requester);
     }
@@ -1087,7 +1087,7 @@ public class SH_BtnManager : MonoBehaviour
         }
         else
         {
-            
+
             ttsBtnImg.sprite = ttsPlayImage;
             isTTS = false;
         }
@@ -1099,19 +1099,19 @@ public class SH_BtnManager : MonoBehaviour
     {
         yield return new WaitForSeconds(ttsSound.clip.length);
         // 반복문 멈추기
-        isTTS = false;       
+        isTTS = false;
         ttsSound.Stop();
         ttsBtnImg.sprite = ttsPlayImage;
     }
 
     string ttstext;
- 
+
     public void TTS()
     {
         string filePath = Application.dataPath + "/Resources" + "/" + "Audio_" + currentSceneNum;
         ttstext = "";
         if (Scenes_txt[currentSceneNum].transform.childCount < 1) return;
-        for(int i =0; i< Scenes_txt[currentSceneNum].transform.childCount;i++)
+        for (int i = 0; i < Scenes_txt[currentSceneNum].transform.childCount; i++)
         {
             ttstext += Scenes_txt[currentSceneNum].transform.GetChild(i).GetComponent<InputField>().text;
             ttstext += "\n";
@@ -1123,9 +1123,9 @@ public class SH_BtnManager : MonoBehaviour
 
     public void BackBtn()
     {
+        YJ_DataManager.instance.preScene = "EditorScene";
         if (YJ_DataManager.instance.preScene == "BookShelfScene")
         {
-            YJ_DataManager.instance.preScene = null;
             SceneManager.LoadScene("BookShelfScene");
         }
         else
