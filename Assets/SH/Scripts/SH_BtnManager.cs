@@ -1158,7 +1158,6 @@ public class SH_BtnManager : MonoBehaviour
 
     public void BackBtn()
     {
-        YJ_DataManager.instance.preScene = "EditorScene";
         if (YJ_DataManager.instance.preScene == "BookShelfScene")
         {
             SceneManager.LoadScene("BookShelfScene");
@@ -1167,5 +1166,6 @@ public class SH_BtnManager : MonoBehaviour
         {
             SceneManager.LoadScene("MyRoomScene");
         }
+        YJ_DataManager.instance.preScene = "EditorScene";
     }
 }
