@@ -82,7 +82,10 @@ public class NK_BookCover : MonoBehaviour
         Int32.TryParse(fontStyle, out int dropboxNum);
         // 색, 폰트, 크기 초기화
         SetInfo(dropboxNum, size, colorInfo);
-        inputField.GetComponent<RectTransform>().localPosition = new Vector2(float.Parse(fontPositionX), float.Parse(fontPositionY));
+        float positionX, positionY;
+        float.TryParse(fontPositionX, out positionX);
+        float.TryParse(fontPositionY, out positionY);
+        inputField.GetComponent<RectTransform>().localPosition = new Vector2(positionX, positionY);
         // 글씨색
         inputField.textComponent.color = colorInfo;
         // 글씨크기
@@ -235,6 +238,8 @@ public class NK_BookCover : MonoBehaviour
         print(btnName);
         // 스티커 이름으로 오브젝트 찾기
         GameObject clickBtn = GameObject.Find(btnName);
+        if (clickBtn == null)
+            return;
         // 스티커에서 버튼 기능을 뺀 같은 객체가 책 위에 생성됨
         GameObject createObj = Instantiate(clickBtn);
         createObj.transform.SetParent(bookCover);
