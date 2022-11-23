@@ -25,6 +25,7 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     // 이동할 씬 이름
     public string sceneName;
 
+    public AudioSource canvasAudio;
 
     void Start()
     {

@@ -148,6 +148,8 @@ public class YJ_AudioManager : MonoBehaviour
         }
     }
 
+        
+
     //public void OnClickOnOff()
     //{
     //    Toggle toggle = GetComponent<Toggle>();
@@ -155,3 +157,4 @@ public class YJ_AudioManager : MonoBehaviour
     //    Debug.Log("on/off 전체 확인 : " + onOff + "토글 내에 bool값 확인 : " + toggle.isOn);
     //}
 }
+

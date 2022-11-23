@@ -28,7 +28,7 @@ public class YJ_PlazaAnimal : MonoBehaviour
         text.SetActive(false);
         anim = GetComponent<Animator>();
         state = State.Idle;
-        audioSource = GameObject.Find("Canvas").GetComponent<AudioSource>();
+        audioSource = YJ_PlazaManager.instance.canvasAudio;
     }
 
     void Update()
@@ -201,6 +201,14 @@ public class YJ_PlazaAnimal : MonoBehaviour
 
         if (!soundOn)
         {
+            if(audioSource == null)
+            {
+                print("11111111111111");
+            }
+            if(clickSound == null)
+            {
+                print("2222222222222222");
+            }
             audioSource.PlayOneShot(clickSound);
             soundOn = true;
         }
