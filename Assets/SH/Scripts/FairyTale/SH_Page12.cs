@@ -65,6 +65,7 @@ public class SH_Page12 : MonoBehaviour
                     if(currentTime>5.9f)
                     {
                         spinach.SetActive(true);
+                        iTween.ScaleFrom(spinach, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.5f));
                     }
                 }
 
