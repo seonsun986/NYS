@@ -214,7 +214,7 @@ public class NK_BookShelfManager : MonoBehaviour
             // 책 내용 이미지 텍스쳐로 받아오기
             Texture2D texture = DownloadHandlerTexture.GetContent(handler);
             images[idx] = texture;
-            if(idx == 0)
+            if (idx == 0)
                 rawImage.texture = images[idx];
         };
         YJ_HttpManager.instance.SendRequest(requester);
@@ -344,8 +344,12 @@ public class NK_BookShelfManager : MonoBehaviour
         //NK_BookCover.instance.Initialization();
         NK_BookCover.instance.inputField.text = detailTitle.text;
         TaleInfo selectedBookInfo = taleInfos[bookObjs.IndexOf(selectedBook)];
-        NK_BookCover.instance.SetBookCoverFont(selectedBookInfo.fontStyle, selectedBookInfo.fontColor, selectedBookInfo.fontSize, selectedBookInfo.fontPositionX, selectedBookInfo.fontPositionY);
-        NK_BookCover.instance.SetBookCover(selectedBookInfo.coverColor, selectedBookInfo.sticker, selectedBookInfo.stickerPositionX, selectedBookInfo.stickerPositionY);
+        // 표지 이미지가 있을 때만 서버에서 글씨 및 스티커 불러옴
+        if (selectedBook.GetComponent<Image>().sprite.name != "FairyTaleBook_White")
+        {
+            NK_BookCover.instance.SetBookCoverFont(selectedBookInfo.fontStyle, selectedBookInfo.fontColor, selectedBookInfo.fontSize, selectedBookInfo.fontPositionX, selectedBookInfo.fontPositionY);
+            NK_BookCover.instance.SetBookCover(selectedBookInfo.coverColor, selectedBookInfo.sticker, selectedBookInfo.stickerPositionX, selectedBookInfo.stickerPositionY);
+        }
     }
 
     // 로딩 중 UI
@@ -385,7 +389,7 @@ public class NK_BookShelfManager : MonoBehaviour
     {
         deletePopup.SetActive(true);
     }
-    
+
     // taleInfo > 동화책 표지정보를 가져옴
     public void SaveBookCover()
     {
