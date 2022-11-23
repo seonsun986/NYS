@@ -1061,6 +1061,42 @@ public class SH_BtnManager : MonoBehaviour
         YJ_HttpManager.instance.SendRequest(requester);
     }
 
+    // 녹음을 미리듣기
+    // TTS를 미리듣기
+    public void PreListenBtn()
+    {
+        // TTS를 선택했을 경우
+        if(SH_VoiceRecord.Instance.ttsBtn.GetComponent<Image>().sprite == SH_VoiceRecord.Instance.ttsChecked)
+        {
+            RealTTS();
+        }
+        // 녹음을 선택했을 경우
+        else if(ttsBtn.enabled == false)
+        {
+            StopAllCoroutines();
+            ttsSound.Stop();
+
+            // 재생중이 아닐 경우
+            if(isTTS ==false)
+            {
+                if (SH_VoiceRecord.Instance.voiceClip[currentScene] != null)
+                {
+                    ttsSound.clip = SH_VoiceRecord.Instance.voiceClip[currentScene];
+                    ttsSound.Play();
+                    ttsBtnImg.sprite = ttsNotPlayImage;
+                    isTTS = true;
+                }
+            }
+
+            else
+            {
+                ttsBtnImg.sprite = ttsPlayImage;
+                isTTS = false;
+            }
+
+        }
+    }
+
 
 
     // 해당 씬에 텍스트가 비어있지 않다면
@@ -1075,7 +1111,6 @@ public class SH_BtnManager : MonoBehaviour
 
     public void RealTTS()
     {
-        print(isTTS);
         ttsSound.Stop();
         StopAllCoroutines();
 
