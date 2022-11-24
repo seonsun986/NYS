@@ -52,7 +52,8 @@ public class SH_FariyStart : MonoBehaviour
                     gameObject.SetActive(false);
                     SH_ChildrenFairyManager.Instance.pages[0].SetActive(true);
                     preBtn.SetActive(true);
-                    nextBtn.SetActive(true);
+                    iTween.ScaleTo(preBtn, iTween.Hash("x", 1, "y", 1, "z", 1, "time", 1));
+                    //nextBtn.SetActive(true);
                 }
             }
 
@@ -77,7 +78,7 @@ public class SH_FariyStart : MonoBehaviour
                     gameObject.SetActive(false);
                     SH_ChildrenFairyManager.Instance.pages[0].SetActive(true);
                     preBtn.SetActive(true);
-                    nextBtn.SetActive(true);
+                    //nextBtn.SetActive(true);
                 }
             }
             

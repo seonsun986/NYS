@@ -74,7 +74,7 @@ public class SH_Page22 : MonoBehaviour
             }
         }
 
-        if(currentTime >16.5f && q<1)
+        if(currentTime >15.5f && q<1)
         {
             endBtn.SetActive(true);
             iTween.ScaleTo(endBtn, iTween.Hash("x", 2, "y", 2, "z", 2, "time", 0.7f ));
