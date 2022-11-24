@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.38389, g: 0.39590394, b: 0.38135245, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 2400107}
   - component: {fileID: 2400106}
   - component: {fileID: 2400105}
+  - component: {fileID: 2400108}
   m_Layer: 5
   m_Name: Mat_0
   m_TagString: Untagged
@@ -218,9 +219,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2400108}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Rabbit_MtBtnOff
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -250,7 +275,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1726895522, guid: 3066cd1cd9e22ca43974e53f842fb338, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a5bd92928af02ad429e8170c12c7437e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -268,6 +293,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2400103}
   m_CullTransparentMesh: 1
+--- !u!114 &2400108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2400103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 322a93ba14bc6514db648f6b2141a030, type: 3}
 --- !u!1 &21878902
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +394,7 @@ GameObject:
   - component: {fileID: 37939228}
   - component: {fileID: 37939227}
   - component: {fileID: 37939226}
+  - component: {fileID: 37939229}
   m_Layer: 5
   m_Name: Mat_5
   m_TagString: Untagged
@@ -439,9 +478,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 37939229}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Bear_MtBtnOff
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -471,7 +534,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 73782113, guid: b69e9cb08de176b429f567cb1f5164fe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 63803b83fd8907244a2782b0b622ecb3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -489,6 +552,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37939224}
   m_CullTransparentMesh: 1
+--- !u!114 &37939229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37939224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 39f71dcc6015df840b24a4b68cd63853, type: 3}
 --- !u!1 &55265212
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,6 +577,7 @@ GameObject:
   - component: {fileID: 55265216}
   - component: {fileID: 55265215}
   - component: {fileID: 55265214}
+  - component: {fileID: 55265217}
   m_Layer: 5
   m_Name: Mat_0
   m_TagString: Untagged
@@ -584,9 +661,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 55265217}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Bear_MtBtnOff
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -616,7 +717,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1441429870, guid: b69e9cb08de176b429f567cb1f5164fe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9550f86e3f973a54d96b21e1816f9e6d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -634,6 +735,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55265212}
   m_CullTransparentMesh: 1
+--- !u!114 &55265217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55265212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 0c96de4716c616140abf5455c2399b28, type: 3}
 --- !u!1 &59312539
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,6 +760,7 @@ GameObject:
   - component: {fileID: 59312543}
   - component: {fileID: 59312542}
   - component: {fileID: 59312541}
+  - component: {fileID: 59312544}
   m_Layer: 5
   m_Name: Mat_3
   m_TagString: Untagged
@@ -729,6 +844,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 59312544}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickObj
@@ -761,7 +888,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -753217327, guid: 0b7915e220d420044a320902c3a52619, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 634dfc896b5b3bf4ea0443fbedc32aff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -779,6 +906,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59312539}
   m_CullTransparentMesh: 1
+--- !u!114 &59312544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59312539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 1540541919, guid: 968522fa141d2ce45a9bade2f9ac5b1e, type: 3}
 --- !u!1 &100879014
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,7 +985,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -896,14 +1036,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132964702}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: -0.13676256, y: -0.6838436, z: 0.15166092, w: 0.70046633}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.907, y: -88.435, z: 23.551}
 --- !u!1 &152379720
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,6 +1087,7 @@ GameObject:
   - component: {fileID: 170963430}
   - component: {fileID: 170963429}
   - component: {fileID: 170963428}
+  - component: {fileID: 170963431}
   m_Layer: 5
   m_Name: Mat_6
   m_TagString: Untagged
@@ -1030,9 +1171,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 170963431}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Rabbit_MtBtnOff
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1062,7 +1227,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1611921548, guid: 3066cd1cd9e22ca43974e53f842fb338, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 32db9b4fd104dab41a0f2592423ad735, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1080,6 +1245,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170963426}
   m_CullTransparentMesh: 1
+--- !u!114 &170963431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170963426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: d87d6a570b3503c4f88c1bf4ec07a3c9, type: 3}
 --- !u!1 &259236817
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,6 +1270,7 @@ GameObject:
   - component: {fileID: 259236821}
   - component: {fileID: 259236820}
   - component: {fileID: 259236819}
+  - component: {fileID: 259236822}
   m_Layer: 5
   m_Name: Mat_1
   m_TagString: Untagged
@@ -1175,9 +1354,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 259236822}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Bear_MtBtnOff
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1207,7 +1410,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2123179285, guid: b69e9cb08de176b429f567cb1f5164fe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2be7e3d1de58adb4084d42c98f4ed501, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1225,6 +1428,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 259236817}
   m_CullTransparentMesh: 1
+--- !u!114 &259236822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259236817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 5dca338d6caefd942a6dd40f37f0a378, type: 3}
 --- !u!1 &260321521
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,6 +1453,7 @@ GameObject:
   - component: {fileID: 260321525}
   - component: {fileID: 260321524}
   - component: {fileID: 260321523}
+  - component: {fileID: 260321526}
   m_Layer: 5
   m_Name: Mat_7
   m_TagString: Untagged
@@ -1320,9 +1537,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 260321526}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Bear_MtBtnOff
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1352,7 +1593,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1918997014, guid: b69e9cb08de176b429f567cb1f5164fe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 01bc4fb98c346684298b79b09e1a8399, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1370,6 +1611,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 260321521}
   m_CullTransparentMesh: 1
+--- !u!114 &260321526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260321521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 27900e9723f3aff4e827e0bbb6644177, type: 3}
 --- !u!1 &269431347
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,6 +1667,7 @@ GameObject:
   - component: {fileID: 451185345}
   - component: {fileID: 451185344}
   - component: {fileID: 451185343}
+  - component: {fileID: 451185346}
   m_Layer: 5
   m_Name: Mat_2
   m_TagString: Untagged
@@ -1496,9 +1751,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 451185346}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Bear_MtBtnOff
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1528,7 +1807,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1708507614, guid: b69e9cb08de176b429f567cb1f5164fe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d27ab86b084738441a2b3fbb22895173, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1546,6 +1825,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451185341}
   m_CullTransparentMesh: 1
+--- !u!114 &451185346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451185341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 6588c21935f27144c9fed781b769350c, type: 3}
 --- !u!1 &451252843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1558,6 +1850,7 @@ GameObject:
   - component: {fileID: 451252846}
   - component: {fileID: 451252845}
   - component: {fileID: 451252847}
+  - component: {fileID: 451252848}
   m_Layer: 5
   m_Name: Mat_3
   m_TagString: Untagged
@@ -1605,7 +1898,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2044933478, guid: 8eeb39ffd15650b41801fb898ce55a34, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1e1bd3f05a28f414bbfb3f8823b3c8d0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1679,6 +1972,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 451252848}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
@@ -1691,6 +1996,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Cat_MtBtnOff
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &451252848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451252843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 6070dd1e700832442af593dcd7cd2242, type: 3}
 --- !u!1 &453571999
 GameObject:
   m_ObjectHideFlags: 0
@@ -1747,6 +2077,7 @@ GameObject:
   - component: {fileID: 498940583}
   - component: {fileID: 498940582}
   - component: {fileID: 498940584}
+  - component: {fileID: 498940585}
   m_Layer: 5
   m_Name: Mat_5
   m_TagString: Untagged
@@ -1794,7 +2125,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 55858796, guid: 8eeb39ffd15650b41801fb898ce55a34, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 959b7d7819f95e746906695bc8246faf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1868,6 +2199,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 498940585}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
@@ -1880,6 +2223,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Cat_MtBtnOff
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &498940585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498940580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 083fe6d5dc3100a4c8a30acaedfa91dc, type: 3}
 --- !u!1 &521196260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1933,6 +2301,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 525337087}
+  - component: {fileID: 525337088}
   - component: {fileID: 525337086}
   - component: {fileID: 525337084}
   - component: {fileID: 525337085}
@@ -2029,6 +2398,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 525337088}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickImageChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickAvatar
@@ -2044,6 +2425,18 @@ MonoBehaviour:
       - m_Target: {fileID: 950574339}
         m_TargetAssemblyTypeName: YJ_UIManager_Avatar, Assembly-CSharp
         m_MethodName: OnClickAnimalSet
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: AnimalBtnOff
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2078,9 +2471,22 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -831.25964, y: -35.374084}
+  m_AnchoredPosition: {x: -887, y: -35.374084}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &525337088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525337083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 35d2f2fd3f776c049b977c31350a90df, type: 3}
 --- !u!1 &559697111
 GameObject:
   m_ObjectHideFlags: 0
@@ -2093,6 +2499,7 @@ GameObject:
   - component: {fileID: 559697115}
   - component: {fileID: 559697114}
   - component: {fileID: 559697113}
+  - component: {fileID: 559697116}
   m_Layer: 5
   m_Name: Mat_4
   m_TagString: Untagged
@@ -2176,9 +2583,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 559697116}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Rabbit_MtBtnOff
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2208,7 +2639,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1040755384, guid: 3066cd1cd9e22ca43974e53f842fb338, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d6a7f923a0d17334e995b5310b24627d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2226,6 +2657,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 559697111}
   m_CullTransparentMesh: 1
+--- !u!114 &559697116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559697111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 2bbe63494f558114190533b0a0b493d8, type: 3}
 --- !u!1 &586138995
 GameObject:
   m_ObjectHideFlags: 0
@@ -2269,6 +2713,7 @@ GameObject:
   - component: {fileID: 649692179}
   - component: {fileID: 649692178}
   - component: {fileID: 649692177}
+  - component: {fileID: 649692180}
   m_Layer: 5
   m_Name: Mat_6
   m_TagString: Untagged
@@ -2352,9 +2797,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 649692180}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Bear_MtBtnOff
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2384,7 +2853,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1348712917, guid: b69e9cb08de176b429f567cb1f5164fe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 757948b68d1cbab48a4baa80a1e06f8c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2402,6 +2871,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649692175}
   m_CullTransparentMesh: 1
+--- !u!114 &649692180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649692175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: f7fa8464c8653654aaf87a58b93dc9c4, type: 3}
 --- !u!1 &687622743
 GameObject:
   m_ObjectHideFlags: 0
@@ -2414,6 +2896,7 @@ GameObject:
   - component: {fileID: 687622746}
   - component: {fileID: 687622745}
   - component: {fileID: 687622747}
+  - component: {fileID: 687622748}
   m_Layer: 5
   m_Name: Mat_1
   m_TagString: Untagged
@@ -2461,7 +2944,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 809268744, guid: 8eeb39ffd15650b41801fb898ce55a34, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aa91281795ce2b74fafddc0d3ac68e6d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2535,6 +3018,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 687622748}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
@@ -2547,6 +3042,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Cat_MtBtnOff
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &687622748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687622743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 010d4494702b7e8439995cce6bc5651a, type: 3}
 --- !u!1 &731709503
 GameObject:
   m_ObjectHideFlags: 0
@@ -2559,6 +3079,7 @@ GameObject:
   - component: {fileID: 731709506}
   - component: {fileID: 731709505}
   - component: {fileID: 731709507}
+  - component: {fileID: 731709508}
   m_Layer: 5
   m_Name: Mat_4
   m_TagString: Untagged
@@ -2606,7 +3127,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -568265195, guid: 8eeb39ffd15650b41801fb898ce55a34, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d6bbad96ddf29c1448a49d5fa8a308fd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2680,6 +3201,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 731709508}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
@@ -2692,6 +3225,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Cat_MtBtnOff
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &731709508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731709503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 82ebf501380d6ea4cb6d0deee0459e37, type: 3}
 --- !u!1 &769334226
 GameObject:
   m_ObjectHideFlags: 0
@@ -2704,6 +3262,7 @@ GameObject:
   - component: {fileID: 769334230}
   - component: {fileID: 769334229}
   - component: {fileID: 769334228}
+  - component: {fileID: 769334231}
   m_Layer: 5
   m_Name: Mat_2
   m_TagString: Untagged
@@ -2787,6 +3346,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 769334231}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickObj
@@ -2819,7 +3390,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1958521836, guid: 0b7915e220d420044a320902c3a52619, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3381d238a387c994ca363f4c4ddfd2d0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2837,6 +3408,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769334226}
   m_CullTransparentMesh: 1
+--- !u!114 &769334231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769334226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: -1045213237, guid: ccf8fdba25f6a2544914c5728981a315, type: 3}
 --- !u!1 &831453603
 GameObject:
   m_ObjectHideFlags: 0
@@ -2849,6 +3433,7 @@ GameObject:
   - component: {fileID: 831453606}
   - component: {fileID: 831453605}
   - component: {fileID: 831453607}
+  - component: {fileID: 831453608}
   m_Layer: 5
   m_Name: Mat_6
   m_TagString: Untagged
@@ -2896,7 +3481,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1817569829, guid: 8eeb39ffd15650b41801fb898ce55a34, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9993a993d409b4b48948f38a682bc239, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2970,6 +3555,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 831453608}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
@@ -2982,6 +3579,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Cat_MtBtnOff
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &831453608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831453603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 8d6f4acbcd10e5045a6e82a9fffc3be4, type: 3}
 --- !u!1 &852982854
 GameObject:
   m_ObjectHideFlags: 0
@@ -3166,6 +3788,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 864779245}
+  - component: {fileID: 864779249}
   - component: {fileID: 864779248}
   - component: {fileID: 864779247}
   - component: {fileID: 864779246}
@@ -3193,7 +3816,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -517, y: -35.374084}
+  m_AnchoredPosition: {x: -549, y: -35.374084}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &864779246
@@ -3252,6 +3875,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 864779249}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickImageChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickAvatar
@@ -3267,6 +3902,18 @@ MonoBehaviour:
       - m_Target: {fileID: 950574339}
         m_TargetAssemblyTypeName: YJ_UIManager_Avatar, Assembly-CSharp
         m_MethodName: OnClickAnimalSet
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: AnimalBtnOff
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3314,6 +3961,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864779244}
   m_CullTransparentMesh: 1
+--- !u!114 &864779249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864779244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: fb02fa46f30475948ac5f85d2677f1e7, type: 3}
 --- !u!1 &870560664
 GameObject:
   m_ObjectHideFlags: 0
@@ -3363,6 +4023,7 @@ GameObject:
   m_Component:
   - component: {fileID: 908407386}
   - component: {fileID: 908407389}
+  - component: {fileID: 908407390}
   - component: {fileID: 908407388}
   - component: {fileID: 908407387}
   m_Layer: 5
@@ -3448,6 +4109,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 908407390}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickImageChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickAvatar
@@ -3463,6 +4136,18 @@ MonoBehaviour:
       - m_Target: {fileID: 950574339}
         m_TargetAssemblyTypeName: YJ_UIManager_Avatar, Assembly-CSharp
         m_MethodName: OnClickAnimalSet
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: AnimalBtnOff
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3510,6 +4195,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 908407385}
   m_CullTransparentMesh: 1
+--- !u!114 &908407390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908407385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: a898a3c05ed1d5a4985faf00e3ef5129, type: 3}
 --- !u!1 &950574334
 GameObject:
   m_ObjectHideFlags: 0
@@ -3525,6 +4223,7 @@ GameObject:
   - component: {fileID: 950574335}
   - component: {fileID: 950574340}
   - component: {fileID: 950574341}
+  - component: {fileID: 950574342}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3750,6 +4449,58 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &950574342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950574334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 551123fcf35d7f243be5c4eb35eda789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalButtons:
+  - {fileID: 525337085}
+  - {fileID: 864779246}
+  - {fileID: 908407387}
+  cat_MTButtons:
+  - {fileID: 1797471123}
+  - {fileID: 687622747}
+  - {fileID: 1558193017}
+  - {fileID: 451252847}
+  - {fileID: 731709507}
+  - {fileID: 498940584}
+  - {fileID: 831453607}
+  - {fileID: 1165919981}
+  bear_MTButtons:
+  - {fileID: 55265214}
+  - {fileID: 259236819}
+  - {fileID: 451185343}
+  - {fileID: 1880613198}
+  - {fileID: 1580880324}
+  - {fileID: 37939226}
+  - {fileID: 649692177}
+  - {fileID: 260321523}
+  rabbit_MTButtons:
+  - {fileID: 2400105}
+  - {fileID: 1130191153}
+  - {fileID: 1647232707}
+  - {fileID: 1830737187}
+  - {fileID: 559697113}
+  - {fileID: 1306362364}
+  - {fileID: 170963428}
+  - {fileID: 1259402208}
+  OBJButtons:
+  - {fileID: 1411304495}
+  - {fileID: 1418580096}
+  - {fileID: 769334228}
+  - {fileID: 59312541}
+  - {fileID: 1836953049}
+  - {fileID: 1596248440}
+  - {fileID: 2022362824}
+  - {fileID: 1870672722}
 --- !u!1 &976773894
 GameObject:
   m_ObjectHideFlags: 0
@@ -3948,6 +4699,7 @@ GameObject:
   - component: {fileID: 1130191155}
   - component: {fileID: 1130191154}
   - component: {fileID: 1130191153}
+  - component: {fileID: 1130191156}
   m_Layer: 5
   m_Name: Mat_1
   m_TagString: Untagged
@@ -4031,9 +4783,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1130191156}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Rabbit_MtBtnOff
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4063,7 +4839,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1792913819, guid: 3066cd1cd9e22ca43974e53f842fb338, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 549df957885a71445b1d358472a92529, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4081,6 +4857,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130191151}
   m_CullTransparentMesh: 1
+--- !u!114 &1130191156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130191151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 2ce24a9a37ab1554780763124561ad85, type: 3}
 --- !u!1 &1145469976
 GameObject:
   m_ObjectHideFlags: 0
@@ -4274,6 +5063,7 @@ GameObject:
   - component: {fileID: 1165919980}
   - component: {fileID: 1165919979}
   - component: {fileID: 1165919981}
+  - component: {fileID: 1165919982}
   m_Layer: 5
   m_Name: Mat_7
   m_TagString: Untagged
@@ -4321,7 +5111,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1323050690, guid: 8eeb39ffd15650b41801fb898ce55a34, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b60be5c66814ae742a939630950f1acc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4395,6 +5185,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1165919982}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
@@ -4407,6 +5209,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Cat_MtBtnOff
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1165919982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165919977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 0227d1b57edadcc4f830060e1015d16a, type: 3}
 --- !u!1 &1191360684
 GameObject:
   m_ObjectHideFlags: 0
@@ -4704,6 +5531,7 @@ GameObject:
   - component: {fileID: 1259402210}
   - component: {fileID: 1259402209}
   - component: {fileID: 1259402208}
+  - component: {fileID: 1259402211}
   m_Layer: 5
   m_Name: Mat_7
   m_TagString: Untagged
@@ -4787,9 +5615,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1259402211}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Rabbit_MtBtnOff
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4819,7 +5671,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7078282, guid: 3066cd1cd9e22ca43974e53f842fb338, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 57edb8237dcbca24799ea8e9ac5de34e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4837,6 +5689,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259402206}
   m_CullTransparentMesh: 1
+--- !u!114 &1259402211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259402206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 5d161058d8804684288ef33397aa5289, type: 3}
 --- !u!1 &1298387671
 GameObject:
   m_ObjectHideFlags: 0
@@ -4950,6 +5815,7 @@ GameObject:
   - component: {fileID: 1306362366}
   - component: {fileID: 1306362365}
   - component: {fileID: 1306362364}
+  - component: {fileID: 1306362367}
   m_Layer: 5
   m_Name: Mat_5
   m_TagString: Untagged
@@ -5033,9 +5899,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1306362367}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Rabbit_MtBtnOff
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5065,7 +5955,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1377523461, guid: 3066cd1cd9e22ca43974e53f842fb338, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b24ec9b79c48adb488f14e5e213a4c50, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5083,6 +5973,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306362362}
   m_CullTransparentMesh: 1
+--- !u!114 &1306362367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306362362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 2d7eb33599d3948459d32c67b678f0e0, type: 3}
 --- !u!1 &1310642147
 GameObject:
   m_ObjectHideFlags: 0
@@ -5201,6 +6104,7 @@ GameObject:
   - component: {fileID: 1411304497}
   - component: {fileID: 1411304496}
   - component: {fileID: 1411304495}
+  - component: {fileID: 1411304498}
   m_Layer: 5
   m_Name: Mat_0
   m_TagString: Untagged
@@ -5284,6 +6188,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1411304498}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickObj
@@ -5316,7 +6232,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1495466622, guid: 0b7915e220d420044a320902c3a52619, type: 3}
+  m_Sprite: {fileID: 1254329154, guid: 67c06933dad7db049b8da32c7191979e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5334,6 +6250,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411304493}
   m_CullTransparentMesh: 1
+--- !u!114 &1411304498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411304493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 166921392, guid: e8fbaae054f10b040854ab4400f5d27b, type: 3}
 --- !u!1 &1417733899
 GameObject:
   m_ObjectHideFlags: 0
@@ -5521,6 +6450,7 @@ GameObject:
   - component: {fileID: 1418580098}
   - component: {fileID: 1418580097}
   - component: {fileID: 1418580096}
+  - component: {fileID: 1418580099}
   m_Layer: 5
   m_Name: Mat_1
   m_TagString: Untagged
@@ -5604,6 +6534,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1418580099}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickObj
@@ -5636,7 +6578,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1657740697, guid: 0b7915e220d420044a320902c3a52619, type: 3}
+  m_Sprite: {fileID: 568065390, guid: 86b1888239ee2484990c60d6b592ca2b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5654,6 +6596,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1418580094}
   m_CullTransparentMesh: 1
+--- !u!114 &1418580099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418580094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 1905868565, guid: ea0ac9c75e34e324e980dda87dbfe7a8, type: 3}
 --- !u!1 &1512052692
 GameObject:
   m_ObjectHideFlags: 0
@@ -5728,6 +6683,7 @@ GameObject:
   - component: {fileID: 1558193016}
   - component: {fileID: 1558193015}
   - component: {fileID: 1558193017}
+  - component: {fileID: 1558193018}
   m_Layer: 5
   m_Name: Mat_2
   m_TagString: Untagged
@@ -5775,7 +6731,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -891601103, guid: 8eeb39ffd15650b41801fb898ce55a34, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 432ab370dcb6b23448fd25919284d687, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5849,6 +6805,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1558193018}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
@@ -5861,6 +6829,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Cat_MtBtnOff
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1558193018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558193013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: cf06b8fecfbf5344888702ebbd2764e1, type: 3}
 --- !u!1 &1575197258
 GameObject:
   m_ObjectHideFlags: 0
@@ -5917,6 +6910,7 @@ GameObject:
   - component: {fileID: 1580880326}
   - component: {fileID: 1580880325}
   - component: {fileID: 1580880324}
+  - component: {fileID: 1580880327}
   m_Layer: 5
   m_Name: Mat_4
   m_TagString: Untagged
@@ -6000,9 +6994,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1580880327}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Bear_MtBtnOff
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6032,7 +7050,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -500123145, guid: b69e9cb08de176b429f567cb1f5164fe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b4ed9795a87a3de4694ae843a5b3e1f6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6050,6 +7068,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580880322}
   m_CullTransparentMesh: 1
+--- !u!114 &1580880327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580880322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 7a154aaa5448c934c818f6e849ad67c6, type: 3}
 --- !u!1 &1596248438
 GameObject:
   m_ObjectHideFlags: 0
@@ -6062,6 +7093,7 @@ GameObject:
   - component: {fileID: 1596248442}
   - component: {fileID: 1596248441}
   - component: {fileID: 1596248440}
+  - component: {fileID: 1596248443}
   m_Layer: 5
   m_Name: Mat_5
   m_TagString: Untagged
@@ -6145,6 +7177,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1596248443}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickObj
@@ -6177,7 +7221,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1065185238, guid: 0b7915e220d420044a320902c3a52619, type: 3}
+  m_Sprite: {fileID: 666028671, guid: bae96abe05654fe489fca5a77a86a8af, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6195,6 +7239,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596248438}
   m_CullTransparentMesh: 1
+--- !u!114 &1596248443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596248438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 625052316, guid: ffe2fdfe083c8b64fbb210b0917fc6cd, type: 3}
 --- !u!1 &1647232705
 GameObject:
   m_ObjectHideFlags: 0
@@ -6207,6 +7264,7 @@ GameObject:
   - component: {fileID: 1647232709}
   - component: {fileID: 1647232708}
   - component: {fileID: 1647232707}
+  - component: {fileID: 1647232710}
   m_Layer: 5
   m_Name: Mat_2
   m_TagString: Untagged
@@ -6290,9 +7348,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1647232710}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Rabbit_MtBtnOff
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6322,7 +7404,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1257884842, guid: 3066cd1cd9e22ca43974e53f842fb338, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 34e548d4555ac6c4dabb27eb236aedd0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6340,6 +7422,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1647232705}
   m_CullTransparentMesh: 1
+--- !u!114 &1647232710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647232705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: eed965259c1bf6b47a44a066d260cea3, type: 3}
 --- !u!1 &1797471119
 GameObject:
   m_ObjectHideFlags: 0
@@ -6349,6 +7444,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1797471120}
+  - component: {fileID: 1797471124}
   - component: {fileID: 1797471122}
   - component: {fileID: 1797471121}
   - component: {fileID: 1797471123}
@@ -6376,7 +7472,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -820.4332, y: 29.159}
+  m_AnchoredPosition: {x: -820.4332, y: 42}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1797471121
@@ -6399,7 +7495,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -14666142, guid: 8eeb39ffd15650b41801fb898ce55a34, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 124b520131b07c14f8d439b6ce80f2cf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6473,6 +7569,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1797471124}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
@@ -6485,6 +7593,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Cat_MtBtnOff
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1797471124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797471119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 53aa8bd53c9f51f418acf6c461d39c0d, type: 3}
 --- !u!1 &1830737185
 GameObject:
   m_ObjectHideFlags: 0
@@ -6497,6 +7630,7 @@ GameObject:
   - component: {fileID: 1830737189}
   - component: {fileID: 1830737188}
   - component: {fileID: 1830737187}
+  - component: {fileID: 1830737190}
   m_Layer: 5
   m_Name: Mat_3
   m_TagString: Untagged
@@ -6580,9 +7714,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1830737190}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Rabbit_MtBtnOff
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6612,7 +7770,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1331714812, guid: 3066cd1cd9e22ca43974e53f842fb338, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9d02649be60efd54eaaccadcd24506de, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6630,6 +7788,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1830737185}
   m_CullTransparentMesh: 1
+--- !u!114 &1830737190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830737185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 66f2f1bd22a204343918368354481835, type: 3}
 --- !u!1 &1836953047
 GameObject:
   m_ObjectHideFlags: 0
@@ -6642,6 +7813,7 @@ GameObject:
   - component: {fileID: 1836953051}
   - component: {fileID: 1836953050}
   - component: {fileID: 1836953049}
+  - component: {fileID: 1836953052}
   m_Layer: 5
   m_Name: Mat_4
   m_TagString: Untagged
@@ -6725,6 +7897,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1836953052}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickObj
@@ -6757,7 +7941,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 423702864, guid: 0b7915e220d420044a320902c3a52619, type: 3}
+  m_Sprite: {fileID: -542135266, guid: 2611a803a96244a4d952ec38682c1dfe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6775,6 +7959,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1836953047}
   m_CullTransparentMesh: 1
+--- !u!114 &1836953052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836953047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 764122270, guid: b0ee3a4040634be45b0e9c250b8ac782, type: 3}
 --- !u!1 &1844746356
 GameObject:
   m_ObjectHideFlags: 0
@@ -6962,6 +8159,7 @@ GameObject:
   - component: {fileID: 1870672724}
   - component: {fileID: 1870672723}
   - component: {fileID: 1870672722}
+  - component: {fileID: 1870672725}
   m_Layer: 5
   m_Name: Mat_7
   m_TagString: Untagged
@@ -7045,6 +8243,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1870672725}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickObj
@@ -7077,7 +8287,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 677206995, guid: 0b7915e220d420044a320902c3a52619, type: 3}
+  m_Sprite: {fileID: 1165140455, guid: 31afacf933ed46c4b8b251c88a0b762d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7095,6 +8305,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870672720}
   m_CullTransparentMesh: 1
+--- !u!114 &1870672725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870672720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 525702991, guid: 34d4a0d2998b311458d132af7e349192, type: 3}
 --- !u!1 &1880613196
 GameObject:
   m_ObjectHideFlags: 0
@@ -7107,6 +8330,7 @@ GameObject:
   - component: {fileID: 1880613200}
   - component: {fileID: 1880613199}
   - component: {fileID: 1880613198}
+  - component: {fileID: 1880613201}
   m_Layer: 5
   m_Name: Mat_3
   m_TagString: Untagged
@@ -7190,9 +8414,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1880613201}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickCatMt
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Bear_MtBtnOff
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7222,7 +8470,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -223411771, guid: b69e9cb08de176b429f567cb1f5164fe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5a67b41a75685624dabee8091524607a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7240,6 +8488,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1880613196}
   m_CullTransparentMesh: 1
+--- !u!114 &1880613201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880613196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: 21300000, guid: 6fe0490789f08a74fa75d6ed1997f0b9, type: 3}
 --- !u!1 &1910291262
 GameObject:
   m_ObjectHideFlags: 0
@@ -7358,6 +8619,7 @@ GameObject:
   - component: {fileID: 2022362826}
   - component: {fileID: 2022362825}
   - component: {fileID: 2022362824}
+  - component: {fileID: 2022362827}
   m_Layer: 5
   m_Name: Mat_6
   m_TagString: Untagged
@@ -7441,6 +8703,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2022362827}
+        m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickObj
@@ -7473,7 +8747,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 760449973, guid: 0b7915e220d420044a320902c3a52619, type: 3}
+  m_Sprite: {fileID: -87314460, guid: d1adb1ba96e45d6458dd915606549286, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7491,6 +8765,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2022362822}
   m_CullTransparentMesh: 1
+--- !u!114 &2022362827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022362822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057ee28b06f2ee342a6213343795655a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeImage: {fileID: -813874049, guid: ce8025a30153490429ee105ec8bab9cb, type: 3}
 --- !u!1 &207945889854005760
 GameObject:
   m_ObjectHideFlags: 0
