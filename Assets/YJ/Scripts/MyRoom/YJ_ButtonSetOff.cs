@@ -6,19 +6,93 @@ using UnityEngine.UI;
 public class YJ_ButtonSetOff : MonoBehaviour
 {
     public Button[] animalButtons;
-    int animalBtn = 4;
+    public int animalBtn = 4;
     public Button[] cat_MTButtons;
-    int catMtBtn = 9;
+    public int catMtBtn = 9;
     public Button[] bear_MTButtons;
-    int bearMtBtn = 9;
+    public int bearMtBtn = 9;
     public Button[] rabbit_MTButtons;
-    int rabbitMtBtn = 9;
+    public int rabbitMtBtn = 9;
     public Button[] OBJButtons;
-    int objBtn = 9;
+    public int objBtn = 9;
 
-    void Start()
+    public static YJ_ButtonSetOff instance;
+
+    private void Awake()
     {
-        
+        instance = this;
+    }
+
+    public void SetAvatarBtn()
+    {
+        animalBtn = YJ_Player_ChangeAvatar.instance.avatarNum;
+        animalButtons[animalBtn].GetComponent<YJ_OutLine>().OnClickImageChange();
+    }
+
+    public void SetMeshBtn(int avatar)
+    {
+        switch (avatar)
+        {
+            case 0:
+                catMtBtn = YJ_Player_ChangeAvatar.instance.setmt;
+                cat_MTButtons[catMtBtn].GetComponent<YJ_OutLine>().OnClickMTChange();
+                break;
+            case 1:
+                bearMtBtn = YJ_Player_ChangeAvatar.instance.setmt;
+                bear_MTButtons[bearMtBtn].GetComponent<YJ_OutLine>().OnClickMTChange();
+                break;
+            case 2:
+                rabbitMtBtn = YJ_Player_ChangeAvatar.instance.setmt;
+                rabbit_MTButtons[rabbitMtBtn].GetComponent<YJ_OutLine>().OnClickMTChange();
+                break;
+        }
+    }
+
+    public void SetObjBtn()
+    {
+        if (YJ_Player_ChangeAvatar.instance.bagId < 8)
+        {
+            objBtn_1 = YJ_Player_ChangeAvatar.instance.bagId;
+            OBJButtons[objBtn_1].GetComponent<YJ_OutLine>().OnClickMTChange();
+        }
+        else if (objBtn_1 < 9)
+        {
+            OBJButtons[objBtn_1].GetComponent<YJ_OutLine>().OnClickMTChange();
+            objBtn_1 = 9;
+        }
+
+        if (YJ_Player_ChangeAvatar.instance.fishId < 8)
+        {
+            objBtn_2 = YJ_Player_ChangeAvatar.instance.fishId;
+            OBJButtons[objBtn_2].GetComponent<YJ_OutLine>().OnClickMTChange();
+        }
+        else if(objBtn_2 < 9)
+        {
+            OBJButtons[objBtn_2].GetComponent<YJ_OutLine>().OnClickMTChange();
+            objBtn_2 = 9;
+        }
+
+        if (YJ_Player_ChangeAvatar.instance.hatId < 8)
+        {
+            objBtn_3 = YJ_Player_ChangeAvatar.instance.hatId;
+            OBJButtons[objBtn_3].GetComponent<YJ_OutLine>().OnClickMTChange();
+        }
+        else if (objBtn_3 < 9)
+        {
+            OBJButtons[objBtn_3].GetComponent<YJ_OutLine>().OnClickMTChange();
+            objBtn_3 = 9;
+        }
+
+        if (YJ_Player_ChangeAvatar.instance.glassId < 8)
+        {
+            objBtn = YJ_Player_ChangeAvatar.instance.glassId;
+            OBJButtons[objBtn].GetComponent<YJ_OutLine>().OnClickMTChange();
+        }
+        else if (objBtn < 9)
+        {
+            OBJButtons[objBtn].GetComponent<YJ_OutLine>().OnClickMTChange();
+            objBtn = 9;
+        }
     }
 
     public void AnimalBtnOff(int i)
@@ -69,7 +143,7 @@ public class YJ_ButtonSetOff : MonoBehaviour
             bear_MTButtons[bearMtBtn].GetComponent<YJ_OutLine>().OnClickMTChange();
             bearMtBtn = i;
         }
-        else if(bearMtBtn == i)
+        else if (bearMtBtn == i)
             bear_MTButtons[bearMtBtn].GetComponent<YJ_OutLine>().OnClickMTChange();
 
     }
@@ -149,7 +223,7 @@ public class YJ_ButtonSetOff : MonoBehaviour
                 // 이전 버튼을 끄고
                 OBJButtons[objBtn_2].GetComponent<YJ_OutLine>().OnClickMTChange();
                 // 지금 버튼을 켠다
-                objBtn = i;
+                objBtn_2 = i;
                 OBJButtons[objBtn_2].GetComponent<YJ_OutLine>().OnClickMTChange();
             }
         }
@@ -185,7 +259,7 @@ public class YJ_ButtonSetOff : MonoBehaviour
                 // 이전 버튼을 끄고
                 OBJButtons[objBtn_3].GetComponent<YJ_OutLine>().OnClickMTChange();
                 // 지금 버튼을 켠다
-                objBtn = i;
+                objBtn_3 = i;
                 OBJButtons[objBtn_3].GetComponent<YJ_OutLine>().OnClickMTChange();
             }
         }

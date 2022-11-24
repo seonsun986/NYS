@@ -2051,6 +2051,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 453572000}
+  - component: {fileID: 453572001}
   m_Layer: 5
   m_Name: BearMat
   m_TagString: Untagged
@@ -2086,6 +2087,18 @@ RectTransform:
   m_AnchoredPosition: {x: -50, y: -43}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &453572001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453571999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53de2baadc7cb849b3cf57ad8f71ccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &498940580
 GameObject:
   m_ObjectHideFlags: 0
@@ -2279,6 +2292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 521196261}
+  - component: {fileID: 521196262}
   m_Layer: 5
   m_Name: ObjList
   m_TagString: Untagged
@@ -2314,6 +2328,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &521196262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521196260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb55bc213422aa44abddefa66e8608d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &525337083
 GameObject:
   m_ObjectHideFlags: 0
@@ -4025,6 +4051,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 870560665}
+  - component: {fileID: 870560666}
   m_Layer: 5
   m_Name: AnimalList
   m_TagString: Untagged
@@ -4055,6 +4082,18 @@ RectTransform:
   m_AnchoredPosition: {x: -50, y: -71}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &870560666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870560664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f86264f2f73a344783d081c4ed8524b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &908407385
 GameObject:
   m_ObjectHideFlags: 0
@@ -4508,6 +4547,7 @@ MonoBehaviour:
   - {fileID: 525337085}
   - {fileID: 864779246}
   - {fileID: 908407387}
+  animalBtn: 4
   cat_MTButtons:
   - {fileID: 1797471123}
   - {fileID: 687622747}
@@ -4517,6 +4557,7 @@ MonoBehaviour:
   - {fileID: 498940584}
   - {fileID: 831453607}
   - {fileID: 1165919981}
+  catMtBtn: 9
   bear_MTButtons:
   - {fileID: 55265214}
   - {fileID: 259236819}
@@ -4526,6 +4567,7 @@ MonoBehaviour:
   - {fileID: 37939226}
   - {fileID: 649692177}
   - {fileID: 260321523}
+  bearMtBtn: 9
   rabbit_MTButtons:
   - {fileID: 2400105}
   - {fileID: 1130191153}
@@ -4535,6 +4577,7 @@ MonoBehaviour:
   - {fileID: 1306362364}
   - {fileID: 170963428}
   - {fileID: 1259402208}
+  rabbitMtBtn: 9
   OBJButtons:
   - {fileID: 1411304495}
   - {fileID: 1418580096}
@@ -4544,6 +4587,7 @@ MonoBehaviour:
   - {fileID: 1596248440}
   - {fileID: 2022362824}
   - {fileID: 1870672722}
+  objBtn: 9
 --- !u!1 &976773894
 GameObject:
   m_ObjectHideFlags: 0
@@ -6073,6 +6117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1323585856}
+  - component: {fileID: 1323585857}
   m_Layer: 5
   m_Name: RabbitMat
   m_TagString: Untagged
@@ -6108,6 +6153,18 @@ RectTransform:
   m_AnchoredPosition: {x: -50, y: -43}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1323585857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323585855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53de2baadc7cb849b3cf57ad8f71ccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1341740945
 GameObject:
   m_ObjectHideFlags: 0
@@ -6937,6 +6994,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1575197259}
+  - component: {fileID: 1575197260}
   m_Layer: 5
   m_Name: CatMat
   m_TagString: Untagged
@@ -6972,6 +7030,18 @@ RectTransform:
   m_AnchoredPosition: {x: -50, y: -43}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1575197260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575197258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53de2baadc7cb849b3cf57ad8f71ccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1580880322
 GameObject:
   m_ObjectHideFlags: 0
@@ -17532,6 +17602,12 @@ MonoBehaviour:
   - {fileID: 1868308724477174, guid: cd9a0f2aaec20c74db47636d5ed725ba, type: 3}
   - {fileID: 1347363639899658, guid: 8b436dadfcc966e4182be7da1b0cd7e6, type: 3}
   avt: {fileID: 0}
+  bagId: 8
+  fishId: 8
+  hatId: 8
+  glassId: 8
+  avatarNum: 0
+  setmt: 0
 --- !u!114 &7875440487650122902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17550,6 +17626,10 @@ MonoBehaviour:
   bunnyMt: []
   obj: []
   avt: {fileID: 0}
+  bagId: 8
+  fishId: 8
+  hatId: 8
+  glassId: 8
 --- !u!114 &7875440487650122903
 MonoBehaviour:
   m_ObjectHideFlags: 0

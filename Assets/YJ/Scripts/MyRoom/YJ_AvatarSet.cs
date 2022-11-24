@@ -39,10 +39,10 @@ public class YJ_AvatarSet : MonoBehaviourPun
             avtMat[2, i] = bunnyMt[i];
     }
 
-    protected int bagId = 8;
-    protected int fishId = 8;
-    protected int hatId = 8;
-    protected int glassId = 8;
+    public int bagId = 8;
+    public int fishId = 8;
+    public int hatId = 8;
+    public int glassId = 8;
     protected void AvtSet()
     {
         avt = avatar[int.Parse(userInfo.animal)];

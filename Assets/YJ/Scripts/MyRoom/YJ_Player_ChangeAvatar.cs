@@ -7,13 +7,17 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class YJ_Player_ChangeAvatar : YJ_AvatarSet
-{   
-    // 캐릭터
-    //public GameObject avt;
+{
+    public static YJ_Player_ChangeAvatar instance;
     // 메터리얼
     SkinnedMeshRenderer mt;
 
     bool role = false;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     public override void Start()
     {
@@ -44,7 +48,7 @@ public class YJ_Player_ChangeAvatar : YJ_AvatarSet
     }
 
     #region 아바타 설정
-    int avatarNum;
+    public int avatarNum;
     public void OnClickAvatar(int i)
     {
         RemoveChild(hatParent);
@@ -57,6 +61,7 @@ public class YJ_Player_ChangeAvatar : YJ_AvatarSet
         mt = avt.transform.GetChild(1).transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>();
         avt.SetActive(true);
         avatarNum = i;
+        setmt = 8;
 
         SetItemParent();
         bagId = hatId = fishId = glassId = 8;
@@ -71,7 +76,7 @@ public class YJ_Player_ChangeAvatar : YJ_AvatarSet
 
     #region 무늬변경
     // Mt 버튼
-    int setmt = 0;
+    public int setmt = 0;
     public void OnClickCatMt(int i)
     {
         if (avatarNum == 0)

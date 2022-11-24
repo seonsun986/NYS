@@ -9,7 +9,7 @@ public class YJ_OutLine : MonoBehaviour
     public Sprite changeImage;
     public bool click = false;
 
-    void Start()
+    void Awake()
     {
         originImage = GetComponent<Image>().sprite;
     }
