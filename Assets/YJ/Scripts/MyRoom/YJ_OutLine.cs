@@ -7,6 +7,7 @@ public class YJ_OutLine : MonoBehaviour
 {
     Sprite originImage;
     public Sprite changeImage;
+    public bool click = false;
 
     void Start()
     {
@@ -21,9 +22,9 @@ public class YJ_OutLine : MonoBehaviour
 
     public void OnClickImageChange()
     {
+        iTween.ScaleTo(gameObject, iTween.Hash("x", 0.9, "y", 0.9, "z", 0.9, "easeType", "easeOutSine", "time", 0.2f, "oncomplete", "SmallButton"));
         if (gameObject.GetComponent<Image>().sprite == originImage)
         {
-            iTween.ScaleTo(gameObject, iTween.Hash("x", 0.9, "y", 0.9, "z", 0.9, "easeType", "easeOutSine", "time", 0.2f, "oncomplete", "SmallButton"));
             //SmallButton();
             gameObject.GetComponent<Image>().sprite = changeImage;
             gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(365, 365);
@@ -37,15 +38,16 @@ public class YJ_OutLine : MonoBehaviour
 
     public void OnClickMTChange()
     {
+        iTween.ScaleTo(gameObject, iTween.Hash("x", 0.9, "y", 0.9, "z", 0.9, "easeType", "easeOutSine", "time", 0.2f, "oncomplete", "SmallButton"));
         if (gameObject.GetComponent<Image>().sprite == originImage)
         {
-            iTween.ScaleTo(gameObject, iTween.Hash("x", 0.9, "y", 0.9, "z", 0.9, "easeType", "easeOutSine", "time", 0.2f, "oncomplete", "SmallButton"));
-            //SmallButton();
+            click = true;
             gameObject.GetComponent<Image>().sprite = changeImage;
             gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
         }
         else
         {
+            click = false;
             gameObject.GetComponent<Image>().sprite = originImage;
             gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 160);
         }

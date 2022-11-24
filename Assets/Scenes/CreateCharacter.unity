@@ -306,6 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 322a93ba14bc6514db648f6b2141a030, type: 3}
+  click: 0
 --- !u!1 &21878902
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,6 +566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 39f71dcc6015df840b24a4b68cd63853, type: 3}
+  click: 0
 --- !u!1 &55265212
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,6 +750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 0c96de4716c616140abf5455c2399b28, type: 3}
+  click: 0
 --- !u!1 &59312539
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,7 +849,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 59312544}
         m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
-        m_MethodName: OnClickMTChange
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -859,6 +862,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickObj
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Obj_BtnOff_1
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -919,6 +934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 1540541919, guid: 968522fa141d2ce45a9bade2f9ac5b1e, type: 3}
+  click: 0
 --- !u!1 &100879014
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,6 +1274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: d87d6a570b3503c4f88c1bf4ec07a3c9, type: 3}
+  click: 0
 --- !u!1 &259236817
 GameObject:
   m_ObjectHideFlags: 0
@@ -1441,6 +1458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 5dca338d6caefd942a6dd40f37f0a378, type: 3}
+  click: 0
 --- !u!1 &260321521
 GameObject:
   m_ObjectHideFlags: 0
@@ -1624,6 +1642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 27900e9723f3aff4e827e0bbb6644177, type: 3}
+  click: 0
 --- !u!1 &269431347
 GameObject:
   m_ObjectHideFlags: 0
@@ -1838,6 +1857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 6588c21935f27144c9fed781b769350c, type: 3}
+  click: 0
 --- !u!1 &451252843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2021,6 +2041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 6070dd1e700832442af593dcd7cd2242, type: 3}
+  click: 0
 --- !u!1 &453571999
 GameObject:
   m_ObjectHideFlags: 0
@@ -2248,6 +2269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 083fe6d5dc3100a4c8a30acaedfa91dc, type: 3}
+  click: 0
 --- !u!1 &521196260
 GameObject:
   m_ObjectHideFlags: 0
@@ -2487,6 +2509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 35d2f2fd3f776c049b977c31350a90df, type: 3}
+  click: 0
 --- !u!1 &559697111
 GameObject:
   m_ObjectHideFlags: 0
@@ -2670,6 +2693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 2bbe63494f558114190533b0a0b493d8, type: 3}
+  click: 0
 --- !u!1 &586138995
 GameObject:
   m_ObjectHideFlags: 0
@@ -2884,6 +2908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: f7fa8464c8653654aaf87a58b93dc9c4, type: 3}
+  click: 0
 --- !u!1 &687622743
 GameObject:
   m_ObjectHideFlags: 0
@@ -3067,6 +3092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 010d4494702b7e8439995cce6bc5651a, type: 3}
+  click: 0
 --- !u!1 &731709503
 GameObject:
   m_ObjectHideFlags: 0
@@ -3250,6 +3276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 82ebf501380d6ea4cb6d0deee0459e37, type: 3}
+  click: 0
 --- !u!1 &769334226
 GameObject:
   m_ObjectHideFlags: 0
@@ -3348,7 +3375,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 769334231}
         m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
-        m_MethodName: OnClickMTChange
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3361,6 +3388,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickObj
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Obj_BtnOff_1
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3421,6 +3460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: -1045213237, guid: ccf8fdba25f6a2544914c5728981a315, type: 3}
+  click: 0
 --- !u!1 &831453603
 GameObject:
   m_ObjectHideFlags: 0
@@ -3604,6 +3644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 8d6f4acbcd10e5045a6e82a9fffc3be4, type: 3}
+  click: 0
 --- !u!1 &852982854
 GameObject:
   m_ObjectHideFlags: 0
@@ -3974,6 +4015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: fb02fa46f30475948ac5f85d2677f1e7, type: 3}
+  click: 0
 --- !u!1 &870560664
 GameObject:
   m_ObjectHideFlags: 0
@@ -4208,6 +4250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: a898a3c05ed1d5a4985faf00e3ef5129, type: 3}
+  click: 0
 --- !u!1 &950574334
 GameObject:
   m_ObjectHideFlags: 0
@@ -4870,6 +4913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 2ce24a9a37ab1554780763124561ad85, type: 3}
+  click: 0
 --- !u!1 &1145469976
 GameObject:
   m_ObjectHideFlags: 0
@@ -5234,6 +5278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 0227d1b57edadcc4f830060e1015d16a, type: 3}
+  click: 0
 --- !u!1 &1191360684
 GameObject:
   m_ObjectHideFlags: 0
@@ -5702,6 +5747,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 5d161058d8804684288ef33397aa5289, type: 3}
+  click: 0
 --- !u!1 &1298387671
 GameObject:
   m_ObjectHideFlags: 0
@@ -5986,6 +6032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 2d7eb33599d3948459d32c67b678f0e0, type: 3}
+  click: 0
 --- !u!1 &1310642147
 GameObject:
   m_ObjectHideFlags: 0
@@ -6190,7 +6237,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1411304498}
         m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
-        m_MethodName: OnClickMTChange
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6203,6 +6250,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickObj
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Obj_BtnOff_0
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6263,6 +6322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 166921392, guid: e8fbaae054f10b040854ab4400f5d27b, type: 3}
+  click: 0
 --- !u!1 &1417733899
 GameObject:
   m_ObjectHideFlags: 0
@@ -6536,7 +6596,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1418580099}
         m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
-        m_MethodName: OnClickMTChange
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6549,6 +6609,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickObj
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Obj_BtnOff_0
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6609,6 +6681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 1905868565, guid: ea0ac9c75e34e324e980dda87dbfe7a8, type: 3}
+  click: 0
 --- !u!1 &1512052692
 GameObject:
   m_ObjectHideFlags: 0
@@ -6854,6 +6927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: cf06b8fecfbf5344888702ebbd2764e1, type: 3}
+  click: 0
 --- !u!1 &1575197258
 GameObject:
   m_ObjectHideFlags: 0
@@ -7081,6 +7155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 7a154aaa5448c934c818f6e849ad67c6, type: 3}
+  click: 0
 --- !u!1 &1596248438
 GameObject:
   m_ObjectHideFlags: 0
@@ -7179,7 +7254,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1596248443}
         m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
-        m_MethodName: OnClickMTChange
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7192,6 +7267,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickObj
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Obj_BtnOff_2
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7252,6 +7339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 625052316, guid: ffe2fdfe083c8b64fbb210b0917fc6cd, type: 3}
+  click: 0
 --- !u!1 &1647232705
 GameObject:
   m_ObjectHideFlags: 0
@@ -7435,6 +7523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: eed965259c1bf6b47a44a066d260cea3, type: 3}
+  click: 0
 --- !u!1 &1797471119
 GameObject:
   m_ObjectHideFlags: 0
@@ -7618,6 +7707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 53aa8bd53c9f51f418acf6c461d39c0d, type: 3}
+  click: 0
 --- !u!1 &1830737185
 GameObject:
   m_ObjectHideFlags: 0
@@ -7801,6 +7891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 66f2f1bd22a204343918368354481835, type: 3}
+  click: 0
 --- !u!1 &1836953047
 GameObject:
   m_ObjectHideFlags: 0
@@ -7899,7 +7990,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1836953052}
         m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
-        m_MethodName: OnClickMTChange
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7912,6 +8003,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickObj
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Obj_BtnOff_2
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7972,6 +8075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 764122270, guid: b0ee3a4040634be45b0e9c250b8ac782, type: 3}
+  click: 0
 --- !u!1 &1844746356
 GameObject:
   m_ObjectHideFlags: 0
@@ -8245,7 +8349,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1870672725}
         m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
-        m_MethodName: OnClickMTChange
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8258,6 +8362,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickObj
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Obj_BtnOff_3
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8318,6 +8434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 525702991, guid: 34d4a0d2998b311458d132af7e349192, type: 3}
+  click: 0
 --- !u!1 &1880613196
 GameObject:
   m_ObjectHideFlags: 0
@@ -8501,6 +8618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: 21300000, guid: 6fe0490789f08a74fa75d6ed1997f0b9, type: 3}
+  click: 0
 --- !u!1 &1910291262
 GameObject:
   m_ObjectHideFlags: 0
@@ -8705,7 +8823,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2022362827}
         m_TargetAssemblyTypeName: YJ_OutLine, Assembly-CSharp
-        m_MethodName: OnClickMTChange
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8718,6 +8836,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7875440487650122901}
         m_TargetAssemblyTypeName: YJ_Player_ChangeAvatar, Assembly-CSharp
         m_MethodName: OnClickObj
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 950574342}
+        m_TargetAssemblyTypeName: YJ_ButtonSetOff, Assembly-CSharp
+        m_MethodName: Obj_BtnOff_3
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8778,6 +8908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeImage: {fileID: -813874049, guid: ce8025a30153490429ee105ec8bab9cb, type: 3}
+  click: 0
 --- !u!1 &207945889854005760
 GameObject:
   m_ObjectHideFlags: 0
