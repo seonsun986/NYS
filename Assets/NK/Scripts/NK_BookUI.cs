@@ -30,6 +30,8 @@ public class NK_BookUI : MonoBehaviourPun
     List<AudioClip> audioClips;
     List<GameObject> bookObjects;
 
+    bool isAudio = false;
+
     //동화 조회할 아이디
     public string id;
 
@@ -202,7 +204,10 @@ public class NK_BookUI : MonoBehaviourPun
     public void GetBookAudio(string url, int index)
     {
         if (url == "")
+        {
+            isAudio = false;
             return;
+        }
         // 책 오디오 받아오기
         NK_HttpMediaRequester requester = new NK_HttpMediaRequester();
         requester.url = url;
@@ -211,10 +216,14 @@ public class NK_BookUI : MonoBehaviourPun
         requester.onCompleteDownloadImage = (handler, idx) =>
         {
             if (handler.downloadHandler.data.Length < 10)
+            {
+                isAudio = false;
                 return;
+            }
             // 책 오디오 클립 받아오기
             AudioClip clip = DownloadHandlerAudioClip.GetContent(handler);
             audioClips[idx] = clip;
+            isAudio = true;
         };
         YJ_HttpManager.instance.SendRequest(requester);
     }
@@ -312,16 +321,16 @@ public class NK_BookUI : MonoBehaviourPun
         }
 
         // 페이지마다 음성파일 재생
-/*        if (Resources.Load<AudioClip>("fairyTale1/Page" + pageNum) != null)
+        if (Resources.Load<AudioClip>("fairyTale1/Page" + pageNum) != null && !isAudio)
         {
             // 양치기 소년을 위한 스크립트!!!
             print("Page" + pageNum);
             photonView.RPC("RPCCreateAudio", RpcTarget.All, pageNum);
         }
         else
-        {*/
+        {
             photonView.RPC("RPCCreateTTS", RpcTarget.All, pageNum);
-        //}
+        }
     }
 
     IEnumerator PlayAnim(Animator animator, string anim)
