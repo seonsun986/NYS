@@ -1071,7 +1071,7 @@ public class SH_BtnManager : MonoBehaviour
             RealTTS();
         }
         // 녹음을 선택했을 경우
-        else if(ttsBtn.enabled == false)
+        else if(ttsBtn.interactable == false)
         {
             StopAllCoroutines();
             ttsSound.Stop();
@@ -1085,6 +1085,9 @@ public class SH_BtnManager : MonoBehaviour
                     ttsSound.Play();
                     ttsBtnImg.sprite = ttsNotPlayImage;
                     isTTS = true;
+
+                    StartCoroutine(IESoundLength());
+
                 }
             }
 
