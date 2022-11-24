@@ -35,7 +35,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     public GameObject nextBtn;
     public GameObject preBtn;
 
-    bool pass;
+    public bool pass;
     public GameObject bookWorld;            // 책 골랐을 때 나타나는 월드 오브젝트
 
     private void Awake()
@@ -459,7 +459,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             if (PassPopUpj.name.Contains("Pass"))
             {
                 PassPopUpj.SetActive(false);
-                nextBtn.SetActive(true);
+                //nextBtn.SetActive(true);
                 preBtn.SetActive(true);
             }
 
@@ -661,7 +661,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         GameObject closeBtn = EventSystem.current.currentSelectedGameObject;
         closeBtn.transform.parent.gameObject.SetActive(false);
 
-        nextBtn.SetActive(true);
+        //nextBtn.SetActive(true);
         preBtn.SetActive(true);
 
 
@@ -804,7 +804,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[11].GetComponent<AudioSource>().clip = audioClips[41];
                     pages[13].GetComponent<AudioSource>().clip = audioClips[43];
                     pages[15].GetComponent<AudioSource>().clip = audioClips[45];
-                    pages[17].GetComponent<AudioSource>().clip = audioClips[22];
+                    pages[17].GetComponent<AudioSource>().clip = audioClips[23];
                     pages[18].GetComponent<AudioSource>().clip = audioClips[25];
                     pages[20].GetComponent<AudioSource>().clip = audioClips[27];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[29];
@@ -842,7 +842,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[11].GetComponent<AudioSource>().clip = audioClips[49];
                     pages[13].GetComponent<AudioSource>().clip = audioClips[51];
                     pages[15].GetComponent<AudioSource>().clip = audioClips[45];
-                    pages[17].GetComponent<AudioSource>().clip = audioClips[22];
+                    pages[17].GetComponent<AudioSource>().clip = audioClips[23];
                     pages[18].GetComponent<AudioSource>().clip = audioClips[25];
                     pages[20].GetComponent<AudioSource>().clip = audioClips[27];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[29];
@@ -881,7 +881,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[13].GetComponent<AudioSource>().clip = audioClips[57];
                     pages[15].GetComponent<AudioSource>().clip = audioClips[45];
 
-                    pages[17].GetComponent<AudioSource>().clip = audioClips[22];
+                    pages[17].GetComponent<AudioSource>().clip = audioClips[23];
                     pages[18].GetComponent<AudioSource>().clip = audioClips[25];
                     pages[20].GetComponent<AudioSource>().clip = audioClips[27];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[29];
@@ -918,7 +918,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     pages[11].GetComponent<AudioSource>().clip = audioClips[61];
                     pages[13].GetComponent<AudioSource>().clip = audioClips[63];
                     pages[15].GetComponent<AudioSource>().clip = audioClips[45];
-                    pages[17].GetComponent<AudioSource>().clip = audioClips[22];
+                    pages[17].GetComponent<AudioSource>().clip = audioClips[23];
                     pages[18].GetComponent<AudioSource>().clip = audioClips[25];
                     pages[20].GetComponent<AudioSource>().clip = audioClips[27];
                     pages[21].GetComponent<AudioSource>().clip = audioClips[29];
