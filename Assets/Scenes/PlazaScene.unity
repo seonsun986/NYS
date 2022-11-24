@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 57885546}
   - component: {fileID: 57885548}
   - component: {fileID: 57885547}
+  - component: {fileID: 57885549}
   m_Layer: 5
   m_Name: AUIn
   m_TagString: Untagged
@@ -236,6 +237,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57885545}
   m_CullTransparentMesh: 1
+--- !u!114 &57885549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57885545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9254a88820baa5e44b6579ef802916ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &60448562
 GameObject:
   m_ObjectHideFlags: 0
@@ -8799,6 +8812,7 @@ GameObject:
   - component: {fileID: 886705360}
   - component: {fileID: 886705359}
   - component: {fileID: 886705358}
+  - component: {fileID: 886705361}
   m_Layer: 5
   m_Name: SettingSet
   m_TagString: Untagged
@@ -8870,6 +8884,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 528.49, y: 606.15}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &886705361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886705357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9254a88820baa5e44b6579ef802916ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &886763691
 GameObject:
   m_ObjectHideFlags: 0
@@ -8881,6 +8907,7 @@ GameObject:
   - component: {fileID: 886763692}
   - component: {fileID: 886763694}
   - component: {fileID: 886763693}
+  - component: {fileID: 886763695}
   m_Layer: 5
   m_Name: CreateRoomSet
   m_TagString: Untagged
@@ -8955,6 +8982,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 886763691}
   m_CullTransparentMesh: 1
+--- !u!114 &886763695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886763691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9254a88820baa5e44b6579ef802916ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &898857310
 GameObject:
   m_ObjectHideFlags: 0
@@ -11523,6 +11562,7 @@ MonoBehaviour:
   spawnPos: []
   sceneName: 
   canvasAudio: {fileID: 1905652760}
+  me: {fileID: 0}
   roomType:
   - {fileID: 3488923024735988868, guid: e6cbf5d60edf4bf4a96645105e8f5437, type: 3}
   - {fileID: 4916256311642431114, guid: 99f6197d4702ae0469e7972c65218f7b, type: 3}
@@ -11530,6 +11570,7 @@ MonoBehaviour:
   roomViewId: 0
   roomListViewId: 0
   roomList: {fileID: 6182030396495751339}
+  createBook: 0
   goingRoom: 
   goingRoomType: 0
 --- !u!4 &1130258644

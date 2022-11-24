@@ -52,27 +52,28 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
     public GameObject roomList;
     public RectTransform roomPos1;
     public RectTransform roomPos2;
-    private bool isHide = false;
-    public bool IsHide
+    private bool isShow = false;
+    public bool IsShow
     {
         get
         {
-            if (isHide)
-                isHide = false;
+            if (isShow)
+                isShow = false;
             else
-                isHide = true;
-            return isHide;
+                isShow = true;
+            return isShow;
         }
     }
 
     public void RoomList()
     {
-        if (!IsHide)
+        if (!IsShow)
         {
             roomList.GetComponent<RectTransform>().anchoredPosition = roomPos2.anchoredPosition;
         }
         else
         {
+            iTween.ScaleFrom(roomList, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.5f));
             roomList.GetComponent<RectTransform>().anchoredPosition = roomPos1.anchoredPosition;
         }
     }
