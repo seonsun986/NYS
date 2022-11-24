@@ -14,10 +14,11 @@ public class NK_ManageUI : MonoBehaviourPun
     {
         foreach (PhotonView child in GameManager.Instance.children)
         {
-            Text nickname = childListFactory.transform.GetChild(0).GetComponent<Text>();
+            Text nickname = childListFactory.transform.GetChild(1).GetComponent<Text>();
             nickname.text = child.Owner.NickName;
             GameObject childList = GameObject.Instantiate(childListFactory);
             childList.transform.parent = childrenListContent;
+            childList.transform.localScale = Vector3.one;
             childList.GetComponentInChildren<Button>().onClick.AddListener(ClickSingleMute);
             print(child.Owner.NickName);
         }
@@ -41,7 +42,7 @@ public class NK_ManageUI : MonoBehaviourPun
     public void ClickSingleMute()
     {
         Transform list = EventSystem.current.currentSelectedGameObject.transform.parent;
-        Text nickname = list.GetChild(0).GetComponent<Text>();
+        Text nickname = list.GetChild(1).GetComponent<Text>();
 
         foreach (PhotonView child in GameManager.Instance.children)
         {

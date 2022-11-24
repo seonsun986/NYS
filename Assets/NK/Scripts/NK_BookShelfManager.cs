@@ -428,7 +428,7 @@ public class NK_BookShelfManager : MonoBehaviour
         NK_BookCover.instance.taleInfo.inputImg = screenTex.EncodeToPNG();
 
         // 스크린샷 저장
-        //File.WriteAllBytes(fileName, screenTex.EncodeToPNG());
+        System.IO.File.WriteAllBytes(fileName, screenTex.EncodeToPNG());
         // 텍스쳐 메모리 해제
         Destroy(screenTex);
 
