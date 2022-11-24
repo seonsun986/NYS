@@ -17,7 +17,7 @@ public class YJ_ClickBTN : MonoBehaviour
         image = GetComponent<Image>();
         image.sprite = click_Off;
     }
-    // 음소거 여부에 따른 버튼 이미지 변경
+    // 버튼 이미지 변경
     public void ChangeImage()
     {
         if (image.sprite == click_Off)
@@ -31,4 +31,5 @@ public class YJ_ClickBTN : MonoBehaviour
             image.sprite = click_Off;
         }
     }
+
 }
