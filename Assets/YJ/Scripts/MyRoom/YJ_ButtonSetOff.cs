@@ -149,7 +149,7 @@ public class YJ_ButtonSetOff : MonoBehaviour
                 // 이전 버튼을 끄고
                 OBJButtons[objBtn_2].GetComponent<YJ_OutLine>().OnClickMTChange();
                 // 지금 버튼을 켠다
-                objBtn = i;
+                objBtn_2 = i;
                 OBJButtons[objBtn_2].GetComponent<YJ_OutLine>().OnClickMTChange();
             }
         }
@@ -185,7 +185,7 @@ public class YJ_ButtonSetOff : MonoBehaviour
                 // 이전 버튼을 끄고
                 OBJButtons[objBtn_3].GetComponent<YJ_OutLine>().OnClickMTChange();
                 // 지금 버튼을 켠다
-                objBtn = i;
+                objBtn_3 = i;
                 OBJButtons[objBtn_3].GetComponent<YJ_OutLine>().OnClickMTChange();
             }
         }
