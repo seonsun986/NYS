@@ -10,22 +10,24 @@ public class SH_FariyStart : MonoBehaviour
     public GameObject girlText;
     public GameObject broText;
     public GameObject nextBtn;
-    public GameObject preBtn;
+    //public GameObject preBtn;
     void Start()
     {
         
     }
 
     RaycastHit hitInfo;
-    float currentTime;
+    public float currentTime;
     public AudioClip startClip;
+    public int i = 0;
     void Update()
     {
         currentTime += Time.deltaTime;
-        if(currentTime> startClip.length -0.3f)
+        if(currentTime> startClip.length -0.3f && i <1)
         {
             iTween.ScaleTo(girl.gameObject, iTween.Hash("x", 0.4230038f, "y", 0.4230038f, "z", 0.4230038f, "time", 0.7f, "easeType", "easeInOutExpo"));
             iTween.ScaleTo(brother.gameObject, iTween.Hash("x", 0.4230038f, "y", 0.4230038f, "z", 0.4230038f, "time", 0.7f, "easeType", "easeInOutExpo"));
+            i++;
         }
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if(Physics.Raycast(ray, out hitInfo))
@@ -51,8 +53,8 @@ public class SH_FariyStart : MonoBehaviour
                     SH_ChildrenFairyManager.Instance.SelectSis();
                     gameObject.SetActive(false);
                     SH_ChildrenFairyManager.Instance.pages[0].SetActive(true);
-                    preBtn.SetActive(true);
-                    iTween.ScaleTo(preBtn, iTween.Hash("x", 1, "y", 1, "z", 1, "time", 1));
+                    //preBtn.SetActive(true);
+                    //iTween.ScaleTo(preBtn, iTween.Hash("x", 1, "y", 1, "z", 1, "time", 1));
                     //nextBtn.SetActive(true);
                 }
             }
@@ -77,7 +79,7 @@ public class SH_FariyStart : MonoBehaviour
                     SH_ChildrenFairyManager.Instance.SelectBro();
                     gameObject.SetActive(false);
                     SH_ChildrenFairyManager.Instance.pages[0].SetActive(true);
-                    preBtn.SetActive(true);
+                    //preBtn.SetActive(true);
                     //nextBtn.SetActive(true);
                 }
             }

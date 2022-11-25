@@ -6,6 +6,7 @@ public class SH_Page22 : MonoBehaviour
 {
     public GameObject nextBtn;
     public GameObject endBtn;
+    public GameObject reBtn;
     float currentTime;
     public Animation mask;
     public GameObject panel1;
@@ -77,7 +78,9 @@ public class SH_Page22 : MonoBehaviour
         if(currentTime >15.5f && q<1)
         {
             endBtn.SetActive(true);
-            iTween.ScaleTo(endBtn, iTween.Hash("x", 2, "y", 2, "z", 2, "time", 0.7f ));
+            reBtn.SetActive(true);
+            iTween.ScaleTo(endBtn, iTween.Hash("x", 1.8f, "y", 1.8f, "z", 1.8f, "time", 1.5f ));
+            iTween.ScaleTo(reBtn, iTween.Hash("x", 1.8f, "y", 1.8f, "z", 1.8f, "time", 1.5f ));
             q++;
         }
     }
@@ -93,4 +96,6 @@ public class SH_Page22 : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         iTween.MoveTo(boy, iTween.Hash("x", -20, "time", 4));
     }
+
+
 }
