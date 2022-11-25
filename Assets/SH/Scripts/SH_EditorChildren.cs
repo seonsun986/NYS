@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SH_EditorChildren : MonoBehaviour
 {
@@ -29,6 +30,9 @@ public class SH_EditorChildren : MonoBehaviour
 
     public GameObject bg;
     public GameObject selectBook;
+    public Sprite peas;
+    public Sprite originBGImg;
+    public Image backGroundImg;
     // 난 콩은 안먹어 책 선택 시
     public void SelectBook1()
     {
@@ -38,15 +42,14 @@ public class SH_EditorChildren : MonoBehaviour
             books[i].SetActive(false);
             //bookBG[i].SetActive(false);
         }
+        // 배경 바꾸기
+        backGroundImg.sprite = peas;
         //iTween.ScaleTo(bg, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.4f));
         bg.transform.localScale = new Vector3(0, 0, 0);
         iTween.ScaleTo(selectBook, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.4f));
         // 남자애 나오기
         iTween.MoveTo(boy, iTween.Hash("x", 0, "y", -8, "z", -1.6f, "easeType", "easeOutQuad", "time", 0.5f));
         StartCoroutine(boySound());
-        // O, X 버튼 키기
-        //OBtn.SetActive(true);
-        //XBtn.SetActive(true);
     }
 
 
@@ -91,6 +94,8 @@ public class SH_EditorChildren : MonoBehaviour
         backBtn.SetActive(true);
         preBtn.SetActive(true);
         nextBtn.SetActive(true);
+        // 배경 바꾸기
+        backGroundImg.sprite = originBGImg;
     }
 
     public Transform BoyRigging;
