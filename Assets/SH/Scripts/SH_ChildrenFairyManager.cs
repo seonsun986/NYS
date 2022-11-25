@@ -459,6 +459,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             if (PassPopUpj.name.Contains("Pass"))
             {
                 PassPopUpj.SetActive(false);
+                realBall.SetActive(false);
                 //nextBtn.SetActive(true);
                 //preBtn.SetActive(true);
             }
@@ -495,6 +496,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         currentPage -= 1;
     }
     RaycastHit passHit;
+    public GameObject realBall;
     public void OnPassPopUp()
     {
 
@@ -548,6 +550,8 @@ public class SH_ChildrenFairyManager : MonoBehaviour
 
                         selectObj.SetActive(true);
                         iTween.ScaleTo(selectObj, iTween.Hash("x", 6, "y", 6, "z", 6, "time", 0.5f));
+                        realBall.SetActive(true);
+                        iTween.ScaleTo(realBall, iTween.Hash("x", 0.1027486f, "y", 0.1027486f, "z", 0.1027486f, "time", 0.5f));
                     }
                 }
             }

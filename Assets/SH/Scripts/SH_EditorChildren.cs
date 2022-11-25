@@ -27,7 +27,8 @@ public class SH_EditorChildren : MonoBehaviour
       
     }
 
-
+    public GameObject bg;
+    public GameObject selectBook;
     // 난 콩은 안먹어 책 선택 시
     public void SelectBook1()
     {
@@ -37,6 +38,9 @@ public class SH_EditorChildren : MonoBehaviour
             books[i].SetActive(false);
             //bookBG[i].SetActive(false);
         }
+        //iTween.ScaleTo(bg, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.4f));
+        bg.transform.localScale = new Vector3(0, 0, 0);
+        iTween.ScaleTo(selectBook, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.4f));
         // 남자애 나오기
         iTween.MoveTo(boy, iTween.Hash("x", 0, "y", -8, "z", -1.6f, "easeType", "easeOutQuad", "time", 0.5f));
         StartCoroutine(boySound());
@@ -79,6 +83,8 @@ public class SH_EditorChildren : MonoBehaviour
         // O, X 버튼 끄기
         iTween.ScaleTo(OBtn, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.3f));
         iTween.ScaleTo(XBtn, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.3f));
+        iTween.ScaleTo(bg, iTween.Hash("x", 1, "y", 1, "z", 1, "time", 0.4f));
+        iTween.ScaleTo(selectBook, iTween.Hash("x", 1, "y", 1, "z", 1, "time", 0.4f));
         boy.GetComponent<AudioSource>().enabled = false;
         //OBtn.SetActive(false);
         //XBtn.SetActive(false);
