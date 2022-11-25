@@ -15,10 +15,12 @@ public class NK_FairyTale : MonoBehaviour
     public List<Transform> objs;
     public GameObject stage;
     public AudioSource bgSound;
+    public GameObject popupBG;
 
     // Start is called before the first frame update
     void OnEnable()
     {
+        popupBG.SetActive(false);
         book.gameObject.SetActive(true);
         NK_UIController.instance.ClickControl(true);
 
