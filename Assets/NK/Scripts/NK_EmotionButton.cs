@@ -8,7 +8,7 @@ public class NK_EmotionButton : MonoBehaviour
     void OnEnable()
     {
         // 크기 커지면서 보이도록
-        iTween.ScaleFrom(gameObject, iTween.Hash("x", 0, "y", 0, "z", 0, "easeType", "easeInOutBack"));
+        iTween.ScaleFrom(gameObject, iTween.Hash("x", 0, "y", 0, "z", 0, "easeType", "easeOutExpo", "time", 0.2f));
     }
 
     // Update is called once per frame
