@@ -168,7 +168,7 @@ public class SH_EditorChildren : MonoBehaviour
 
     public void Book1ScaleUp()
     {
-        iTween.ScaleTo(books[0], iTween.Hash("x", 1.2f, "y", 1.2f, "z", 1.2f, "time", 0.3f));
+        iTween.ScaleTo(books[0], iTween.Hash("x", 1.1f, "y", 1.1f, "z", 1.1f, "time", 0.3f));
     }
 
     public void Book1ScaleDown()
@@ -179,7 +179,7 @@ public class SH_EditorChildren : MonoBehaviour
 
     public void Book2ScaleUp()
     {
-        iTween.ScaleTo(books[1], iTween.Hash("x", 1.2f, "y", 1.2f, "z", 1.2f, "time", 0.3f));
+        iTween.ScaleTo(books[1], iTween.Hash("x", 1.1f, "y", 1.1f, "z", 1.1f, "time", 0.3f));
     }
 
     public void Book2ScaleDown()
@@ -191,8 +191,7 @@ public class SH_EditorChildren : MonoBehaviour
 
     public void Book3ScaleUp()
     {
-        iTween.ScaleTo(books[2], iTween.Hash("x", 1.2f, "y", 1.2f, "z", 1.2f, "time", 0.3f));
-
+        iTween.ScaleTo(books[2], iTween.Hash("x", 1.1f, "y", 1.1f, "z", 1.1f, "time", 0.3f));
     }
 
     public void Book3ScaleDown()
@@ -202,7 +201,7 @@ public class SH_EditorChildren : MonoBehaviour
 
     public void Book4ScaleUp()
     {
-        iTween.ScaleTo(books[3], iTween.Hash("x", 1.2f, "y", 1.2f, "z", 1.2f, "time", 0.3f));
+        iTween.ScaleTo(books[3], iTween.Hash("x", 1.1f, "y", 1.1f, "z", 1.1f, "time", 0.3f));
 
     }
 
@@ -213,7 +212,7 @@ public class SH_EditorChildren : MonoBehaviour
 
     public void Book5ScaleUp()
     {
-        iTween.ScaleTo(books[4], iTween.Hash("x", 1.2f, "y", 1.2f, "z", 1.2f, "time", 0.3f));
+        iTween.ScaleTo(books[4], iTween.Hash("x", 1.1f, "y", 1.1f, "z", 1.1f, "time", 0.3f));
 
     }
 
@@ -232,10 +231,10 @@ public class SH_EditorChildren : MonoBehaviour
         //iTween.MoveTo(contentPos, iTween.Hash("x", contentPos.GetComponent<RectTransform>().anchoredPosition.x + change, "time", 0.5f));
 
         float x = contentPos.GetComponent<RectTransform>().anchoredPosition.x;
-        if (x + change < -1030)
+        if (x + change < -900)
         {
             iTween.ValueTo(gameObject, iTween.Hash(
-          "from", x, "to", -960, "time", 0.3f,
+          "from", x, "to", -840, "time", 0.3f,
           "onupdatetarget", gameObject, "onupdate", "그냥러프써"));
         }
         else
