@@ -345,10 +345,10 @@ public class NK_BookShelfManager : MonoBehaviour
         //iTween.MoveTo(contentPos, iTween.Hash("x", contentPos.GetComponent<RectTransform>().anchoredPosition.x + change, "time", 0.5f));
 
         float x = contentPos.GetComponent<RectTransform>().anchoredPosition.x;
-        if (x + change < -1030)
+        if (x + change < -900)
         {
             iTween.ValueTo(gameObject, iTween.Hash(
-          "from", x, "to", -960, "time", 0.3f,
+          "from", x, "to", -840, "time", 0.3f,
           "onupdatetarget", gameObject, "onupdate", "그냥러프써"));
         }
         else
