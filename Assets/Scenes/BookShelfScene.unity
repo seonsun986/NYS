@@ -310,6 +310,7 @@ MonoBehaviour:
   selectedBook: {fileID: 0}
   nextBtn: {fileID: 1484448499}
   prevBtn: {fileID: 945973306}
+  contentPos: {fileID: 0}
   loadingBookContent: {fileID: 1082979613}
   savePopup: {fileID: 1672983972}
   deletePopup: {fileID: 1070835756}
@@ -11503,8 +11504,8 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 17487085}
         m_TargetAssemblyTypeName: NK_BookShelfManager, Assembly-CSharp
-        m_MethodName: ClickBeforeBook
-        m_Mode: 1
+        m_MethodName: NextBtn
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -16393,8 +16394,8 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 17487085}
         m_TargetAssemblyTypeName: NK_BookShelfManager, Assembly-CSharp
-        m_MethodName: ClickNextBook
-        m_Mode: 1
+        m_MethodName: NextBtn
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
