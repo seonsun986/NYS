@@ -19,8 +19,7 @@ public class YJ_AudioManager : MonoBehaviour
     public AudioClip createCharacterBGM;
     public AudioClip createRoomBGM;
     public AudioClip fairyBGM;
-    public AudioClip t_bookShelfBGM;
-    public AudioClip c_bookShelfBGM; //아직없음
+    public AudioClip bookShelfBGM;
 
 
     public bool bgmOnOff = true;
@@ -103,24 +102,23 @@ public class YJ_AudioManager : MonoBehaviour
             audioSet.Play();
         }
 
-        else if (SceneManager.GetActiveScene().name == "BookShelfScene" && main == null || SceneManager.GetActiveScene().name == "EditorChildren" && main == null)
+        else if (SceneManager.GetActiveScene().name == "BookShelfScene" && main == null || SceneManager.GetActiveScene().name == "EditorChildren" && main == null || SceneManager.GetActiveScene().name == "EditorScene" && main == null)
         {
             main = Camera.main;
             canvas = GameObject.Find("Canvas");
             audioSet = main.GetComponent<AudioSource>();
-            audioSet.clip = t_bookShelfBGM;
+            audioSet.clip = bookShelfBGM;
             audioSet.Play();
         }
 
-        else if (SceneManager.GetActiveScene().name == "EditorScene" && main == null)
-        {
-            AudioSource bgmsound = GameObject.Find("Sound").transform.GetChild(0).gameObject.GetComponent<AudioSource>();
-            if (!bgmOnOff)
-            {
-                bgmsound.volume = 0;
-            }
-            canvas = GameObject.Find("Canvas");
-        }
+        //else if (SceneManager.GetActiveScene().name == "EditorScene" && main == null)
+        //{
+        //    main = Camera.main;
+        //    canvas = GameObject.Find("Canvas");
+        //    audioSet = main.GetComponent<AudioSource>();
+        //    audioSet.clip = bookShelfBGM;
+        //    audioSet.Play();
+        //}
 
 
         if (main != null && SceneManager.GetActiveScene().name != "ConnectionScene")
