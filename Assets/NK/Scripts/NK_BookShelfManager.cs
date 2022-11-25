@@ -53,7 +53,7 @@ public class NK_BookShelfManager : MonoBehaviour
 
         // 로딩 UI 초기화
         loadingBookContent.SetActive(false);
-        loadingBookContent.transform.GetChild(1).GetComponent<Image>().fillAmount = 0f;
+        loadingBookContent.transform.GetChild(2).GetComponent<Image>().fillAmount = 0f;
 
         path = Application.dataPath + "/BookCover/";
     }
@@ -407,7 +407,7 @@ public class NK_BookShelfManager : MonoBehaviour
         while (!asyncOperation.isDone)
         {
             yield return null;
-            loadingBookContent.transform.GetChild(1).GetComponent<Image>().fillAmount += asyncOperation.progress;
+            loadingBookContent.transform.GetChild(2).GetComponent<Image>().fillAmount += asyncOperation.progress;
         }
     }
 

@@ -57,7 +57,7 @@ public class YJ_UIManager_MyRoom : MonoBehaviour
         while (!asyncOperation.isDone)
         {
             yield return null;
-            loading.transform.GetChild(1).GetComponent<Image>().fillAmount += asyncOperation.progress;
+            loading.transform.GetChild(2).GetComponent<Image>().fillAmount += asyncOperation.progress;
         }
     }
     #endregion
