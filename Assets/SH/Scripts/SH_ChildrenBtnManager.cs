@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SH_ChildrenBtnManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class SH_ChildrenBtnManager : MonoBehaviour
     public float currentTime;
     int currentPage;
     public GameObject nextBtn;
+    int i = 0;
     //public List<float> nextBtnShowTime = new List<float>();
     void Update()
     {
@@ -21,9 +23,10 @@ public class SH_ChildrenBtnManager : MonoBehaviour
         if (SH_ChildrenFairyManager.Instance.currentPage == 3 || SH_ChildrenFairyManager.Instance.currentPage == 5 || SH_ChildrenFairyManager.Instance.currentPage == 9 || SH_ChildrenFairyManager.Instance.currentPage == 14) return;
         print(SH_ChildrenFairyManager.Instance.pages[SH_ChildrenFairyManager.Instance.currentPage].GetComponent<AudioSource>().clip.length);
         currentTime += Time.deltaTime;
-        if(currentTime > SH_ChildrenFairyManager.Instance.pages[SH_ChildrenFairyManager.Instance.currentPage].GetComponent<AudioSource>().clip.length)
+        if(currentTime > SH_ChildrenFairyManager.Instance.pages[SH_ChildrenFairyManager.Instance.currentPage].GetComponent<AudioSource>().clip.length && i<1)
         {
-            nextBtn.SetActive(true);   
+            nextBtn.SetActive(true);
+            i++;
         }
     }
 
@@ -32,5 +35,12 @@ public class SH_ChildrenBtnManager : MonoBehaviour
         currentTime = 0;
         nextBtn.transform.localScale = new Vector3(0, 0, 0);
         nextBtn.SetActive(false);
+        i = 0;
     }
+
+    public void ResetBtn()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    
 }

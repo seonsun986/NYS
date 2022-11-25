@@ -33,7 +33,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     public int currentPage;
 
     public GameObject nextBtn;
-    public GameObject preBtn;
+    //public GameObject preBtn;
 
     public bool pass;
     public GameObject bookWorld;            // 책 골랐을 때 나타나는 월드 오브젝트
@@ -460,7 +460,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             {
                 PassPopUpj.SetActive(false);
                 //nextBtn.SetActive(true);
-                preBtn.SetActive(true);
+                //preBtn.SetActive(true);
             }
 
         }
@@ -501,7 +501,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         PassPopUp.SetActive(true);
         // 패스팝업 떴을때는 꺼주기
         nextBtn.SetActive(false);
-        preBtn.SetActive(false);
+        //preBtn.SetActive(false);
         pass = true;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -565,7 +565,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
 
         // 패스팝업 떴을때는 꺼주기
         nextBtn.SetActive(false);
-        preBtn.SetActive(false);
+        //preBtn.SetActive(false);
 
         // 해당 FailBtn과 관련된 애니메이션 재생하자!
         // 그러러면 일단 내가 선택한 버튼이 뭔지 알아야한다 
@@ -662,7 +662,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         closeBtn.transform.parent.gameObject.SetActive(false);
 
         //nextBtn.SetActive(true);
-        preBtn.SetActive(true);
+        //preBtn.SetActive(true);
 
 
         // 다시 현재 페이지를 켜준다
