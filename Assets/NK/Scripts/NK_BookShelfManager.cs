@@ -337,6 +337,38 @@ public class NK_BookShelfManager : MonoBehaviour
         //booksParent.GetComponent<RectTransform>().anchoredPosition = Vector3.Lerp(pos, pos - new Vector2(400, 0), 0.05f);
     }
 
+    public GameObject contentPos;
+    public void NextBtn(float change)
+    {
+        //print(contentPos.GetComponent<RectTransform>().sizeDelta.x);
+        //print(contentPos.GetComponent<RectTransform>().anchoredPosition.x + change);
+        //iTween.MoveTo(contentPos, iTween.Hash("x", contentPos.GetComponent<RectTransform>().anchoredPosition.x + change, "time", 0.5f));
+
+        float x = contentPos.GetComponent<RectTransform>().anchoredPosition.x;
+        if (x + change < -1030)
+        {
+            iTween.ValueTo(gameObject, iTween.Hash(
+          "from", x, "to", -960, "time", 0.3f,
+          "onupdatetarget", gameObject, "onupdate", "그냥러프써"));
+        }
+        else
+        {
+            iTween.ValueTo(gameObject, iTween.Hash(
+            "from", x, "to", x + change, "time", 0.3f,
+            "onupdatetarget", gameObject, "onupdate", "그냥러프써"));
+        }
+
+    }
+
+    void 그냥러프써(float v)
+    {
+        RectTransform rt = contentPos.GetComponent<RectTransform>();
+        Vector2 v2 = rt.anchoredPosition;
+        v2.x = v;
+        rt.anchoredPosition = v2;
+
+    }
+
     public void UpdateBookCover()
     {
         // 책 표지 수정
