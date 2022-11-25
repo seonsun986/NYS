@@ -138,4 +138,13 @@ public class YJ_UIManager_MyRoom : MonoBehaviour
         }
     }
     #endregion
+
+    #region 게임종료버튼
+
+    public void GameExit()
+    {
+        Application.Quit();
+    }
+
+    #endregion
 }

@@ -97,8 +97,6 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
     }
     #endregion
 
-
-
     #region 방만들기
     // 방만들기 버튼 누르기
     public GameObject createRoomSet;
