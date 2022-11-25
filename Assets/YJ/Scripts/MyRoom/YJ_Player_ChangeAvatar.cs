@@ -61,7 +61,7 @@ public class YJ_Player_ChangeAvatar : YJ_AvatarSet
         mt = avt.transform.GetChild(1).transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>();
         avt.SetActive(true);
         avatarNum = i;
-        setmt = 8;
+        setmt = 0;
 
         SetItemParent();
         bagId = hatId = fishId = glassId = 8;
