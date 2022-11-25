@@ -474,4 +474,35 @@ public class NK_BookUI : MonoBehaviourPun
         NK_UIController.instance.ClickControl(false);
     }
     #endregion
+
+    public void NextBtn(float change)
+    {
+        //print(contentPos.GetComponent<RectTransform>().sizeDelta.x);
+        //print(contentPos.GetComponent<RectTransform>().anchoredPosition.x + change);
+        //iTween.MoveTo(contentPos, iTween.Hash("x", contentPos.GetComponent<RectTransform>().anchoredPosition.x + change, "time", 0.5f));
+
+        float x = booksParent.GetComponent<RectTransform>().anchoredPosition.x;
+/*        if (x + change < -1030)
+        {
+            iTween.ValueTo(gameObject, iTween.Hash(
+          "from", x, "to", -960, "time", 0.3f,
+          "onupdatetarget", gameObject, "onupdate", "그냥러프써"));
+        }
+        else
+        {*/
+            iTween.ValueTo(gameObject, iTween.Hash(
+            "from", x, "to", x + change, "time", 0.3f,
+            "onupdatetarget", gameObject, "onupdate", "그냥러프써"));
+        //}
+
+    }
+
+    void 그냥러프써(float v)
+    {
+        RectTransform rt = booksParent.GetComponent<RectTransform>();
+        Vector2 v2 = rt.anchoredPosition;
+        v2.x = v;
+        rt.anchoredPosition = v2;
+
+    }
 }

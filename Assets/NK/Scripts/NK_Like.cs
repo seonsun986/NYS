@@ -45,7 +45,7 @@ public class NK_Like : MonoBehaviourPun
             photonView.RPC("RPCClickLike", RpcTarget.All);
             // 하트 애니메이션 뜨기
             GameObject child = GameManager.Instance.photonView.gameObject;
-            PhotonNetwork.Instantiate("NK/" + likeFactory.name, child.transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity);
+            PhotonNetwork.Instantiate("NK/" + likeFactory.name, child.transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
         }
     }
 
