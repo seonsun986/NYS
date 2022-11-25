@@ -10,6 +10,7 @@ public class YJ_HttpManager : MonoBehaviour
 {
     public static YJ_HttpManager instance;
     public GameObject loginFail;
+    public GameObject popupBG;
 
     private void Awake()
     {
@@ -109,6 +110,7 @@ public class YJ_HttpManager : MonoBehaviour
 
             if (SceneManager.GetActiveScene().name == "ConnectionScene")
             {
+                popupBG.SetActive(true);
                 loginFail.SetActive(true);
             }
         }

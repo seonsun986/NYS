@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class YJ_UIManager_MyRoom : MonoBehaviour
 {
+    public GameObject popupBG;
     public GameObject T_BookBtn;
     public GameObject T_BookBtn2;
     public GameObject C_BookBtn;
@@ -81,6 +82,7 @@ public class YJ_UIManager_MyRoom : MonoBehaviour
 
     public void Setting()
     {
+        popupBG.SetActive(!settingSet.activeSelf);
         settingSet.SetActive(!settingSet.activeSelf);
         bgmOnOff.isOn = YJ_AudioManager.instance.bgmOnOff;
         effectOnOff.isOn = YJ_AudioManager.instance.effectOnOff;

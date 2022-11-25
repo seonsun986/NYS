@@ -98,12 +98,13 @@ public class YJ_UIManager : MonoBehaviour
     }
 
 
-
+    public GameObject popupBG;
     // 잘못 입력했을때 창 끄기
     public void ButtonClose()
     {
         login_ID.text = "";
         login_PW.text = "";
+        popupBG.SetActive(!loginFail.activeSelf);
         loginFail.SetActive(!loginFail.activeSelf);
     }
 
