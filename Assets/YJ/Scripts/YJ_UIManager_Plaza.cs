@@ -10,6 +10,8 @@ using Photon.Pun;
 
 public class YJ_UIManager_Plaza : MonoBehaviourPun
 {
+    // 팝업 까만 배경
+    public GameObject popupBG;
 
     // 닉네임
     public Text nickName;
@@ -42,6 +44,7 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
 
     public void Setting()
     {
+        popupBG.SetActive(!settingSet.activeSelf);
         settingSet.SetActive(!settingSet.activeSelf);
         bgmOnOff.isOn = YJ_AudioManager.instance.bgmOnOff;
         effectOnOff.isOn = YJ_AudioManager.instance.effectOnOff;
@@ -69,10 +72,12 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
     {
         if (!IsShow)
         {
+            popupBG.SetActive(false);
             roomList.GetComponent<RectTransform>().anchoredPosition = roomPos2.anchoredPosition;
         }
         else
         {
+            popupBG.SetActive(true);
             iTween.ScaleFrom(roomList, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.5f));
             roomList.GetComponent<RectTransform>().anchoredPosition = roomPos1.anchoredPosition;
         }
@@ -83,6 +88,7 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
     public GameObject auIn;
     public void AUIn()
     {
+        popupBG.SetActive(!auIn.activeSelf);
         auIn.SetActive(!auIn.activeSelf);
     }
 
@@ -103,6 +109,7 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
     int createCount = 0;
     public void CreateRoomBT()
     {
+        popupBG.SetActive(!createRoomSet.activeSelf);
         createRoomSet.SetActive(!createRoomSet.activeSelf);
     }
 
@@ -125,6 +132,7 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
 
         print("방이름 : " + YJ_DataManager.CreateRoomInfo.roomName + " 비밀번호 : " + YJ_DataManager.CreateRoomInfo.roomPw + " 인원 : " + YJ_DataManager.CreateRoomInfo.roomNumber + " 방 타입 : " + YJ_DataManager.CreateRoomInfo.roomType);
 
+        popupBG.SetActive(false);
         createRoomSet.SetActive(false);
     }
 

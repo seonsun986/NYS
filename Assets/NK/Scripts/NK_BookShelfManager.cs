@@ -231,6 +231,7 @@ public class NK_BookShelfManager : MonoBehaviour
         requester.onComplete = (handler) =>
         {
             print("µø»≠ ªË¡¶µ ! \n" + handler.downloadHandler.text);
+            popupBG.SetActive(false);
             deletePopup.SetActive(false);
             ExitDetail();
         };
@@ -412,13 +413,16 @@ public class NK_BookShelfManager : MonoBehaviour
 
     public GameObject savePopup;
     public GameObject deletePopup;
+    public GameObject popupBG;
     public void ClickSave()
     {
+        popupBG.SetActive(true);
         savePopup.SetActive(true);
     }
 
     public void ClickDeleteBook()
     {
+        popupBG.SetActive(true);
         deletePopup.SetActive(true);
     }
 
@@ -472,12 +476,14 @@ public class NK_BookShelfManager : MonoBehaviour
 
     public void ClickYes()
     {
+        popupBG.SetActive(false);
         savePopup.SetActive(false);
         SaveBookCover();
     }
 
     public void ClickNo()
     {
+        popupBG.SetActive(false);
         savePopup.SetActive(false);
         deletePopup.SetActive(false);
     }
