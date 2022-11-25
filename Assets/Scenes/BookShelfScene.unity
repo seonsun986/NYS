@@ -456,6 +456,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 367391137}
+        m_TargetAssemblyTypeName: YJ_ButtonClickSound, Assembly-CSharp
+        m_MethodName: OnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 367391136}
         m_TargetAssemblyTypeName: NK_TabController, Assembly-CSharp
         m_MethodName: SelectedButton
@@ -5196,6 +5208,7 @@ GameObject:
   - component: {fileID: 367391133}
   - component: {fileID: 367391135}
   - component: {fileID: 367391136}
+  - component: {fileID: 367391137}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5443,6 +5456,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5529ce42b667af14c915c680cfff586f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &367391137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367391128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfee43c267e53f149910c111917ca6a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startButtonSound: {fileID: 0}
+  buttonSound: {fileID: 8300000, guid: 24e366a47a3018f4882a904d7850c333, type: 3}
 --- !u!114 &371830950 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8141491787774129053, guid: 4b5abdb346c760a4a98b2e96b3965842, type: 3}
@@ -9813,6 +9840,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 367391137}
+        m_TargetAssemblyTypeName: YJ_ButtonClickSound, Assembly-CSharp
+        m_MethodName: OnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 17487085}
         m_TargetAssemblyTypeName: NK_BookShelfManager, Assembly-CSharp
         m_MethodName: ExitBookShelf
@@ -10708,7 +10747,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 860088206}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 367391137}
+        m_TargetAssemblyTypeName: YJ_ButtonClickSound, Assembly-CSharp
+        m_MethodName: OnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &860088206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11438,6 +11489,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 367391137}
+        m_TargetAssemblyTypeName: YJ_ButtonClickSound, Assembly-CSharp
+        m_MethodName: OnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 17487085}
         m_TargetAssemblyTypeName: NK_BookShelfManager, Assembly-CSharp
         m_MethodName: ClickBeforeBook
@@ -14319,7 +14382,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1324587919}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 367391137}
+        m_TargetAssemblyTypeName: YJ_ButtonClickSound, Assembly-CSharp
+        m_MethodName: OnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1324587919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16304,6 +16379,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 367391137}
+        m_TargetAssemblyTypeName: YJ_ButtonClickSound, Assembly-CSharp
+        m_MethodName: OnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 17487085}
         m_TargetAssemblyTypeName: NK_BookShelfManager, Assembly-CSharp
         m_MethodName: ClickNextBook
