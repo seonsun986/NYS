@@ -33,6 +33,7 @@ public class YJ_ButtonSetOff : MonoBehaviour
     {
         switch (avatar)
         {
+            // 아바타에 따라 버튼 세팅
             case 0:
                 catMtBtn = YJ_Player_ChangeAvatar.instance.setmt;
                 cat_MTButtons[catMtBtn].GetComponent<YJ_OutLine>().OnClickMTChange();
@@ -50,48 +51,50 @@ public class YJ_ButtonSetOff : MonoBehaviour
 
     public void SetObjBtn()
     {
+        // 초기화
+        if (objBtn_1 < 9)
+        {
+            OBJButtons[objBtn_1].GetComponent<YJ_OutLine>().OnClickMTChange();
+            objBtn_1 = 9;
+        }
+        // 아바타 세팅에 가방 있으면
         if (YJ_Player_ChangeAvatar.instance.bagId < 8)
         {
             objBtn_1 = YJ_Player_ChangeAvatar.instance.bagId;
             OBJButtons[objBtn_1].GetComponent<YJ_OutLine>().OnClickMTChange();
         }
-        else if (objBtn_1 < 9)
-        {
-            OBJButtons[objBtn_1].GetComponent<YJ_OutLine>().OnClickMTChange();
-            objBtn_1 = 9;
-        }
 
+        if (objBtn_2 < 9)
+        {
+            OBJButtons[objBtn_2].GetComponent<YJ_OutLine>().OnClickMTChange();
+            objBtn_2 = 9;
+        }
         if (YJ_Player_ChangeAvatar.instance.fishId < 8)
         {
             objBtn_2 = YJ_Player_ChangeAvatar.instance.fishId;
             OBJButtons[objBtn_2].GetComponent<YJ_OutLine>().OnClickMTChange();
         }
-        else if(objBtn_2 < 9)
-        {
-            OBJButtons[objBtn_2].GetComponent<YJ_OutLine>().OnClickMTChange();
-            objBtn_2 = 9;
-        }
 
+        if (objBtn_3 < 9)
+        {
+            OBJButtons[objBtn_3].GetComponent<YJ_OutLine>().OnClickMTChange();
+            objBtn_3 = 9;
+        }
         if (YJ_Player_ChangeAvatar.instance.hatId < 8)
         {
             objBtn_3 = YJ_Player_ChangeAvatar.instance.hatId;
             OBJButtons[objBtn_3].GetComponent<YJ_OutLine>().OnClickMTChange();
         }
-        else if (objBtn_3 < 9)
-        {
-            OBJButtons[objBtn_3].GetComponent<YJ_OutLine>().OnClickMTChange();
-            objBtn_3 = 9;
-        }
 
+        if (objBtn < 9)
+        {
+            OBJButtons[objBtn].GetComponent<YJ_OutLine>().OnClickMTChange();
+            objBtn = 9;
+        }
         if (YJ_Player_ChangeAvatar.instance.glassId < 8)
         {
             objBtn = YJ_Player_ChangeAvatar.instance.glassId;
             OBJButtons[objBtn].GetComponent<YJ_OutLine>().OnClickMTChange();
-        }
-        else if (objBtn < 9)
-        {
-            OBJButtons[objBtn].GetComponent<YJ_OutLine>().OnClickMTChange();
-            objBtn = 9;
         }
     }
 
