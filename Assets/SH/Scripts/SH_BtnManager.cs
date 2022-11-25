@@ -677,6 +677,10 @@ public class SH_BtnManager : MonoBehaviour
 
     public void SelectSound2()
     {
+        if(Camera.main.GetComponent<AudioSource>().clip != null)
+        {
+            Camera.main.GetComponent<AudioSource>().Stop();
+        }
         // 클릭한 버튼 이름
         GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
         // 클릭한 버튼의 이미지
