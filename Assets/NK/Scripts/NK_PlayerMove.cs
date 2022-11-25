@@ -173,7 +173,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                         {
                             if (raycastHit.transform.gameObject.tag == "Room")
                             {
-                                GameObject.Find("Canvas").transform.GetChild(13).gameObject.SetActive(true);
+                                GameObject.Find("Canvas").transform.GetChild(15).gameObject.SetActive(true);
                                 // 방정보 가져오기
                                 YJ_DataManager.instance.goingRoomName = raycastHit.transform.gameObject.GetComponent<YJ_RoomTrigger>().roomName;
                                 YJ_DataManager.instance.goingRoomType = raycastHit.transform.gameObject.GetComponent<YJ_RoomTrigger>().roomType;
