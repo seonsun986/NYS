@@ -529,6 +529,9 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                         {
                             selectObj.GetComponent<AudioSource>().clip = audioClips[73];
                         }
+
+                        selectObj.SetActive(true);
+                        iTween.ScaleTo(selectObj, iTween.Hash("x", 11.2f, "y", 11.2f, "z", 11.2f, "time", 0.5f));
                     }
                     else if (selectBtnName == "Ball")
                     {
@@ -542,8 +545,10 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                         {
                             selectObj.GetComponent<AudioSource>().clip = audioClips[67];
                         }
+
+                        selectObj.SetActive(true);
+                        iTween.ScaleTo(selectObj, iTween.Hash("x", 6, "y", 6, "z", 6, "time", 0.5f));
                     }
-                    selectObj.SetActive(true);
                 }
             }
 
@@ -559,6 +564,8 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     float currentTime;
     public float bookOpenTime;
     bool bookWorldOpen;
+    public GameObject bearCarrot;
+    public GameObject tigerCarrot;
     public void OnFailPopUp()
     {
         FailPopUp.SetActive(true);
@@ -585,7 +592,7 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                     selectObj = selectObject[i];
                     if (selectBtnName == "Bear")
                     {
-                        selectObj.transform.GetChild(1).localPosition = new Vector3(0, 2.22f, 2);
+                        //selectObj.transform.GetChild(1).localPosition = new Vector3(0, 2.22f, 2);
                         // 남동생 선택했을 때
                         if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
                         {
@@ -597,10 +604,15 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                             selectObj.GetComponent<AudioSource>().clip = audioClips[69];
                         }
 
+                        selectObj.SetActive(true);
+                        bearCarrot.SetActive(true);
+                        bearCarrot.transform.position = new Vector3(1.56f, 1.3f, 0);
+                        iTween.ScaleTo(selectObj, iTween.Hash("x", 1.85f, "y", 1.85f, "z", 1.85f, "time", 0.5f));
+
                     }
                     else if (selectBtnName == "Tiger")
                     {
-                        selectObj.transform.GetChild(1).localPosition = new Vector3(0, 0.68f, 1.81f);
+                        //selectObj.transform.GetChild(1).localPosition = new Vector3(0, 0.68f, 1.81f);
                         // 남동생 선택했을 때
                         if (pages[0].GetComponent<AudioSource>().clip == audioClips[1])
                         {
@@ -611,10 +623,18 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                         {
                             selectObj.GetComponent<AudioSource>().clip = audioClips[71];
                         }
+
+                        selectObj.SetActive(true);
+                        tigerCarrot.SetActive(true);
+                        tigerCarrot.transform.position = new Vector3(4, -1.5f, -4.46f);
+                        iTween.ScaleTo(selectObj, iTween.Hash("x", 3.55f, "y", 3.55f, "z", 3.55f, "time", 0.5f));
                     }
                     else if (selectBtnName == "Book")
                     {
+                        selectObj.SetActive(true);
+                        iTween.ScaleTo(selectObj, iTween.Hash("x", 15, "y", 15, "z", 15, "time", 0.5f));
                         bookWorldOpen = true;
+
                     }
                     else if (selectBtnName == "Box")
                     {
@@ -628,6 +648,9 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                         {
                             selectObj.GetComponent<AudioSource>().clip = audioClips[65];
                         }
+
+                        selectObj.SetActive(true);
+                        iTween.ScaleTo(selectObj, iTween.Hash("x", 0.00015922f, "y", 0.00015922f, "z", 0.00015922f, "time", 0.5f));
                     }
                     if (selectObj.transform.childCount > 1)
                     {
@@ -637,7 +660,6 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                         }
                     }
 
-                    selectObj.SetActive(true);
                 }
             }
         }
@@ -669,6 +691,8 @@ public class SH_ChildrenFairyManager : MonoBehaviour
         pages[currentPage].SetActive(true);
         // 나온 오브젝트를 꺼준다
         selectObj.SetActive(false);
+        tigerCarrot.SetActive(false);
+        bearCarrot.SetActive(false);
         if (selectObj.transform.childCount > 1)
         {
             if (selectObj.transform.GetChild(1).GetComponent<Rigidbody>() != null)
