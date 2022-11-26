@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -13,7 +14,34 @@ public class NK_Mute : MonoBehaviour
     private void Start()
     {
         muteImage.sprite = voiceSprite;
-        ChangeImage();
+        // 학생 리스트 라면
+        if (transform.GetComponentInChildren<Text>() != null)
+        {
+            for (int i = 0; i < GameManager.Instance.children.Count; i++)
+            {
+                if (GameManager.Instance.children[i].Owner.NickName == transform.GetComponentInChildren<Text>().text)
+                {
+                    AudioSource audio = GameManager.Instance.children[i].transform.Find("Speaker").GetComponent<AudioSource>();
+                    if (audio.mute)
+                    {
+                        muteImage.sprite = muteSprite;
+                    }
+                    else
+                    {
+                        muteImage.sprite = voiceSprite;
+                    }
+                }
+            }
+        }
+    }
+
+    private void Update()
+    {
+        // 상위에 있는 전체 뮤트 버튼
+        if (transform.GetComponentInChildren<Text>() == null)
+        {
+            ChangeImage();
+        }
     }
 
     // 음소거 여부에 따른 버튼 이미지 변경
