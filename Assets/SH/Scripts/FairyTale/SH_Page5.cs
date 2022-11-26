@@ -22,6 +22,8 @@ public class SH_Page5 : MonoBehaviour
     public GameObject boxText;
     public GameObject bookText;
     public GameObject selectPopUp;
+    public AudioSource btnClickSound;
+
     void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -42,6 +44,7 @@ public class SH_Page5 : MonoBehaviour
                 if(Input.GetMouseButtonDown(0))
                 {
                     SH_ChildrenFairyManager.Instance.OnFailPopUp();
+                    btnClickSound.Play();
                 }
 
                 // 책, 공 작게 해주기
@@ -72,6 +75,7 @@ public class SH_Page5 : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     SH_ChildrenFairyManager.Instance.OnFailPopUp();
+                    btnClickSound.Play();
                 }
                 // 박스, 공 작게 해주기
                 ball.gameObject.transform.localScale = new Vector3(0.16541f, 0.16541f, 0.16541f);
@@ -96,6 +100,7 @@ public class SH_Page5 : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     SH_ChildrenFairyManager.Instance.OnPassPopUp();
+                    btnClickSound.Play();
                 }
 
                 // 박스, 책 작게 해주기
