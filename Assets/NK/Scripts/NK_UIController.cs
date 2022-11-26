@@ -86,6 +86,10 @@ public class NK_UIController : MonoBehaviourPun
 
     public void ClickMute(bool mute, string nickname)
     {
+        if (!mute)
+        {
+            IsMute = mute;
+        }
         photonView.RPC("RPCSingleMute", RpcTarget.All, mute, nickname);
     }
 
