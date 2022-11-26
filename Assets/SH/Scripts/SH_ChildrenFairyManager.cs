@@ -58,7 +58,6 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     public GameObject boyYes;
     public GameObject boyNo;
 
-
     void Update()
     {
         if (bookWorldOpen == true)
@@ -460,6 +459,8 @@ public class SH_ChildrenFairyManager : MonoBehaviour
             {
                 PassPopUpj.SetActive(false);
                 realBall.SetActive(false);
+                babySeal.SetActive(false);
+                babySealBall.SetActive(false);
                 //nextBtn.SetActive(true);
                 //preBtn.SetActive(true);
             }
@@ -497,6 +498,8 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     }
     RaycastHit passHit;
     public GameObject realBall;
+    public GameObject babySeal;
+    public GameObject babySealBall;
     public void OnPassPopUp()
     {
 
@@ -552,6 +555,12 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                         iTween.ScaleTo(selectObj, iTween.Hash("x", 6, "y", 6, "z", 6, "time", 0.5f));
                         realBall.SetActive(true);
                         iTween.ScaleTo(realBall, iTween.Hash("x", 0.1027486f, "y", 0.1027486f, "z", 0.1027486f, "time", 0.5f));
+                        babySeal.SetActive(true);
+                        iTween.ScaleTo(babySeal, iTween.Hash("x", 4, "y", 4, "z", 4, "time", 0.5f));
+                        babySealBall.SetActive(true);
+                        iTween.ScaleTo(babySealBall, iTween.Hash("x", 0.05f, "y", 0.05f, "z", 0.05f, "time", 0.5f));
+
+
                     }
                 }
             }

@@ -16,7 +16,7 @@ public class SH_PointerAnim : MonoBehaviour
     public GameObject tigerText;
     public GameObject rabbitText;
     public GameObject selectPopUp;
-    
+    public AudioSource btnClickSound;
     void Update()
     {
         // ¸¶¿ì½º Ray
@@ -43,6 +43,8 @@ public class SH_PointerAnim : MonoBehaviour
                 if(Input.GetMouseButtonDown(0))
                 {
                     SH_ChildrenFairyManager.Instance.OnFailPopUp();
+                    btnClickSound.Play();
+
                 }
             }
             else if(hitInfo.transform.name == "TigerBtn")
@@ -66,6 +68,8 @@ public class SH_PointerAnim : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     SH_ChildrenFairyManager.Instance.OnFailPopUp();
+                    btnClickSound.Play();
+
                 }
             }
             else if (hitInfo.transform.name == "RabbitBtn")
@@ -89,6 +93,8 @@ public class SH_PointerAnim : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     SH_ChildrenFairyManager.Instance.OnPassPopUp();
+                    btnClickSound.Play();
+
                 }
             }
             else
