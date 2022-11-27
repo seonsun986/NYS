@@ -15,7 +15,7 @@ public static class SH_SavWav
 			filename += ".wav";
 		}
 
-		var filepath = Path.Combine("C:\\Users\\HP\\Desktop\\MTVS\\Final project\\NYS\\Assets\\Resources", filename);
+		var filepath = Path.Combine(/*"C:\\Users\\HP\\Desktop\\MTVS\\Final project\\NYS\\Assets\\Resources"*/Application.dataPath + "/Resources/" , filename);
 
 
 		// Make sure directory exists if user is saving to sub dir.
