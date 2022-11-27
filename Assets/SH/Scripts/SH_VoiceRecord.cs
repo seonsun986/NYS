@@ -45,6 +45,8 @@ public class SH_VoiceRecord : MonoBehaviour
         }
     }
 
+    public GameObject recording;
+
     public void StartRecordMicrophone()
     {
         //foreach(var device in Microphone.devices)
@@ -53,6 +55,8 @@ public class SH_VoiceRecord : MonoBehaviour
         //}
         recordClip = Microphone.Start(Microphone.devices[0], true, 100, 44100);
         print("≥Ï¿Ω¡ﬂ");
+        recording.SetActive(true);
+
     }
 
     public List<AudioClip> voiceClip;
@@ -80,11 +84,9 @@ public class SH_VoiceRecord : MonoBehaviour
             recordClip.SetData(cutSamples, 0);
 
             SH_SavWav.Save("Page" + SH_BtnManager.Instance.currentScene, recordClip);
-
-            recordClip = Resources.Load<AudioClip>("Page" + SH_BtnManager.Instance.currentScene);
-
-
             voiceClip[SH_BtnManager.Instance.currentScene] = recordClip;
+
+            //recordClip = Resources.Load<AudioClip>("Page" + SH_BtnManager.Instance.currentScene);
             //if (voiceClip.Count == 0)
             //{
             //    voiceClip.Add(recordClip);
@@ -106,7 +108,16 @@ public class SH_VoiceRecord : MonoBehaviour
 
         }
         print("≥Ï¿Ω∏ÿ√„");
+        StartCoroutine(StopRecord());
+    }
 
+    public GameObject recordingStop;
+    IEnumerator StopRecord()
+    {
+        recording.SetActive(false);
+        recordingStop.SetActive(true);
+        yield return new WaitForSeconds(2.0f);
+        recordingStop.SetActive(false);
     }
 
     public GameObject popUp1Panel;
