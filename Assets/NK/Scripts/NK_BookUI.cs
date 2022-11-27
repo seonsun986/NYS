@@ -57,6 +57,7 @@ public class NK_BookUI : MonoBehaviourPun
     public void ClickBook()
     {
         pageNum = 0;
+        selectedTitle = "";
         sceneObjects = new Dictionary<int, List<PageInfo>>();
         GameObject book = EventSystem.current.currentSelectedGameObject;
         photonView.RPC("RPCSetActive", RpcTarget.All);
@@ -153,6 +154,7 @@ public class NK_BookUI : MonoBehaviourPun
         YJ_HttpManager.instance.SendRequest(requester1);
     }
 
+    public string selectedTitle = "";
     public void GetBookInfo(int index)
     {
         print("동화책 선택 완.");
@@ -165,6 +167,7 @@ public class NK_BookUI : MonoBehaviourPun
             Debug.Log("이 동화 맞아? \n" + handler.downloadHandler.text);
             title = JsonUtility.FromJson<Info>(handler.downloadHandler.text);
             BookInfo bookInfo = title.data;
+            selectedTitle = bookInfo.title;
             List<PagesInfo> pagesInfos = bookInfo.pages;
             SetBook(pagesInfos);
 
@@ -321,11 +324,14 @@ public class NK_BookUI : MonoBehaviourPun
         }
 
         // 페이지마다 음성파일 재생
-        if (Resources.Load<AudioClip>("fairyTale1/Page" + pageNum) != null && !isAudio)
+        if (!isAudio)
         {
-            // 양치기 소년을 위한 스크립트!!!
-            print("Page" + pageNum);
-            photonView.RPC("RPCCreateAudio", RpcTarget.All, pageNum);
+            if (Resources.Load<AudioClip>("fairyTale1/Page" + pageNum) != null && selectedTitle == "양치기 소년")
+            {
+                // 양치기 소년을 위한 스크립트!!!
+                print("Page" + pageNum);
+                photonView.RPC("RPCCreateAudio", RpcTarget.All, pageNum);
+            }
         }
         else
         {
@@ -430,7 +436,7 @@ public class NK_BookUI : MonoBehaviourPun
         audioSource.clip = Resources.Load<AudioClip>("fairyTale1/Page" + index);
         audioSource.Play();
     }
-    
+
     [PunRPC]
     private void RPCCreateTTS(int index)
     {
@@ -482,17 +488,17 @@ public class NK_BookUI : MonoBehaviourPun
         //iTween.MoveTo(contentPos, iTween.Hash("x", contentPos.GetComponent<RectTransform>().anchoredPosition.x + change, "time", 0.5f));
 
         float x = booksParent.GetComponent<RectTransform>().anchoredPosition.x;
-/*        if (x + change < -1030)
-        {
-            iTween.ValueTo(gameObject, iTween.Hash(
-          "from", x, "to", -960, "time", 0.3f,
-          "onupdatetarget", gameObject, "onupdate", "그냥러프써"));
-        }
-        else
-        {*/
-            iTween.ValueTo(gameObject, iTween.Hash(
-            "from", x, "to", x + change, "time", 0.3f,
-            "onupdatetarget", gameObject, "onupdate", "그냥러프써"));
+        /*        if (x + change < -1030)
+                {
+                    iTween.ValueTo(gameObject, iTween.Hash(
+                  "from", x, "to", -960, "time", 0.3f,
+                  "onupdatetarget", gameObject, "onupdate", "그냥러프써"));
+                }
+                else
+                {*/
+        iTween.ValueTo(gameObject, iTween.Hash(
+        "from", x, "to", x + change, "time", 0.3f,
+        "onupdatetarget", gameObject, "onupdate", "그냥러프써"));
         //}
 
     }
