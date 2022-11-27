@@ -829,7 +829,8 @@ public class SH_BtnManager : MonoBehaviour
             List<string> objsInfo = new List<string>();
 
             pagesInfo.page = i;
-            if (Scenes_txt[i].transform.childCount > 0)
+            // TTS로 사용되었을 경우에만
+            if (Scenes_txt[i].transform.childCount > 0 && SH_VoiceRecord.Instance.voiceInfos[i].ttsBtn == SH_VoiceRecord.Instance.ttsChecked)
             {
                 for (int j = 0; j < Scenes_txt[i].transform.childCount; j++)
                 {
@@ -1052,7 +1053,7 @@ public class SH_BtnManager : MonoBehaviour
     {
         YJ_HttpRequester requester = new YJ_HttpRequester();
         requester.url = Application.dataPath + "/Resources" + "/" + "Audio_" + currentSceneNum + ".mp3";
-        requester.tts = true;
+        requester.record = false;
         requester.requestType = RequestType.AUDIO;
         requester.onComplete = (handler) =>
         {
@@ -1089,7 +1090,7 @@ public class SH_BtnManager : MonoBehaviour
                 {
                     YJ_HttpRequester requester = new YJ_HttpRequester();
                     requester.url = Application.dataPath + "/Resources/" + "Page" + currentScene + ".wav";
-                    requester.tts = false;
+                    requester.record = true;
                     requester.requestType = RequestType.AUDIO;
                     requester.onComplete = (handler) =>
                     {
