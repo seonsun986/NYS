@@ -31,6 +31,7 @@ public class NK_HandControl : MonoBehaviour
 
     public void ChildHandDown()
     {
+        handImage.sprite = handdownSprite;
         NK_UIController.instance.ClickHandDown(transform.GetComponentInChildren<Text>().text);
     }
 }
