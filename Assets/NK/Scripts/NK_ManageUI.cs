@@ -19,7 +19,6 @@ public class NK_ManageUI : MonoBehaviourPun
             GameObject childList = GameObject.Instantiate(childListFactory);
             childList.transform.parent = childrenListContent;
             childList.transform.localScale = Vector3.one;
-            childList.GetComponentInChildren<Button>().onClick.AddListener(ClickSingleMute);
             print(child.Owner.NickName);
         }
     }
@@ -35,20 +34,6 @@ public class NK_ManageUI : MonoBehaviourPun
             if (iter != childrenListContent.transform)
             {
                 Destroy(iter.gameObject);
-            }
-        }
-    }
-
-    public void ClickSingleMute()
-    {
-        Transform list = EventSystem.current.currentSelectedGameObject.transform.parent;
-        Text nickname = list.GetChild(1).GetComponent<Text>();
-
-        foreach (PhotonView child in GameManager.Instance.children)
-        {
-            if (child.Owner.NickName == nickname.text)
-            {
-                child.RPC("RPCSingleMute", RpcTarget.All);
             }
         }
     }

@@ -2,6 +2,7 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -86,10 +87,33 @@ public class NK_UIController : MonoBehaviourPun
 
     public void ClickMute(bool mute, string nickname)
     {
+        // mute 상태 풀릴 때
         if (!mute)
         {
+            // mute = false
             IsMute = mute;
         }
+        else
+        {
+            int muteCount = 0;
+            for (int i = 0; i < GameManager.Instance.children.Count; i++)
+            {
+                if (GameManager.Instance.children[i].Owner.NickName != nickname)
+                {
+                    // 전체 아이들의 mute 상태 체크함
+                    if (GameManager.Instance.children[i].transform.Find("Speaker").GetComponent<AudioSource>().mute)
+                    {
+                        muteCount++;
+                    }
+                }
+            }
+            // 전체 아이들이 mute 상태라면
+            if (muteCount == GameManager.Instance.children.Count - 1)
+            {
+                IsMute = mute;
+            }
+        }
+
         photonView.RPC("RPCSingleMute", RpcTarget.All, mute, nickname);
     }
 
@@ -110,6 +134,28 @@ public class NK_UIController : MonoBehaviourPun
         }
     }
     #endregion
+
+    public void ClickHandDown(string nickname)
+    {
+        photonView.RPC("RPCHandDown", RpcTarget.All, nickname);
+        PhotonNetwork.Destroy(hand);
+    }
+
+    [PunRPC]
+    private void RPCHandDown(string nickname)
+    {
+        // 특정 아이를 손을 내리게 함
+        for (int i = 0; i < GameManager.Instance.children.Count; i++)
+        {
+            if (GameManager.Instance.children[i].Owner.NickName == nickname)
+            {
+                GameObject child = GameManager.Instance.children[i].gameObject;
+                // HandUp 애니메이션 설정
+                NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
+                move.state = NK_PlayerMove.State.Sit;
+            }
+        }
+    }
 
     #region ClickControl // 행동제어 버튼
     float shortDistance = float.MaxValue;
@@ -149,7 +195,7 @@ public class NK_UIController : MonoBehaviourPun
             photonView.RPC("RpcEndControl", RpcTarget.All);
         }
     }
-    
+
     // 동화책 펼칠 때 행동제어
     public void ClickControl(bool isControl)
     {
@@ -220,11 +266,19 @@ public class NK_UIController : MonoBehaviourPun
         if (GameManager.Instance.photonView.IsMine && IsHandUp)
         {
             photonView.RPC("RpcHandUp", RpcTarget.All, GameManager.Instance.photonView.ViewID);
-            hand = PhotonNetwork.Instantiate("Hand", GameManager.Instance.photonView.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+            hand = PhotonNetwork.Instantiate("Hand", GameManager.Instance.photonView.transform.position + new Vector3(0, 1.1f, 0), Quaternion.identity);
         }
         else
         {
             photonView.RPC("RpcEndHandUp", RpcTarget.All, GameManager.Instance.photonView.ViewID);
+            PhotonNetwork.Destroy(hand);
+        }
+    }
+
+    public void HandDown()
+    {
+        if (GameManager.Instance.photonView.IsMine && isHandUp)
+        {
             PhotonNetwork.Destroy(hand);
         }
     }

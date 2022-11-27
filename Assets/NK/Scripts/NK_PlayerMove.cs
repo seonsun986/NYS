@@ -367,22 +367,4 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     {
         GameManager.Instance.AddPlayer(photonView);
     }
-
-    [PunRPC]
-    public void RPCSingleMute()
-    {
-        AudioSource audio = transform.Find("Speaker").GetComponent<AudioSource>();
-        if (audio != null)
-        {
-            if (audio.mute)
-            {
-                audio.mute = false;
-            }
-            else
-            {
-                audio.mute = true;
-            }
-        }
-    }
-
 }
