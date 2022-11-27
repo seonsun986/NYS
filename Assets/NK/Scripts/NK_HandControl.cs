@@ -12,7 +12,10 @@ public class NK_HandControl : MonoBehaviour
     private void Start()
     {
         handImage.sprite = handdownSprite;
+    }
 
+    private void Update()
+    {
         for (int i = 0; i < GameManager.Instance.children.Count; i++)
         {
             if (GameManager.Instance.children[i].Owner.NickName == transform.GetComponentInChildren<Text>().text)
@@ -23,10 +26,6 @@ public class NK_HandControl : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void Update()
-    {
     }
 
     public void ChildHandDown()
