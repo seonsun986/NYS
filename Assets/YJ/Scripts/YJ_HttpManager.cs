@@ -82,7 +82,14 @@ public class YJ_HttpManager : MonoBehaviour
             case RequestType.AUDIO:
                 // 파일 경로를 URL 형태로 바꿔줌(File:// 경로 형태로 만들어줌)
                 Uri uri = new Uri(requester.url);
-                webRequest = UnityWebRequestMultimedia.GetAudioClip(uri, AudioType.MPEG);
+                if(requester.tts == true)
+                {
+                    webRequest = UnityWebRequestMultimedia.GetAudioClip(uri, AudioType.MPEG);
+                }
+                else
+                {
+                    webRequest = UnityWebRequestMultimedia.GetAudioClip(uri, AudioType.WAV);
+                }
                 break;
         }
         // 서버에 요청을 보내고 응답이 올때까지 기다린다.

@@ -1052,6 +1052,7 @@ public class SH_BtnManager : MonoBehaviour
     {
         YJ_HttpRequester requester = new YJ_HttpRequester();
         requester.url = Application.dataPath + "/Resources" + "/" + "Audio_" + currentSceneNum + ".mp3";
+        requester.tts = true;
         requester.requestType = RequestType.AUDIO;
         requester.onComplete = (handler) =>
         {
@@ -1083,14 +1084,27 @@ public class SH_BtnManager : MonoBehaviour
             // 재생중이 아닐 경우
             if(isTTS ==false)
             {
+
                 if (SH_VoiceRecord.Instance.voiceClip[currentScene] != null)
                 {
-                    ttsSound.clip = SH_VoiceRecord.Instance.voiceClip[currentScene];
-                    ttsSound.Play();
-                    ttsBtnImg.sprite = ttsNotPlayImage;
-                    isTTS = true;
+                    YJ_HttpRequester requester = new YJ_HttpRequester();
+                    requester.url = Application.dataPath + "/Resources/" + "Page" + currentScene + ".wav";
+                    requester.tts = false;
+                    requester.requestType = RequestType.AUDIO;
+                    requester.onComplete = (handler) =>
+                    {
+                        AudioClip clip = DownloadHandlerAudioClip.GetContent(handler);
+                        ttsSound.clip = clip;
+                        ttsSound.Play();
+                        StartCoroutine(IESoundLength());
+                        ttsBtnImg.sprite = ttsNotPlayImage;
+                        isTTS = true;
 
-                    StartCoroutine(IESoundLength());
+                    };
+                    YJ_HttpManager.instance.SendRequest(requester);
+                    //ttsSound.clip = /*Resources.Load<AudioClip>("Page" + currentScene)*/Application.dataPath + "/Resources/" + "Page" + currentScene +".wav";
+                    //ttsSound.Play();
+
 
                 }
             }

@@ -19,6 +19,7 @@ public class YJ_HttpRequester
 {
     // url
     public string url;
+    public bool tts;
     // 요청 타입 (GET, POST, PUT, DELETE)
     public RequestType requestType;
     // Post Data
