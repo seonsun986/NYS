@@ -71,9 +71,4 @@ public class NK_Mute : MonoBehaviour
             NK_UIController.instance.ClickMute(false, transform.GetComponentInChildren<Text>().text);
         }
     }
-
-    public void ChildHandDown()
-    {
-        NK_UIController.instance.ClickHandDown(transform.GetComponentInChildren<Text>().text);
-    }
 }

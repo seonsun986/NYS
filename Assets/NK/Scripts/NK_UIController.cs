@@ -44,7 +44,7 @@ public class NK_UIController : MonoBehaviourPun
     #endregion
 
     bool isHandUp = false;
-    bool IsHandUp
+    public bool IsHandUp
     {
         get
         {
@@ -138,21 +138,30 @@ public class NK_UIController : MonoBehaviourPun
     public void ClickHandDown(string nickname)
     {
         photonView.RPC("RPCHandDown", RpcTarget.All, nickname);
-        PhotonNetwork.Destroy(hand);
     }
 
     [PunRPC]
     private void RPCHandDown(string nickname)
     {
+        GameObject child = null;
+        GameObject[] hands = GameObject.FindGameObjectsWithTag("Hand");
         // 특정 아이를 손을 내리게 함
         for (int i = 0; i < GameManager.Instance.children.Count; i++)
         {
             if (GameManager.Instance.children[i].Owner.NickName == nickname)
             {
-                GameObject child = GameManager.Instance.children[i].gameObject;
+                child = GameManager.Instance.children[i].gameObject;
                 // HandUp 애니메이션 설정
                 NK_PlayerMove move = child.GetComponent<NK_PlayerMove>();
                 move.state = NK_PlayerMove.State.Sit;
+            }
+        }
+
+        for (int j = 0; j < hands.Length; j++)
+        {
+            if (child != null && hands[j].transform.position.x == child.transform.position.x)
+            {
+                Destroy(hands[j]);
             }
         }
     }

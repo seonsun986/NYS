@@ -75,7 +75,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                 {
                     if (photonView.IsMine)
                     {
-                        photonView.RPC("RPCAddPlayer", RpcTarget.All);
+                        photonView.RPC("RPCAddPlayer", RpcTarget.AllBuffered);
                         photonView.RPC("RPCSetTag", RpcTarget.All, "Child");
                         GameObject.Find("TeacherUI").SetActive(false);
                         GameObject.Find("BookBtn").SetActive(false);
