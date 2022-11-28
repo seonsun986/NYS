@@ -351,7 +351,7 @@ public class NK_BookUI : MonoBehaviourPun
         }
 
         // 페이지마다 음성파일 재생
-        if (isAudio)
+        if (!isAudio)
         {
             if (Resources.Load<AudioClip>("fairyTale1/Page" + pageNum) != null && selectedTitle == "양치기 소년")
             {
@@ -359,10 +359,10 @@ public class NK_BookUI : MonoBehaviourPun
                 print("Page" + pageNum);
                 photonView.RPC("RPCCreateAudio", RpcTarget.All, pageNum);
             }
-            else
-            {
-                photonView.RPC("RPCCreateTTS", RpcTarget.All, pageNum);
-            }
+        }
+        else
+        {
+            photonView.RPC("RPCCreateTTS", RpcTarget.All, pageNum);
         }
     }
 
