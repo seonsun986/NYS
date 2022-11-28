@@ -175,29 +175,7 @@ public class NK_UIController : MonoBehaviourPun
         // 모든 아이들을 가장 가까운 빈 좌석에 앉힘
         if (IsControl)
         {
-            // 모든 좌석을 가져옴
-            seats = GameObject.FindGameObjectsWithTag("Seat").ToList<GameObject>();
-
-            for (int i = 0; i < GameManager.Instance.children.Count; i++)
-            {
-                GameObject child = GameManager.Instance.children[i].gameObject;
-                // 가장 짧은 거리 초기화
-                shortDistance = float.MaxValue;
-
-                for (int j = 0; j < seats.Count; j++)
-                {
-                    float distance = Vector3.Distance(seats[j].transform.position, child.transform.position);
-                    // 아이들과 좌석의 거리를 비교함
-                    if (distance < shortDistance)
-                    {
-                        shortDistance = distance;
-                        nearSeat = seats[j];
-                    }
-                }
-
-                photonView.RPC("RpcControl", RpcTarget.All, child.GetPhotonView().ViewID, nearSeat.transform.position);
-                seats.Remove(nearSeat);
-            }
+            ControlChildren();
         }
         else
         {
@@ -205,40 +183,60 @@ public class NK_UIController : MonoBehaviourPun
         }
     }
 
+    private void ControlChildren()
+    {
+        // 모든 좌석을 가져옴
+        seats = GameObject.FindGameObjectsWithTag("Seat").ToList<GameObject>();
+
+        for (int i = 0; i < GameManager.Instance.children.Count; i++)
+        {
+            GameObject child = GameManager.Instance.children[i].gameObject;
+            // 가장 짧은 거리 초기화
+            shortDistance = float.MaxValue;
+
+            for (int j = 0; j < seats.Count; j++)
+            {
+                float distance = Vector3.Distance(seats[j].transform.position, child.transform.position);
+                // 아이들과 좌석의 거리를 비교함
+                if (distance < shortDistance)
+                {
+                    shortDistance = distance;
+                    nearSeat = seats[j];
+                }
+            }
+
+            photonView.RPC("RpcControl", RpcTarget.All, child.GetPhotonView().ViewID, nearSeat.transform.position);
+            seats.Remove(nearSeat);
+        }
+    }
+
     // 동화책 펼칠 때 행동제어
+    public Vector3 deskPosition;
+    public Vector3 deskRotation;
     public void ClickControl(bool isControl)
     {
         // 모든 아이들을 가장 가까운 빈 좌석에 앉힘
         if (isControl)
         {
-            // 모든 좌석을 가져옴
-            seats = GameObject.FindGameObjectsWithTag("Seat").ToList<GameObject>();
-
-            for (int i = 0; i < GameManager.Instance.children.Count; i++)
-            {
-                GameObject child = GameManager.Instance.children[i].gameObject;
-                // 가장 짧은 거리 초기화
-                shortDistance = float.MaxValue;
-
-                for (int j = 0; j < seats.Count; j++)
-                {
-                    float distance = Vector3.Distance(seats[j].transform.position, child.transform.position);
-                    // 아이들과 좌석의 거리를 비교함
-                    if (distance < shortDistance)
-                    {
-                        shortDistance = distance;
-                        nearSeat = seats[j];
-                    }
-                }
-
-                photonView.RPC("RpcControl", RpcTarget.All, child.GetPhotonView().ViewID, nearSeat.transform.position);
-                seats.Remove(nearSeat);
-            }
+            ControlChildren();
+            // 선생님 위치 조절
+            GameObject teacher = GameObject.FindGameObjectWithTag("Teacher");
+            photonView.RPC("RpcTeacherControl", RpcTarget.All, teacher.GetPhotonView().ViewID, deskPosition, deskRotation);
         }
         else
         {
             photonView.RPC("RpcEndControl", RpcTarget.All);
         }
+    }
+
+    // 선생님 RPC
+    [PunRPC]
+    private void RpcTeacherControl(int viewId, Vector3 deskPos, Vector3 deskRot)
+    {
+        GameObject teacher = PhotonView.Find(viewId).gameObject;
+        NK_PlayerMove move = teacher.GetComponent<NK_PlayerMove>();
+        teacher.transform.localEulerAngles = deskRot;
+        teacher.transform.position = deskPos;
     }
 
     [PunRPC]
