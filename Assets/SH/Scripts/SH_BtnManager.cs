@@ -913,7 +913,7 @@ public class SH_BtnManager : MonoBehaviour
             {
                 if (voice.voiceClip.Count > i && voice.voiceClip[i] != null)
                 {
-                    byte[] data = File.ReadAllBytes(Application.dataPath + "/Resources/" + "Page" + currentScene + ".wav");
+                    byte[] data = File.ReadAllBytes(Application.dataPath + "/Resources/" + "Page" + i + ".wav");
                     pagesInfo.voice = data;
                 }
                 else
