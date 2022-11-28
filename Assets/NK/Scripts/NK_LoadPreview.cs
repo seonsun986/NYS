@@ -425,6 +425,7 @@ public class NK_LoadPreview : MonoBehaviour
 
     private void AddVoice(int i)
     {
+        print("+++");
         if(i != 0)
             SH_VoiceRecord.Instance.voiceClip.Add(null);
         StartCoroutine(ApplyVoice(i));
