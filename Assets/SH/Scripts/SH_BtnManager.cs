@@ -909,15 +909,17 @@ public class SH_BtnManager : MonoBehaviour
             //    pagesInfo.voice = nullbytedata;
             //}
 
-            if (voice.voiceClip.Count > i && voice.voiceClip[i] != null)
+            if (send)
             {
-                byte[] data = File.ReadAllBytes(Application.dataPath + "/Resources/" + "Page" + currentScene + ".wav");
-                pagesInfo.voice = data;
-            }
-
-            else
-            {
-                pagesInfo.voice = nullbytedata;
+                if (voice.voiceClip.Count > i && voice.voiceClip[i] != null)
+                {
+                    byte[] data = File.ReadAllBytes(Application.dataPath + "/Resources/" + "Page" + currentScene + ".wav");
+                    pagesInfo.voice = data;
+                }
+                else
+                {
+                    pagesInfo.voice = nullbytedata;
+                }
             }
 
 
@@ -1086,6 +1088,10 @@ public class SH_BtnManager : MonoBehaviour
     public void PreviewScene()
     {
         SaveInfo(false);
+        if (YJ_DataManager.instance.preScene == "BookShelfScene")
+        {
+            YJ_DataManager.instance.preScene = "EditorScene";
+        }
     }
     #endregion
 
