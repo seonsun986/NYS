@@ -10,6 +10,7 @@ using UnityEditor;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using Newtonsoft.Json.Linq;
+using System.Text;
 
 
 
@@ -46,7 +47,7 @@ public class PagesInfo
     public int page; //페이지 번호
     public List<string> data; //텍스트 정보, 오브젝트 정보
     public string ttsText;
-    public byte[] voice;
+    public byte[] /*string*/ voice;
     public byte[] rawImg;
 
     public string SerializePageInfo(PageInfo info)
@@ -810,8 +811,27 @@ public class SH_BtnManager : MonoBehaviour
     {
         pages.Clear();
         SaveInfo(true);
-
     }
+
+    //public byte[] ConvertClipToBytes(AudioClip audioClip)
+    //{
+    //    float[] samples = new float[audioClip.samples];
+    //    audioClip.GetData(samples, 0);
+    //    short[] intData = new short[samples.Length];
+    //    byte[] bytesData = new byte[samples.Length * 2];
+    //    int rescaleFactor = 32767;
+
+    //    for(int i =0;i<samples.Length;i++)
+    //    {
+    //        intData[i] = (short)(samples[i] * rescaleFactor);
+    //        byte[] byteArr = new byte[2];
+    //        byteArr = BitConverter.GetBytes(intData[i]);
+    //        byteArr.CopyTo(bytesData, i * 2);
+    //    }
+
+    //    return bytesData;
+    //}
+
 
     byte[] nullbytedata = new byte[0];
 
@@ -829,44 +849,65 @@ public class SH_BtnManager : MonoBehaviour
             List<string> objsInfo = new List<string>();
 
             pagesInfo.page = i;
+            if (SH_VoiceRecord.Instance.voiceInfos.Count < Scenes_txt.Count)
+            {
+                SH_VoiceRecord.Instance.Change();
+            }
             // TTS로 사용되었을 경우에만
             if (Scenes_txt[i].transform.childCount > 0 && SH_VoiceRecord.Instance.voiceInfos[i].ttsBtn == SH_VoiceRecord.Instance.ttsChecked)
             {
+
                 for (int j = 0; j < Scenes_txt[i].transform.childCount; j++)
                 {
                     pagesInfo.ttsText += Scenes_txt[i].transform.GetChild(j).GetComponent<InputField>().text;
                     pagesInfo.ttsText += " ";
                 }
             }
-            else
+            else if(SH_VoiceRecord.Instance.voiceInfos[i].ttsBtn == SH_VoiceRecord.Instance.ttsUnCheked)
             {
                 pagesInfo.ttsText = "";
             }
 
+            //----------------------------------------------------방법1(byte로 보내기)-------------------------------------------------
 
-            // wav > byte로 변환하기
+            //// wav > byte로 변환하기
+            //if (voice.voiceClip.Count > i && voice.voiceClip[i] != null)
+            //{
+            //    float[] floatData = new float[voice.voiceClip[i].samples * voice.voiceClip[i].channels];
+            //    voice.voiceClip[i].GetData(floatData, 0);
+
+            //    // byte 배열 만들기
+            //    byte[] byteData = new byte[floatData.Length * 4]/*ConvertClipToBytes(voice.voiceClip[i])*/;
+            //    string encodedText = Convert.ToBase64String(byteData);
+            //    print(encodedText);
+            //    Buffer.BlockCopy(floatData, 0, byteData, 0, byteData.Length); ;
+
+            //    pagesInfo.voice = byteData;
+            //}
+            //else
+            //{
+            //    pagesInfo.voice = nullbytedata;
+            //}
+
             if (voice.voiceClip.Count > i && voice.voiceClip[i] != null)
             {
-                float[] floatData = new float[voice.voiceClip[i].samples * voice.voiceClip[i].channels];
-                voice.voiceClip[i].GetData(floatData, 0);
-
-                // byte 배열 만들기
-                byte[] byteData = new byte[floatData.Length * 4];
-                Buffer.BlockCopy(floatData, 0, byteData, 0, byteData.Length);
-
-                pagesInfo.voice = byteData;
+                byte[] data = File.ReadAllBytes(Application.dataPath + "/Resources/Page0.wav");
+                pagesInfo.voice = data;
             }
+
             else
             {
                 pagesInfo.voice = nullbytedata;
             }
 
-            #region 마지막 페이지 캡쳐 및 로우 이미지 배열에 넣기(지금은 꼭 마지막 페이지에서 저장해야함)
-            // 로우이미지 세팅
-            // 마지막 페이지 캡쳐한다
-            // 캡쳐하기 
-            // 마지막 페이지로 모든걸 올린다
-            if (i == currentSceneNum)
+
+
+                #region 마지막 페이지 캡쳐 및 로우 이미지 배열에 넣기(지금은 꼭 마지막 페이지에서 저장해야함)
+                // 로우이미지 세팅
+                // 마지막 페이지 캡쳐한다
+                // 캡쳐하기 
+                // 마지막 페이지로 모든걸 올린다
+                if (i == currentSceneNum)
             {
                 RenderTexture rt = new RenderTexture(captureWidth, captureHeight, 24);
                 sceneCam.targetTexture = rt;
