@@ -677,7 +677,7 @@ public class SH_BtnManager : MonoBehaviour
 
     public void SelectSound2()
     {
-        if(Camera.main.GetComponent<AudioSource>().clip != null)
+        if (Camera.main.GetComponent<AudioSource>().clip != null)
         {
             Camera.main.GetComponent<AudioSource>().Stop();
         }
@@ -794,7 +794,7 @@ public class SH_BtnManager : MonoBehaviour
         //titlePanel.SetActive(false);
         tutorial.SetActive(true);
     }
-   
+
     public void TutorialEnd()
     {
         titlePanel.SetActive(false);
@@ -883,7 +883,7 @@ public class SH_BtnManager : MonoBehaviour
                     pagesInfo.ttsText += " ";
                 }
             }
-            else if(SH_VoiceRecord.Instance.voiceInfos[i].ttsBtn == SH_VoiceRecord.Instance.ttsUnCheked)
+            else if (SH_VoiceRecord.Instance.voiceInfos[i].ttsBtn == SH_VoiceRecord.Instance.ttsUnCheked)
             {
                 pagesInfo.ttsText = "";
             }
@@ -922,12 +922,12 @@ public class SH_BtnManager : MonoBehaviour
 
 
 
-                #region 마지막 페이지 캡쳐 및 로우 이미지 배열에 넣기(지금은 꼭 마지막 페이지에서 저장해야함)
-                // 로우이미지 세팅
-                // 마지막 페이지 캡쳐한다
-                // 캡쳐하기 
-                // 마지막 페이지로 모든걸 올린다
-                if (i == currentSceneNum)
+            #region 마지막 페이지 캡쳐 및 로우 이미지 배열에 넣기(지금은 꼭 마지막 페이지에서 저장해야함)
+            // 로우이미지 세팅
+            // 마지막 페이지 캡쳐한다
+            // 캡쳐하기 
+            // 마지막 페이지로 모든걸 올린다
+            if (i == currentSceneNum)
             {
                 RenderTexture rt = new RenderTexture(captureWidth, captureHeight, 24);
                 sceneCam.targetTexture = rt;
@@ -1032,16 +1032,19 @@ public class SH_BtnManager : MonoBehaviour
 
     public void SaveBGSoundJSon()
     {
-        string Fairytitle = title;
-        string bgname = bgSelectSound.clip.name;
-        string path = Application.dataPath + "/BG.txt";
-        if(!File.Exists(path))
+        if (bgSelectSound.clip.name != null)
         {
-            System.IO.File.WriteAllText(path, Fairytitle + "/" + bgname);
-        }
-        else
-        {
-            System.IO.File.AppendAllText(path, "\r\n" + Fairytitle + "/" + bgname);
+            string Fairytitle = title;
+            string bgname = bgSelectSound.clip.name;
+            string path = Application.dataPath + "/BG.txt";
+            if (!File.Exists(path))
+            {
+                System.IO.File.WriteAllText(path, Fairytitle + "/" + bgname);
+            }
+            else
+            {
+                System.IO.File.AppendAllText(path, "\r\n" + Fairytitle + "/" + bgname);
+            }
         }
     }
 
@@ -1147,18 +1150,18 @@ public class SH_BtnManager : MonoBehaviour
     public void PreListenBtn()
     {
         // TTS를 선택했을 경우
-        if(SH_VoiceRecord.Instance.ttsBtn.GetComponent<Image>().sprite == SH_VoiceRecord.Instance.ttsChecked)
+        if (SH_VoiceRecord.Instance.ttsBtn.GetComponent<Image>().sprite == SH_VoiceRecord.Instance.ttsChecked)
         {
             RealTTS();
         }
         // 녹음을 선택했을 경우
-        else if(ttsBtn.interactable == false)
+        else if (ttsBtn.interactable == false)
         {
             StopAllCoroutines();
             ttsSound.Stop();
 
             // 재생중이 아닐 경우
-            if(isTTS ==false)
+            if (isTTS == false)
             {
 
                 if (SH_VoiceRecord.Instance.voiceClip[currentScene] != null)
