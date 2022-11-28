@@ -4,6 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
+public class VoiceInfo
+{
+    // 이게 어떻게 체크되어있는지에 따라서 달라진다
+    public Sprite ttsBtn;
+    public int recordNum;
+}
+
+
 public class SH_VoiceRecord : MonoBehaviour
 {
 
@@ -292,11 +302,5 @@ public class SH_VoiceRecord : MonoBehaviour
         }
     }
 
-    public class VoiceInfo
-    {
-        // 이게 어떻게 체크되어있는지에 따라서 달라진다
-        public Sprite ttsBtn;
-        public int recordNum;
-    }
 
 }

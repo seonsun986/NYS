@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static NK_BookUI;
 
+
 public class NK_LoadPreview : MonoBehaviour
 {
     public GameObject newScene;
@@ -19,7 +20,6 @@ public class NK_LoadPreview : MonoBehaviour
 
     Animator animator;
     List<PageInfo> objs;
-
     Dictionary<int, List<PageInfo>> sceneObjects = new Dictionary<int, List<PageInfo>>();
 
     private void Start()
@@ -68,8 +68,60 @@ public class NK_LoadPreview : MonoBehaviour
         SH_BtnManager.Instance.title = YJ_DataManager.instance.bookTitle;
 
         // pageinfo(단일) 내에서 text, obj로 구분지어 클래스 내 json 정렬 > pagesinfo.data(리스트)
+        // pagesInfo.ttsText 여부에 따라서 다시 설정해주기
+        // TTS면 Null넣어주기
+        // 녹음이면 -> 0페이지면 Insert // 아니라면 ADD
         foreach (PagesInfo pagesInfo in pagesInfos)
         {
+            
+            VoiceInfo voiceInfo = new VoiceInfo();
+            // 녹음을 선택했을 때
+            if (pagesInfo.ttsText == "")
+            {
+                // 클래스 세팅
+                voiceInfo.ttsBtn = SH_VoiceRecord.Instance.ttsUnCheked;
+                voiceInfo.recordNum = 1;
+                SH_VoiceRecord.Instance.ttsBtn.GetComponent<Image>().sprite = SH_VoiceRecord.Instance.ttsUnCheked;
+                SH_VoiceRecord.Instance.ttsBtn.interactable = false;
+                SH_VoiceRecord.Instance.recordBtn.interactable = true;
+                if(pagesInfo.page ==0)
+                {
+                    SH_VoiceRecord.Instance.voiceClip.RemoveAt(0);
+                    SH_VoiceRecord.Instance.voiceClip.Add(Resources.Load<AudioClip>("Page" + pagesInfo.page));
+                }
+                else
+                {
+                    SH_VoiceRecord.Instance.voiceClip.Add(Resources.Load<AudioClip>("Page" + pagesInfo.page));
+
+
+                }
+                print("녹음 선택");
+            }
+            // TTS를 선택했을 때
+            else if(pagesInfo.ttsText != "")
+            {
+                voiceInfo.ttsBtn = SH_VoiceRecord.Instance.ttsChecked;
+                voiceInfo.recordNum = 0;
+                SH_VoiceRecord.Instance.ttsBtn.GetComponent<Image>().sprite = SH_VoiceRecord.Instance.ttsChecked;
+                SH_VoiceRecord.Instance.ttsBtn.interactable = true;
+                SH_VoiceRecord.Instance.recordBtn.interactable = false;
+                if (pagesInfo.page != 0)
+                {
+                    SH_VoiceRecord.Instance.voiceClip.Add(null);
+
+                }
+
+                print("TTS 선택");
+
+
+            }
+            //else
+            //{
+            //    SH_VoiceRecord.Instance.ttsBtn.GetComponent<Image>().sprite = SH_VoiceRecord.Instance.ttsUnCheked;
+            //    SH_VoiceRecord.Instance.ttsBtn.interactable = true;
+            //    SH_VoiceRecord.Instance.recordBtn.interactable = true;
+            //}
+            SH_VoiceRecord.Instance.voiceInfos.Add(voiceInfo);
             objs = new List<PageInfo>();
 
             foreach (string pageInfo in pagesInfo.data)
@@ -254,9 +306,9 @@ public class NK_LoadPreview : MonoBehaviour
         SH_BtnManager.Instance.Scenes.Add(n_Scene);
         SH_BtnManager.Instance.Scenes_txt.Add(n_Scene_Canvas);
 
-        SH_VoiceRecord.Instance.voiceClip.Add(null);
+        //SH_VoiceRecord.Instance.voiceClip.Add(null);
         // TTS 버튼과 녹음 버튼도 초기화 시켜볼까?
-        SH_VoiceRecord.Instance.Reset();
+        //SH_VoiceRecord.Instance.Reset();
 
         pageNum++;
     }
