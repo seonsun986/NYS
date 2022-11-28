@@ -214,7 +214,7 @@ public class NK_BookUI : MonoBehaviourPun
         // 책 오디오 받아오기
         NK_HttpMediaRequester requester = new NK_HttpMediaRequester();
         requester.url = url;
-        requester.record = record;
+        //requester.record = record;
         requester.requestType = RequestType.AUDIO;
         requester.index = index;
         requester.onCompleteDownloadImage = (handler, idx) =>
@@ -227,8 +227,9 @@ public class NK_BookUI : MonoBehaviourPun
 
             // 책 오디오 클립 받아오기
             AudioClip clip = DownloadHandlerAudioClip.GetContent(handler);
-
-            if (clip.samples > 0)
+            audioClips[idx] = clip;
+            isAudio = true;
+/*            if (clip.samples > 0)
             {
                 audioClips[idx] = clip;
                 isAudio = true;
@@ -236,7 +237,7 @@ public class NK_BookUI : MonoBehaviourPun
             else
             {
                 GetBookAudio(url, index, true);
-            }
+            }*/
         };
         YJ_HttpManager.instance.SendRequest(requester);
     }
