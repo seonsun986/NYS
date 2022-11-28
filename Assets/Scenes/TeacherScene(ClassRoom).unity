@@ -10720,8 +10720,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca6239e8cb5b8d478b1d08043be3a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deskPosition: {x: 0, y: 0, z: 0}
-  deskRotation: {x: 0, y: 0, z: 0}
+  deskPosition: {x: 3.06, y: 0.05, z: -6.56}
+  deskRotation: {x: 0, y: -135, z: 0}
 --- !u!114 &1040144020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15676,6 +15676,7 @@ GameObject:
   - component: {fileID: 1430366629}
   - component: {fileID: 1430366631}
   - component: {fileID: 1430366630}
+  - component: {fileID: 1430366632}
   m_Layer: 0
   m_Name: desk:pCube1
   m_TagString: Untagged
@@ -15748,6 +15749,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1430366628}
   m_Mesh: {fileID: 2373736078420114438, guid: ca4be0b9d7c21b845b575d43738de60b, type: 3}
+--- !u!65 &1430366632
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430366628}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.3950386, y: 5.605337, z: 3.5989025}
+  m_Center: {x: 0.0000000026843558, y: 1.3556175, z: 0.09007204}
 --- !u!1 &1445675572
 GameObject:
   m_ObjectHideFlags: 0

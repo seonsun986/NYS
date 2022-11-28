@@ -215,17 +215,18 @@ public class NK_UIController : MonoBehaviourPun
     public Vector3 deskRotation;
     public void ClickControl(bool isControl)
     {
+        GameObject teacher = GameObject.FindGameObjectWithTag("Teacher");
         // ¸ðµç ¾ÆÀÌµéÀ» °¡Àå °¡±î¿î ºó ÁÂ¼®¿¡ ¾ÉÈû
         if (isControl)
         {
             ControlChildren();
             // ¼±»ý´Ô À§Ä¡ Á¶Àý
-            GameObject teacher = GameObject.FindGameObjectWithTag("Teacher");
             photonView.RPC("RpcTeacherControl", RpcTarget.All, teacher.GetPhotonView().ViewID, deskPosition, deskRotation);
         }
         else
         {
             photonView.RPC("RpcEndControl", RpcTarget.All);
+            photonView.RPC("RpcEndTeacherControl", RpcTarget.All, teacher.GetPhotonView().ViewID);
         }
     }
 
@@ -235,8 +236,17 @@ public class NK_UIController : MonoBehaviourPun
     {
         GameObject teacher = PhotonView.Find(viewId).gameObject;
         NK_PlayerMove move = teacher.GetComponent<NK_PlayerMove>();
+        move.enabled = false;
         teacher.transform.localEulerAngles = deskRot;
         teacher.transform.position = deskPos;
+    }
+
+    [PunRPC]
+    private void RpcEndTeacherControl(int viewId)
+    {
+        GameObject teacher = PhotonView.Find(viewId).gameObject;
+        NK_PlayerMove move = teacher.GetComponent<NK_PlayerMove>();
+        move.enabled = true;
     }
 
     [PunRPC]
