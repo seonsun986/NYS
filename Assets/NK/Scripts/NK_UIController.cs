@@ -220,13 +220,19 @@ public class NK_UIController : MonoBehaviourPun
         if (isControl)
         {
             ControlChildren();
-            // 선생님 위치 조절
-            photonView.RPC("RpcTeacherControl", RpcTarget.All, teacher.GetPhotonView().ViewID, deskPosition, deskRotation);
+            if (teacher != null)
+            {
+                // 선생님 위치 조절
+                photonView.RPC("RpcTeacherControl", RpcTarget.All, teacher.GetPhotonView().ViewID, deskPosition, deskRotation);
+            }
         }
         else
         {
             photonView.RPC("RpcEndControl", RpcTarget.All);
-            photonView.RPC("RpcEndTeacherControl", RpcTarget.All, teacher.GetPhotonView().ViewID);
+            if (teacher != null)
+            {
+                photonView.RPC("RpcEndTeacherControl", RpcTarget.All, teacher.GetPhotonView().ViewID);
+            }
         }
     }
 
