@@ -157,7 +157,6 @@ public class SH_BtnManager : MonoBehaviour
     public List<PagesInfo> pages = new List<PagesInfo>();
 
     public BookInfo bookinfo = new BookInfo();
-
     // 현재 내가 있는 씬 번호
     public int currentSceneNum;
 
@@ -1031,6 +1030,20 @@ public class SH_BtnManager : MonoBehaviour
             SaveJson();
     }
 
+    public void SaveBGSoundJSon()
+    {
+        string Fairytitle = title;
+        string bgname = bgSelectSound.clip.name;
+        string path = Application.dataPath + "/BG.txt";
+        if(!File.Exists(path))
+        {
+            System.IO.File.WriteAllText(path, Fairytitle + "/" + bgname);
+        }
+        else
+        {
+            System.IO.File.AppendAllText(path, "\r\n" + Fairytitle + "/" + bgname);
+        }
+    }
 
     // 제이슨 저장
     private void SaveJson()
