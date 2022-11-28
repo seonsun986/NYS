@@ -786,12 +786,33 @@ public class SH_BtnManager : MonoBehaviour
     public string title;
     public GameObject titlePanel;
     public GameObject titlePopUp;
+    public GameObject tutorial;
     public void TitleOk()
     {
         title = titlePopUp.transform.GetChild(2).GetChild(2).GetComponent<Text>().text;
         iTween.ScaleTo(titlePopUp, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.5f));
 
+        //titlePanel.SetActive(false);
+        tutorial.SetActive(true);
+    }
+   
+    public void TutorialEnd()
+    {
         titlePanel.SetActive(false);
+        tutorial.SetActive(false);
+    }
+
+    public GameObject savePanel;
+
+    public void SavePanel()
+    {
+        StartCoroutine(StopRecord());
+    }
+    IEnumerator StopRecord()
+    {
+        savePanel.SetActive(true);
+        yield return new WaitForSeconds(2.0f);
+        savePanel.SetActive(false);
     }
 
 
