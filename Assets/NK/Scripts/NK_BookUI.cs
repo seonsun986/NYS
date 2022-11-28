@@ -292,9 +292,22 @@ public class NK_BookUI : MonoBehaviourPun
         public string thumbNail;
     }
 
-
+    public AudioSource fairyTaleBG;
     public void SetBook(List<PagesInfo> pagesInfos)
     {
+        string bgPath = Application.dataPath + "/BG.txt";
+        string[] lines = File.ReadAllLines(bgPath);
+
+        foreach (string line in lines)
+        {
+            string[] bgValue = line.Split("/");
+            if (bgValue[0] == selectedTitle)
+            {
+                fairyTaleBG.clip = Resources.Load<AudioClip>("BGSound/" + bgValue[1]);
+                fairyTaleBG.Play();
+            }
+        }
+
         // pageinfo(단일) 내에서 text, obj로 구분지어 클래스 내 json 정렬 > pagesinfo.data(리스트)
         foreach (PagesInfo pagesInfo in pagesInfos)
         {
