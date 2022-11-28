@@ -1034,7 +1034,7 @@ public class SH_BtnManager : MonoBehaviour
 
     public void SaveBGSoundJSon()
     {
-        if (bgSelectSound.clip.name != null)
+        if (bgSelectSound.clip != null)
         {
             string Fairytitle = title;
             string bgname = bgSelectSound.clip.name;

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class NK_SettingUI : MonoBehaviourPun
 {
     public Slider slider;
+    public AudioSource stageAudio;
+    public AudioSource fairyTaleAudio;
     AudioSource audioSource;
 
     public void ClickMinus()
@@ -23,6 +25,8 @@ public class NK_SettingUI : MonoBehaviourPun
 
     public void ChangeSliderValue()
     {
+        stageAudio.volume = slider.value;
+        fairyTaleAudio.volume = slider.value;
         GameObject[] speakers = GameObject.FindGameObjectsWithTag("Speaker");
         // 슬라이더 값 변경되면 호출됨
         foreach (GameObject speaker in speakers)
