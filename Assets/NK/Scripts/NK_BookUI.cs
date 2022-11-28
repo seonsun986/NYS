@@ -296,15 +296,18 @@ public class NK_BookUI : MonoBehaviourPun
     public void SetBook(List<PagesInfo> pagesInfos)
     {
         string bgPath = Application.dataPath + "/BG.txt";
-        string[] lines = File.ReadAllLines(bgPath);
-
-        foreach (string line in lines)
+        if (File.Exists(bgPath))
         {
-            string[] bgValue = line.Split("/");
-            if (bgValue[0] == selectedTitle)
+            string[] lines = File.ReadAllLines(bgPath);
+
+            foreach (string line in lines)
             {
-                fairyTaleBG.clip = Resources.Load<AudioClip>("BGSound/" + bgValue[1]);
-                fairyTaleBG.Play();
+                string[] bgValue = line.Split("/");
+                if (bgValue[0] == selectedTitle)
+                {
+                    fairyTaleBG.clip = Resources.Load<AudioClip>("BGSound/" + bgValue[1]);
+                    fairyTaleBG.Play();
+                }
             }
         }
 
