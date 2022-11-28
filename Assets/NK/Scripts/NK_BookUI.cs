@@ -214,6 +214,7 @@ public class NK_BookUI : MonoBehaviourPun
         // 책 오디오 받아오기
         NK_HttpMediaRequester requester = new NK_HttpMediaRequester();
         requester.url = url;
+        requester.record = false;
         requester.requestType = RequestType.AUDIO;
         requester.index = index;
         requester.onCompleteDownloadImage = (handler, idx) =>
