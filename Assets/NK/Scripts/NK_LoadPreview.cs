@@ -435,6 +435,7 @@ public class NK_LoadPreview : MonoBehaviour
     {
         yield return new WaitUntil(() => voices[i] != null);
         SH_VoiceRecord.Instance.voiceClip[i] = voices[i];
+        SH_SavWav.Save("Page" + i, voices[i]);
         SH_VoiceRecord.Instance.num = i;
     }
 }
