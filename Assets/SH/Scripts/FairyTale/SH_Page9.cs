@@ -33,6 +33,8 @@ public class SH_Page9 : MonoBehaviour
             if (selectPopUp.activeSelf == true) return;
             if(hitInfo.transform.name == "MushroomBtn")
             {
+#if UNITY_ANDROID
+#else
                 if(mushroom.enabled == false)
                 {
                     mushroom.enabled = true;
@@ -53,7 +55,7 @@ public class SH_Page9 : MonoBehaviour
                     onionText.SetActive(false);
                     potatoText.SetActive(false);
                 }
-
+#endif
                 if(Input.GetMouseButtonDown(0))
                 {
                     SH_ChildrenFairyManager.Instance.PassTrue();
@@ -64,6 +66,7 @@ public class SH_Page9 : MonoBehaviour
 
             else if (hitInfo.transform.name == "EggBtn")
             {
+#if !UNITY_ANDROID
                 if (egg.enabled == false)
                 {
                     egg.enabled = true;
@@ -84,6 +87,7 @@ public class SH_Page9 : MonoBehaviour
                     onionText.SetActive(false);
                     potatoText.SetActive(false);
                 }
+#endif
 
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -95,6 +99,8 @@ public class SH_Page9 : MonoBehaviour
 
             else if (hitInfo.transform.name == "SpinachBtn")
             {
+#if !UNITY_ANDROID
+
                 if (spinach.enabled == false)
                 {
                     spinach.enabled = true;
@@ -116,7 +122,7 @@ public class SH_Page9 : MonoBehaviour
                     onionText.SetActive(false);
                     potatoText.SetActive(false);
                 }
-
+#endif
                 if (Input.GetMouseButtonDown(0))
                 {
                     SH_ChildrenFairyManager.Instance.PassTrue();
@@ -126,7 +132,8 @@ public class SH_Page9 : MonoBehaviour
 
             else if (hitInfo.transform.name == "RiceBtn")
             {
-                if (rice.enabled == false)
+#if !UNITY_ANDROID
+            if (rice.enabled == false)
                 {
                     rice.enabled = true;
                     riceText.SetActive(true);
@@ -146,8 +153,8 @@ public class SH_Page9 : MonoBehaviour
                     onionText.SetActive(false);
                     potatoText.SetActive(false);
                 }
-
-                if (Input.GetMouseButtonDown(0))
+#endif
+            if (Input.GetMouseButtonDown(0))
                 {
                     SH_ChildrenFairyManager.Instance.PassTrue();
                     SH_ChildrenFairyManager.Instance.FillEmptyBox();
@@ -156,7 +163,8 @@ public class SH_Page9 : MonoBehaviour
 
             else if (hitInfo.transform.name == "OnionBtn")
             {
-                if (onion.enabled == false)
+#if !UNITY_ANDROID
+            if (onion.enabled == false)
                 {
                     onion.enabled = true;
                     onionText.SetActive(true);
@@ -178,7 +186,7 @@ public class SH_Page9 : MonoBehaviour
                     mushroomText.SetActive(false);
                     potatoText.SetActive(false);
                 }
-
+#endif
                 if (Input.GetMouseButtonDown(0))
                 {
                     SH_ChildrenFairyManager.Instance.PassTrue();
@@ -188,6 +196,7 @@ public class SH_Page9 : MonoBehaviour
 
             else if (hitInfo.transform.name == "PotatoBtn")
             {
+#if !UNITY_ANDROID
                 if (potato.enabled == false)
                 {
                     potato.enabled = true;
@@ -209,14 +218,14 @@ public class SH_Page9 : MonoBehaviour
                     onionText.SetActive(false);
                     mushroomText.SetActive(false);
                 }
-
+#endif
                 if (Input.GetMouseButtonDown(0))
                 {
                     SH_ChildrenFairyManager.Instance.PassTrue();
                     SH_ChildrenFairyManager.Instance.FillEmptyBox();
                 }
             }
-
+#if !UNITY_ANDROID
             else
             {
                 mushroom.Rebind();
@@ -240,9 +249,9 @@ public class SH_Page9 : MonoBehaviour
                 onionText.SetActive(false);
                 mushroomText.SetActive(false);
             }
-
+#endif
         }
-
+#if !UNITY_ANDROID
         else
         {
             mushroom.Rebind();
@@ -267,5 +276,6 @@ public class SH_Page9 : MonoBehaviour
             mushroomText.SetActive(false);
 
         }
+#endif
     }
 }

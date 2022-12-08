@@ -21,7 +21,7 @@ public class SH_ChildrenBtnManager : MonoBehaviour
         // Á¶°Ç 1
         if (SH_ChildrenFairyManager.Instance.PassPopUp.activeSelf == true || SH_ChildrenFairyManager.Instance.FailPopUp.activeSelf == true) return;
         if (SH_ChildrenFairyManager.Instance.currentPage == 3 || SH_ChildrenFairyManager.Instance.currentPage == 5 || SH_ChildrenFairyManager.Instance.currentPage == 9 || SH_ChildrenFairyManager.Instance.currentPage == 14) return;
-        print(SH_ChildrenFairyManager.Instance.pages[SH_ChildrenFairyManager.Instance.currentPage].GetComponent<AudioSource>().clip.length);
+        //print(SH_ChildrenFairyManager.Instance.pages[SH_ChildrenFairyManager.Instance.currentPage].GetComponent<AudioSource>().clip.length);
         currentTime += Time.deltaTime;
         if(currentTime > SH_ChildrenFairyManager.Instance.pages[SH_ChildrenFairyManager.Instance.currentPage].GetComponent<AudioSource>().clip.length && i<1)
         {
