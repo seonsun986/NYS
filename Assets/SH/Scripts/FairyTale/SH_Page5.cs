@@ -33,6 +33,15 @@ public class SH_Page5 : MonoBehaviour
             // 박스에 마우스 올려뒀을 때
             if(hitInfo.transform.name == "BoxBtn")
             {
+#if UNITY_ANDROID
+                // 이때 마우스 누르면 함수 실행
+                if (Input.GetMouseButtonDown(0))
+                {
+                    SH_ChildrenFairyManager.Instance.OnFailPopUp();
+                    btnClickSound.Play();
+                }
+
+#else
                 if(boxB == false)
                 {
                     box.Play("BoxSizeUp");
@@ -40,12 +49,6 @@ public class SH_Page5 : MonoBehaviour
                     boxText.SetActive(true);
                 }
 
-                // 이때 마우스 누르면 함수 실행
-                if(Input.GetMouseButtonDown(0))
-                {
-                    SH_ChildrenFairyManager.Instance.OnFailPopUp();
-                    btnClickSound.Play();
-                }
 
                 // 책, 공 작게 해주기
                 book.enabled = false;
@@ -55,21 +58,6 @@ public class SH_Page5 : MonoBehaviour
                 ballB = false;
                 bookText.SetActive(false);
                 ballText.SetActive(false);
-                
-            }
-
-            // 책에 마우스 올려뒀을 때
-            else if (hitInfo.transform.name == "BookBtn")
-            {
-                
-                if(bookB == false)
-                {
-                    book.Rebind();
-                    book.enabled = true;
-                    bookB = true;
-                    bookText.SetActive(true);
-                }
-
 
                 // 이때 마우스 누르면 함수 실행
                 if (Input.GetMouseButtonDown(0))
@@ -77,6 +65,36 @@ public class SH_Page5 : MonoBehaviour
                     SH_ChildrenFairyManager.Instance.OnFailPopUp();
                     btnClickSound.Play();
                 }
+#endif
+            }
+
+            // 책에 마우스 올려뒀을 때
+            else if (hitInfo.transform.name == "BookBtn")
+            {
+#if UNITY_ANDROID
+                // 이때 마우스 누르면 함수 실행
+                if (Input.GetMouseButtonDown(0))
+                {
+                    SH_ChildrenFairyManager.Instance.OnFailPopUp();
+                    btnClickSound.Play();
+                }
+#else
+
+                if (bookB == false)
+                {
+                    book.Rebind();
+                    book.enabled = true;
+                    bookB = true;
+                    bookText.SetActive(true);
+                }
+
+                 // 이때 마우스 누르면 함수 실행
+                if (Input.GetMouseButtonDown(0))
+                {
+                    SH_ChildrenFairyManager.Instance.OnFailPopUp();
+                    btnClickSound.Play();
+                }
+                
                 // 박스, 공 작게 해주기
                 ball.gameObject.transform.localScale = new Vector3(0.16541f, 0.16541f, 0.16541f);
                 box.gameObject.transform.localScale = new Vector3(0.0001363301f, 0.0001363301f, 0.0001363301f);
@@ -84,11 +102,23 @@ public class SH_Page5 : MonoBehaviour
                 boxB = false;
                 ballText.SetActive(false);
                 boxText.SetActive(false);
+#endif
             }
 
-            // 공에 마우스 올려뒀을 때
-            else if(hitInfo.transform.name == "BallBtn")
+                // 공에 마우스 올려뒀을 때
+            else if (hitInfo.transform.name == "BallBtn")
             {
+#if UNITY_ANDROID
+
+                    // 이때 마우스 누르면 함수 실행
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        SH_ChildrenFairyManager.Instance.OnPassPopUp();
+                        btnClickSound.Play();
+                    }
+
+
+#else
                 if(ballB == false)
                 {
                     ball.Play("BallSizeUp");
@@ -111,9 +141,13 @@ public class SH_Page5 : MonoBehaviour
                 bookB = false;
                 boxText.SetActive(false);
                 bookText.SetActive(false);
-            }
+#endif
 
-            // 다른 거에 부딪혔을 때 다 작게 해준다
+            }
+#if UNITY_ANDROID
+
+#else
+         // 다른 거에 부딪혔을 때 다 작게 해준다
             else
             {
                 ball.gameObject.transform.localScale = new Vector3(0.16541f, 0.16541f, 0.16541f);
@@ -126,9 +160,14 @@ public class SH_Page5 : MonoBehaviour
                 ballText.SetActive(false);
                 boxText.SetActive(false);
                 bookText.SetActive(false);
-            }    
+            }
 
+#endif
         }
+
+#if UNITY_ANDROID
+
+#else
 
         // 아무것도 부딪히지 않았을 때도 다 작게 해준다
         else
@@ -144,6 +183,7 @@ public class SH_Page5 : MonoBehaviour
             boxText.SetActive(false);
             bookText.SetActive(false);
         }
+#endif
     }
 
 

@@ -21,24 +21,24 @@ public class SH_PointerAnim : MonoBehaviour
     {
         // ¸¶¿ì½º Ray
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue);
+        //Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue);
         if(Physics.Raycast(ray, out hitInfo))
         {
             if (selectPopUp.activeSelf == true) return;
             if(hitInfo.transform.name == "BearBtn")
             {
-                if(bear.enabled == false)
-                {
-                    bear.enabled = true;
-                    bear.transform.GetComponent<Outline>().enabled = true;
-                    tiger.transform.GetComponent<Outline>().enabled = false;
-                    rabbit.transform.GetComponent<Outline>().enabled = false;
-                    bearText.SetActive(true);
-                    rabbit.Rebind();
-                    tiger.Rebind();
-                    tigerText.SetActive(false);
-                    rabbitText.SetActive(false);
-                }
+                //if(bear.enabled == false)
+                //{
+                //    bear.enabled = true;
+                //    bear.transform.GetComponent<Outline>().enabled = true;
+                //    tiger.transform.GetComponent<Outline>().enabled = false;
+                //    rabbit.transform.GetComponent<Outline>().enabled = false;
+                //    bearText.SetActive(true);
+                //    rabbit.Rebind();
+                //    tiger.Rebind();
+                //    tigerText.SetActive(false);
+                //    rabbitText.SetActive(false);
+                //}
 
                 if(Input.GetMouseButtonDown(0))
                 {
@@ -49,21 +49,21 @@ public class SH_PointerAnim : MonoBehaviour
             }
             else if(hitInfo.transform.name == "TigerBtn")
             {
-                if (tiger.enabled == false)
-                {
-                    tiger.enabled = true;
-                    tigerText.SetActive(true);
-                    bear.Rebind();
-                    bear.enabled = false;
-                    rabbit.Rebind();
-                    rabbit.enabled = false;
-                    bearText.SetActive(false);
-                    rabbitText.SetActive(false);
+                //if (tiger.enabled == false)
+                //{
+                //    tiger.enabled = true;
+                //    tigerText.SetActive(true);
+                //    bear.Rebind();
+                //    bear.enabled = false;
+                //    rabbit.Rebind();
+                //    rabbit.enabled = false;
+                //    bearText.SetActive(false);
+                //    rabbitText.SetActive(false);
 
-                    bear.transform.GetComponent<Outline>().enabled = false;
-                    tiger.transform.GetComponent<Outline>().enabled = true;
-                    rabbit.transform.GetComponent<Outline>().enabled = false;
-                }
+                //    bear.transform.GetComponent<Outline>().enabled = false;
+                //    tiger.transform.GetComponent<Outline>().enabled = true;
+                //    rabbit.transform.GetComponent<Outline>().enabled = false;
+                //}
 
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -74,21 +74,21 @@ public class SH_PointerAnim : MonoBehaviour
             }
             else if (hitInfo.transform.name == "RabbitBtn")
             {
-                if (rabbit.enabled == false)
-                {
-                    rabbit.enabled = true;
-                    rabbitText.SetActive(true);
-                    bear.Rebind();
-                    bear.enabled = false;
-                    tiger.Rebind();
-                    tiger.enabled = false;
-                    bearText.SetActive(false);
-                    tigerText.SetActive(false);
+                //if (rabbit.enabled == false)
+                //{
+                //    rabbit.enabled = true;
+                //    rabbitText.SetActive(true);
+                //    bear.Rebind();
+                //    bear.enabled = false;
+                //    tiger.Rebind();
+                //    tiger.enabled = false;
+                //    bearText.SetActive(false);
+                //    tigerText.SetActive(false);
 
-                    bear.transform.GetComponent<Outline>().enabled = false;
-                    tiger.transform.GetComponent<Outline>().enabled = false;
-                    rabbit.transform.GetComponent<Outline>().enabled = true;
-                }
+                //    bear.transform.GetComponent<Outline>().enabled = false;
+                //    tiger.transform.GetComponent<Outline>().enabled = false;
+                //    rabbit.transform.GetComponent<Outline>().enabled = true;
+                //}
 
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -97,37 +97,37 @@ public class SH_PointerAnim : MonoBehaviour
 
                 }
             }
-            else
-            {
-                rabbit.Rebind();
-                rabbit.enabled = false;
-                tiger.Rebind();
-                tiger.enabled = false;
-                bear.Rebind();
-                bear.enabled = false;
-                bearText.SetActive(false);
-                tigerText.SetActive(false);
-                rabbitText.SetActive(false);
-                bear.transform.GetComponent<Outline>().enabled = false;
-                tiger.transform.GetComponent<Outline>().enabled = false;
-                rabbit.transform.GetComponent<Outline>().enabled = false;
-            }
+            //else
+            //{
+            //    rabbit.Rebind();
+            //    rabbit.enabled = false;
+            //    tiger.Rebind();
+            //    tiger.enabled = false;
+            //    bear.Rebind();
+            //    bear.enabled = false;
+            //    bearText.SetActive(false);
+            //    tigerText.SetActive(false);
+            //    rabbitText.SetActive(false);
+            //    bear.transform.GetComponent<Outline>().enabled = false;
+            //    tiger.transform.GetComponent<Outline>().enabled = false;
+            //    rabbit.transform.GetComponent<Outline>().enabled = false;
+            //}
         }
-        else
-        {
-            rabbit.Rebind();
-            rabbit.enabled = false;
-            tiger.Rebind();
-            tiger.enabled = false;
-            bear.Rebind();
-            bear.enabled = false;
-            bearText.SetActive(false);
-            tigerText.SetActive(false);
-            rabbitText.SetActive(false);
-            bear.transform.GetComponent<Outline>().enabled = false;
-            tiger.transform.GetComponent<Outline>().enabled = false;
-            rabbit.transform.GetComponent<Outline>().enabled = false;
-        }
+        //else
+        //{
+        //    rabbit.Rebind();
+        //    rabbit.enabled = false;
+        //    tiger.Rebind();
+        //    tiger.enabled = false;
+        //    bear.Rebind();
+        //    bear.enabled = false;
+        //    bearText.SetActive(false);
+        //    tigerText.SetActive(false);
+        //    rabbitText.SetActive(false);
+        //    bear.transform.GetComponent<Outline>().enabled = false;
+        //    tiger.transform.GetComponent<Outline>().enabled = false;
+        //    rabbit.transform.GetComponent<Outline>().enabled = false;
+        //}
 
     }
 }
