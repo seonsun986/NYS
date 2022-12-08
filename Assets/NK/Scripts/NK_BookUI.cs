@@ -175,15 +175,22 @@ public class NK_BookUI : MonoBehaviourPun
             JObject taleJObj = JObject.Parse(handler.downloadHandler.text);
             for (int i = 0; i < title.data.pages.Count; i++)
             {
-                audioClips.Add(null);
-                if (taleJObj["data"]["pages"][i]["audioUrl"].ToString() != " ")
-                {
-                    GetBookAudio(taleJObj["data"]["pages"][i]["audioUrl"].ToString(), i);
-                }
+                string audioUrl = taleJObj["data"]["pages"][i]["audioUrl"].ToString();
+                photonView.RPC("AddAudioClip", RpcTarget.All, audioUrl, i);
             }
         };
         YJ_HttpManager.instance.SendRequest(requester2);
 
+    }
+
+    [PunRPC]
+    private void AddAudioClip(string audioUrl, int i)
+    {
+        audioClips.Add(null);
+        if (audioUrl != " ")
+        {
+            GetBookAudio(audioUrl, i);
+        }
     }
 
     public void GetBookImage(int index)
@@ -204,7 +211,7 @@ public class NK_BookUI : MonoBehaviourPun
         YJ_HttpManager.instance.SendRequest(requester);
     }
 
-    public void GetBookAudio(string url, int index, bool record = false)
+    public void GetBookAudio(string url, int index)
     {
         if (url == "")
         {
