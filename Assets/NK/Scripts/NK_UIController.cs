@@ -242,6 +242,7 @@ public class NK_UIController : MonoBehaviourPun
     {
         GameObject teacher = PhotonView.Find(viewId).gameObject;
         NK_PlayerMove move = teacher.GetComponent<NK_PlayerMove>();
+        move.anim.SetBool("Move", false);
         move.enabled = false;
         teacher.transform.localEulerAngles = deskRot;
         teacher.transform.position = deskPos;
