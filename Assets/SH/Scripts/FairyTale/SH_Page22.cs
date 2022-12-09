@@ -77,10 +77,11 @@ public class SH_Page22 : MonoBehaviour
 
         if(currentTime >15.5f && q<1)
         {
-            endBtn.SetActive(true);
-            reBtn.SetActive(true);
-            iTween.ScaleTo(endBtn, iTween.Hash("x", 1.8f, "y", 1.8f, "z", 1.8f, "time", 1.5f ));
-            iTween.ScaleTo(reBtn, iTween.Hash("x", 1.8f, "y", 1.8f, "z", 1.8f, "time", 1.5f ));
+            // 끝내기, 다시하기 버튼 생성
+            //endBtn.SetActive(true);
+            //reBtn.SetActive(true);
+            //iTween.ScaleTo(endBtn, iTween.Hash("x", 1.8f, "y", 1.8f, "z", 1.8f, "time", 1.5f ));
+            //iTween.ScaleTo(reBtn, iTween.Hash("x", 1.8f, "y", 1.8f, "z", 1.8f, "time", 1.5f ));
             q++;
         }
     }
