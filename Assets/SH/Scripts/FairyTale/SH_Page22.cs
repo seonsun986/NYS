@@ -75,16 +75,50 @@ public class SH_Page22 : MonoBehaviour
             }
         }
 
-        if(currentTime >15.5f && q<1)
+        if (currentTime > 16.5f && q < 1)
         {
             // 끝내기, 다시하기 버튼 생성
+            quizBoy.SetActive(true);
+            iTween.MoveTo(quizBoy, iTween.Hash("y", -9f, "time", 1f));
+            panel.SetActive(false);
+            panelWorld.SetActive(true);
+            page22Boy.SetActive(false);
             //endBtn.SetActive(true);
             //reBtn.SetActive(true);
             //iTween.ScaleTo(endBtn, iTween.Hash("x", 1.8f, "y", 1.8f, "z", 1.8f, "time", 1.5f ));
             //iTween.ScaleTo(reBtn, iTween.Hash("x", 1.8f, "y", 1.8f, "z", 1.8f, "time", 1.5f ));
             q++;
         }
+
+        if(currentTime > quizBoy.GetComponent<AudioSource>().clip.length + 16.5f && q<2)
+        {
+            quizBG.SetActive(true);
+            iTween.ScaleTo(quizBG, iTween.Hash("x", 10, "time", 1.5f, "easetype", "easeOutBounce"));
+            q++;
+        }
+
+        if(currentTime > 25.5 && q<3)
+        {
+            quiz1.SetActive(true);
+            quizOBtn.SetActive(true);
+            quizXBtn.SetActive(true);
+            iTween.ScaleTo(quizOBtn, iTween.Hash("x", 1.4154f, "y", 1.4154f, "z", 1.4154f, "time", 1.5f));
+            iTween.ScaleTo(quizXBtn, iTween.Hash("x", 1.4154f, "y", 1.4154f, "z", 1.4154f, "time", 1.5f));
+            q++;
+        }
+
     }
+
+    public GameObject quizBoy;
+    public GameObject panel;
+    public GameObject panelWorld;
+    public GameObject quizBG;
+    public GameObject quiz1;
+    public GameObject quiz2;
+    public GameObject quiz3;
+    public GameObject quizOBtn;
+    public GameObject quizXBtn;
+    public GameObject page22Boy;
 
     IEnumerator GirlGo()
     {
