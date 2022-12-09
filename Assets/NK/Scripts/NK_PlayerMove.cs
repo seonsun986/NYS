@@ -174,33 +174,35 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                         {
                             if (raycastHit.transform.gameObject.layer != 6)
                             {
-                                movePoint = raycastHit.point;
-                                GameObject footPrint = Instantiate(footPrintFactory);
-                                footPrint.transform.position = raycastHit.point;
-                                Vector3 dir = this.gameObject.transform.position - footPrint.transform.position;
-                                dir.y = 0;
-                                footPrint.transform.forward = -dir;
-
+                            movePoint = raycastHit.point;
+                            GameObject footPrint = Instantiate(footPrintFactory);
+                            footPrint.transform.position = raycastHit.point;
+                            Vector3 dir = this.gameObject.transform.position - footPrint.transform.position;
+                            dir.y = 0;
+                            footPrint.transform.forward = -dir;
                             }
                         }
-                        else if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId) && raycastHit.transform.gameObject.layer != 6 )
+                        else if (Input.touchCount > 0 && raycastHit.transform.gameObject.layer != 6 )
                         {
-                            if (raycastHit.transform.gameObject.tag == "Room")
+                            if(!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
                             {
-                                GameObject.Find("Canvas").transform.Find("PopUpBG").gameObject.SetActive(true);
-                                GameObject.Find("Canvas").transform.GetChild(15).gameObject.SetActive(true);
-                                // 방정보 가져오기
-                                YJ_DataManager.instance.goingRoomName = raycastHit.transform.gameObject.GetComponent<YJ_RoomTrigger>().roomName;
-                                YJ_DataManager.instance.goingRoomType = raycastHit.transform.gameObject.GetComponent<YJ_RoomTrigger>().roomType;
-                            }
-                            else
-                            {
-                                movePoint = raycastHit.point;
-                                GameObject footPrint = Instantiate(footPrintFactory);
-                                footPrint.transform.position = raycastHit.point;
-                                Vector3 dir = this.gameObject.transform.position - footPrint.transform.position;
-                                dir.y = 0;
-                                footPrint.transform.forward = -dir;
+                                if (raycastHit.transform.gameObject.tag == "Room")
+                                {
+                                    GameObject.Find("Canvas").transform.Find("PopUpBG").gameObject.SetActive(true);
+                                    GameObject.Find("Canvas").transform.GetChild(15).gameObject.SetActive(true);
+                                    // 방정보 가져오기
+                                    YJ_DataManager.instance.goingRoomName = raycastHit.transform.gameObject.GetComponent<YJ_RoomTrigger>().roomName;
+                                    YJ_DataManager.instance.goingRoomType = raycastHit.transform.gameObject.GetComponent<YJ_RoomTrigger>().roomType;
+                                }
+                                else
+                                {
+                                    movePoint = raycastHit.point;
+                                    GameObject footPrint = Instantiate(footPrintFactory);
+                                    footPrint.transform.position = raycastHit.point;
+                                    Vector3 dir = this.gameObject.transform.position - footPrint.transform.position;
+                                    dir.y = 0;
+                                    footPrint.transform.forward = -dir;
+                                }
                             }
                         }
 #else
