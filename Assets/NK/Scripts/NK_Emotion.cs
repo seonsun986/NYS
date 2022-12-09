@@ -52,12 +52,22 @@ public class NK_Emotion : MonoBehaviourPun
         }
     }
 
+    bool touch = false;
+
     private void ClickUser()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
+#if UNITY_ANDROID
+        if (Input.touchCount > 0)
+        {
+            touch = true;
+        }
+        if (Physics.Raycast(ray, out hit) && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId) && touch)
+#else
         if (Physics.Raycast(ray, out hit) && !EventSystem.current.IsPointerOverGameObject())
+#endif
         {
 
             // 클릭한 오브젝트의 LayerMask가 Player이고 자기자신이 아니면
@@ -65,10 +75,15 @@ public class NK_Emotion : MonoBehaviourPun
             {
                 clickUser = hit.transform.gameObject;
                 emotionUI.gameObject.SetActive(true);
+
+                Debug.Log("켜졌어");
+                touch = false;
             }
             else
             {
                 emotionUI.gameObject.SetActive(false);
+                Debug.Log("꺼졌어");
+                touch = false;
             }
         }
     }
