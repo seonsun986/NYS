@@ -156,42 +156,6 @@ public class NK_LoadPreview : MonoBehaviour
             SH_BtnManager.Instance.title = bookInfo.title;
 
             // pageinfo(단일) 내에서 text, obj로 구분지어 클래스 내 json 정렬 > pagesinfo.data(리스트)
-            // pagesInfo.ttsText 여부에 따라서 다시 설정해주기
-            // TTS면 Null넣어주기
-            // 녹음이면 -> 0페이지면 Insert // 아니라면 ADD
-            foreach (PagesInfo pagesInfo in pagesInfos)
-            {
-                VoiceInfo voiceInfo = new VoiceInfo();
-                // 녹음을 선택했을 때
-
-                // 클래스 세팅
-                voiceInfo.ttsBtn = SH_VoiceRecord.Instance.ttsUnCheked;
-                voiceInfo.recordNum = 1;
-                SH_VoiceRecord.Instance.ttsBtn.GetComponent<Image>().sprite = SH_VoiceRecord.Instance.ttsUnCheked;
-                SH_VoiceRecord.Instance.ttsBtn.interactable = false;
-                SH_VoiceRecord.Instance.recordBtn.interactable = true;
-                if (pagesInfo.page == 0)
-                {
-                    SH_VoiceRecord.Instance.voiceClip.RemoveAt(0);
-                    SH_VoiceRecord.Instance.voiceClip.Add(Resources.Load<AudioClip>("Page" + pagesInfo.page));
-                }
-                else
-                {
-                    SH_VoiceRecord.Instance.voiceClip.Add(Resources.Load<AudioClip>("Page" + pagesInfo.page));
-
-
-                }
-                print("녹음 선택");
-                //else
-                //{
-                //    SH_VoiceRecord.Instance.ttsBtn.GetComponent<Image>().sprite = SH_VoiceRecord.Instance.ttsUnCheked;
-                //    SH_VoiceRecord.Instance.ttsBtn.interactable = true;
-                //    SH_VoiceRecord.Instance.recordBtn.interactable = true;
-                //}
-                SH_VoiceRecord.Instance.voiceInfos.Add(voiceInfo);
-            }
-
-            // pageinfo(단일) 내에서 text, obj로 구분지어 클래스 내 json 정렬 > pagesinfo.data(리스트)
             for (int i = 0; i < pagesInfos.Count; i++)
             {
                 objs = new List<PageInfo>();
@@ -211,6 +175,62 @@ public class NK_LoadPreview : MonoBehaviour
             print("씬 : " + sceneObjects.Count);
             for (int i = 0; i < sceneObjects.Count; i++)
                 InstantiateObject();
+
+            // pageinfo(단일) 내에서 text, obj로 구분지어 클래스 내 json 정렬 > pagesinfo.data(리스트)
+            // pagesInfo.ttsText 여부에 따라서 다시 설정해주기
+            // TTS면 Null넣어주기
+            // 녹음이면 -> 0페이지면 Insert // 아니라면 ADD
+            for(int i = 0; i < pagesInfos.Count; i++)
+            
+            //foreach (PagesInfo pagesInfo in pagesInfos)
+            {
+                PagesInfo pagesInfo = pagesInfos[i];
+                VoiceInfo voiceInfo = new VoiceInfo();
+                voiceInfo.ttsBtn = SH_VoiceRecord.Instance.ttsUnCheked;
+                // 녹음을 선택했을 때
+                if (taleJObj["data"]["pages"][pagesInfo.page]["audioUrl"].ToString() != "")
+                {
+                    // 클래스 세팅                    
+                    voiceInfo.recordNum = 1;                    
+
+                    if (pagesInfo.page == 0)
+                    {
+                        SH_VoiceRecord.Instance.voiceClip.RemoveAt(0);
+                        SH_VoiceRecord.Instance.voiceClip.Add(Resources.Load<AudioClip>("Page" + pagesInfo.page));
+                    }
+                    else
+                    {
+                        SH_VoiceRecord.Instance.voiceClip.Add(Resources.Load<AudioClip>("Page" + pagesInfo.page));
+                    }
+                }
+                else
+                {
+                    SH_VoiceRecord.Instance.voiceClip.Add(null);
+                }
+                SH_VoiceRecord.Instance.voiceInfos.Add(voiceInfo);
+
+                if(i == pagesInfos.Count - 1)
+                {
+                    SH_VoiceRecord.Instance.ttsBtn.GetComponent<Image>().sprite = SH_VoiceRecord.Instance.ttsUnCheked;
+                    SH_VoiceRecord.Instance.recordBtn.interactable = true;
+                    if (voiceInfo.recordNum == 1)
+                    {
+                        SH_VoiceRecord.Instance.ttsBtn.interactable = false;
+                    }
+                    else
+                    {
+                        SH_VoiceRecord.Instance.ttsBtn.interactable = true;
+                    }
+                }
+
+                print("녹음 선택");
+                //else
+                //{
+                //    SH_VoiceRecord.Instance.ttsBtn.GetComponent<Image>().sprite = SH_VoiceRecord.Instance.ttsUnCheked;
+                //    SH_VoiceRecord.Instance.ttsBtn.interactable = true;
+                //    SH_VoiceRecord.Instance.recordBtn.interactable = true;
+                //}
+            }
         };
         YJ_HttpManager.instance.SendRequest(requester2);
     }
@@ -452,6 +472,7 @@ public class NK_LoadPreview : MonoBehaviour
         requester.index = index;
         requester.onCompleteDownloadImage = (handler, idx) =>
         {
+            //File.WriteAllBytes(Application.dataPath + "/aaaa.wav", handler.downloadHandler.data);
             // 책 녹음 오디오 클립으로 받아오기
             AudioClip audio = DownloadHandlerAudioClip.GetContent(handler);
             voices[idx] = audio;

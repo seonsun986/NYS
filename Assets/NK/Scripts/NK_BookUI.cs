@@ -231,7 +231,7 @@ public class NK_BookUI : MonoBehaviourPun
                 isAudio = false;
                 return;
             }
-
+            
             // 책 오디오 클립 받아오기
             AudioClip clip = DownloadHandlerAudioClip.GetContent(handler);
             audioClips[idx] = clip;
