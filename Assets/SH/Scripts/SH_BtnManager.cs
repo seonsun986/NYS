@@ -511,6 +511,7 @@ public class SH_BtnManager : MonoBehaviour
             if (obj[j].name.Contains(clickText))
             {
                 GameObject createObj = Instantiate(obj[j]);
+                iTween.ScaleFrom(createObj, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.7f));
                 SH_EditorManager.Instance.activeObj = createObj;
                 createObj.transform.SetParent(Scenes[currentSceneNum].transform);
                 createObj.transform.position = new Vector3(0, -1, 0);

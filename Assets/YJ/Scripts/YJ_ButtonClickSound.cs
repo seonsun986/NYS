@@ -11,7 +11,8 @@ public class YJ_ButtonClickSound : MonoBehaviour
     [Header("BGM")]
     public AudioClip startButtonSound;
     public AudioClip buttonSound;
-
+    public AudioClip oBtnSound;
+    public AudioClip xBtnSound;
 
     void Start()
     {
@@ -31,6 +32,18 @@ public class YJ_ButtonClickSound : MonoBehaviour
             audioSet = GetComponent<AudioSource>();
         }
         audioSet.clip = buttonSound;
+        audioSet.Play();
+    }
+
+    public void OBtnClickSound()
+    {
+        audioSet.clip = oBtnSound;
+        audioSet.Play();
+    }
+
+    public void XBtnClickSound()
+    {
+        audioSet.clip = xBtnSound;
         audioSet.Play();
     }
 

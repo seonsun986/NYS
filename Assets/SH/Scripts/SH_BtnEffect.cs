@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class SH_BtnEffect : MonoBehaviour
 {
-    public void OnClickMTChange()
+    public void OnClickMTChange(float bigSize/*, float smallSize*/)
     {
-        iTween.ScaleTo(gameObject, iTween.Hash("x", 1.55f, "y", 1.55f, "z", 1.55f, "easeType", "easeOutSine", "time", 0.2f, "oncomplete", "SmallButton"));
-
+        iTween.ScaleTo(gameObject, iTween.Hash("x", bigSize, "y", bigSize, "z", bigSize, "easeType", "easeOutSine", "time", 0.2f));
+        StartCoroutine(SmallButton(bigSize - 0.1f));
     }
 
-    void SmallButton()
+    IEnumerator SmallButton(float smallsize)
     {
-        iTween.ScaleTo(gameObject, iTween.Hash("x", 1.4154f, "y", 1.4154f, "z", 1.4154f, "easeType", "easeOutSine", "time", 0.2f));
+        yield return new WaitForSeconds(0.2f);
+        iTween.ScaleTo(gameObject, iTween.Hash("x", smallsize, "y", smallsize, "z", smallsize, "easeType", "easeOutSine", "time", 0.2f));
     }
 }
