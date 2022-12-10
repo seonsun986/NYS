@@ -93,7 +93,7 @@ public class SH_Page22 : MonoBehaviour
         if(currentTime > quizBoy.GetComponent<AudioSource>().clip.length + 16.5f && q<2)
         {
             quizBG.SetActive(true);
-            iTween.ScaleTo(quizBG, iTween.Hash("x", 10, "time", 1.5f, "easetype", "easeOutBounce"));
+            iTween.ScaleTo(quizBG, iTween.Hash("x", 0.2851699f, "time", 1.5f, "easetype", "easeOutBounce"));
             q++;
         }
 
@@ -138,6 +138,10 @@ public class SH_Page22 : MonoBehaviour
     public AudioClip correctClip;
     public AudioClip incorrectClip;
     public AudioClip quizEnd;
+    public GameObject quizGirl;
+    public GameObject quizBrother;
+    public GameObject quizGoodText;
+    public ParticleSystem quizFirework;
     public void QuizOBtn()
     {
         if(q<4)
@@ -152,6 +156,14 @@ public class SH_Page22 : MonoBehaviour
             quizOBtn.GetComponent<AudioSource>().clip = correctClip;
             quizOBtn.GetComponent<AudioSource>().Play();
             quiz2.SetActive(false);
+            quizGirl.SetActive(true);
+            quizBrother.SetActive(true);
+            quizGoodText.SetActive(true);
+            quizFirework.Play();
+            iTween.ScaleTo(quizGirl, iTween.Hash("x", 4.185395f, "y", 4.185395f, "z", 4.185395f, "time", 0.7f));
+            iTween.ScaleTo(quizBrother, iTween.Hash("x", 4.185395f, "y", 4.185395f, "z", 4.185395f, "time", 0.7f));
+            iTween.ScaleTo(quizGoodText, iTween.Hash("x", 1, "y", 1, "z", 1, "time", 0.7f));
+
             ButtonSizeDown();
             StartCoroutine(NextQuiz());
             q++;
@@ -162,6 +174,14 @@ public class SH_Page22 : MonoBehaviour
             quizOBtn.GetComponent<AudioSource>().clip = correctClip;
             quizOBtn.GetComponent<AudioSource>().Play();
             quiz3.SetActive(false);
+            quizGirl.SetActive(true);
+            quizBrother.SetActive(true);
+            quizGoodText.SetActive(true);
+            quizFirework.Play();
+
+            iTween.ScaleTo(quizGirl, iTween.Hash("x", 4.185395f, "y", 4.185395f, "z", 4.185395f, "time", 0.7f));
+            iTween.ScaleTo(quizBrother, iTween.Hash("x", 4.185395f, "y", 4.185395f, "z", 4.185395f, "time", 0.7f));
+            iTween.ScaleTo(quizGoodText, iTween.Hash("x", 1, "y", 1, "z", 1, "time", 0.7f));
             ButtonSizeDown();
             StartCoroutine(NextQuiz());
             q++;
@@ -175,6 +195,14 @@ public class SH_Page22 : MonoBehaviour
             quizOBtn.GetComponent<AudioSource>().clip = correctClip;
             quizOBtn.GetComponent<AudioSource>().Play();
             quiz1.SetActive(false);
+            quizGirl.SetActive(true);
+            quizBrother.SetActive(true);
+            quizGoodText.SetActive(true);
+            quizFirework.Play();
+
+            iTween.ScaleTo(quizGirl, iTween.Hash("x", 4.185395f, "y", 4.185395f, "z", 4.185395f, "time", 0.7f));
+            iTween.ScaleTo(quizBrother, iTween.Hash("x", 4.185395f, "y", 4.185395f, "z", 4.185395f, "time", 0.7f));
+            iTween.ScaleTo(quizGoodText, iTween.Hash("x", 1, "y", 1, "z", 1, "time", 0.7f));
             ButtonSizeDown();
             StartCoroutine(NextQuiz());
             q++;
@@ -210,9 +238,18 @@ public class SH_Page22 : MonoBehaviour
 
     IEnumerator NextQuiz()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4f);
+
+        iTween.ScaleTo(quizGirl, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.7f));
+        iTween.ScaleTo(quizBrother, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.7f));
+        iTween.ScaleTo(quizGoodText, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.7f));
+        yield return new WaitForSeconds(1f);
+        quizGirl.SetActive(false);
+        quizBrother.SetActive(false);
+        quizGoodText.SetActive(false);
+
         // ДыБо 1 -> ДыБо 2 
-        if(q<5)
+        if (q<5)
         {
             quiz2.SetActive(true);
             ButtonSizeUp();
