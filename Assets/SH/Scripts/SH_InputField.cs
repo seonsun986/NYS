@@ -184,7 +184,6 @@ public class SH_InputField : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
             if (b == false)
             {
-                print("툴 꺼짐!!");
                 tool.SetActive(false);
                 // 리스트 초기화 시켜야함
                 raycastResults.Clear();
