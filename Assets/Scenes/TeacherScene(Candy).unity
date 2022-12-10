@@ -12346,6 +12346,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startButtonSound: {fileID: 8300000, guid: 3913111caf1b26646af7a500ecda76a0, type: 3}
   buttonSound: {fileID: 8300000, guid: 24e366a47a3018f4882a904d7850c333, type: 3}
+  oBtnSound: {fileID: 0}
+  xBtnSound: {fileID: 0}
 --- !u!82 &1040144025
 AudioSource:
   m_ObjectHideFlags: 0
@@ -16373,6 +16375,7 @@ GameObject:
   - component: {fileID: 1360708720}
   - component: {fileID: 1360708719}
   - component: {fileID: 1360708718}
+  - component: {fileID: 1360708722}
   m_Layer: 5
   m_Name: SettingBtn
   m_TagString: Untagged
@@ -16398,8 +16401,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 820, y: -140}
-  m_SizeDelta: {x: 130, y: 130}
+  m_AnchoredPosition: {x: 790, y: -170}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1360708718
 MonoBehaviour:
@@ -16536,6 +16539,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1360708722}
+        m_TargetAssemblyTypeName: SH_BtnEffect, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1.1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1360708720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16574,6 +16589,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360708716}
   m_CullTransparentMesh: 1
+--- !u!114 &1360708722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360708716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7622c7d78a5c245adc9831679622d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1376658319
 GameObject:
   m_ObjectHideFlags: 0
@@ -24023,6 +24050,7 @@ GameObject:
   - component: {fileID: 2036060573}
   - component: {fileID: 2036060572}
   - component: {fileID: 2036060575}
+  - component: {fileID: 2036060576}
   m_Layer: 5
   m_Name: HandUpBtn
   m_TagString: Untagged
@@ -24048,8 +24076,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 680, y: -140}
-  m_SizeDelta: {x: 130, y: 130}
+  m_AnchoredPosition: {x: 590, y: -170}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2036060572
 MonoBehaviour:
@@ -24119,6 +24147,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2036060576}
+        m_TargetAssemblyTypeName: SH_BtnEffect, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1.1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2036060573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24167,6 +24207,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 039f1277b8f71064fb67cd661577f5d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2036060576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036060570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7622c7d78a5c245adc9831679622d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2037091974
@@ -25013,6 +25065,7 @@ GameObject:
   - component: {fileID: 2087658446}
   - component: {fileID: 2087658445}
   - component: {fileID: 2087658444}
+  - component: {fileID: 2087658447}
   m_Layer: 5
   m_Name: BackBtn
   m_TagString: Untagged
@@ -25038,8 +25091,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -820, y: -140}
-  m_SizeDelta: {x: 130, y: 130}
+  m_AnchoredPosition: {x: -790, y: -170}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2087658444
 MonoBehaviour:
@@ -25109,6 +25162,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2087658447}
+        m_TargetAssemblyTypeName: SH_BtnEffect, Assembly-CSharp
+        m_MethodName: OnClickMTChange
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1.1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2087658445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25147,6 +25212,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087658441}
   m_CullTransparentMesh: 1
+--- !u!114 &2087658447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087658441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7622c7d78a5c245adc9831679622d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2095627372
 GameObject:
   m_ObjectHideFlags: 0

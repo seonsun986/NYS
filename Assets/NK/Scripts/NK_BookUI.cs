@@ -433,8 +433,10 @@ public class NK_BookUI : MonoBehaviourPun
         textInfo.fontSize = size;
         textObj.GetComponent<RectTransform>().sizeDelta = new Vector2(textInfo.preferredWidth, textInfo.preferredHeight);
         textObj.transform.SetParent(fairyTaleUI);
-        position = new Vector3(position.x, position.y / 3, position.z);
-        textObj.GetComponent<RectTransform>().anchoredPosition = position;
+        //position = new Vector3(position.x, position.y / 3, position.z);
+        print(position);
+        //textObj.GetComponent<RectTransform>().anchoredPosition = position;
+        textObj.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -168, 0);
     }
 
     Animator animator;
