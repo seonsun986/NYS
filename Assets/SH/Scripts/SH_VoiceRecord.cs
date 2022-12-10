@@ -34,7 +34,7 @@ public class SH_VoiceRecord : MonoBehaviour
     private void Start()
     {
         //voiceClip = new List<AudioClip>();
-
+        InitVoiceInfo();
     }
     public void Record()
     {
@@ -263,6 +263,10 @@ public class SH_VoiceRecord : MonoBehaviour
         iTween.ScaleTo(popUp2, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.5f));
         ttsBtn.GetComponent<Image>().sprite = ttsChecked;
         recordBtn.interactable = false;
+
+        Change();
+        voiceInfos[SH_BtnManager.Instance.currentSceneNum].ttsBtn = ttsChecked;
+
     }
 
     public void PopUp2No()
@@ -275,13 +279,10 @@ public class SH_VoiceRecord : MonoBehaviour
     // 페이지를 넘길때마다의 레코드 넘버를 저장해야할거같은데..
     public void Reset()
     {
-        // 해당 페이지에 있는 보이스 정보 담기
-        VoiceInfo voiceInfo = new VoiceInfo();
-        voiceInfo.ttsBtn = ttsBtn.GetComponent<Image>().sprite;
-        voiceInfo.recordNum = num;
-
-        // 리스트에 담아주기
-        voiceInfos.Add(voiceInfo);
+        voiceInfos[SH_BtnManager.Instance.currentSceneNum].ttsBtn = ttsBtn.GetComponent<Image>().sprite;
+        voiceInfos[SH_BtnManager.Instance.currentSceneNum].recordNum = num;
+        InitVoiceInfo();
+      
         // 초기화 시켜주기
         ttsBtn.interactable = true;
         recordBtn.interactable = true;
@@ -289,9 +290,19 @@ public class SH_VoiceRecord : MonoBehaviour
         recordingBtn.sprite = recordImg;
     }
 
+    void InitVoiceInfo()
+    {
+        // 해당 페이지에 있는 보이스 정보 담기
+        VoiceInfo voiceInfo = new VoiceInfo();
+        voiceInfo.ttsBtn = ttsUnCheked;
+        voiceInfo.recordNum = 0;
+        // 리스트에 담아주기
+        voiceInfos.Add(voiceInfo);
+    }
+
     public void Change()
     {
-        if(voiceInfos.Count <= SH_BtnManager.Instance.Scenes.Count)//  SH_BtnManager.Instance.currentSceneNum + 1)
+        if(voiceInfos.Count < SH_BtnManager.Instance.Scenes.Count)//  SH_BtnManager.Instance.currentSceneNum + 1)
         {
             // 해당 페이지에 있는 보이스 정보 담기
             VoiceInfo voiceInfo = new VoiceInfo();
