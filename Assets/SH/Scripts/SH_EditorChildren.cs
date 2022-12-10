@@ -15,10 +15,14 @@ public class SH_EditorChildren : MonoBehaviour
     public GameObject boy;
     public GameObject OBtn;
     public GameObject XBtn;
-
+    public GameObject fairys;       // 처음에 효과주기 위한 동화들 목록
     void Start()
     {
         layerMask = 1 << LayerMask.NameToLayer("Book");
+        iTween.ScaleFrom(bg, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.4f));
+        iTween.ScaleFrom(selectBook, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.4f));
+        //iTween.ScaleFrom(fairys, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.4f));
+
     }
 
     RaycastHit hitInfo;
@@ -36,6 +40,15 @@ public class SH_EditorChildren : MonoBehaviour
     // 난 콩은 안먹어 책 선택 시
     public void SelectBook1()
     {
+        StartCoroutine(book1Effect());
+    }
+
+    IEnumerator book1Effect()
+    {
+        OnClickMTChangeBook1();
+        yield return new WaitForSeconds(0.3f);
+        SmallButton();
+        yield return new WaitForSeconds(0.5f);
         // 첵 끄기
         for (int i = 0; i < books.Count; i++)
         {
@@ -49,13 +62,24 @@ public class SH_EditorChildren : MonoBehaviour
         iTween.ScaleTo(selectBook, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.4f));
         // 남자애 나오기
         iTween.MoveTo(boy, iTween.Hash("x", 0, "y", -8, "z", -1.6f, "easeType", "easeOutQuad", "time", 0.5f));
-        StartCoroutine(boySound());
+        //StartCoroutine(boySound());
+        boy.GetComponent<AudioSource>().enabled = true;
+        StartCoroutine(OXShow());
+    }
+    public void OnClickMTChangeBook1()
+    {
+        iTween.ScaleTo(books[0], iTween.Hash("x", 1.1f, "y", 1.1f, "z", 1.1f, "easeType", "easeOutSine", "time", 0.2f));
+    }
+
+    void SmallButton()
+    {
+        iTween.ScaleTo(books[0], iTween.Hash("x", 1, "y", 1, "z", 1, "easeType", "easeOutSine", "time", 0.2f));
     }
 
 
     IEnumerator boySound()
     {
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.3f);
         boy.GetComponent<AudioSource>().enabled = true;
         StartCoroutine(OXShow());
     }
@@ -104,6 +128,7 @@ public class SH_EditorChildren : MonoBehaviour
     public Vector3 boyOriginPos;
     public float speed = 0.5f;
     float currentTime;
+#if !UNITY_ANDROID
     public void OBtnRigging()
     {
         StopAllCoroutines();
@@ -166,6 +191,7 @@ public class SH_EditorChildren : MonoBehaviour
             yield return null;
         }
     }
+#endif
 
     public GameObject backBtn;
     public GameObject preBtn;
@@ -177,6 +203,7 @@ public class SH_EditorChildren : MonoBehaviour
         nextBtn.SetActive(false);
     }
 
+#if !UNITY_ANDROID
     public void Book1ScaleUp()
     {
         iTween.ScaleTo(books[0], iTween.Hash("x", 1.1f, "y", 1.1f, "z", 1.1f, "time", 0.3f));
@@ -232,7 +259,7 @@ public class SH_EditorChildren : MonoBehaviour
         iTween.ScaleTo(books[4], iTween.Hash("x", 1.0f, "y", 1.0f, "z", 1.0f, "time", 0.3f));
     }
 
-
+#endif
 
     public GameObject contentPos;
     public void NextBtn(float change)
@@ -276,5 +303,7 @@ public class SH_EditorChildren : MonoBehaviour
     {
         SceneManager.LoadScene("MyRoomScene");
     }
+
+
 
 }
