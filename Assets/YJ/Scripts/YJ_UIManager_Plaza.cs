@@ -191,6 +191,20 @@ public class YJ_UIManager_Plaza : MonoBehaviourPun
         }
     }
 
+    public Button createBtn;
+
+    private void Update()
+    {
+        if (type1.isOn || type2.isOn || type3.isOn)
+        {
+            createBtn.interactable = true;
+        }
+        else
+        {
+            createBtn.interactable = false;
+        }
+    }
+
     #endregion
 
     #endregion
