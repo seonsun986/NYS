@@ -143,6 +143,11 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 
         }
 
+        if(controller == null)
+        {
+            controller = GetComponent<CharacterController>();
+        }
+
         if (photonView.IsMine && this.gameObject.layer != 5)
         {
             if (SceneManager.GetActiveScene().name != "MyRoomScene")
@@ -265,7 +270,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 
                     // 처음 입장 시 떨어지게 만들기
                     yVelocity += gravity * Time.deltaTime;
-                    if (controller != null && controller.isGrounded)
+                    if (controller.isGrounded)
                     {
                         yVelocity = 0;
                     }
@@ -320,12 +325,12 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         dir.y = yVelocity;
 
 
-        if (Vector3.Distance(movePoint, transform.position) < 0.5f)// || movePoint == Vector3.zero)
+        if (Vector3.Distance(movePoint, transform.position) < 0.2f)// || movePoint == Vector3.zero)
         {
             moveBool = false;
             return;
         }
-        else if (Vector3.Distance(movePoint, transform.position) > 0.5f && movePoint == Vector3.zero)
+        else if (Vector3.Distance(movePoint, transform.position) > 0.1f && movePoint == Vector3.zero)
         {
             moveBool = false;
         }
