@@ -142,6 +142,8 @@ public class SH_Page22 : MonoBehaviour
     public GameObject quizBrother;
     public GameObject quizGoodText;
     public ParticleSystem quizFirework;
+    public ParticleSystem quizFirework1;
+    public ParticleSystem quizFirework2;
     public void QuizOBtn()
     {
         if(q<4)
@@ -160,6 +162,8 @@ public class SH_Page22 : MonoBehaviour
             quizBrother.SetActive(true);
             quizGoodText.SetActive(true);
             quizFirework.Play();
+            quizFirework1.Play();
+            quizFirework2.Play();
             iTween.ScaleTo(quizGirl, iTween.Hash("x", 4.185395f, "y", 4.185395f, "z", 4.185395f, "time", 0.7f));
             iTween.ScaleTo(quizBrother, iTween.Hash("x", 4.185395f, "y", 4.185395f, "z", 4.185395f, "time", 0.7f));
             iTween.ScaleTo(quizGoodText, iTween.Hash("x", 1, "y", 1, "z", 1, "time", 0.7f));
@@ -178,7 +182,8 @@ public class SH_Page22 : MonoBehaviour
             quizBrother.SetActive(true);
             quizGoodText.SetActive(true);
             quizFirework.Play();
-
+            quizFirework1.Play();
+            quizFirework2.Play();
             iTween.ScaleTo(quizGirl, iTween.Hash("x", 4.185395f, "y", 4.185395f, "z", 4.185395f, "time", 0.7f));
             iTween.ScaleTo(quizBrother, iTween.Hash("x", 4.185395f, "y", 4.185395f, "z", 4.185395f, "time", 0.7f));
             iTween.ScaleTo(quizGoodText, iTween.Hash("x", 1, "y", 1, "z", 1, "time", 0.7f));
@@ -199,7 +204,8 @@ public class SH_Page22 : MonoBehaviour
             quizBrother.SetActive(true);
             quizGoodText.SetActive(true);
             quizFirework.Play();
-
+            quizFirework1.Play();
+            quizFirework2.Play();
             iTween.ScaleTo(quizGirl, iTween.Hash("x", 4.185395f, "y", 4.185395f, "z", 4.185395f, "time", 0.7f));
             iTween.ScaleTo(quizBrother, iTween.Hash("x", 4.185395f, "y", 4.185395f, "z", 4.185395f, "time", 0.7f));
             iTween.ScaleTo(quizGoodText, iTween.Hash("x", 1, "y", 1, "z", 1, "time", 0.7f));
@@ -243,6 +249,9 @@ public class SH_Page22 : MonoBehaviour
         iTween.ScaleTo(quizGirl, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.7f));
         iTween.ScaleTo(quizBrother, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.7f));
         iTween.ScaleTo(quizGoodText, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.7f));
+        quizFirework.Stop();
+        quizFirework1.Stop();
+        quizFirework2.Stop();
         yield return new WaitForSeconds(1f);
         quizGirl.SetActive(false);
         quizBrother.SetActive(false);
@@ -269,6 +278,7 @@ public class SH_Page22 : MonoBehaviour
             iTween.ScaleTo(quizBG, iTween.Hash("x", 0, "time", 1, "easetype", "easeOutQuad"));
             yield return new WaitForSeconds(4.2f);
             iTween.RotateTo(quizBoy, iTween.Hash("y", 180, "time", 2));
+            iTween.MoveTo(quizBoy, iTween.Hash("x", 0, "time", 2));
             quizBoy.GetComponent<Animator>().SetTrigger("Hi");
             yield return new WaitForSeconds(6f);
             iTween.MoveTo(quizBoy, iTween.Hash("y", -18f,"time",1.5f));
