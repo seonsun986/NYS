@@ -83,6 +83,7 @@ public class SH_Page22 : MonoBehaviour
             panel.SetActive(false);
             panelWorld.SetActive(true);
             page22Boy.SetActive(false);
+            nextBtn.SetActive(false);
             //endBtn.SetActive(true);
             //reBtn.SetActive(true);
             //iTween.ScaleTo(endBtn, iTween.Hash("x", 1.8f, "y", 1.8f, "z", 1.8f, "time", 1.5f ));
@@ -281,7 +282,7 @@ public class SH_Page22 : MonoBehaviour
             iTween.MoveTo(quizBoy, iTween.Hash("x", 0, "time", 2));
             quizBoy.GetComponent<Animator>().SetTrigger("Hi");
             yield return new WaitForSeconds(6f);
-            iTween.MoveTo(quizBoy, iTween.Hash("y", -18f,"time",1.5f));
+            iTween.MoveTo(quizBoy, iTween.Hash("y", -25f,"time",1.5f));
             yield return new WaitForSeconds(1f);
             endBtn.SetActive(true);
             reBtn.SetActive(true);

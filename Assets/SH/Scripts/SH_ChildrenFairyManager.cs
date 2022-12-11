@@ -57,7 +57,8 @@ public class SH_ChildrenFairyManager : MonoBehaviour
     public GameObject girlYes;
     public GameObject boyYes;
     public GameObject boyNo;
-
+    public GameObject page14Text1;
+    public GameObject page14Text2;
     void Update()
     {
         if (bookWorldOpen == true)
@@ -146,6 +147,8 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                 {
                     boyNo.SetActive(true);
                     boyYes.SetActive(true);
+                    page14Text1.SetActive(true);
+                    page14Text2.SetActive(true);
                 }
 
             }
@@ -156,6 +159,8 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                 {
                     girlNo.SetActive(true);
                     girlYes.SetActive(true);
+                    page14Text1.SetActive(true);
+                    page14Text2.SetActive(true);
                 }
             }
         }
@@ -167,6 +172,8 @@ public class SH_ChildrenFairyManager : MonoBehaviour
                 boyYes.SetActive(false);
                 girlNo.SetActive(false);
                 girlYes.SetActive(false);
+                page14Text1.SetActive(false);
+                page14Text2.SetActive(false);
 
             }
         }

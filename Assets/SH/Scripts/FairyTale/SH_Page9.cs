@@ -19,6 +19,7 @@ public class SH_Page9 : MonoBehaviour
     public GameObject onionText;
     public GameObject riceText;
     public GameObject potatoText;
+    public YJ_ButtonClickSound sound;
     void Start()
     {
         
@@ -60,6 +61,7 @@ public class SH_Page9 : MonoBehaviour
                 {
                     SH_ChildrenFairyManager.Instance.PassTrue();
                     SH_ChildrenFairyManager.Instance.FillEmptyBox();
+                    sound.OnClickSound();
                 }
             }
 
@@ -93,6 +95,8 @@ public class SH_Page9 : MonoBehaviour
                 {
                     SH_ChildrenFairyManager.Instance.PassTrue();
                     SH_ChildrenFairyManager.Instance.FillEmptyBox();
+                    sound.OnClickSound();
+
                 }
             }
 
@@ -127,6 +131,8 @@ public class SH_Page9 : MonoBehaviour
                 {
                     SH_ChildrenFairyManager.Instance.PassTrue();
                     SH_ChildrenFairyManager.Instance.FillEmptyBox();
+                    sound.OnClickSound();
+
                 }
             }
 
@@ -158,6 +164,8 @@ public class SH_Page9 : MonoBehaviour
                 {
                     SH_ChildrenFairyManager.Instance.PassTrue();
                     SH_ChildrenFairyManager.Instance.FillEmptyBox();
+                    sound.OnClickSound();
+
                 }
             }
 
@@ -191,6 +199,8 @@ public class SH_Page9 : MonoBehaviour
                 {
                     SH_ChildrenFairyManager.Instance.PassTrue();
                     SH_ChildrenFairyManager.Instance.FillEmptyBox();
+                    sound.OnClickSound();
+
                 }
             }
 
@@ -223,6 +233,8 @@ public class SH_Page9 : MonoBehaviour
                 {
                     SH_ChildrenFairyManager.Instance.PassTrue();
                     SH_ChildrenFairyManager.Instance.FillEmptyBox();
+                    sound.OnClickSound();
+
                 }
             }
 #if !UNITY_ANDROID
