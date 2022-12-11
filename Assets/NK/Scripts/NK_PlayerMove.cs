@@ -265,7 +265,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
 
                     // 처음 입장 시 떨어지게 만들기
                     yVelocity += gravity * Time.deltaTime;
-                    if (controller.isGrounded)
+                    if (controller != null && controller.isGrounded)
                     {
                         yVelocity = 0;
                     }
