@@ -512,6 +512,7 @@ public class SH_BtnManager : MonoBehaviour
             {
                 GameObject createObj = Instantiate(obj[j]);
                 SH_EditorManager.Instance.activeObj = createObj;
+                iTween.ScaleFrom(createObj, iTween.Hash("x", 0, "y", 0, "z", 0, "time", 0.4f));
                 createObj.transform.SetParent(Scenes[currentSceneNum].transform);
                 createObj.transform.position = new Vector3(0, -1, 0);
                 break;
