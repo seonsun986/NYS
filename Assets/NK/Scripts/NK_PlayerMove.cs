@@ -320,12 +320,12 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         dir.y = yVelocity;
 
 
-        if (Vector3.Distance(movePoint, transform.position) < 0.1f)// || movePoint == Vector3.zero)
+        if (Vector3.Distance(movePoint, transform.position) < 0.5f)// || movePoint == Vector3.zero)
         {
             moveBool = false;
             return;
         }
-        else if (Vector3.Distance(movePoint, transform.position) > 0.1f && movePoint == Vector3.zero)
+        else if (Vector3.Distance(movePoint, transform.position) > 0.5f && movePoint == Vector3.zero)
         {
             moveBool = false;
         }
