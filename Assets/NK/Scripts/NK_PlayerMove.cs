@@ -51,6 +51,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
     int playerIndex;
 
     public GameObject speaker;
+    public AudioSource foot;
 
     private void Awake()
     {
@@ -202,6 +203,8 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                     {
                         return;
                     }
+                    if(!foot.isPlaying)
+                        foot.Play();
                     PlayerMouseMove();
                     //PlayerMove();
                     break;
@@ -283,11 +286,13 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         if (Vector3.Distance(movePoint, transform.position) < 0.1f)// || movePoint == Vector3.zero)
         {
             moveBool = false;
+            foot.Stop();
             return;
         }
         else if (Vector3.Distance(movePoint, transform.position) > 0.1f && movePoint == Vector3.zero)
         {
             moveBool = false;
+            foot.Stop();
         }
         else
         {
