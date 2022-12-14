@@ -450,7 +450,7 @@ public class NK_BookShelfManager : MonoBehaviour
         // 화면 크기의 텍스쳐 생성
         Texture2D screenTex = new Texture2D(300, 400, TextureFormat.RGB24, false);
         // 캡쳐할 영역 지정
-        Rect area = new Rect(452f, 320f, 300f, 400f);
+        Rect area = new Rect(462f, 266f, 300f, 400f);
         // 텍스쳐 픽셀에 지정
         screenTex.ReadPixels(area, 0, 0);
         screenTex.Apply();

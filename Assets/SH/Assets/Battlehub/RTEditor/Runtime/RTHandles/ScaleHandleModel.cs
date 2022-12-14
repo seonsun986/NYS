@@ -212,27 +212,27 @@ namespace Battlehub.RTHandles
             SetDefaultColors();
             switch (m_selectedAxis)
             {
-                case RuntimeHandleAxis.X:
-                    if (!m_lockObj.ScaleX)
-                    {
-                        m_materials[m_xArrowMatIndex].color = Colors.SelectionColor;
-                        m_materials[m_xMatIndex].color = Colors.SelectionColor;
-                    }
-                    break;
-                case RuntimeHandleAxis.Y:
-                    if (!m_lockObj.ScaleY)
-                    {
-                        m_materials[m_yArrowMatIndex].color = Colors.SelectionColor;
-                        m_materials[m_yMatIndex].color = Colors.SelectionColor;
-                    }
-                    break;
-                case RuntimeHandleAxis.Z:
-                    if (!m_lockObj.ScaleZ)
-                    {
-                        m_materials[m_zArrowMatIndex].color = Colors.SelectionColor;
-                        m_materials[m_zMatIndex].color = Colors.SelectionColor;
-                    }
-                    break;
+                //case RuntimeHandleAxis.X:
+                //    if (!m_lockObj.ScaleX)
+                //    {
+                //        m_materials[m_xArrowMatIndex].color = Colors.SelectionColor;
+                //        m_materials[m_xMatIndex].color = Colors.SelectionColor;
+                //    }
+                //    break;
+                //case RuntimeHandleAxis.Y:
+                //    if (!m_lockObj.ScaleY)
+                //    {
+                //        m_materials[m_yArrowMatIndex].color = Colors.SelectionColor;
+                //        m_materials[m_yMatIndex].color = Colors.SelectionColor;
+                //    }
+                //    break;
+                //case RuntimeHandleAxis.Z:
+                //    if (!m_lockObj.ScaleZ)
+                //    {
+                //        m_materials[m_zArrowMatIndex].color = Colors.SelectionColor;
+                //        m_materials[m_zMatIndex].color = Colors.SelectionColor;
+                //    }
+                //    break;
                 case RuntimeHandleAxis.Free:
                     m_materials[m_xyzMatIndex].color = Colors.SelectionColor;
                     break;
