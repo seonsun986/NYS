@@ -311,19 +311,40 @@ public class SH_BtnManager : MonoBehaviour
     // 해당 함수는 시작할 때만 값을 할당한다
     // 현재 있는 씬을 기억한다
     int text;
+    int sceneText;      // 페이지당 텍스트 한개로 설정
     public void AddText()
     {
-        SH_InputField inputText = Instantiate(inputField).GetComponent<SH_InputField>();
+        if (sceneText < 1)
+        {
+            SH_InputField inputText = Instantiate(inputField).GetComponent<SH_InputField>();
+            SH_EditorManager.Instance.active_InputField = inputText;
+            inputFields.Add(inputText);
+            SetInfo(0, 40, Color.black); // 초기값 세팅
+            inputText.Initialize(Scenes_txt[currentSceneNum].transform, text, new Vector3(-170, -350, 0));
+            inputText.SetInfo(txtDropdown.value, int.Parse(InputtxtSize.text), txtcolorImage.color);
 
-        SH_EditorManager.Instance.active_InputField = inputText;
-        inputFields.Add(inputText);
-        // 초기값 세팅
-        SetInfo(0, 40, Color.black);
+            text++;
+            sceneText++;
+        }
+        else
+        {
+            TextPanel();
+        }
+    }
 
-        inputText.Initialize(Scenes_txt[currentSceneNum].transform, text, new Vector3(-170, -350, 0));
-        inputText.SetInfo(txtDropdown.value, int.Parse(InputtxtSize.text), txtcolorImage.color);
+    public GameObject textPanel;
 
-        text++;
+    public void TextPanel()
+    {
+        StartCoroutine(IeTextPanel());
+    }
+
+    
+    IEnumerator IeTextPanel()
+    {
+        textPanel.SetActive(true);
+        yield return new WaitForSeconds(2.0f);
+        textPanel.SetActive(false);
     }
 
     public void SetInfo(int dropdown, int inputTextSize, Color txtColor)
