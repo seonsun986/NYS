@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
@@ -60,9 +61,28 @@ public class NK_BookUI : MonoBehaviourPun
         selectedTitle = "";
         sceneObjects = new Dictionary<int, List<PageInfo>>();
         GameObject book = EventSystem.current.currentSelectedGameObject;
-        photonView.RPC("RPCSetActive", RpcTarget.All);
+        // 딜레이 주기
+        StartCoroutine(book1Effect(book));
         GetBookInfo(bookObjects.IndexOf(book));
         print(book.GetComponentInChildren<Text>().text);
+    }
+
+    IEnumerator book1Effect(GameObject book)
+    {
+        OnClickMTChangeBook1(book);
+        yield return new WaitForSeconds(0.3f);
+        SmallButton(book);
+        yield return new WaitForSeconds(0.5f);
+        photonView.RPC("RPCSetActive", RpcTarget.All);
+    }
+    public void OnClickMTChangeBook1(GameObject book)
+    {
+        iTween.ScaleTo(book, iTween.Hash("x", 1.2f, "y", 1.2f, "z", 1.2f, "easeType", "easeOutSine", "time", 0.2f));
+    }
+
+    void SmallButton(GameObject book)
+    {
+        iTween.ScaleTo(book, iTween.Hash("x", 1, "y", 1, "z", 1, "easeType", "easeOutSine", "time", 0.2f));
     }
 
     [PunRPC]
