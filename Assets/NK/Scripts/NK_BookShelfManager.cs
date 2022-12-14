@@ -1,4 +1,5 @@
 using Newtonsoft.Json.Linq;
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ public class NK_BookShelfManager : MonoBehaviour
     public List<string> textContent = new List<string>();
     public GameObject booksParent;
     public GameObject bookFactory;
+    public GameObject bookEffect;
     // 책 세부 내용 보기에 필요한 속성
     public GameObject detailUI;
     public Text detailTitle;
@@ -288,15 +290,15 @@ public class NK_BookShelfManager : MonoBehaviour
     }
 
     int index = 0;
+    GameObject effect;
     public void ClickBook()
     {
         // 책 선택하면 책 미리보기 보여짐
         selectedBook = EventSystem.current.currentSelectedGameObject;
+        effect = Instantiate(bookEffect, booksParent.transform);
+        effect.transform.position = selectedBook.transform.position;
+        StartCoroutine(book1Effect(selectedBook));
         detailTitle.text = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text;
-        detailUI.SetActive(true);
-        booksParent.SetActive(false);
-        nextBtn.SetActive(false);
-        prevBtn.SetActive(false);
 
         // rawImage 불러오고 초기화
         images.Clear();
@@ -304,6 +306,29 @@ public class NK_BookShelfManager : MonoBehaviour
         rawImage.rectTransform.sizeDelta = new Vector2(800, 500);
         GetDetailImage();
     }
+
+    IEnumerator book1Effect(GameObject book)
+    {
+        SmallButton(book);
+        yield return new WaitForSeconds(0.3f);
+        OnClickMTChangeBook1(book);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(effect);
+        detailUI.SetActive(true);
+        booksParent.SetActive(false);
+        nextBtn.SetActive(false);
+        prevBtn.SetActive(false);
+    }
+    public void OnClickMTChangeBook1(GameObject book)
+    {
+        iTween.ScaleTo(book, iTween.Hash("x", 1.1f, "y", 1.1f, "z", 1.1f, "easeType", "easeOutSine", "time", 0.2f));
+    }
+
+    void SmallButton(GameObject book)
+    {
+        iTween.ScaleTo(book, iTween.Hash("x", 1, "y", 1, "z", 1, "easeType", "easeOutSine", "time", 0.2f));
+    }
+
     public void ClickBefore()
     {
         // 책 미리보기에서 이전 버튼 클릭 시
