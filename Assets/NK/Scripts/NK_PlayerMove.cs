@@ -203,7 +203,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
                     {
                         return;
                     }
-                    if(!foot.isPlaying)
+                    if(!foot.isPlaying && YJ_AudioManager.instance.effectOnOff)
                         foot.Play();
                     PlayerMouseMove();
                     //PlayerMove();
