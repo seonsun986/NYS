@@ -12,7 +12,7 @@ public class NK_EmotionSound : MonoBehaviourPun
         {
             gameObject.GetComponent<AudioSource>().enabled = false;
         }
-        else if(transform.root.gameObject.GetPhotonView().IsMine)
+        else
         {
             gameObject.GetComponent<AudioSource>().enabled = true;
         }
