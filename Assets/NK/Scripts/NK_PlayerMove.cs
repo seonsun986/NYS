@@ -250,7 +250,7 @@ public class NK_PlayerMove : MonoBehaviourPun//, IPunObservable
         }
     }
 
-    bool sit = false;
+    public bool sit = false;
 
     Vector3 dir;
     float h = 0;

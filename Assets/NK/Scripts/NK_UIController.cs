@@ -254,6 +254,8 @@ public class NK_UIController : MonoBehaviourPun
         GameObject teacher = PhotonView.Find(viewId).gameObject;
         NK_PlayerMove move = teacher.GetComponent<NK_PlayerMove>();
         move.enabled = true;
+        move.sit = true;
+        move.state = NK_PlayerMove.State.Idle;
     }
 
     [PunRPC]
