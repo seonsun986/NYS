@@ -87,22 +87,22 @@ namespace Battlehub.RTHandles
             }
         }
 
-        public virtual bool ViewAction()
+        protected virtual bool ViewAction()
         {
             return m_editor.Input.GetKeyDown(ViewKey);
         }
 
-        public virtual bool MoveAction()
+        protected virtual bool MoveAction()
         {
             return m_editor.Input.GetKeyDown(MoveKey);
         }
 
-        public virtual bool RotateAction()
+        protected virtual bool RotateAction()
         {
             return m_editor.Input.GetKeyDown(RotateKey);
         }
 
-        public virtual bool ScaleAction()
+        protected virtual bool ScaleAction()
         {
             return m_editor.Input.GetKeyDown(ScaleKey);
         }

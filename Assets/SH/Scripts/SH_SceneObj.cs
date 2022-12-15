@@ -3,19 +3,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Battlehub.RTCommon;
-using Battlehub.RTHandles;
 
 public class SH_SceneObj : MonoBehaviour
 {
-    private IRTE m_editor;
-
-    private void Awake()
-    {
-        m_editor = IOC.Resolve<IRTE>();
-
-    }
-
     // 빈 오브젝트 안에 들어가야하는 것들 : InputField, Gameobject
     // 이때 InputField는 canvas안에 다시 들어가야한다'
     // 게임오브젝트는 빈 오브젝트 자식으로 넣지만 InputField같은 경우에는 Canvas에서 올려야하는데
@@ -39,7 +29,6 @@ public class SH_SceneObj : MonoBehaviour
     public GameObject deleteBtn;
     // Instantiate된 삭제 버튼
     GameObject delete;
-
 
     // 만든 버튼을 넣어 줄 리스트
     public List<GameObject> buttons = new List<GameObject>();
@@ -159,8 +148,7 @@ public class SH_SceneObj : MonoBehaviour
                 buttons.Add(delete);
             }
 
-
-            if (YJ_DataManager.instance.preScene == "BookShelfScene" || YJ_DataManager.instance.preScene == "PreviewScene")
+            if(YJ_DataManager.instance.preScene == "BookShelfScene" || YJ_DataManager.instance.preScene == "PreviewScene")
             {
                 for(int j =0;j<buttons.Count;j++)
                 {
@@ -253,18 +241,5 @@ public class SH_SceneObj : MonoBehaviour
     {
         GameObject popUp = delete.transform.GetChild(0).gameObject;
         popUp.SetActive(false);
-    }
-
-    public void PosClick()
-    {
-        m_editor.Tools.Current = RuntimeTool.Move;
-    }
-    public void RotClick()
-    {
-        m_editor.Tools.Current = RuntimeTool.Rotate;
-    }
-    public void SizeClick()
-    {
-        m_editor.Tools.Current = RuntimeTool.Scale;
     }
 }
