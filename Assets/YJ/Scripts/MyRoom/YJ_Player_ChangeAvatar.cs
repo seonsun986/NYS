@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class YJ_Player_ChangeAvatar : YJ_AvatarSet
 {
     public static YJ_Player_ChangeAvatar instance;
+    public ParticleSystem avatarEffect;
     // 메터리얼
     SkinnedMeshRenderer mt;
 
@@ -51,6 +52,8 @@ public class YJ_Player_ChangeAvatar : YJ_AvatarSet
     public int avatarNum;
     public void OnClickAvatar(int i)
     {
+        avatarEffect.Play();
+        avatarEffect.GetComponent<AudioSource>().Play();
         RemoveChild(hatParent);
         RemoveChild(bagParent);
         RemoveChild(fishParent);
@@ -79,6 +82,8 @@ public class YJ_Player_ChangeAvatar : YJ_AvatarSet
     public int setmt = 0;
     public void OnClickCatMt(int i)
     {
+        avatarEffect.Play();
+        avatarEffect.GetComponent<AudioSource>().Play();
         if (avatarNum == 0)
         {
             mt.material = catMt[i];
@@ -103,6 +108,8 @@ public class YJ_Player_ChangeAvatar : YJ_AvatarSet
 
     public void OnClickObj(int i)
     {
+        avatarEffect.Play();
+        avatarEffect.GetComponent<AudioSource>().Play();
         if (i < 2)
         {
             RemoveChild(bagParent);

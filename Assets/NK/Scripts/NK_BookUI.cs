@@ -4,7 +4,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
@@ -24,6 +23,7 @@ public class NK_BookUI : MonoBehaviourPun
     public GameObject bookFactory;
 
     public AudioSource audioSource;
+    public GameObject bookEffect;
 
     Dictionary<int, List<PageInfo>> sceneObjects = new Dictionary<int, List<PageInfo>>();
     List<TaleInfo> taleInfos;
@@ -54,15 +54,38 @@ public class NK_BookUI : MonoBehaviourPun
         GetBookList();
     }
 
+    GameObject effect;
     public void ClickBook()
     {
         pageNum = 0;
         selectedTitle = "";
         sceneObjects = new Dictionary<int, List<PageInfo>>();
         GameObject book = EventSystem.current.currentSelectedGameObject;
-        photonView.RPC("RPCSetActive", RpcTarget.All);
+        effect = Instantiate(bookEffect, bookUI.transform);
+        effect.transform.position = book.transform.position;
+        // 딜레이 주기
+        StartCoroutine(book1Effect(book));
         GetBookInfo(bookObjects.IndexOf(book));
         print(book.GetComponentInChildren<Text>().text);
+    }
+
+    IEnumerator book1Effect(GameObject book)
+    {
+        SmallButton(book);
+        yield return new WaitForSeconds(0.3f);
+        OnClickMTChangeBook1(book);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(effect);
+        photonView.RPC("RPCSetActive", RpcTarget.All);
+    }
+    public void OnClickMTChangeBook1(GameObject book)
+    {
+        iTween.ScaleTo(book, iTween.Hash("x", 1.1f, "y", 1.1f, "z", 1.1f, "easeType", "easeOutSine", "time", 0.2f));
+    }
+
+    void SmallButton(GameObject book)
+    {
+        iTween.ScaleTo(book, iTween.Hash("x", 1, "y", 1, "z", 1, "easeType", "easeOutSine", "time", 0.2f));
     }
 
     [PunRPC]
