@@ -516,6 +516,7 @@ public class SH_BtnManager : MonoBehaviour
         SH_VoiceRecord.Instance.Reset();
         i++;
         currentSceneNum = i;   // 씬 추가했으므로 새 씬으로 가고 따라서 현재씬을 i값으로 해준다
+        sceneText = 0;
 
     }
 
