@@ -844,6 +844,8 @@ public class SH_BtnManager : MonoBehaviour
 
     // 배경음 적용하기 버튼 클릭 시
     public AudioSource bgSelectSound;
+    public Image sceneBgImage;
+    public Sprite SceneBGSprite1;
     public void ClickApplySound()
     {
         // 현재 프로젝트의 오디오 소스에 접근
@@ -851,6 +853,7 @@ public class SH_BtnManager : MonoBehaviour
         YJ_DataManager.instance.bgClip = bgSelectSound.clip;
         // UI 밑으로 내리기
         MoveSceneBG();
+        sceneBgImage.sprite = SceneBGSprite1;
     }
 
     private AnimatorClipInfo[] clipInfo;
@@ -860,24 +863,6 @@ public class SH_BtnManager : MonoBehaviour
         SaveInfo(true);
     }
 
-    //public byte[] ConvertClipToBytes(AudioClip audioClip)
-    //{
-    //    float[] samples = new float[audioClip.samples];
-    //    audioClip.GetData(samples, 0);
-    //    short[] intData = new short[samples.Length];
-    //    byte[] bytesData = new byte[samples.Length * 2];
-    //    int rescaleFactor = 32767;
-
-    //    for(int i =0;i<samples.Length;i++)
-    //    {
-    //        intData[i] = (short)(samples[i] * rescaleFactor);
-    //        byte[] byteArr = new byte[2];
-    //        byteArr = BitConverter.GetBytes(intData[i]);
-    //        byteArr.CopyTo(bytesData, i * 2);
-    //    }
-
-    //    return bytesData;
-    //}
 
 
     byte[] nullbytedata = new byte[0];
@@ -915,26 +900,6 @@ public class SH_BtnManager : MonoBehaviour
                 pagesInfo.ttsText = "";
             }
 
-            //----------------------------------------------------방법1(byte로 보내기)-------------------------------------------------
-
-            //// wav > byte로 변환하기
-            //if (voice.voiceClip.Count > i && voice.voiceClip[i] != null)
-            //{
-            //    float[] floatData = new float[voice.voiceClip[i].samples * voice.voiceClip[i].channels];
-            //    voice.voiceClip[i].GetData(floatData, 0);
-
-            //    // byte 배열 만들기
-            //    byte[] byteData = new byte[floatData.Length * 4]/*ConvertClipToBytes(voice.voiceClip[i])*/;
-            //    string encodedText = Convert.ToBase64String(byteData);
-            //    print(encodedText);
-            //    Buffer.BlockCopy(floatData, 0, byteData, 0, byteData.Length); ;
-
-            //    pagesInfo.voice = byteData;
-            //}
-            //else
-            //{
-            //    pagesInfo.voice = nullbytedata;
-            //}
 
             if (send)
             {
