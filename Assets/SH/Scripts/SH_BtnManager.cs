@@ -820,7 +820,12 @@ public class SH_BtnManager : MonoBehaviour
     public void TutorialEnd()
     {
         titlePanel.SetActive(false);
-        tutorial.SetActive(false);
+        //tutorial.SetActive(false);
+    }
+
+    public void TutorialStart()
+    {
+        titlePanel.SetActive(true);
     }
 
     public GameObject savePanel;
