@@ -30,6 +30,25 @@ public class MyBookList
 public class YJ_DataManager : MonoBehaviour
 {
     public static YJ_DataManager instance;
+
+    private void Awake()
+    {
+        // 만약에 instance가 null이라면
+        if (instance == null)
+        {
+            // instance에 나를 넣겠다.
+            instance = this;
+            // 내가 파괴되지 않도록 하겠다.
+            DontDestroyOnLoad(gameObject);
+        }
+        // 그렇지 않으면
+        else
+        {
+            // 나를 파괴하겠다.
+            Destroy(gameObject);
+        }
+    }
+
     // 이전 씬
     public string preScene;
     // 책장씬 -> 책 내용 수정 시 넘겨줄 동화책 id
@@ -52,29 +71,14 @@ public class YJ_DataManager : MonoBehaviour
 
     // 에디터 씬에서 선택한 배경음악 오디오 클립
     public AudioClip bgClip;
-    private void Awake()
-    {
-        // 만약에 instance가 null이라면
-        if (instance == null)
-        {
-            // instance에 나를 넣겠다.
-            instance = this;
-            // 내가 파괴되지 않도록 하겠다.
-            DontDestroyOnLoad(gameObject);
-        }
-        // 그렇지 않으면
-        else
-        {
-            // 나를 파괴하겠다.
-            Destroy(gameObject);
-        }
+
 
         //테스트 셋팅
         //listPhotoUrl.Add("https://img-lb.inews24.com/image_joy/201409/facebookexternalhit/face/626x352/1411714196274_1_155055.jpg");
         //listPhotoUrl.Add("https://s.pstatic.net/static/www/mobile/edit/20220901/cropImg_728x360_103965399363771670.jpeg");
         //listPhotoUrl.Add("https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Ftvcast.phinf%2F20220901_154%2FJ3z5X_1662039736463RSiWq_JPEG%2F6310adac65495848f6a8af74_edit_0_1662038045923.jpg%22&type=nf464_260");
 
-    }
+    
 
     #region 방정보
     // 방정보를 담을 클래스
@@ -87,14 +91,6 @@ public class YJ_DataManager : MonoBehaviour
     }
     #endregion
 
-
-    #region 방목록
-
-    private void Start()
-    {
-        
-    }
-    #endregion
 
     //public List<GameObject> roomList = new List<GameObject> ();
     public GameObject[] roomList;// = new List<GameObject> ();
