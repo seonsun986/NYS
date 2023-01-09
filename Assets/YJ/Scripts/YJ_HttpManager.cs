@@ -84,13 +84,6 @@ public class YJ_HttpManager : MonoBehaviour
                 Uri uri = new Uri(requester.url);
                 webRequest = UnityWebRequestMultimedia.GetAudioClip(uri, AudioType.WAV);
 
-                //if (requester.record == false)
-                //{
-                //    webRequest = UnityWebRequestMultimedia.GetAudioClip(uri, AudioType.MPEG);
-                //}
-                //else
-                //{
-                //}
                 break;
         }
         // 서버에 요청을 보내고 응답이 올때까지 기다린다.

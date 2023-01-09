@@ -1113,15 +1113,13 @@ public class SH_BtnManager : MonoBehaviour
         requester.postData = getmp3;
         requester.onComplete = (handler) =>
         {
-            print("mp3파일생성!");
-            //print(handler.downloadHandler.text);
+            // byte형식으로 받아오기
             byte[] byteData = handler.downloadHandler.data;
 
-            File.WriteAllBytes(/*Application.streamingAssetsPath + "/" + "ex"*/path + ".mp3", byteData);
-            // 빌드파일에서만 오디오 파일 재생
-            //#if !UNITY_EDITOR
+            File.WriteAllBytes(path + ".mp3", byteData);
+
             ReadAudio();
-            //#endif
+
         };
         YJ_HttpManager.instance.SendRequest(requester);
     }

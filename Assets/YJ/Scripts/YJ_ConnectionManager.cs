@@ -128,7 +128,6 @@ public class YJ_ConnectionManager : MonoBehaviourPunCallbacks
 
         // 방을 만든다
         PhotonNetwork.CreateRoom("Lobby", roomOptions);
-
     }
 
     // 방 생성 완료 확인

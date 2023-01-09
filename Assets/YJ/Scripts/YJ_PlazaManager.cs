@@ -77,7 +77,6 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     #region 내방 삭제
     public void DeleteRoomOBJ(int objId, int listId)
     {
-        //PhotonNetwork.Destroy(room.gameObject);
         photonView.RPC("RpcDeleteRoom", RpcTarget.MasterClient, objId, listId);
     }
 
@@ -86,7 +85,6 @@ public class YJ_PlazaManager : MonoBehaviourPunCallbacks
     {
         PhotonView objView = PhotonView.Find(objId);
         PhotonView listView = PhotonView.Find(listId);
-        //Destroy(view.gameObject);
         PhotonNetwork.Destroy(objView.gameObject);
         PhotonNetwork.Destroy(listView.gameObject);
     }
