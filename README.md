@@ -9,8 +9,8 @@
 - 보이스 채팅
 - 텍스처 압축 등을 통한 모바일 최적화 (Android)
 
-## 주요 스크립트 파일들
-
+## 주요 스크립트 파일들 (김나경)
+https://github.com/seonsun986/NYS/tree/main/Assets/NK/Scripts
 ### GameManager.cs
 - **기능**: 게임의 전반적인 흐름과 상태를 관리
 - **주요 메서드**: 게임 시작, 종료, 일시 정지
