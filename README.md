@@ -9,6 +9,12 @@
 - 보이스 채팅
 - 텍스처 압축 등을 통한 모바일 최적화 (Android)
 
+## 담당한 기능 (심선혜)
+- 동화책 툴 제작 
+- 동화책 데이터 Json 파일 변환 및 서버 저장
+- 사운드
+- 텍스처 압축 등을 통한 모바일 최적화 (Android)
+
 ## 주요 스크립트 파일들 (김나경)
 https://github.com/seonsun986/NYS/tree/main/Assets/NK/Scripts
 ### GameManager.cs
